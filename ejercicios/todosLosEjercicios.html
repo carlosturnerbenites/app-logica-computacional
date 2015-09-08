@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Cursos</title>
+	<link rel="stylesheet" href="../css/logicacomputacional.css">
+</head>
+<body>
+	<ul id="contenedorEjercicios" class="listado">
+		<h2  class="textoCentrado">Ejercicios</h2>
+	</ul>
+
+	<script src="../js/generarListas.js"></script>
+	<script src="../js/funcionesAxuliares.js"></script>
+
+	<script>
+		leerJSON('json/listaArchivoNombreJSON.json', function(data){
+			console.log(data)
+		});
+		generarListas("contenedorEjercicios","ejercicios","ejerciciosDisponibles",["e"])
+
+	</script>
+
+
+</body>
+</html>

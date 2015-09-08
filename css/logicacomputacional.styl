@@ -1,0 +1,78 @@
+@import "normalize.styl"
+@import url(https://fonts.googleapis.com/css?family=Lato)
+
+body
+	font-size 16px
+	font-family 'Lato' sans-serif
+	margin 0
+	font-size 16px
+
+ul
+	margin 0
+	list-style none
+.dosColumnas
+	width 50%
+	margin 0
+	padding 0
+.backgroundQueEs
+	background-image url('../img/index/queEs.jpg')
+	height 100%
+	background-size 100%
+
+.displayFlexCenterTotal
+	display flex
+	justify-content center
+	align-items center
+.textoCentrado
+	text-align center
+nav
+	width 100%
+	position fixed
+	ul
+		background-color rgba(0,0,0,0.7)
+		li
+			display inline-block
+			a
+				padding 10px
+				color white
+				display block
+.imagenFondo
+	background-image url('../img/backgroundIndex.jpg')
+	width 100%
+	height 600px
+	background-attachment fixed
+	background-size cover
+	text-align center
+	filter blur(2px)
+.containerInfo
+	width 100%
+	height 300px
+
+ul.listado
+	li
+		margin 10px 0
+		font-size 1em
+		.descripcion
+			font-size 0.8em
+			color gray
+			margin-left 20px
+			margin-top 2px
+			margin-bottom 20px
+
+table
+	border-collapse:collapse;
+	display inline-block
+	margin 10px
+	tr
+		th
+			border 2px solid black
+		.respuestaEjercicio
+			border none
+			outline none
+			width 30px
+			text-align center
+			text-transform uppercase
+			font-weight bold
+
+
+
