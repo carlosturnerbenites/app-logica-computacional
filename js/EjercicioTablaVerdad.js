@@ -1,5 +1,17 @@
 function crearEjercicio(evento) {
 
+	function verificarRespuestaIngresada(){
+
+		var valor = this.value
+
+		if (valor.toUpperCase() == "V" || valor.toUpperCase() == "F") {
+			this.classList.remove("valorErroneo")
+		}else{
+			this.value = ""
+			this.classList.add("valorErroneo")
+		}
+	}
+
 	evento.preventDefault()
 
 	var numeroProposiciones = Number(document.getElementById("numeroProposiciones").value)
@@ -20,8 +32,9 @@ function crearEjercicio(evento) {
 			thHTML.innerHTML = solucion
 		}
 		trHTML.appendChild(thHTML)
-
 	}
+	//reinicia el valor del campo de soluciones
+	solucion = ""
 	tableHTML.appendChild(trHTML)
 
 	for (var filas = 0; filas < numeroCombinaciones; filas++) {
@@ -32,11 +45,16 @@ function crearEjercicio(evento) {
 			var thHTML =document.createElement("th")
 			if (columnas == numeroProposiciones) {
 				var inputHTML = document.createElement("input")
+				//inputHTML.setAttribute("autofocus", "autofocus")
 				inputHTML.classList.add("respuestaEjercicio")
 				inputHTML.setAttribute("required", "required")
+				inputHTML.setAttribute("maxlength", "1")
+
+				inputHTML.addEventListener("change", verificarRespuestaIngresada)
+
 				thHTML.appendChild(inputHTML)
 			}else{
-				thHTML.innerHTML = "no"
+				thHTML.innerHTML = posiblesValores[numeroAleatorio(2,0)]
 			}
 
 			trHTML.appendChild(thHTML)
@@ -52,13 +70,29 @@ function crearEjercicio(evento) {
 	sectionTablasVerdad.appendChild(inputHTML)
 }
 
+function validarRespuesta(respuestaCapturada,operacionEscogida) {
+	console.log(respuestaCapturada)
+	console.log(operacionEscogida);
+	for (var a = 1; a <= respuestaCapturada.length; a++) {
+		for (var b = 0; b < tablaY.length; b++) {
+			console.log(tablaY[a],respuestaCapturada[b]);
+			if(tablaY[a].toString() == respuestaCapturada[b].toString()){
+				console.log("bien");
+			}
+		}
+	};
+
+	console.log(respuestaCapturada[i])
+};
 
 
 var ejercicioTablaVerdad = document.getElementById("ejercicioTablaVerdad")
 
-function validarRespuesta(evento) {
+function capturarRespuesta(evento) {
+
 
 	evento.preventDefault()
+	var valueOperacionEscogida = document.getElementById("tipoOperacion").value
 
 	for (var campos = 0; campos < numeroCombinaciones; campos++) {
 		var respuesta = document.getElementById(campos)
@@ -68,18 +102,25 @@ function validarRespuesta(evento) {
 	for (var campo = 0; campo < respuestas.length; campo++) {
 
 		var nombreFila = convertirHTMLCollectionEnArray(respuestas[campo].childNodes)
-		console.log(nombreFila);
 
 
-		for (var i = 0; i <= nombreFila.length; i++) {
-			if(i != nombreFila.length){
-				console.log(nombreFila[i])
+		for (var i = 0; i < nombreFila.length; i++) {
+			if (i == nombreFila.length-1) {
+				var valorCampo = nombreFila[i].lastChild.value.toUpperCase()
 			}else{
-				console.log(nombreFila[i].lastChild)
+
+				var valorCampo = nombreFila[i].innerHTML
 			}
-		};
+			valoresCampo.push(valorCampo)
+		}
+
+		valoresCampos.push(valoresCampo)
+		//reinicializar variable
+		valoresCampo = []
 	};
-}
+
+	validarRespuesta(valoresCampos,valueOperacionEscogida)
+};
 
 ejercicioTablaVerdad.addEventListener("submit", crearEjercicio)
-fromValidarRespuesta.addEventListener("submit", validarRespuesta)
+fromValidarRespuesta.addEventListener("submit", capturarRespuesta)

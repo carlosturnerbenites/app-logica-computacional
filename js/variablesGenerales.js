@@ -1,3 +1,8 @@
+var posiblesValores = ["V", "F"]
+
+var valoresCampo = []
+var valoresCampos = []
+
 var proposiciones = ["p","q","r","s","t","u","v","w","x","y"]
 var solucion = ""
 var tablaY = 	[["p","q","p Λ q"],

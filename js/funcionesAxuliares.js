@@ -4,6 +4,11 @@ function convertirHTMLCollectionEnArray(HTMLCollections){
 
 }
 
+function numeroAleatorio(max,min) {
+	var aleatorio = Math.floor((Math.random() * max) + min)
+	return aleatorio
+}
+
 function leerJSON(path, callback) {
 
 	var httpRequest = new XMLHttpRequest();
