@@ -71,18 +71,14 @@ function crearEjercicio(evento) {
 }
 
 function validarRespuesta(respuestaCapturada,operacionEscogida) {
-	console.log(respuestaCapturada)
-	console.log(operacionEscogida);
 	for (var a = 1; a <= respuestaCapturada.length; a++) {
 		for (var b = 0; b < tablaY.length; b++) {
-			console.log(tablaY[a],respuestaCapturada[b]);
-			if(tablaY[a].toString() == respuestaCapturada[b].toString()){
+			if(String(tablaY[a]) == String(respuestaCapturada[b])){
+				console.log(String(tablaY[a]), String(respuestaCapturada[b]));
 				console.log("bien");
 			}
 		}
 	};
-
-	console.log(respuestaCapturada[i])
 };
 
 
