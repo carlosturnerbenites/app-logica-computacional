@@ -6,22 +6,31 @@
 	<link rel="stylesheet" href="../../css/logicacomputacional.css">
 </head>
 <body>
+	<h1 class="textoCentrado">Ejercicio sobre Tablas de Verdad</h1>
+
 	<section>
-		<form action="" id="ejercicioTablaVerdad">
-			<label for="numeroProposiciones">Cantidad de proposiciones</label>
-			<input value="2" type="number" id="numeroProposiciones" min="0" max="10" required>
-			<select name="" id="tipoOperacion" required>
-				<option value="conjuncion">conjuncion</option>
-				<option value="disjuncion">disjuncion</option>
-				<option value="condicional">condicional</option>
-				<option value="bicondicional">bicondicional</option>
-			</select>
+		<form action="#" id="ejercicioTablaVerdad">
+			<fieldset>
+
+				<label for="numeroProposiciones">Cantidad de proposiciones: </label>
+				<input value="2" type="number" id="numeroProposiciones" min="0" max="10" required>
+			</fieldset>
+			<fieldset>
+
+				<label for="tipoOperacion">Operado: </label>
+				<select name="" id="tipoOperacion" required>
+					<option value="conjuncion">Conjuncion</option>
+					<option value="disjuncion">Disjuncion</option>
+					<option value="condicional">Condicional</option>
+					<option value="bicondicional">Bicondicional</option>
+				</select>
+			</fieldset>
 			<input type="submit" value="Hacer Ejercicio">
 		</form>
 	</section>
-	<form action="" id="fromValidarRespuesta">
+	<form action="#" id="fromValidarRespuesta">
 
-		<section id="sectionTablasVerdad"></section>
+		<section class="displayFlexCenterTotal" id="sectionTablasVerdad"></section>
 
 	</form>
 	<script src="../../js/variablesGenerales.js"></script>

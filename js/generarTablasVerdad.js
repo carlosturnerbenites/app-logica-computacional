@@ -24,7 +24,7 @@ function crearTabla() {
 
 var btnCreartablaVerdad = convertirHTMLCollectionEnArray(document.querySelectorAll(".tablaVerdad"))
 
-btnCreartablaVerdad.forEach(function(btnCrear, index){
+btnCreartablaVerdad.forEach(function(btnCrear){
 	btnCrear.addEventListener("click", crearTabla)
 })
 

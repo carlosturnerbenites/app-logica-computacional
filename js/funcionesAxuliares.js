@@ -11,12 +11,12 @@ function numeroAleatorio(max,min) {
 
 
 var crearElemento = {
-	tipoDeElemento : "a",
-	texto : "link con funcion",
-	clases : ["c","a","b","w","d"],
-	id : "link",
-	atributos : [["href","link"]],
-	elementoContenedor : "sectionTablasVerdad",
+	tipoDeElemento : "",
+	texto : "",
+	clases : [],
+	id : "",
+	atributos : [[]],
+	elementoContenedor : "",
 	constructorElemento : function () {
 
 		var elemento = document.createElement(this.tipoDeElemento)
@@ -28,8 +28,6 @@ var crearElemento = {
 		};
 
 		for (var j = 0; j < this.atributos.length; j++) {
-			console.log(this.atributos[j][0]);
-			console.log(this.atributos[j][1]);
 			elemento.setAttribute(this.atributos[j][0],this.atributos[j][1])
 
 		};

@@ -1,5 +1,8 @@
-function crearEjercicio(evento) {
+var fromValidarRespuesta = document.getElementById("fromValidarRespuesta")
 
+function crearEjercicio(evento) {
+	evento.preventDefault()
+	ejercicioTablaVerdad.removeEventListener("submit", crearEjercicio)
 	function verificarRespuestaIngresada(){
 
 		var valor = this.value
@@ -12,10 +15,8 @@ function crearEjercicio(evento) {
 		}
 	}
 
-	evento.preventDefault()
 
 	var numeroProposiciones = Number(document.getElementById("numeroProposiciones").value)
-	var tipoOperacion = document.getElementById("tipoOperacion")
 
 	numeroCombinaciones = Math.pow(2,numeroProposiciones)
 
@@ -66,28 +67,18 @@ function crearEjercicio(evento) {
 	inputHTML = document.createElement("input")
 	inputHTML.setAttribute("type", "submit")
 	inputHTML.setAttribute("value", "Verificar")
+	inputHTML.id = "verificarEjericio"
 	sectionTablasVerdad.appendChild(tableHTML)
 	sectionTablasVerdad.appendChild(inputHTML)
 }
 
-function validarRespuesta(respuestaCapturada,operacionEscogida) {
-	for (var a = 1; a <= tablaY.length; a++) {
-		for (var b = 0; b < respuestaCapturada.length; b++) {
-			if( String(respuestaCapturada[b]) == ["V","V","V"]){
-				console.log('__________');
-				console.log(String(tablaY[a]));
-				console.log(String(respuestaCapturada[b]));
-				console.log('');
-				console.log("bien");
-			}
-		}
-	};
-};
-
-
 var ejercicioTablaVerdad = document.getElementById("ejercicioTablaVerdad")
 
 function capturarRespuesta(evento) {
+
+	respuestas = []
+	valoresCampos = []
+	inputsDeRespuesta = []
 
 
 	evento.preventDefault()
@@ -98,14 +89,16 @@ function capturarRespuesta(evento) {
 		respuestas.push(respuesta)
 
 	};
+
 	for (var campo = 0; campo < respuestas.length; campo++) {
 
 		var nombreFila = convertirHTMLCollectionEnArray(respuestas[campo].childNodes)
-
+		console.log(nombreFila);
 
 		for (var i = 0; i < nombreFila.length; i++) {
 			if (i == nombreFila.length-1) {
 				var valorCampo = nombreFila[i].lastChild.value.toUpperCase()
+				inputsDeRespuesta.push(nombreFila[i].lastChild)
 			}else{
 
 				var valorCampo = nombreFila[i].innerHTML
@@ -117,9 +110,48 @@ function capturarRespuesta(evento) {
 		//reinicializar variable
 		valoresCampo = []
 	};
-
-	validarRespuesta(valoresCampos,valueOperacionEscogida)
+	validarRespuesta(valoresCampos,valueOperacionEscogida,inputsDeRespuesta)
 };
+
+function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuestaCapturados) {
+	respuestasBien = 0
+	respuestasMal = 0
+
+	tablaEscogida = eval(operacionEscogida)
+
+	for (var a = 1; a <= tablaEscogida.length; a++) {
+		for (var b = 0; b < respuestaCapturada.length; b++) {
+			if( String(tablaEscogida[a]) == String(respuestaCapturada[b])){
+				respuestasBien += 1
+			}else{
+				respuestasMal += 1
+			}
+
+		}
+	}
+	if(respuestasBien == respuestaCapturada.length){
+		console.log('Bien, esta correcto');
+		fromValidarRespuesta.removeEventListener("submit", capturarRespuesta)
+		document.getElementById("verificarEjericio").value = "Volver"
+		for (var l = 0; l < inputsDeRespuestaCapturados.length; l++) {
+			console.log(inputsDeRespuestaCapturados);
+			inputsDeRespuestaCapturados[l].setAttribute("disabled", "disabled")
+		};
+		var mensaje = document.createElement("p")
+		mensaje.innerHTML = "Listo, Todo bien."
+		sectionTablasVerdad.appendChild(mensaje)
+	}
+	else{
+		console.log("huuu, Algo va mal");
+		var mensaje = document.createElement("p")
+		mensaje.innerHTML = "Huuu, Algo va mal."
+		sectionTablasVerdad.appendChild(mensaje)
+		setTimeout(function() {
+			sectionTablasVerdad.removeChild(mensaje)
+		}, 2000)
+	}
+};
+
 
 ejercicioTablaVerdad.addEventListener("submit", crearEjercicio)
 fromValidarRespuesta.addEventListener("submit", capturarRespuesta)
