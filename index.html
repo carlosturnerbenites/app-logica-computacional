@@ -4,41 +4,85 @@
 	<meta charset="UTF-8">
 	<title>Inicio || Aplicacion Logica computacional</title>
 	<link rel="stylesheet" href="css/logicacomputacional.css">
+	<link rel="import" href="menu.html">
 </head>
 <body>
-
 	<nav>
 		<ul>
-			<li><a href="cursos/todosLosCursos.html">Cursos</a></li>
-			<li><a href="ejercicios/todosLosEjercicios.html">Ejercicios</a></li>
-			<li><a href="">Acerca de..</a></li>
+			<li><a href="index.html" class="itemsMenu">Inicio</a></li>
+			<li><a href="cursos/todosLosCursos.html" class="itemsMenu">Cursos</a></li>
+			<li><a href="ejercicios/todosLosEjercicios.html" class="itemsMenu">Ejercicios</a></li>
+			<li><a href="acercaDe.html" class="itemsMenu">Acerca de..</a></li>
 		</ul>
 	</nav>
+
 	<section class="imagenFondo displayFlexCenterTotal">
 		<header class="textoCentrado">
 			<h2>Logica computacional</h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, ex. Maxime, autem. Repellat quod autem quos delectus! Possimus at ab eius atque dolores, corrupti fugiat accusamus, qui vel, incidunt itaque.</p>
 		</header>
 	</section>
-	<section class="containerInfo displayFlexCenterTotal textoCentrado">
-		<section class="dosColumnas">
+	<section class="contenedorDeAncho">
 
-			<h2>Que es</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, ex. Maxime, autem. Repellat quod autem quos delectus! Possimus at ab eius atque dolores, corrupti fugiat accusamus, qui vel, incidunt itaque.</p>
+		<section class="containerInfo displayFlexCenterTotal textoCentrado">
+			<section class="dosColumnas">
+
+				<h2 class="titulo">Que es</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, ex. Maxime, autem. Repellat quod autem quos delectus! Possimus at ab eius atque dolores, corrupti fugiat accusamus, qui vel, incidunt itaque.</p>
+			</section>
+			<section class="dosColumnas backgroundQueEs">
+
+			</section>
 		</section>
-		<section class="dosColumnas backgroundQueEs">
+		<section class="containerInfo displayFlexCenterTotal textoCentrado">
+			<section class="dosColumnas backgroundQueEs">
 
+			</section>
+			<section class="dosColumnas">
+
+				<h2 class="titulo">Para que sirve</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, ex. Maxime, autem. Repellat quod autem quos delectus! Possimus at ab eius atque dolores, corrupti fugiat accusamus, qui vel, incidunt itaque.</p>
+			</section>
+		</section>
+		<section class="containerInfo displayFlexCenterTotal textoCentrado">
+			<section class="dosColumnas">
+
+				<h2 class="titulo">Que vas a ver</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, ex. Maxime, autem. Repellat quod autem quos delectus! Possimus at ab eius atque dolores, corrupti fugiat accusamus, qui vel, incidunt itaque.</p>
+				<ul>
+					<li>temario 1</li>
+					<li>temario 2</li>
+					<li>temario 3</li>
+					<li>temario 4</li>
+				</ul>
+			</section>
+			<section class="dosColumnas backgroundQueEs">
+
+			</section>
+		</section>
+		<section class="containerInfo displayFlexCenterTotal textoCentrado">
+			<section class="dosColumnas backgroundQueEs">
+
+			</section>
+			<section class="dosColumnas">
+
+				<h2 class="titulo">Que ganaras</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, ex. Maxime, autem. Repellat quod autem quos delectus! Possimus at ab eius atque dolores, corrupti fugiat accusamus, qui vel, incidunt itaque.</p>
+				<ul>
+					<li>Habiidad 1</li>
+					<li>Habiidad 2</li>
+					<li>Habiidad 3</li>
+					<li>Habiidad 4</li>
+				</ul>
+			</section>
 		</section>
 	</section>
-	<section class="containerInfo displayFlexCenterTotal textoCentrado">
-		<section class="dosColumnas backgroundQueEs">
 
-		</section>
-		<section class="dosColumnas">
+	<script>
+		var doc = document.querySelector('link[rel="import"]').import;
 
-			<h2>Para que sirve</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, ex. Maxime, autem. Repellat quod autem quos delectus! Possimus at ab eius atque dolores, corrupti fugiat accusamus, qui vel, incidunt itaque.</p>
-		</section>
-	</section>
+		var text = doc.querySelector('.nav');
+		document.body.appendChild(text.cloneNode(true));
+	</script>
 </body>
 </html>

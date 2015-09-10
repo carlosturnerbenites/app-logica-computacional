@@ -1,26 +1,28 @@
 var posiblesValores = ["V", "F"]
 
+
+//inicializacion de variables
 var valoresCampo = []
 var valoresCampos = []
 
 var proposiciones = ["p","q","r","s","t","u","v","w","x","y"]
 var solucion = ""
-var tablaY = 	[["p","q","p Λ q"],
+var tablaY =[["p","q","p Λ q"],
 ["V","V","F"],
 ["V","F","V"],
 ["V","F","F"],
 ["F","F","F"]]
-var tablaO = 	[["p","q","p V q"],
+var tablaO = [["p","q","p V q"],
 ["V","V","F"],
 ["V","F","F"],
 ["V","F","F"],
 ["F","F","V"]]
-var tablaC = 	[["p","q","p → q"],
+var tablaC = [["p","q","p → q"],
 ["V","V","F"],
 ["V","F","F"],
 ["V","F","V"],
 ["F","F","F"]]
-var tablaBC = 	[["p","q","p ⇔ q"],
+var tablaBC = [["p","q","p ⇔ q"],
 ["V","V","V"],
 ["V","F","F"],
 ["V","F","F"],
@@ -32,7 +34,7 @@ var respuestas = []
 
 var sectionTablasVerdad = document.getElementById("sectionTablasVerdad")
 
-var conjuncion =  "Λ"
-var disjuncion =  "V"
-var condicional =  "→"
-var bicondicional =  "⇔"
+var simboloConjuncion =  "Λ"
+var simboloDisjuncion =  "V"
+var simboloCondicional =  "→"
+var simboloBicondicional =  "⇔"

@@ -71,10 +71,13 @@ function crearEjercicio(evento) {
 }
 
 function validarRespuesta(respuestaCapturada,operacionEscogida) {
-	for (var a = 1; a <= respuestaCapturada.length; a++) {
-		for (var b = 0; b < tablaY.length; b++) {
-			if(String(tablaY[a]) == String(respuestaCapturada[b])){
-				console.log(String(tablaY[a]), String(respuestaCapturada[b]));
+	for (var a = 1; a <= tablaY.length; a++) {
+		for (var b = 0; b < respuestaCapturada.length; b++) {
+			if( String(respuestaCapturada[b]) == ["V","V","V"]){
+				console.log('__________');
+				console.log(String(tablaY[a]));
+				console.log(String(respuestaCapturada[b]));
+				console.log('');
 				console.log("bien");
 			}
 		}

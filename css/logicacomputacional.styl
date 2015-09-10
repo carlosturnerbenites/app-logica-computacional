@@ -5,11 +5,16 @@ body
 	font-size 16px
 	font-family 'Lato' sans-serif
 	margin 0
-	font-size 16px
+	font-size 18px
 
 ul
 	margin 0
 	list-style none
+
+.contenedorDeAncho
+	width 1200px
+	margin 0 auto
+
 
 .valorErroneo
 	background-color #D46A6A
@@ -29,6 +34,28 @@ ul
 	align-items center
 .textoCentrado
 	text-align center
+
+.titulo
+	font-size 2em
+	text-transform: uppercase
+	border-bottom 1px dashed black
+	display: inline-block
+	padding: 10px;
+
+.acercaDe
+	background-color gray
+	padding 20px
+	border-radius 20px
+	.img
+		width 30%
+		img
+			display block
+			width 90%
+			margin 0 auto
+			border-radius 50%
+	.infoCreador
+		width 70%
+
 nav
 	width 100%
 	position fixed
@@ -36,18 +63,24 @@ nav
 		background-color rgba(0,0,0,0.7)
 		li
 			display inline-block
-			a
+			a.itemsMenu
 				padding 10px
 				color white
 				display block
+				text-decoration none
+				&:first-letter
+					font-size 1.2em
+
 .imagenFondo
 	background-image url('../img/backgroundIndex.jpg')
 	width 100%
 	height 600px
 	background-attachment fixed
+	background-position: center
 	background-size cover
 	text-align center
 	filter blur(2px)
+	background-position: 50% 50%;
 .containerInfo
 	width 100%
 	height 300px

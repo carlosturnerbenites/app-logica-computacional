@@ -9,17 +9,37 @@ function numeroAleatorio(max,min) {
 	return aleatorio
 }
 
-function leerJSON(path, callback) {
 
-	var httpRequest = new XMLHttpRequest();
+var crearElemento = {
+	tipoDeElemento : "a",
+	texto : "link con funcion",
+	clases : ["c","a","b","w","d"],
+	id : "link",
+	atributos : [["href","link"]],
+	elementoContenedor : "sectionTablasVerdad",
+	constructorElemento : function () {
 
-	httpRequest.onreadystatechange = function() {
-		if (httpRequest.readyState === 4 && httpRequest.status === 200) {
-			var data = JSON.parse(httpRequest.responseText);
-			if (callback) callback(data);
-		}
-	};
+		var elemento = document.createElement(this.tipoDeElemento)
 
-	httpRequest.open('GET', path);
-	httpRequest.send();
+		elemento.innerHTML = this.texto
+
+		for (var i = 0; i < this.clases.length; i++) {
+			elemento.classList.add(this.clases[i])
+		};
+
+		for (var j = 0; j < this.atributos.length; j++) {
+			console.log(this.atributos[j][0]);
+			console.log(this.atributos[j][1]);
+			elemento.setAttribute(this.atributos[j][0],this.atributos[j][1])
+
+		};
+
+		elemento.id = this.id
+
+		elementoContenedor = document.getElementById(this.elementoContenedor)
+
+		elementoContenedor.appendChild(elemento)
+
+	}
+
 }
