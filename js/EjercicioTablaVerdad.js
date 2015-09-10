@@ -1,4 +1,5 @@
 var fromValidarRespuesta = document.getElementById("fromValidarRespuesta")
+var ejercicioTablaVerdad = document.getElementById("ejercicioTablaVerdad")
 
 function crearEjercicio(evento) {
 	evento.preventDefault()
@@ -72,8 +73,6 @@ function crearEjercicio(evento) {
 	sectionTablasVerdad.appendChild(inputHTML)
 }
 
-var ejercicioTablaVerdad = document.getElementById("ejercicioTablaVerdad")
-
 function capturarRespuesta(evento) {
 
 	respuestas = []
@@ -93,8 +92,7 @@ function capturarRespuesta(evento) {
 	for (var campo = 0; campo < respuestas.length; campo++) {
 
 		var nombreFila = convertirHTMLCollectionEnArray(respuestas[campo].childNodes)
-		console.log(nombreFila);
-
+		
 		for (var i = 0; i < nombreFila.length; i++) {
 			if (i == nombreFila.length-1) {
 				var valorCampo = nombreFila[i].lastChild.value.toUpperCase()
@@ -118,7 +116,7 @@ function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuesta
 	respuestasMal = 0
 
 	tablaEscogida = eval(operacionEscogida)
-
+	
 	for (var a = 1; a <= tablaEscogida.length; a++) {
 		for (var b = 0; b < respuestaCapturada.length; b++) {
 			if( String(tablaEscogida[a]) == String(respuestaCapturada[b])){
@@ -130,11 +128,9 @@ function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuesta
 		}
 	}
 	if(respuestasBien == respuestaCapturada.length){
-		console.log('Bien, esta correcto');
 		fromValidarRespuesta.removeEventListener("submit", capturarRespuesta)
 		document.getElementById("verificarEjericio").value = "Volver"
 		for (var l = 0; l < inputsDeRespuestaCapturados.length; l++) {
-			console.log(inputsDeRespuestaCapturados);
 			inputsDeRespuestaCapturados[l].setAttribute("disabled", "disabled")
 		};
 		var mensaje = document.createElement("p")
@@ -142,7 +138,6 @@ function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuesta
 		sectionTablasVerdad.appendChild(mensaje)
 	}
 	else{
-		console.log("huuu, Algo va mal");
 		var mensaje = document.createElement("p")
 		mensaje.innerHTML = "Huuu, Algo va mal."
 		sectionTablasVerdad.appendChild(mensaje)

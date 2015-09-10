@@ -12,12 +12,18 @@ ul
 	list-style none
 fieldset
 	border none
+figure
+	margin 0
+	padding 0
 
 .contenedorDeAncho
-	width 1200px
+	max-width 1200px
 	margin 0 auto
 
-
+.borderNone
+	border none
+.textoNegrilla
+	font-weight bold
 .valorErroneo
 	background-color #D46A6A
 
@@ -25,15 +31,14 @@ fieldset
 	width 50%
 	margin 0
 	padding 0
-.backgroundQueEs
-	background-image url('../img/index/queEs.jpg')
-	height 100%
-	background-size 100%
+.ancho100PorCieto
+	width 100%
 
 .displayFlexCenterTotal
 	display flex
 	justify-content center
 	align-items center
+	flex-wrap wrap
 .textoCentrado
 	text-align center
 
@@ -85,7 +90,6 @@ nav
 	background-position: 50% 50%;
 .containerInfo
 	width 100%
-	height 300px
 
 ul.listado
 	li
@@ -104,13 +108,22 @@ table
 	margin 10px
 	tr
 		th
+			padding 10px
 			border 2px solid black
+			&:last-child
+				padding 0
 		.respuestaEjercicio
 			border none
 			outline none
 			text-align center
 			text-transform uppercase
 			font-weight bold
+			height 100%
 
 
 
+@media screen and (max-width: 1200px)
+	.dosColumnas
+		width 80%
+		margin 0 auto
+		display block

@@ -193,9 +193,19 @@ ul {
 fieldset {
   border: none;
 }
+figure {
+  margin: 0;
+  padding: 0;
+}
 .contenedorDeAncho {
-  width: 1200px;
+  max-width: 1200px;
   margin: 0 auto;
+}
+.borderNone {
+  border: none;
+}
+.textoNegrilla {
+  font-weight: bold;
 }
 .valorErroneo {
   background-color: #d46a6a;
@@ -205,15 +215,14 @@ fieldset {
   margin: 0;
   padding: 0;
 }
-.backgroundQueEs {
-  background-image: url("../img/index/queEs.jpg");
-  height: 100%;
-  background-size: 100%;
+.ancho100PorCieto {
+  width: 100%;
 }
 .displayFlexCenterTotal {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 .textoCentrado {
   text-align: center;
@@ -274,7 +283,6 @@ nav ul li a.itemsMenu:first-letter {
 }
 .containerInfo {
   width: 100%;
-  height: 300px;
 }
 ul.listado li {
   margin: 10px 0;
@@ -293,7 +301,11 @@ table {
   margin: 10px;
 }
 table tr th {
+  padding: 10px;
   border: 2px solid #000;
+}
+table tr th:last-child {
+  padding: 0;
 }
 table tr .respuestaEjercicio {
   border: none;
@@ -301,4 +313,12 @@ table tr .respuestaEjercicio {
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
+  height: 100%;
+}
+@media screen and (max-width: 1200px) {
+  .dosColumnas {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+  }
 }
