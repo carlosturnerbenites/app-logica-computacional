@@ -205,10 +205,10 @@ figure {
   border: none;
   outline: none;
 }
-.formConjuntos .corchetesConjuntos:after {
+.corchetesConjuntos:after {
   content: "}";
 }
-.formConjuntos .corchetesConjuntos:before {
+.corchetesConjuntos:before {
   content: " = {";
 }
 .respuesta {
