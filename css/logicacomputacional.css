@@ -197,6 +197,27 @@ figure {
   margin: 0;
   padding: 0;
 }
+.formConjuntos .nombreConjunto {
+  width: 20px;
+  text-align: right;
+}
+.formConjuntos input {
+  border: none;
+  outline: none;
+}
+.formConjuntos .corchetesConjuntos:after {
+  content: "}";
+}
+.formConjuntos .corchetesConjuntos:before {
+  content: " = {";
+}
+.respuesta {
+  width: 50%;
+  margin: 30px auto;
+  display: block;
+  min-height: 200px;
+  text-align: center;
+}
 .contenedorDeAncho {
   max-width: 1200px;
   margin: 0 auto;

@@ -92,7 +92,7 @@ function capturarRespuesta(evento) {
 	for (var campo = 0; campo < respuestas.length; campo++) {
 
 		var nombreFila = convertirHTMLCollectionEnArray(respuestas[campo].childNodes)
-		
+
 		for (var i = 0; i < nombreFila.length; i++) {
 			if (i == nombreFila.length-1) {
 				var valorCampo = nombreFila[i].lastChild.value.toUpperCase()
@@ -116,7 +116,7 @@ function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuesta
 	respuestasMal = 0
 
 	tablaEscogida = eval(operacionEscogida)
-	
+
 	for (var a = 1; a <= tablaEscogida.length; a++) {
 		for (var b = 0; b < respuestaCapturada.length; b++) {
 			if( String(tablaEscogida[a]) == String(respuestaCapturada[b])){
