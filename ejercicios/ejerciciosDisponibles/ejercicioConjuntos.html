@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Teoria de Conjuntos</title>
+	<link rel="stylesheet" href="../../css/logicacomputacional.css">
+</head>
+<body>
+	<section class="contenedorDeAncho" id="contenedorPrincipal_js">
+		<section class="seccionAyuda positionRelative">
+			<button id="btnAyuda_js" class=" btn btnAyuda btnAyuda">Ayuda</button>
+			<article id="seccionExplicacion_js" class="seccionExplicacion ocultar ">
+
+				<p>Hola, para realizar el ejercicio sigue los paso que damos a continuacion.</p>
+				<ol>
+					<li>Dale un nombre al conjunto</li>
+					<li>Ingresa los elementos del gupo separados por coma(,)</li>
+					<li>Presiona <b>Guardar Conjunto</b></li>
+					<h3>Luego</h3>
+					<li>Escribe los subconjuntos en la caja de texto que aparecera, nuevamente separados por coma(,)</li>
+					<li>Cuando termines, presiona <b>Verificar</b></li>
+				</ol>
+			</article>
+		</section>
+		<h1 class="textoCentrado">Lorem</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nam quibusdam sapiente, ullam neque, aliquid debitis repellendus placeat. Minus quod similique mollitia, a et magni quis neque! Aut, tempora. Incidunt.</p>
+		<section>
+			<form action="" class="formConjuntos" id="formConjuntos">
+				<fieldset>
+					<input id="nombreConjunto_js" class=" nombreConjunto inputCenterUppercase inputBorderBottomFocus" type="text" maxlength="1" required autocomplete="off"/>
+
+					<span class=" corchetesConjuntos">
+						<input type="text" class="inputCenterUppercase inputBorderBottomFocus" id="elementosCojuntos_js" required autocomplete="off"/>
+					</span>
+				</fieldset>
+
+				<fieldset>
+					<input class="btn btnEnviar" id="guardarConjunto_js" type="submit" value="Guardar Conjunto"autocomplete="off"/>
+				</fieldset>
+			</form>
+		</section>
+		<section id="conjuntoIngresado"class="textoCentrado textoEspecial">
+		</section>
+		<section>
+			<form action="" id="seccionRespuesta_js"></form>
+		</section>
+	</section>
+
+
+	<script src="../../js/principal.js"></script>
+	<script src="../../js/variablesGenerales.js"></script>
+	<script src="../../js/funcionesAxuliares.js"></script>
+	<script src="../../js/ejerciciosConjuntos.js"></script>
+
+
+</body>
+</html>

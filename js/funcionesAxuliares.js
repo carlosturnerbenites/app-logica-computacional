@@ -26,6 +26,21 @@ function vaciarCampo(campo) {
 	}
 }
 
+
+//tiene un problema esta funcion
+function Habilitar_InhabilitarInputSubmit(input) {
+	console.log(input);
+	//var atributo = "disabled"
+	console.log(input.hasAttributes("disabled"));
+	if(input.hasAttributes("disabled")){
+		input.setAttribute("disabled","disabled")
+		console.log('añadir');
+	}else{
+		console.log('remover');
+		input.removeAttribute("disabled")
+	}
+}
+
 var crearElemento = {
 	tipoDeElemento : "",
 	texto : "",

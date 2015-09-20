@@ -182,8 +182,18 @@ th {
 @import url("https://fonts.googleapis.com/css?family=Lato");
 input,
 textarea,
-select {
+select,
+button {
   outline: none;
+}
+input:disabled {
+  cursor: not-allowed;
+  background-color: #a8a8a8;
+  border-color: #7f7f7f;
+}
+input:disabled:hover {
+  transition: background-color 2s;
+  background-color: #7f7f7f;
 }
 select {
   background-color: transparent;
@@ -194,12 +204,19 @@ body {
   margin: 0;
   font-size: 18px;
 }
+a {
+  color: #164900;
+}
+a:visited {
+  color: #4e9231;
+}
 ul {
   margin: 0;
   list-style: none;
 }
 fieldset {
   border: none;
+  text-align: center;
 }
 figure {
   margin: 0;
@@ -207,11 +224,38 @@ figure {
 }
 /*
 +-----------------------+
+|		Ayuda			|
++-----------------------+
+*/
+.seccionAyuda .btnAyuda {
+  cursor: help;
+}
+.seccionAyuda .seccionExplicacion {
+  padding: 20px;
+  position: absolute;
+  border: 2px solid #803315;
+  background-color: #d4886a;
+  border-radius: 10px;
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.seccionAyuda .ocultar {
+  display: none;
+}
+/*
++-----------------------+
 |		CSSOO			|
 +-----------------------+
 */
+.positionRelative {
+  position: relative;
+}
+.positionFija {
+  position: fixed;
+}
 .contenedorDeAncho {
-  max-width: 1200px;
+  max-width: 90%;
   margin: 0 auto;
 }
 .borderNone {
@@ -237,6 +281,12 @@ figure {
 .textoCentrado {
   text-align: center;
 }
+.textoDerecha {
+  text-align: right;
+}
+.textoIzquierda {
+  text-align: left;
+}
 .containerInfo {
   width: 100%;
 }
@@ -257,6 +307,18 @@ figure {
   margin-left: 20px;
   margin-top: 2px;
   margin-bottom: 20px;
+}
+.textoEspecial {
+  font-size: 2em;
+}
+.estadoDeRespuesta {
+  font-weight: bold;
+}
+.bien {
+  color: #161;
+}
+.mal {
+  color: #801515;
 }
 /*
 +-----------------------+
@@ -335,6 +397,17 @@ nav ul li a.itemsMenu:first-letter {
 .btnEnviar:hover {
   transition: background-color 2s;
   background-color: #152d54;
+}
+.btnAyuda {
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: #d4886a;
+  border-color: #803315;
+}
+.btnAyuda:hover {
+  transition: background-color 2s;
+  background-color: #803315;
 }
 /*
 +-----------------------------------+
@@ -437,6 +510,11 @@ table tr .respuestaEjercicio {
     width: 80%;
     margin: 0 auto;
     display: block;
+  }
+}
+@media screen and (max-width: 600px) {
+  .nombreMenu {
+    display: none;
   }
 }
 .respuesta {

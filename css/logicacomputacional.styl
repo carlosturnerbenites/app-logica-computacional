@@ -1,8 +1,39 @@
+//@import "fonts.styl"
 @import "normalize.styl"
 @import url(https://fonts.googleapis.com/css?family=Lato)
 
-input, textarea, select
+
+colorBtnConfirmarBackground = #87BC5E
+colorBtnConfirmarBorder = #3C7113
+
+colorBtnCancelarBackground = #D46A6A
+colorBtnCancelarBorder = #801515
+
+colorBtnEnviarBackground = #4D658D
+colorBtnEnviarBorder = #152D54
+
+colorBtnAyudaBackground = #D4886A
+colorBtnAyudaBorder = #803315
+
+colorLink = #164900
+colorLinkVisited = #4E9231
+
+colorBtnDiabledBackground = #A8A8A8
+colorBtnDiabledBorder = #7F7F7F
+
+colorEstadoPreguntaBien = #116611
+colorEstadoPreguntaMal = #801515
+
+input, textarea, select, button
 	outline none
+input:disabled
+	cursor not-allowed
+	background-color colorBtnDiabledBackground
+	border-color colorBtnDiabledBorder
+	&:hover
+		transition background-color 2s
+		background-color colorBtnDiabledBorder
+
 select
 	background-color transparent
 body
@@ -10,23 +41,51 @@ body
 	font-family 'Lato' sans-serif
 	margin 0
 	font-size 18px
+a
+	color colorLink
+	&:visited
+		color colorLinkVisited
 ul
 	margin 0
 	list-style none
 fieldset
 	border none
+	text-align center
 figure
 	margin 0
 	padding 0
 
 /*
 +-----------------------+
+|		Ayuda			|
++-----------------------+
+*/
+.seccionAyuda
+	.btnAyuda
+		cursor help
+	.seccionExplicacion
+		padding 20px
+		position absolute
+		border 2px solid colorBtnAyudaBorder
+		background-color colorBtnAyudaBackground
+		border-radius 10px
+		border-top none
+		border-top-left-radius 0
+		border-top-right-radius 0
+	.ocultar
+		display none
+
+/*
++-----------------------+
 |		CSSOO			|
 +-----------------------+
 */
-
+.positionRelative
+	position relative
+.positionFija
+	position fixed
 .contenedorDeAncho
-	max-width 1200px
+	max-width 90%
 	margin 0 auto
 .borderNone
 	border none
@@ -45,6 +104,10 @@ figure
 	flex-wrap wrap
 .textoCentrado
 	text-align center
+.textoDerecha
+	text-align right
+.textoIzquierda
+	text-align left
 .containerInfo
 	width 100%
 .titulo
@@ -62,6 +125,17 @@ figure
 	margin-left 20px
 	margin-top 2px
 	margin-bottom 20px
+.textoEspecial
+	font-size 2em
+
+//las tres siguientes clases son para colorear de rojo o verde dependiendo de si algo esta bien o mal
+.estadoDeRespuesta
+	font-weight bold
+.bien
+	color colorEstadoPreguntaBien
+.mal
+	color colorEstadoPreguntaMal
+
 /*
 +-----------------------+
 |		Menu 			|
@@ -106,15 +180,6 @@ nav
 +-----------------------+
 */
 
-colorBtnConfirmarBackground = #87BC5E
-colorBtnConfirmarBorder = #3C7113
-
-colorBtnCancelarBackground = #D46A6A
-colorBtnCancelarBorder = #801515
-
-colorBtnEnviarBackground = #4D658D
-colorBtnEnviarBorder = #152D54
-
 .btn
 	border 2px solid #000
 	border-radius 5px
@@ -141,6 +206,15 @@ colorBtnEnviarBorder = #152D54
 		&:hover
 			transition background-color 2s
 			background-color colorBtnEnviarBorder
+	&Ayuda
+		border-bottom none
+		border-bottom-left-radius 0
+		border-bottom-right-radius 0
+		background-color colorBtnAyudaBackground
+		border-color colorBtnAyudaBorder
+		&:hover
+			transition background-color 2s
+			background-color colorBtnAyudaBorder
 
 /*
 +-----------------------------------+
@@ -254,7 +328,9 @@ table
 		width 80%
 		margin 0 auto
 		display block
-
+@media screen and (max-width:600px)
+	.nombreMenu
+		display none
 
 
 //-----------------------

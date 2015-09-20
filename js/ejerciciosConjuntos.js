@@ -45,14 +45,16 @@ function capturarConjunto(evento) {
 		conjuntoIngresado.appendChild(contenedorElementosCojunto)
 
 		seccionRespuesta.addEventListener("submit",validarRespuesta)
+
+		Habilitar_InhabilitarInputSubmit(document.getElementById("guardarConjunto_js"))
 	}else{
 		vaciarCampo(nombreConjunto)
 	}
-	formConjuntos.removeEventListener("submit", capturarConjunto)
 }
 
 function validarRespuesta(evento) {
 	evento.preventDefault()
+
 
 	var elementosSubconjunto = 0
 
@@ -74,12 +76,13 @@ function validarRespuesta(evento) {
 
 			while(elementosSubconjunto < elementosCojuntos.length){
 
-				var elementoBase = elementosCojuntos[elementosSubconjunto]);
+				var elementoBase = elementosCojuntos[elementosSubconjunto];
 
 				//console.log('subconjuntos de ' + elementosSubconjunto + " elementos");
 
 				elementosSubconjunto++
 			}
+
 
 		}
 
