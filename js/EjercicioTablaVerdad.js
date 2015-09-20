@@ -1,20 +1,11 @@
 var fromValidarRespuesta = document.getElementById("fromValidarRespuesta")
 var ejercicioTablaVerdad = document.getElementById("ejercicioTablaVerdad")
 
+
 function crearEjercicio(evento) {
 	evento.preventDefault()
 	ejercicioTablaVerdad.removeEventListener("submit", crearEjercicio)
-	function verificarRespuestaIngresada(){
 
-		var valor = this.value
-
-		if (valor.toUpperCase() == "V" || valor.toUpperCase() == "F") {
-			this.classList.remove("valorErroneo")
-		}else{
-			this.value = ""
-			this.classList.add("valorErroneo")
-		}
-	}
 
 
 	var numeroProposiciones = Number(document.getElementById("numeroProposiciones").value)
@@ -68,6 +59,7 @@ function crearEjercicio(evento) {
 	inputHTML = document.createElement("input")
 	inputHTML.setAttribute("type", "submit")
 	inputHTML.setAttribute("value", "Verificar")
+	inputHTML.classList.add("btn", "btnConfirmar")
 	inputHTML.id = "verificarEjericio"
 	sectionTablasVerdad.appendChild(tableHTML)
 	sectionTablasVerdad.appendChild(inputHTML)
@@ -109,7 +101,20 @@ function capturarRespuesta(evento) {
 		valoresCampo = []
 	};
 	validarRespuesta(valoresCampos,valueOperacionEscogida,inputsDeRespuesta)
-};
+}
+
+function verificarRespuestaIngresada(){
+
+		var valor = this.value
+		console.log(valor)
+
+		if (valor.toUpperCase() == "V" || valor.toUpperCase() == "F") {
+			this.classList.remove("valorErroneo")
+		}else{
+			this.value = ""
+			this.classList.add("valorErroneo")
+		}
+	}
 
 function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuestaCapturados) {
 	respuestasBien = 0

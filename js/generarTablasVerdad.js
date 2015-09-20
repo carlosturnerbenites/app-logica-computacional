@@ -1,5 +1,7 @@
 function crearTabla() {
+
 	tabla = eval(this.value)
+
 	var tableHTML = document.createElement("table")
 
 	for (var filas = 0; filas < tabla.length; filas++) {

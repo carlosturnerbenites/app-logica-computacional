@@ -180,6 +180,14 @@ th {
   padding: 0;
 }
 @import url("https://fonts.googleapis.com/css?family=Lato");
+input,
+textarea,
+select {
+  outline: none;
+}
+select {
+  background-color: transparent;
+}
 body {
   font-size: 16px;
   font-family: 'Lato' sans-serif;
@@ -197,27 +205,11 @@ figure {
   margin: 0;
   padding: 0;
 }
-.formConjuntos .nombreConjunto {
-  width: 20px;
-  text-align: right;
-}
-.formConjuntos input {
-  border: none;
-  outline: none;
-}
-.corchetesConjuntos:after {
-  content: "}";
-}
-.corchetesConjuntos:before {
-  content: " = {";
-}
-.respuesta {
-  width: 50%;
-  margin: 30px auto;
-  display: block;
-  min-height: 200px;
-  text-align: center;
-}
+/*
++-----------------------+
+|		CSSOO			|
++-----------------------+
+*/
 .contenedorDeAncho {
   max-width: 1200px;
   margin: 0 auto;
@@ -227,9 +219,6 @@ figure {
 }
 .textoNegrilla {
   font-weight: bold;
-}
-.valorErroneo {
-  background-color: #d46a6a;
 }
 .dosColumnas {
   width: 50%;
@@ -248,6 +237,9 @@ figure {
 .textoCentrado {
   text-align: center;
 }
+.containerInfo {
+  width: 100%;
+}
 .titulo {
   font-size: 2em;
   text-transform: uppercase;
@@ -255,23 +247,11 @@ figure {
   display: inline-block;
   padding: 10px;
 }
-.acercaDe {
-  background-color: #808080;
-  padding: 20px;
-  border-radius: 20px;
-}
-.acercaDe .img {
-  width: 30%;
-}
-.acercaDe .img img {
-  display: block;
-  width: 90%;
-  margin: 0 auto;
-  border-radius: 50%;
-}
-.acercaDe .infoCreador {
-  width: 70%;
-}
+/*
++-----------------------+
+|		Menu 			|
++-----------------------+
+*/
 nav {
   width: 100%;
   position: fixed;
@@ -291,6 +271,11 @@ nav ul li a.itemsMenu {
 nav ul li a.itemsMenu:first-letter {
   font-size: 1.2em;
 }
+/*
++----------------------------+
+|Imagen con paralax - Iniciio|
++----------------------------+
+*/
 .imagenFondo {
   background-image: url("../img/backgroundIndex.jpg");
   width: 100%;
@@ -302,9 +287,105 @@ nav ul li a.itemsMenu:first-letter {
   filter: blur(2px);
   background-position: 50% 50%;
 }
-.containerInfo {
-  width: 100%;
+/*
++-----------------------+
+|		Botones 		|
++-----------------------+
+*/
+.btn {
+  border: 2px solid #000;
+  border-radius: 5px;
+  color: #fff;
+  padding: 10px;
+  font-size: 1em;
+  font-weight: bold;
+  letter-spacing: 3px;
 }
+.btnConfirmar {
+  background-color: #87bc5e;
+  border-color: #3c7113;
+}
+.btnConfirmar:hover {
+  transition: background-color 2s;
+  background-color: #3c7113;
+}
+.btnCancelar {
+  background-color: #d46a6a;
+  border-color: #801515;
+}
+.btnCancelar:hover {
+  transition: background-color 2s;
+  background-color: #801515;
+}
+.btnEnviar {
+  background-color: #4d658d;
+  border-color: #152d54;
+}
+.btnEnviar:hover {
+  transition: background-color 2s;
+  background-color: #152d54;
+}
+/*
++-----------------------------------+
+|		Efecto de linea inferior	|
+|		de los inputs en fous 		|
++-----------------------------------+
+*/
+.inputBorderBottomFocus {
+  border-color: transparent;
+  border-bottom: 1px solid transparent;
+}
+.inputBorderBottomFocus:focus {
+  transition: border-bottom 3s;
+  border-bottom: 1px solid #000;
+}
+/*
++-----------------------+
+|	Modulo deConjuntos	|
++-----------------------+
+*/
+.formConjuntos .nombreConjunto {
+  width: 20px;
+  text-align: right;
+}
+.formConjuntos input {
+  border: none;
+  outline: none;
+}
+.corchetesConjuntos:after {
+  content: "}";
+}
+.corchetesConjuntos:before {
+  content: " = {";
+}
+/*
++-----------------------+
+|	Pagina -> Acerca de	|
++-----------------------+
+*/
+.acercaDe {
+  background-color: #808080;
+  padding: 20px;
+  border-radius: 20px;
+}
+.acercaDe .img {
+  width: 30%;
+}
+.acercaDe .img img {
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+.acercaDe .infoCreador {
+  width: 70%;
+}
+/*
++---------------------------+
+|	Listado de Ejercicios	|
+|	y Cursos disponibles	|
++---------------------------+
+*/
 ul.listado li {
   margin: 10px 0;
   font-size: 1em;
@@ -316,6 +397,11 @@ ul.listado li .descripcion {
   margin-top: 2px;
   margin-bottom: 20px;
 }
+/*
++-----------------------+
+|	Tablas de Verdad	|
++-----------------------+
+*/
 table {
   border-collapse: collapse;
   display: inline-block;
@@ -336,10 +422,74 @@ table tr .respuestaEjercicio {
   font-weight: bold;
   height: 100%;
 }
+/*
++-----------------------------------+
+|			Animaciones				|
++-----------------------------------+
+*/
+/*
++-----------------------------------+
+|			Queries				|
++-----------------------------------+
+*/
 @media screen and (max-width: 1200px) {
   .dosColumnas {
     width: 80%;
     margin: 0 auto;
     display: block;
+  }
+}
+.respuesta {
+  width: 50%;
+  margin: 30px auto;
+  display: block;
+  min-height: 200px;
+  text-align: center;
+}
+.valorErroneo {
+  animation: 2s parpadeoError linear infinite;
+}
+@-moz-keyframes parpadeoError {
+  0% {
+    background-color: #faa;
+  }
+  50% {
+    background-color: #d46a6a;
+  }
+  100% {
+    background-color: #faa;
+  }
+}
+@-webkit-keyframes parpadeoError {
+  0% {
+    background-color: #faa;
+  }
+  50% {
+    background-color: #d46a6a;
+  }
+  100% {
+    background-color: #faa;
+  }
+}
+@-o-keyframes parpadeoError {
+  0% {
+    background-color: #faa;
+  }
+  50% {
+    background-color: #d46a6a;
+  }
+  100% {
+    background-color: #faa;
+  }
+}
+@keyframes parpadeoError {
+  0% {
+    background-color: #faa;
+  }
+  50% {
+    background-color: #d46a6a;
+  }
+  100% {
+    background-color: #faa;
   }
 }

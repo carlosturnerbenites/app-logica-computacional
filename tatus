@@ -1,0 +1,72 @@
+[33mcommit e3492440d0d19cbc85b1482333d2df034aae12c6[m
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Fri Sep 11 13:20:36 2015 -0500
+
+    creacion de modulo de conjuntos
+
+[33mcommit 9b2e20ba082320d74f2ede805de6700e72f613d4[m
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Fri Sep 11 00:41:02 2015 -0500
+
+    inicio de modulo de teoria de conjuntos
+
+[33mcommit 69a8d092f74f47a56fcd547a3c183b35695dfdc6[m
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmail.com>
+Date:   Thu Sep 10 16:30:47 2015 -0500
+
+    refactor de estructura HTML
+
+[33mcommit 852dbe401a524db430be7566f2e042c516b7a947[m
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmail.com>
+Date:   Thu Sep 10 15:41:03 2015 -0500
+
+    ejerciciso de tablas de verdad terminado, por ahora solo acepta dos proposiciones
+
+[33mcommit 4a803214b914e0101fe0dbd4f3e04c29f09f7511[m
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmail.com>
+Date:   Thu Sep 10 13:50:18 2015 -0500
+
+    Primera refactorizacion de codigo
+
+[33mcommit f86dad9ef947308ef07138285591624f7c8fa820[m
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Wed Sep 9 06:15:55 2015 -0500
+
+    Inicio de comparacion de respuesta
+
+[33mcommit fb83698a12c2a62bb6a0da713a3e732439a99617[m
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Wed Sep 9 06:05:11 2015 -0500
+
+    Validacion ejecicio tabla de verdad
+
+[33mcommit 09647f148e5852969704e7dd8cb6c6c3f472c1ed[m
+Merge: 32a9d70 c269b1f
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Tue Sep 8 14:27:15 2015 -0500
+
+    Merge branch 'master' of https://github.com/carlosturnerbenites/AppLogicaComputacional
+
+[33mcommit 32a9d7002a13ac2e0fbead7aa906157f107ca4b6[m
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Tue Sep 8 14:12:48 2015 -0500
+
+    ejercicio tablas de verdad y JSON entre python y javascript
+
+[33mcommit c269b1f551b4c9fadfa494213a6b967e41296839[m
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmail.com>
+Date:   Tue Sep 8 08:58:25 2015 -0500
+
+    Initial commit
+
+[33mcommit 35d6ac3ede480d8cefe44272b0c2419135daf770[m
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Sep 6 16:41:41 2015 -0500
+
+    creacion de tablas dinamica, creacion de funcion
+
+[33mcommit d7330ebfe64ce00b1314aea509b14a773975c222[m
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Sep 6 16:37:15 2015 -0500
+
+    creacion de tabla dinamica

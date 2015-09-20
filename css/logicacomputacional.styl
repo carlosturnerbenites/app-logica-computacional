@@ -1,12 +1,15 @@
 @import "normalize.styl"
 @import url(https://fonts.googleapis.com/css?family=Lato)
 
+input, textarea, select
+	outline none
+select
+	background-color transparent
 body
 	font-size 16px
 	font-family 'Lato' sans-serif
 	margin 0
 	font-size 18px
-
 ul
 	margin 0
 	list-style none
@@ -16,44 +19,25 @@ figure
 	margin 0
 	padding 0
 
-.formConjuntos
-	.nombreConjunto
-		width 20px
-		text-align right
-	input
-		border none
-		outline none
-.corchetesConjuntos:after
-	content "}"
-.corchetesConjuntos:before
-	content " = {"
-
-.respuesta
-	width 50%
-	margin 30px auto
-	display block
-	min-height 200px
-	text-align center
-
+/*
++-----------------------+
+|		CSSOO			|
++-----------------------+
+*/
 
 .contenedorDeAncho
 	max-width 1200px
 	margin 0 auto
-
 .borderNone
 	border none
 .textoNegrilla
 	font-weight bold
-.valorErroneo
-	background-color #D46A6A
-
 .dosColumnas
 	width 50%
 	margin 0
 	padding 0
 .ancho100PorCieto
 	width 100%
-
 .displayFlexCenterTotal
 	display flex
 	justify-content center
@@ -61,7 +45,8 @@ figure
 	flex-wrap wrap
 .textoCentrado
 	text-align center
-
+.containerInfo
+	width 100%
 .titulo
 	font-size 2em
 	text-transform: uppercase
@@ -69,19 +54,11 @@ figure
 	display: inline-block
 	padding: 10px;
 
-.acercaDe
-	background-color gray
-	padding 20px
-	border-radius 20px
-	.img
-		width 30%
-		img
-			display block
-			width 90%
-			margin 0 auto
-			border-radius 50%
-	.infoCreador
-		width 70%
+/*
++-----------------------+
+|		Menu 			|
++-----------------------+
+*/
 
 nav
 	width 100%
@@ -98,6 +75,12 @@ nav
 				&:first-letter
 					font-size 1.2em
 
+/*
++----------------------------+
+|Imagen con paralax - Iniciio|
++----------------------------+
+*/
+
 .imagenFondo
 	background-image url('../img/backgroundIndex.jpg')
 	width 100%
@@ -108,8 +91,108 @@ nav
 	text-align center
 	filter blur(2px)
 	background-position: 50% 50%;
-.containerInfo
-	width 100%
+
+/*
++-----------------------+
+|		Botones 		|
++-----------------------+
+*/
+
+colorBtnConfirmarBackground = #87BC5E
+colorBtnConfirmarBorder = #3C7113
+
+colorBtnCancelarBackground = #D46A6A
+colorBtnCancelarBorder = #801515
+
+colorBtnEnviarBackground = #4D658D
+colorBtnEnviarBorder = #152D54
+
+.btn
+	border 2px solid #000
+	border-radius 5px
+	color #fff
+	padding 10px
+	font-size 1em
+	font-weight bold
+	letter-spacing 3px
+	&Confirmar
+		background-color colorBtnConfirmarBackground
+		border-color colorBtnConfirmarBorder
+		&:hover
+			transition background-color 2s
+			background-color colorBtnConfirmarBorder
+	&Cancelar
+		background-color colorBtnCancelarBackground
+		border-color colorBtnCancelarBorder
+		&:hover
+			transition background-color 2s
+			background-color colorBtnCancelarBorder
+	&Enviar
+		background-color colorBtnEnviarBackground
+		border-color colorBtnEnviarBorder
+		&:hover
+			transition background-color 2s
+			background-color colorBtnEnviarBorder
+
+/*
++-----------------------------------+
+|		Efecto de linea inferior	|
+|		de los inputs en fous 		|
++-----------------------------------+
+*/
+
+.inputBorderBottomFocus
+	border-color transparent
+	border-bottom 1px solid transparent
+
+.inputBorderBottomFocus:focus
+	transition border-bottom 3s
+	border-bottom 1px solid black
+
+/*
++-----------------------+
+|	Modulo deConjuntos	|
++-----------------------+
+*/
+
+.formConjuntos
+	.nombreConjunto
+		width 20px
+		text-align right
+	input
+		border none
+		outline none
+.corchetesConjuntos:after
+	content "}"
+.corchetesConjuntos:before
+	content " = {"
+
+/*
++-----------------------+
+|	Pagina -> Acerca de	|
++-----------------------+
+*/
+
+.acercaDe
+	background-color gray
+	padding 20px
+	border-radius 20px
+	.img
+		width 30%
+		img
+			display block
+			width 90%
+			margin 0 auto
+			border-radius 50%
+	.infoCreador
+		width 70%
+
+/*
++---------------------------+
+|	Listado de Ejercicios	|
+|	y Cursos disponibles	|
++---------------------------+
+*/
 
 ul.listado
 	li
@@ -121,6 +204,12 @@ ul.listado
 			margin-left 20px
 			margin-top 2px
 			margin-bottom 20px
+
+/*
++-----------------------+
+|	Tablas de Verdad	|
++-----------------------+
+*/
 
 table
 	border-collapse:collapse;
@@ -140,10 +229,42 @@ table
 			font-weight bold
 			height 100%
 
+/*
++-----------------------------------+
+|			Animaciones				|
++-----------------------------------+
+*/
 
+@keyframes parpadeoError
+	0%
+		background-color #FFAAAA
+	50%
+		background-color #D46A6A
+	100%
+		background-color #FFAAAA
+
+/*
++-----------------------------------+
+|			Queries				|
++-----------------------------------+
+*/
 
 @media screen and (max-width: 1200px)
 	.dosColumnas
 		width 80%
 		margin 0 auto
 		display block
+
+
+
+//-----------------------
+.respuesta
+	width 50%
+	margin 30px auto
+	display block
+	min-height 200px
+	text-align center
+
+
+.valorErroneo
+	animation 2s parpadeoError linear infinite
