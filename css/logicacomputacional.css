@@ -247,6 +247,17 @@ figure {
   display: inline-block;
   padding: 10px;
 }
+.inputCenterUppercase {
+  text-align: center;
+  text-transform: uppercase;
+}
+.textoDescripcion {
+  font-size: 0.8em;
+  color: #808080;
+  margin-left: 20px;
+  margin-top: 2px;
+  margin-bottom: 20px;
+}
 /*
 +-----------------------+
 |		Menu 			|
@@ -348,10 +359,6 @@ nav ul li a.itemsMenu:first-letter {
   width: 20px;
   text-align: right;
 }
-.formConjuntos input {
-  border: none;
-  outline: none;
-}
 .corchetesConjuntos:after {
   content: "}";
 }
@@ -389,13 +396,6 @@ nav ul li a.itemsMenu:first-letter {
 ul.listado li {
   margin: 10px 0;
   font-size: 1em;
-}
-ul.listado li .descripcion {
-  font-size: 0.8em;
-  color: #808080;
-  margin-left: 20px;
-  margin-top: 2px;
-  margin-bottom: 20px;
 }
 /*
 +-----------------------+

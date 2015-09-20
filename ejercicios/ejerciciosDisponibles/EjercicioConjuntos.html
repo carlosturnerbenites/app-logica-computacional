@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Tablas de Verdad</title>
+	<title>Teoria de Conjuntos</title>
 	<link rel="stylesheet" href="../../css/logicacomputacional.css">
 </head>
 <body>
@@ -12,8 +12,11 @@
 		<section>
 			<form action="" class="formConjuntos" id="formConjuntos">
 				<fieldset>
-					<input id="nombreConjunto" class="nombreConjunto" type="text" maxlength="1" />
-					<span class="corchetesConjuntos"><input type="text" id="elementosCojuntos"></span>
+					<input id="nombreConjunto_js" class=" nombreConjunto inputCenterUppercase inputBorderBottomFocus" type="text" maxlength="1" required/>
+
+					<span class=" corchetesConjuntos">
+						<input type="text" class="inputCenterUppercase inputBorderBottomFocus" id="elementosCojuntos_js" required>
+					</span>
 				</fieldset>
 
 				<fieldset>
@@ -23,7 +26,9 @@
 		</section>
 		<section id="conjuntoIngresado">
 		</section>
-		<section id="seccionRespuesta"></section>
+		<section>
+			<form action="" id="seccionRespuesta_js"></form>
+		</section>
 	</section>
 
 

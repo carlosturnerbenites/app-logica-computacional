@@ -1,40 +1,94 @@
 var formConjuntos = document.getElementById("formConjuntos")
-
 var contenedorConjuntoEscogido = document.getElementById("contenedorConjuntoEscogido")
-
 var conjuntoIngresado = document.getElementById("conjuntoIngresado")
-var seccionRespuesta = document.getElementById("seccionRespuesta")
+var seccionRespuesta = document.getElementById("seccionRespuesta_js")
+var nombreConjunto = document.getElementById("nombreConjunto_js")
 
 function capturarConjunto(evento) {
 
+
 	evento.preventDefault()
 
-	var nombreConjunto = document.getElementById("nombreConjunto").value
+	var valorNombreConjunto = nombreConjunto.value
 
 	var contenedorNombreCojunto = document.createElement("span")
-	contenedorNombreCojunto.innerHTML = nombreConjunto
+	contenedorNombreCojunto.innerHTML = valorNombreConjunto
+
+	var elementosCojuntos = document.getElementById("elementosCojuntos_js").value
 
 
-	var elementosCojuntos = (document.getElementById("elementosCojuntos").value).split(",")
+	if (ValidarCampoVacio(elementosCojuntos) && ValidarCampoVacio(valorNombreConjunto)) {
 
-	var contenedorElementosCojunto = document.createElement("span")
-	contenedorElementosCojunto.classList.add("corchetesConjuntos")
-	contenedorElementosCojunto.innerHTML = elementosCojuntos
+		elementosCojuntos = elementosCojuntos.split(",")
+
+		var contenedorElementosCojunto = document.createElement("span")
+		contenedorElementosCojunto.classList.add("corchetesConjuntos")
+		contenedorElementosCojunto.innerHTML = elementosCojuntos
 
 
-	var respuesta = document.createElement("textarea")
-	var buttonValidar = document.createElement("button")
+		var respuesta = document.createElement("textarea")
+		var inputSubmitValidar = document.createElement("input")
 
-	buttonValidar.innerHTML = "Validar"
-	respuesta.id = "respuesta"
-	respuesta.classList.add("respuesta")
-	respuesta.setAttribute("placeholder", "Escriba en este cuadro los posibles subconjuntos del conjunto anterior descrito.")
+		inputSubmitValidar.value = "Validar"
+		inputSubmitValidar.classList.add("btn","btnConfirmar")
+		inputSubmitValidar.id = "btnValidarconjuntos"
+		inputSubmitValidar.setAttribute("type", "submit")
+		respuesta.id = "respuesta"
+		respuesta.classList.add("respuesta")
+		respuesta.setAttribute("required","required")
+		respuesta.setAttribute("placeholder", "Escriba en este cuadro los posibles subconjuntos del conjunto anterior descrito.")
 
-	seccionRespuesta.appendChild(respuesta)
-	seccionRespuesta.appendChild(buttonValidar)
+		seccionRespuesta.appendChild(respuesta)
+		seccionRespuesta.appendChild(inputSubmitValidar)
 
-	conjuntoIngresado.appendChild(contenedorNombreCojunto)
-	conjuntoIngresado.appendChild(contenedorElementosCojunto)
+		conjuntoIngresado.appendChild(contenedorNombreCojunto)
+		conjuntoIngresado.appendChild(contenedorElementosCojunto)
+
+		seccionRespuesta.addEventListener("submit",validarRespuesta)
+	}else{
+		vaciarCampo(nombreConjunto)
+	}
+	formConjuntos.removeEventListener("submit", capturarConjunto)
+}
+
+function validarRespuesta(evento) {
+	evento.preventDefault()
+
+	var elementosSubconjunto = 0
+
+		//refactorizar luego
+		var elementosCojuntos = (document.getElementById("elementosCojuntos_js").value).split(",")
+
+		numeroCombinaciones = Math.pow(2,elementosCojuntos.length)
+
+		var respuestaEnviada = document.getElementById("respuesta")
+
+		elementosRespuestaEnviada = respuestaEnviada.value.split(",")
+
+
+		if (elementosRespuestaEnviada.length != numeroCombinaciones) {
+			console.log("Huu, Algo va mal")
+		}else{
+			console.log("vamos bien")
+			console.log(elementosCojuntos);
+
+			while(elementosSubconjunto < elementosCojuntos.length){
+
+				var elementoBase = elementosCojuntos[elementosSubconjunto]);
+
+				//console.log('subconjuntos de ' + elementosSubconjunto + " elementos");
+
+				elementosSubconjunto++
+			}
+
+		}
+
+	}
+
+//vaciar espacios del campo nombre conjunto
+nombreConjunto.addEventListener("change", limpiarCampo)
+function limpiarCampo(){
+	vaciarCampo(this)
 }
 
 formConjuntos.addEventListener("submit", capturarConjunto)
