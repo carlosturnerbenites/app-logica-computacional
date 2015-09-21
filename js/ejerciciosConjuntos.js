@@ -125,11 +125,16 @@ function validarRespuesta(evento) {
 
 				console.log('elemento base ' + elementoBase);
 
-				for (var j = elementosSubconjunto; j < elementosCojuntos.length; j++) {
+				for (var j = elementosSubconjunto; j <= elementosCojuntos.length; j++) {
 					if (!(elementosSubconjunto == j)) {
-						elementoBase += elementosCojuntos[j]
-						console.log('subconjunto ' + elementoBase);
-						subconjuntos.push(elementoBase)
+						if (elementosCojuntos[j] != undefined) {
+
+							elementoBase += elementosCojuntos[j]
+							console.log('subconjunto ' + elementoBase);
+							subconjuntos.push(elementoBase)
+
+							//elementoBase = elementosCojuntos[elementosSubconjunto]
+						};
 
 					};
 				};

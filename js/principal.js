@@ -24,3 +24,4 @@ function teclaAyudapresionada(evento){
 btnAyuda.addEventListener("click", mostrarOcultarAyuda)
 document.body.addEventListener("keypress", teclaAyudapresionada)
 
+
