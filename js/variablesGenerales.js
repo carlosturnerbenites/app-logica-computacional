@@ -38,6 +38,8 @@ var sectionTablasVerdad = document.getElementById("sectionTablasVerdad")
 
 var contenedorPrincipal = document.getElementById("contenedorPrincipal_js")
 
+var heightContenedorPrincipal = contenedorPrincipal.clientHeight
+
 var simboloConjuncion =  "Λ"
 var simboloDisjuncion =  "V"
 var simboloCondicional =  "→"

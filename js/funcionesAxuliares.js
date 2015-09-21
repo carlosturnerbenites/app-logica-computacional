@@ -15,6 +15,50 @@ function ValidarCampoVacio(campo) {
 		return true
 	}
 }
+function decimalToBinary(decimal){
+	return (decimal >>> 0).toString(2);
+}
+
+function convertirStringaArray(textoSinEspacios) {
+	return textoSinEspacios.split('');
+}
+function completarBinarios(binarios,longitud){
+	for (var binario in binarios){
+		if (binarios[binario].length < longitud) {
+			while(binarios[binario].length < longitud){
+				binarios[binario] = "0" + binarios[binario]
+			}
+		}
+		binarios[binario] = binarios[binario].split("")
+	}
+	console.log('binarios formateados ' + binarios);
+}
+
+
+function crearYMostrarMensaje(estado){
+
+	var contenedorMSG = document.createElement("article")
+
+	var msg = document.createElement("p")
+	msg.innerHTML= estado.msg
+
+	var icono = document.createElement("span")
+	icono.classList.add(estado.icono)
+
+	contenedorMSG.appendChild(icono)
+	contenedorMSG.appendChild(msg)
+	contenedorMSG.classList.add(estado.clase)
+
+	contenedorPrincipal.appendChild(contenedorMSG)
+
+	setTimeout(function(){
+		contenedorPrincipal.removeChild(contenedorMSG)
+	}, 2000)
+	console.log(estado.msg);
+}
+
+
+
 
 //recibe el value de un input e iguala su value a vacio
 function vaciarCampo(campo) {

@@ -806,7 +806,7 @@ nav ul li a.itemsMenu .nombreMenu:first-letter {
 }
 /*
 +-----------------------+
-|	Modulo deConjuntos	|
+|	Modulo de Conjuntos	|
 +-----------------------+
 */
 .formConjuntos .nombreConjunto {
@@ -818,6 +818,19 @@ nav ul li a.itemsMenu .nombreMenu:first-letter {
 }
 .corchetesConjuntos:before {
   content: " = {";
+}
+/*
++-----------------------+
+|		Grafos			|
++-----------------------+
+*/
+svg {
+  width: 95%;
+  display: block;
+  margin: 0 auto;
+  height: 500px;
+  border-top: 5px solid #808080;
+  border-bottom: 5px solid #808080;
 }
 /*
 +-----------------------+

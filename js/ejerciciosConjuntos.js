@@ -39,36 +39,50 @@ var nombreConjunto = document.getElementById("nombreConjunto_js")
 
 function validarConjunto(elementosCojuntos){
 	var campoValido = true
+	//console.log(elementosCojuntos);
+	if((elementosCojuntos.indexOf(".") == -1)){
+		elementosCojuntos = elementosCojuntos.split(",")
 
-	elementosCojuntos = elementosCojuntos.split(",")
-
-
-	for (var i = 0; i < elementosCojuntos.length; i++) {
-		for (var j = 0; j < elementosCojuntos.length; j++) {
-			if (i != j) {
-				if (elementosCojuntos[i] == elementosCojuntos[j]) {
-					campoValido = false
+		for (var i = 0; i < elementosCojuntos.length; i++) {
+			for (var j = 0; j < elementosCojuntos.length; j++) {
+				if (i != j) {
+					if (elementosCojuntos[i] == elementosCojuntos[j]) {
+						campoValido = false
+					}
 				}
 			}
 		}
-	}
-	if (campoValido){
-		console.log('bien bein vien');
-		var estadoActual = {
-			campoValido: true,
-			msg : "Todo listo",
-			clase : "MSGBien",
-			icono : "icon-correcto"
+		if (campoValido){
+			//console.log('bien bein vien');
+			//refactor luego
+			var estadoActual = {
+				campoValido: true,
+				msg : "Todo listo",
+				clase : "MSGBien",
+				icono : "icon-correcto"
+			}
+		}else{
+			//refactor luego
+			var estadoActual = {
+				campoValido: false,
+				msg : "hay un elemento repetido",
+				clase : "MSGError",
+				icono : "icon-equivocado"
+
+			}
 		}
 	}else{
+		//refactor luego
 		var estadoActual = {
 			campoValido: false,
-			msg : "hay un elemento repetido",
+			msg : "hay un caracter no permitido",
 			clase : "MSGError",
 			icono : "icon-equivocado"
 
 		}
 	}
+
+
 	return estadoActual
 }
 
@@ -86,7 +100,7 @@ function capturarConjunto(evento) {
 
 
 	var estado = validarConjunto(elementosCojuntos)
-	//console.log(estado.campovalido);
+
 	if (estado.campoValido){
 
 		if (ValidarCampoVacio(elementosCojuntos) && ValidarCampoVacio(valorNombreConjunto)) {
@@ -123,79 +137,73 @@ function capturarConjunto(evento) {
 			vaciarCampo(nombreConjunto)
 		}
 	}else{
-		var contenedorMSG = document.createElement("article")
-
-		var msg = document.createElement("p")
-		msg.innerHTML= estado.msg
-
-		var icono = document.createElement("span")
-		icono.classList.add(estado.icono)
-
-		contenedorMSG.appendChild(icono)
-		contenedorMSG.appendChild(msg)
-		contenedorMSG.classList.add(estado.clase)
-
-		contenedorPrincipal.appendChild(contenedorMSG)
-
-		setTimeout(function(){
-			contenedorPrincipal.removeChild(contenedorMSG)
-		}, 2000)
-		console.log(estado.msg);
+		//esta funcion recibe un objeto cestado y crea un mensaje y lo inserta en el contenedor principal
+		crearYMostrarMensaje(estado)
 	}
-
 }
+
+function crearRespuesta(elementosCojuntos,binary){
+	var conjuntoSolucion = []
+
+	for (var i = 0; i < binary.length; i++) {
+		for (var j = 0; j < binary[i].length; j++) {
+			if (binary[i][j] == "1"){
+				binary[i][j] = elementosCojuntos[j]
+			}else{
+				binary[i].splice(j, 1);
+			}
+		};
+		conjuntoSolucion.push(binary[i])
+	}
+	console.log(conjuntoSolucion);
 /*
-function crearBase(elementosCojuntos){
-	var base = []
-	for (var i = 0; i < elementosCojuntos.length; i++) {
-		base.push(0)
+	var longitudConjunto = conjuntoSolucion.length
+	for (var i = 0; i < longitudConjunto; i++) {
+
+		console.log(conjuntoSolucion[i]);
+		for (var j = 0; j <= conjuntoSolucion[i].length; j++) {
+			if (conjuntoSolucion[i][j] == "0"){
+				console.log(conjuntoSolucion[i])
+				console.log(conjuntoSolucion[i][j])
+				conjuntoSolucion[i].splice(j, 1);
+			}
+		}
+		console.log('-----------------');
 	}
-	return base
-}
+*console.log(conjuntoSolucion);
+
 */
+}
+
 function validarRespuesta(evento) {
+
 	evento.preventDefault()
 
-
-	var subconjuntos = []
 	var binary = []
-	var elementosSubconjunto = 0
 
-		//refactorizar luego
-		var elementosCojuntos = (document.getElementById("elementosCojuntos_js").value).split(",")
-		console.log(elementosCojuntos);
-		numeroCombinaciones = Math.pow(2,elementosCojuntos.length)
+	//refactorizar luego
+	var elementosCojuntos = (document.getElementById("elementosCojuntos_js").value).split(",")
 
-		var respuestaEnviada = document.getElementById("respuesta")
+	numeroCombinaciones = Math.pow(2,elementosCojuntos.length)
 
-		elementosRespuestaEnviada = respuestaEnviada.value.split(",")
+	var respuestaEnviada = document.getElementById("respuesta")
+
+	elementosRespuestaEnviada = respuestaEnviada.value.split(",")
 
 
-		if (elementosRespuestaEnviada.length == numeroCombinaciones) {
-			/*
-			base = crearBase(elementosCojuntos)
-			baseTemp = crearBase(elementosCojuntos)
-			for (var elementoBase = 0; elementoBase < elementosCojuntos.length; elementoBase++) {
-				for (var k = 0; k < elementosCojuntos.length; k++) {
-					base[elementoBase] = 1
-					base[k] = 1
-					console.log(base);
-					base = baseTemp
-					console.log("despues " + base);
-				}
-			};
-			*/
+	if (elementosRespuestaEnviada.length == numeroCombinaciones) {
 
-			for (var i = 0; i < numeroCombinaciones; i++) {
-				binario = decimalToBinary(i)
-				binary.push(binario)
-				console.log("numero " + i + " - Binario " + binario);
-			};
-		}else{
-		}
-		completarBinarios(binary,elementosCojuntos.length)
-		console.log(binary);
+
+		for (var i = 0; i < numeroCombinaciones; i++) {
+			binario = decimalToBinary(i)
+			binary.push(binario)
+		};
 	}
+	completarBinarios(binary,elementosCojuntos.length)
+	//console.log(binary);
+
+	crearRespuesta(elementosCojuntos,binary)
+}
 
 //vaciar espacios del campo nombre conjunto
 nombreConjunto.addEventListener("change", limpiarCampo)
