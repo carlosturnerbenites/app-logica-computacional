@@ -111,12 +111,12 @@ function validarRespuesta(evento) {
 		if (elementosRespuestaEnviada.length == numeroCombinaciones) {
 
 			for (var k = 0; k <= elementosCojuntos.length; k++) {
-				/*if (k == Number(elementosCojuntos.length)) {
-					elementosCojuntos[k] = "{}"
-				}else{*/
-					subconjuntos.push(elementosCojuntos[k])
+				if (k == elementosCojuntos.length){
+					subconjuntos.push("{}")
+				}else{
 					console.log('subconjunto ' + subconjuntos);
-				//}
+					subconjuntos.push(elementosCojuntos[k])
+				}
 			};
 
 			while(elementosCojuntos.length > elementosSubconjunto ){
@@ -125,10 +125,13 @@ function validarRespuesta(evento) {
 
 				console.log('elemento base ' + elementoBase);
 
-				for (var j = 0; j < elementosSubconjunto; j++) {
-					elementoBase += elementosCojuntos[j]
-					console.log('subconjunto ' + elementoBase);
-					subconjuntos.push(elementoBase)
+				for (var j = elementosSubconjunto; j < elementosCojuntos.length; j++) {
+					if (!(elementosSubconjunto == j)) {
+						elementoBase += elementosCojuntos[j]
+						console.log('subconjunto ' + elementoBase);
+						subconjuntos.push(elementoBase)
+
+					};
 				};
 				elementosSubconjunto++
 
