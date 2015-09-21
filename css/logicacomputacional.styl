@@ -1,4 +1,4 @@
-//@import "fonts.styl"
+@import "fonts.styl"
 @import "normalize.styl"
 @import url(https://fonts.googleapis.com/css?family=Lato)
 
@@ -154,6 +154,30 @@ figure
 	color colorEstadoPreguntaBien
 .mal
 	color colorEstadoPreguntaMal
+
+/*
++-----------------------+
+|		MSG 			|
++-----------------------+
+*/
+.MSGError
+	color white
+	border 3px solid
+	border-radius 10px
+	background-color colorBtnCancelarBackground
+	border-color colorBtnCancelarBorder
+	display inline-block
+	padding 0 10px
+	float right
+
+	&:hover
+		transition background-color 2s
+		background-color colorBtnCancelarBorder
+	span,p
+		display inline-block
+	span
+		margin-right 20px
+
 
 /*
 +-----------------------+

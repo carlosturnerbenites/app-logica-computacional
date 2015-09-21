@@ -36,6 +36,8 @@ var respuestas = []
 
 var sectionTablasVerdad = document.getElementById("sectionTablasVerdad")
 
+var contenedorPrincipal = document.getElementById("contenedorPrincipal_js")
+
 var simboloConjuncion =  "Λ"
 var simboloDisjuncion =  "V"
 var simboloCondicional =  "→"
