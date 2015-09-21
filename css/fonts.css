@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('../fonts/icomoon.eot?mmlnlx');
-	src:url('../fonts/icomoon.eot?#iefixmmlnlx') format('embedded-opentype'),
-	url('../fonts/icomoon.ttf?mmlnlx') format('truetype'),
-	url('../fonts/icomoon.woff?mmlnlx') format('woff'),
-	url('../fonts/icomoon.svg?mmlnlx#icomoon') format('svg');
+	src:url('../fonts/icomoon.eot?iupta9');
+	src:url('../fonts/icomoon.eot?#iefixiupta9') format('embedded-opentype'),
+	url('../fonts/icomoon.ttf?iupta9') format('truetype'),
+	url('../fonts/icomoon.woff?iupta9') format('woff'),
+	url('../fonts/icomoon.svg?iupta9#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -49,6 +49,12 @@
 }
 .icon-ejercicios:before {
 	content: "\e605";
+}
+.icon-mas:before {
+	content: "\e60f";
+}
+.icon-menos:before {
+	content: "\e610";
 }
 .icon-equivocado:before {
 	content: "\e606";

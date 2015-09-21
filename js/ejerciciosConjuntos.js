@@ -91,6 +91,14 @@ function capturarConjunto(evento) {
 	}
 }
 
+function crearBase(elementosCojuntos){
+	var base = []
+	for (var i = 0; i < elementosCojuntos.length; i++) {
+		base.push(0)
+	}
+	return base
+}
+
 function validarRespuesta(evento) {
 	evento.preventDefault()
 
@@ -109,44 +117,28 @@ function validarRespuesta(evento) {
 
 
 		if (elementosRespuestaEnviada.length == numeroCombinaciones) {
+			base = crearBase(elementosCojuntos)
+			baseTemp = crearBase(elementosCojuntos)
 
-			for (var k = 0; k <= elementosCojuntos.length; k++) {
-				if (k == elementosCojuntos.length){
-					subconjuntos.push("{}")
-				}else{
-					console.log('subconjunto ' + subconjuntos);
-					subconjuntos.push(elementosCojuntos[k])
+
+			for (var elementoBase = 0; elementoBase < elementosCojuntos.length; elementoBase++) {
+				for (var k = 0; k < elementosCojuntos.length; k++) {
+					base[elementoBase] = 1
+					base[k] = 1
+					console.log(base);
+					base = baseTemp
+					console.log("despues " + base);
+
 				}
+
 			};
 
-			while(elementosCojuntos.length > elementosSubconjunto ){
 
-				var elementoBase = elementosCojuntos[elementosSubconjunto];
 
-				console.log('elemento base ' + elementoBase);
 
-				for (var j = elementosSubconjunto; j <= elementosCojuntos.length; j++) {
-					if (!(elementosSubconjunto == j)) {
-						if (elementosCojuntos[j] != undefined) {
-
-							elementoBase += elementosCojuntos[j]
-							console.log('subconjunto ' + elementoBase);
-							subconjuntos.push(elementoBase)
-
-							//elementoBase = elementosCojuntos[elementosSubconjunto]
-						};
-
-					};
-				};
-				elementosSubconjunto++
-
-			}
-			console.log(subconjuntos);
 		}else{
 			console.log('algo va mal');
-
 		}
-
 	}
 
 //vaciar espacios del campo nombre conjunto

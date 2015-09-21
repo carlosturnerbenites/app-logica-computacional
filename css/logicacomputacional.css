@@ -829,6 +829,7 @@ table tr th:last-child {
   padding: 0;
 }
 table tr .respuestaEjercicio {
+  width: 130px;
   border: none;
   outline: none;
   text-align: center;
@@ -864,6 +865,23 @@ table tr .respuestaEjercicio {
   display: block;
   min-height: 200px;
   text-align: center;
+}
+.agregarFila {
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background-color: #87bc5e;
+  border: 2px solid #3c7113;
+  color: #fff;
+  width: 41px;
+  height: 40px;
+}
+.agregarFila:hover {
+  -o-transition: background-color 2s;
+  -ms-transition: background-color 2s;
+  -webkit-transition: background-color 2s;
+  -moz-transition: background-color 2s;
+  transition: background-color 2s;
+  background-color: #3c7113;
 }
 .valorErroneo {
   -o-animation: 2s parpadeoError linear infinite;

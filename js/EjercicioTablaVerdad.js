@@ -13,6 +13,7 @@ function crearEjercicio(evento) {
 	numeroCombinaciones = Math.pow(2,numeroProposiciones)
 
 	var tableHTML = document.createElement("table")
+	tableHTML.id="tablarVerdad_js"
 
 
 	var trHTML =document.createElement("tr")
@@ -56,11 +57,21 @@ function crearEjercicio(evento) {
 
 		tableHTML.appendChild(trHTML)
 	};
+
+
+	//agregar columnas
+	btnAgregarColumna = document.createElement("button")
+	btnAgregarColumna.id = "agregarFila_js"
+	btnAgregarColumna.classList.add("icon-mas","agregarFila")
+	btnAgregarColumna.addEventListener("click", crearAgregarFila)
+
+
 	inputHTML = document.createElement("input")
 	inputHTML.setAttribute("type", "submit")
 	inputHTML.setAttribute("value", "Verificar")
 	inputHTML.classList.add("btn", "btnConfirmar")
 	inputHTML.id = "verificarEjericio"
+	sectionTablasVerdad.appendChild(btnAgregarColumna)
 	sectionTablasVerdad.appendChild(tableHTML)
 	sectionTablasVerdad.appendChild(inputHTML)
 }
@@ -89,14 +100,22 @@ function capturarRespuesta(evento) {
 			if (i == nombreFila.length-1) {
 				var valorCampo = nombreFila[i].lastChild.value.toUpperCase()
 				inputsDeRespuesta.push(nombreFila[i].lastChild)
+				//repito esta linea dos veces por que por el momento no veo otra forma(refactor luego)
+				valoresCampo.push(valorCampo)
 			}else{
+				if (!(nombreFila[i].id == "ColumnadeApoyo")) {
 
-				var valorCampo = nombreFila[i].innerHTML
+					console.log(nombreFila[i].id == "ColumnadeApoyo");
+					var valorCampo = nombreFila[i].innerHTML
+					//repito esta linea dos veces por que por el momento no veo otra forma(refactor luego)
+					valoresCampo.push(valorCampo)
+				}
+
 			}
-			valoresCampo.push(valorCampo)
 		}
 
 		valoresCampos.push(valoresCampo)
+		console.log(valoresCampos);
 		//reinicializar variable
 		valoresCampo = []
 	};
@@ -105,17 +124,19 @@ function capturarRespuesta(evento) {
 
 function verificarRespuestaIngresada(){
 
-		var valor = this.value
-		console.log(valor)
+	var valor = this.value
+	console.log(valor)
 
-		if (valor.toUpperCase() == "V" || valor.toUpperCase() == "F") {
-			this.classList.remove("valorErroneo")
-		}else{
-			this.value = ""
-			this.classList.add("valorErroneo")
-		}
+	if (valor.toUpperCase() == "V" || valor.toUpperCase() == "F") {
+		this.classList.remove("valorErroneo")
+	}else{
+		this.value = ""
+		this.classList.add("valorErroneo")
 	}
-
+}
+function reiniciarEjercicio() {
+	console.log('Reiniciando');
+}
 function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuestaCapturados) {
 	respuestasBien = 0
 	respuestasMal = 0
@@ -134,7 +155,9 @@ function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuesta
 	}
 	if(respuestasBien == respuestaCapturada.length){
 		fromValidarRespuesta.removeEventListener("submit", capturarRespuesta)
-		document.getElementById("verificarEjericio").value = "Volver"
+		var btnVolver = document.getElementById("verificarEjericio")
+		btnVolver.value = "Volver"
+		btnVolver.addEventListener("click", reiniciarEjercicio)
 		for (var l = 0; l < inputsDeRespuestaCapturados.length; l++) {
 			inputsDeRespuestaCapturados[l].setAttribute("disabled", "disabled")
 		};
@@ -151,6 +174,32 @@ function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuesta
 		}, 2000)
 	}
 };
+
+function marcarColumna(){
+	var nodoPadre = this.parentNode
+	console.log(nodoPadre);
+}
+
+function crearAgregarFila(evento){
+	evento.preventDefault()
+	var tablaVerdad = document.getElementById("tablarVerdad_js")
+	var tablaVerdadHijos = tablaVerdad.childNodes
+	for (var i = 0; i < tablaVerdadHijos.length; i++) {
+		console.log(tablaVerdadHijos[i])
+		var thHTML = document.createElement("th")
+		thHTML.id = "ColumnadeApoyo"
+		var inputHTML = document.createElement("input")
+		inputHTML.classList.add("respuestaEjercicio")
+		inputHTML.setAttribute("maxlength", "1")
+		inputHTML.addEventListener("change", verificarRespuestaIngresada)
+
+		thHTML.appendChild(inputHTML)
+		tablaVerdadHijos[i].insertBefore(thHTML,tablaVerdadHijos[i].lastChild)
+
+		thHTML.addEventListener("dblclick", marcarColumna)
+	};
+}
+
 
 
 ejercicioTablaVerdad.addEventListener("submit", crearEjercicio)
