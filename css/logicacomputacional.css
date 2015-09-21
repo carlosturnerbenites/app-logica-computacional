@@ -384,10 +384,9 @@ select {
   background-color: transparent;
 }
 body {
-  font-size: 16px;
+  font-size: 20px;
   font-family: 'Lato' sans-serif;
   margin: 0;
-  font-size: 18px;
 }
 a {
   color: #164900;
@@ -472,6 +471,32 @@ figure {
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
+  -o-box-align: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -o-box-lines: multiple;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.displayFlexCenterSpaceAround {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -o-box-pack: distribute;
+  -webkit-box-pack: distribute;
+  -moz-box-pack: distribute;
+  -ms-flex-pack: distribute;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
   -o-box-align: center;
   -webkit-box-align: center;
   -moz-box-align: center;

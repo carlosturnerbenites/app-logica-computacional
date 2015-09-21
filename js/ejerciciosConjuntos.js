@@ -1,3 +1,42 @@
+/*
+try {
+	if (!window.openDatabase) {
+		alert('not supported');
+	} else {
+		var shortName = 'db';
+		var version = '1.0';
+		var displayName = 'My Important Database';
+        var maxSize = 65536; // in bytes
+        var db = openDatabase(shortName, version, displayName, maxSize);
+
+        // You should have a database instance in db.
+
+        db.transaction(function (tx) {
+        	tx.executeSql('SELECT * FROM resultados', ['nombre', 'nota'
+        		]);
+        	console.log(tx.executeSql('SELECT * FROM resultados', ['nombre', 'nota'
+        		])
+        	);
+        	//tx.executeSql('INSERT INTO resultados (nombre, nota) VALUES ("pepe", 4)');
+
+        });
+
+
+
+    }
+}
+catch(e) {
+    // Error handling code goes here.
+    if (e == 2) {
+        // Version number mismatch.
+        alert("Invalid database version.");
+    } else {
+    	alert("Unknown error "+e+".");
+    }
+}
+alert("Database is: "+db);
+*/
+
 var formConjuntos = document.getElementById("formConjuntos")
 var contenedorConjuntoEscogido = document.getElementById("contenedorConjuntoEscogido")
 var conjuntoIngresado = document.getElementById("conjuntoIngresado")
@@ -56,11 +95,12 @@ function validarRespuesta(evento) {
 	evento.preventDefault()
 
 
+	var subconjuntos = []
 	var elementosSubconjunto = 0
 
 		//refactorizar luego
 		var elementosCojuntos = (document.getElementById("elementosCojuntos_js").value).split(",")
-
+		console.log(elementosCojuntos);
 		numeroCombinaciones = Math.pow(2,elementosCojuntos.length)
 
 		var respuestaEnviada = document.getElementById("respuesta")
@@ -68,21 +108,34 @@ function validarRespuesta(evento) {
 		elementosRespuestaEnviada = respuestaEnviada.value.split(",")
 
 
-		if (elementosRespuestaEnviada.length != numeroCombinaciones) {
-			console.log("Huu, Algo va mal")
-		}else{
-			console.log("vamos bien")
-			console.log(elementosCojuntos);
+		if (elementosRespuestaEnviada.length == numeroCombinaciones) {
 
-			while(elementosSubconjunto < elementosCojuntos.length){
+			for (var k = 0; k <= elementosCojuntos.length; k++) {
+				/*if (k == Number(elementosCojuntos.length)) {
+					elementosCojuntos[k] = "{}"
+				}else{*/
+					subconjuntos.push(elementosCojuntos[k])
+					console.log('subconjunto ' + subconjuntos);
+				//}
+			};
+
+			while(elementosCojuntos.length > elementosSubconjunto ){
 
 				var elementoBase = elementosCojuntos[elementosSubconjunto];
 
-				//console.log('subconjuntos de ' + elementosSubconjunto + " elementos");
+				console.log('elemento base ' + elementoBase);
 
+				for (var j = 0; j < elementosSubconjunto; j++) {
+					elementoBase += elementosCojuntos[j]
+					console.log('subconjunto ' + elementoBase);
+					subconjuntos.push(elementoBase)
+				};
 				elementosSubconjunto++
-			}
 
+			}
+			console.log(subconjuntos);
+		}else{
+			console.log('algo va mal');
 
 		}
 
