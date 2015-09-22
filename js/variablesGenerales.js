@@ -2,6 +2,8 @@ var posiblesValores = ["V", "F"]
 
 var respuestasBien = 0
 
+var simboloConjuntoVacio = "v"
+
 var respuestasMal = 0
 
 //inicializacion de variables

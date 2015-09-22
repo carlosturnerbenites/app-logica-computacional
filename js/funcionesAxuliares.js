@@ -34,28 +34,31 @@ function completarBinarios(binarios,longitud){
 	}
 }
 function borrarCerros(conjuntos){
-	var conjuntosSTR = []
-
+	var conjuntoSolucion = []
 
 	for (var i = 0; i < conjuntos.length; i++) {
 		var conjunto = []
-		console.log(conjuntos[i])
-
-		var longitud = conjuntos[i].length
-
-		for (var j = 0; j < longitud; j++) {
-			console.log('-------------');
+		for (var j = 0; j < conjuntos[i].length; j++) {
 			if (conjuntos[i][j] != "0") {
 				conjunto.push(conjuntos[i][j])
 			}
-		};
-		conjuntosSTR.push(conjunto)
-
+		}
+		/*
+		if(conjunto.toString() == ""){
+			conjunto = simboloConjuntoVacio
+		}*/
+		conjuntoSolucion.push(conjunto.join(""))
 	}
 
-	console.log('--------');
-	console.log(conjuntos);
-	console.log(conjuntosSTR);
+	return conjuntoSolucion
+
+}
+
+function ordenarAlfabeticamente(array){
+	var arrayOrdenado = []
+	arrayOrdenado = array.sort()
+	console.log(arrayOrdenado);
+	return arrayOrdenado
 }
 
 /*

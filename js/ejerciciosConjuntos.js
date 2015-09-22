@@ -143,7 +143,7 @@ function capturarConjunto(evento) {
 }
 
 function crearRespuesta(elementosCojuntos,binary){
-	var conjuntoSolucion = []
+	var conjuntoSolucionBinary = []
 
 	for (var i = 0; i < binary.length; i++) {
 		for (var j = 0; j < binary[i].length; j++) {
@@ -151,10 +151,13 @@ function crearRespuesta(elementosCojuntos,binary){
 				binary[i][j] = elementosCojuntos[j]
 			}
 		};
-		conjuntoSolucion.push(binary[i])
+		conjuntoSolucionBinary.push(binary[i])
 	}
-	console.log(conjuntoSolucion);
-	console.log(borrarCerros(conjuntoSolucion))
+	var conjuntoSolucion = borrarCerros(conjuntoSolucionBinary)
+
+	var conjuntoSolucion = ordenarAlfabeticamente(conjuntoSolucion)
+
+	return conjuntoSolucion
 
 }
 
@@ -185,7 +188,33 @@ function validarRespuesta(evento) {
 	completarBinarios(binary,elementosCojuntos.length)
 	//console.log(binary);
 
-	crearRespuesta(elementosCojuntos,binary)
+	var conjuntoSolucion = crearRespuesta(elementosCojuntos,binary)
+	console.log(elementosRespuestaEnviada)
+	var elementosRespuestaEnviadaOrdenada = ordenarAlfabeticamente(elementosRespuestaEnviada)
+
+	console.log(conjuntoSolucion)
+	console.log(elementosRespuestaEnviadaOrdenada)
+
+	if (String(ordenarAlfabeticamente(conjuntoSolucion)) == String(ordenarAlfabeticamente(elementosRespuestaEnviadaOrdenada))) {
+		var estadoActual = {
+			campoValido: true,
+			msg : "Listo, todo bien",
+			clases : ["MSG" ,"MSGBien"],
+			icono : "icon-correcto"
+		}
+
+	}else{
+		var estadoActual = {
+			campoValido: false,
+			msg : "Huu, algo va mal",
+			clases : ["MSG" ,"MSGError"],
+			icono : "icon-equivocado"
+		}
+
+	}
+	crearYMostrarMensaje(estadoActual)
+	//ordenar un string albabeticamente
+	//array.split("").sort().join("")
 }
 
 //vaciar espacios del campo nombre conjunto
