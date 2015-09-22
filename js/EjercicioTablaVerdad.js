@@ -161,18 +161,25 @@ function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuesta
 		for (var l = 0; l < inputsDeRespuestaCapturados.length; l++) {
 			inputsDeRespuestaCapturados[l].setAttribute("disabled", "disabled")
 		};
-		var mensaje = document.createElement("p")
-		mensaje.innerHTML = "Listo, Todo bien."
-		sectionTablasVerdad.appendChild(mensaje)
+		var estadoActual = {
+			campoValido: true,
+			msg : "Listo, todo bien",
+			clases : ["MSG" ,"MSGCorrecto"],
+			icono : "icon-correcto"
+
+		}
 	}
 	else{
-		var mensaje = document.createElement("p")
-		mensaje.innerHTML = "Huuu, Algo va mal."
-		sectionTablasVerdad.appendChild(mensaje)
-		setTimeout(function() {
-			sectionTablasVerdad.removeChild(mensaje)
-		}, 2000)
+		var estadoActual = {
+			campoValido: false,
+			msg : "Huu, algo va mal",
+			clases : ["MSG" ,"MSGError"],
+			icono : "icon-equivocado"
+
+		}
 	}
+	crearYMostrarMensaje(estadoActual)
+
 };
 
 function marcarColumna(){

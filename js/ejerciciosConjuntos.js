@@ -58,7 +58,7 @@ function validarConjunto(elementosCojuntos){
 			var estadoActual = {
 				campoValido: true,
 				msg : "Todo listo",
-				clase : "MSGBien",
+				clases : ["MSG", "MSGBien"],
 				icono : "icon-correcto"
 			}
 		}else{
@@ -66,7 +66,7 @@ function validarConjunto(elementosCojuntos){
 			var estadoActual = {
 				campoValido: false,
 				msg : "hay un elemento repetido",
-				clase : "MSGError",
+				clases : ["MSG" ,"MSGError"],
 				icono : "icon-equivocado"
 
 			}
@@ -76,7 +76,7 @@ function validarConjunto(elementosCojuntos){
 		var estadoActual = {
 			campoValido: false,
 			msg : "hay un caracter no permitido",
-			clase : "MSGError",
+			clases : ["MSG" ,"MSGError"],
 			icono : "icon-equivocado"
 
 		}

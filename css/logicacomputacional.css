@@ -636,16 +636,37 @@ figure {
 |		MSG 			|
 +-----------------------+
 */
-.MSGError {
+.MSG {
   color: #fff;
   border: 3px solid;
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  background-color: #d46a6a;
-  border-color: #801515;
   display: inline-block;
   padding: 0 10px;
   float: right;
+}
+.MSG span,
+.MSG p {
+  display: inline-block;
+}
+.MSG span {
+  margin-right: 20px;
+}
+.MSGBien {
+  background-color: #4d658d;
+  border-color: #152d54;
+}
+.MSGBien:hover {
+  -o-transition: background-color 2s;
+  -ms-transition: background-color 2s;
+  -webkit-transition: background-color 2s;
+  -moz-transition: background-color 2s;
+  transition: background-color 2s;
+  background-color: #152d54;
+}
+.MSGError {
+  background-color: #d46a6a;
+  border-color: #801515;
 }
 .MSGError:hover {
   -o-transition: background-color 2s;
@@ -654,13 +675,6 @@ figure {
   -moz-transition: background-color 2s;
   transition: background-color 2s;
   background-color: #801515;
-}
-.MSGError span,
-.MSGError p {
-  display: inline-block;
-}
-.MSGError span {
-  margin-right: 20px;
 }
 /*
 +-----------------------+

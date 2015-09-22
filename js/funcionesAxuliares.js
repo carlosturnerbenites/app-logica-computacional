@@ -47,7 +47,12 @@ function crearYMostrarMensaje(estado){
 
 	contenedorMSG.appendChild(icono)
 	contenedorMSG.appendChild(msg)
-	contenedorMSG.classList.add(estado.clase)
+
+	for (var i = 0; i < estado.clases.length; i++) {
+
+		contenedorMSG.classList.add(estado.clases[i])
+	};
+
 
 	contenedorPrincipal.appendChild(contenedorMSG)
 
@@ -85,6 +90,13 @@ function Habilitar_InhabilitarInputSubmit(input) {
 	}
 }
 
+
+
+var estado = {
+
+}
+
+//en proceso
 var crearElemento = {
 	tipoDeElemento : "",
 	texto : "",
@@ -116,3 +128,6 @@ var crearElemento = {
 	}
 
 }
+
+
+

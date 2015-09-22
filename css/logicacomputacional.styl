@@ -160,23 +160,34 @@ figure
 |		MSG 			|
 +-----------------------+
 */
-.MSGError
+.MSG
 	color white
 	border 3px solid
 	border-radius 10px
-	background-color colorBtnCancelarBackground
-	border-color colorBtnCancelarBorder
+
 	display inline-block
 	padding 0 10px
 	float right
 
-	&:hover
-		transition background-color 2s
-		background-color colorBtnCancelarBorder
 	span,p
 		display inline-block
 	span
 		margin-right 20px
+
+	&Bien
+		background-color colorBtnEnviarBackground
+		border-color colorBtnEnviarBorder
+		&:hover
+			transition background-color 2s
+			background-color colorBtnEnviarBorder
+
+	&Error
+		background-color colorBtnCancelarBackground
+		border-color colorBtnCancelarBorder
+		&:hover
+			transition background-color 2s
+			background-color colorBtnCancelarBorder
+
 
 
 /*
