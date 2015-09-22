@@ -6,8 +6,8 @@ lienzoGrafo.addEventListener("click", dibujarCirculo)
 function dibujarCirculo(evento){
 
 	var radio = 10
-	var cxActuales = evento.clientX
-	var cyActuales = evento.clientY
+	var cxActuales = evento.x
+	var cyActuales = evento.y
 
 	console.log("cx y cy actuales " + cxActuales,cyActuales);
 

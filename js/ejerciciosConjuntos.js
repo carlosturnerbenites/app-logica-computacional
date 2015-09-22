@@ -149,30 +149,13 @@ function crearRespuesta(elementosCojuntos,binary){
 		for (var j = 0; j < binary[i].length; j++) {
 			if (binary[i][j] == "1"){
 				binary[i][j] = elementosCojuntos[j]
-			}else{
-				binary[i].splice(j, 1);
 			}
 		};
 		conjuntoSolucion.push(binary[i])
 	}
 	console.log(conjuntoSolucion);
-/*
-	var longitudConjunto = conjuntoSolucion.length
-	for (var i = 0; i < longitudConjunto; i++) {
+	console.log(borrarCerros(conjuntoSolucion))
 
-		console.log(conjuntoSolucion[i]);
-		for (var j = 0; j <= conjuntoSolucion[i].length; j++) {
-			if (conjuntoSolucion[i][j] == "0"){
-				console.log(conjuntoSolucion[i])
-				console.log(conjuntoSolucion[i][j])
-				conjuntoSolucion[i].splice(j, 1);
-			}
-		}
-		console.log('-----------------');
-	}
-*console.log(conjuntoSolucion);
-
-*/
 }
 
 function validarRespuesta(evento) {

@@ -22,6 +22,7 @@ function decimalToBinary(decimal){
 function convertirStringaArray(textoSinEspacios) {
 	return textoSinEspacios.split('');
 }
+
 function completarBinarios(binarios,longitud){
 	for (var binario in binarios){
 		if (binarios[binario].length < longitud) {
@@ -31,11 +32,57 @@ function completarBinarios(binarios,longitud){
 		}
 		binarios[binario] = binarios[binario].split("")
 	}
-	console.log('binarios formateados ' + binarios);
+}
+function borrarCerros(conjuntos){
+	var conjuntosSTR = []
+
+
+	for (var i = 0; i < conjuntos.length; i++) {
+		var conjunto = []
+		console.log(conjuntos[i])
+
+		var longitud = conjuntos[i].length
+
+		for (var j = 0; j < longitud; j++) {
+			console.log('-------------');
+			if (conjuntos[i][j] != "0") {
+				conjunto.push(conjuntos[i][j])
+			}
+		};
+		conjuntosSTR.push(conjunto)
+
+	}
+
+	console.log('--------');
+	console.log(conjuntos);
+	console.log(conjuntosSTR);
 }
 
+/*
+//backup fuction
+function borrarCerros(conjuntos){
 
+	for (var i = 0; i < conjuntos.length; i++) {
+		console.log(conjuntos[i])
+
+		var longitud = conjuntos[i].length
+
+		for (var j = 0; j < longitud; j++) {
+			console.log('-------------');
+			if (conjuntos[i][j] == "0") {
+				console.log('hay un cero');
+			};
+			console.log('-------------');
+		};
+
+	}
+
+	console.log('--------');
+	console.log(conjuntos);
+}
+*/
 function crearYMostrarMensaje(estado){
+	var contenedor = document.createElement("section")
 
 	var contenedorMSG = document.createElement("article")
 
@@ -45,8 +92,6 @@ function crearYMostrarMensaje(estado){
 	var icono = document.createElement("span")
 	icono.classList.add(estado.icono)
 
-	contenedorMSG.appendChild(icono)
-	contenedorMSG.appendChild(msg)
 
 	for (var i = 0; i < estado.clases.length; i++) {
 
@@ -54,12 +99,14 @@ function crearYMostrarMensaje(estado){
 	};
 
 
-	contenedorPrincipal.appendChild(contenedorMSG)
+	contenedorMSG.appendChild(icono)
+	contenedorMSG.appendChild(msg)
+	contenedor.appendChild(contenedorMSG)
+	contenedorPrincipal.insertBefore(contenedor, contenedorPrincipal.firstChild)
 
 	setTimeout(function(){
-		contenedorPrincipal.removeChild(contenedorMSG)
+		//contenedorPrincipal.removeChild(contenedorMSG)
 	}, 2000)
-	console.log(estado.msg);
 }
 
 

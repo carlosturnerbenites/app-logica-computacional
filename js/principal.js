@@ -25,3 +25,12 @@ btnAyuda.addEventListener("click", mostrarOcultarAyuda)
 document.body.addEventListener("keypress", teclaAyudapresionada)
 
 
+//Activar en produccion
+/*
+window.onbeforeunload = confirmarCierreVentana
+
+function confirmarCierreVentana(){
+	return 'Si cierra se perdera todo el progreso.'
+}
+*/
+

@@ -36,6 +36,9 @@ githubColor = rgb(51,51,51)
 
 colorMenuFooter = rgba(0, 0, 0, .7)
 
+html,body,.contenedorDeAncho
+	height 100%
+
 input, textarea, select, button
 	outline none
 input:disabled
@@ -164,15 +167,14 @@ figure
 	color white
 	border 3px solid
 	border-radius 10px
-
 	display inline-block
 	padding 0 10px
-	float right
 
 	span,p
 		display inline-block
 	span
 		margin-right 20px
+		animation 1s aumentaDisminuye infinite linear
 
 	&Bien
 		background-color colorBtnEnviarBackground
