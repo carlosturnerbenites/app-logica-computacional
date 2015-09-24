@@ -1,15 +1,20 @@
 var lienzoGrafo = document.getElementById("lienzoGrafo_js")
-var auxContaCirculos = 0
+var btnLimpiarLienzo = document.getElementById("btnLimpiarLienzo_js")
 
 lienzoGrafo.addEventListener("click", dibujarCirculo)
 
+btnLimpiarLienzo.addEventListener("click", limpiarLienzo)
+
+var maximaElementos = 10
+
 function dibujarCirculo(evento){
 
-	var radio = 10
-	var cxActuales = evento.x
-	var cyActuales = evento.y
+	console.log(modoDibujoLibre);
+	console.log(maximaElementos);
 
-	console.log("cx y cy actuales " + cxActuales,cyActuales);
+	var radio = 10
+	var cxActuales = evento.clientX
+	var cyActuales = evento.clientY
 
 	var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
 
@@ -20,20 +25,23 @@ function dibujarCirculo(evento){
 	if (lienzoGrafo.childElementCount == 0) {
 		lienzoGrafo.appendChild(circle)
 	}else{
-
-		console.log(lienzoGrafo.lastChild)
-
-		var cxAnteriores = lienzoGrafo.lastChild.getAttribute("cx")
-
-		var cyAnteriores = lienzoGrafo.lastChild.getAttribute("cy")
-		lienzoGrafo.appendChild(circle)
+		if (lienzoGrafo.childElementCount <= maximaElementos){
 
 
+			console.log(lienzoGrafo.lastChild)
 
-		console.log("cx y cy anteriores " + cxAnteriores,cyAnteriores)
+			var cxAnteriores = lienzoGrafo.lastChild.getAttribute("cx")
+
+			var cyAnteriores = lienzoGrafo.lastChild.getAttribute("cy")
+			lienzoGrafo.appendChild(circle)
 
 
-		dibujarLinea(cxAnteriores,cyAnteriores,cxActuales,cyActuales)
+
+			console.log("cx y cy anteriores " + cxAnteriores,cyAnteriores)
+
+
+			dibujarLinea(cxAnteriores,cyAnteriores,cxActuales,cyActuales,radio)
+		}
 	}
 }
 
@@ -45,10 +53,21 @@ function dibujarLinea(x1,y1,x2,y2) {
 	line.setAttribute("x2",x2)
 	line.setAttribute("y2",y2)
 
-	line.setAttribute("stroke", "green")
-	line.setAttribute("stroke-width", "10px")
 
 	console.log(line);
 
 	lienzoGrafo.insertBefore(line,lienzoGrafo.lastChild)
+}
+
+var modoDeDibujo = document.getElementById("modoDeDibujo_js")
+modoDeDibujo.addEventListener("change", escogerModoDeDibujo)
+var modoDibujoLibre = false
+
+function escogerModoDeDibujo() {
+	if (modoDeDibujo.checked) {
+		maximaElementos = Infinity
+	}else{
+		maximaElementos = 10
+	}
+	limpiarLienzo()
 }

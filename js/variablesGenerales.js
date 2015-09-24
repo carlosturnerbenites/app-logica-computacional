@@ -1,17 +1,34 @@
-var posiblesValores = ["V", "F"]
+var contenedorPrincipal = document.getElementById("contenedorPrincipal_js")
 
-var respuestasBien = 0
+var sectionTablasVerdad = document.getElementById("sectionTablasVerdad_js")
 
-var simboloConjuntoVacio = "v"
 
-var respuestasMal = 0
+var heightContenedorPrincipal = contenedorPrincipal.clientHeight
+
+//var respuestasBien = 0
+//var respuestasMal = 0
+
+var simboloConjuntoVacio = "Ø"
+
 
 //inicializacion de variables
 var valoresCampo = []
 var valoresCampos = []
 
-var proposiciones = ["p","q","r","s","t","u","v","w","x","y"]
 var solucion = ""
+
+var respuestas = []
+
+
+var simboloConjuncion =  "Λ"
+var simboloDisjuncion =  "V"
+var simboloCondicional =  "→"
+var simboloBicondicional =  "⇔"
+
+//valores Tablas de Verdad
+var posiblesValores = ["V", "F"]
+
+var proposiciones = ["p","q","r","s","t","u","v","w","x","y"]
 
 var conjuncion =[["p","q","p Λ q"],
 ["V","V","V"],
@@ -33,16 +50,3 @@ var bicondicional = [["p","q","p ⇔ q"],
 ["V","F","F"],
 ["F","V","F"],
 ["F","F","V"]]
-
-var respuestas = []
-
-var sectionTablasVerdad = document.getElementById("sectionTablasVerdad")
-
-var contenedorPrincipal = document.getElementById("contenedorPrincipal_js")
-
-var heightContenedorPrincipal = contenedorPrincipal.clientHeight
-
-var simboloConjuncion =  "Λ"
-var simboloDisjuncion =  "V"
-var simboloCondicional =  "→"
-var simboloBicondicional =  "⇔"

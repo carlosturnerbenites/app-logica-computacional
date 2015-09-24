@@ -1,7 +1,21 @@
+::-webkit-scrollbar {
+  width: 0.7em;
+  height: 0.7em;
+}
+::-webkit-scrollbar-thumb {
+  background: #708090;
+}
+::-webkit-scrollbar-track {
+  background: #b7bfc7;
+}
+body {
+  scrollbar-face-color: #708090;
+  scrollbar-track-color: #b7bfc7;
+}
 @font-face {
   font-family: 'icomoon';
-  src: url("../fonts/icomoon.eot?iupta9");
-  src: url("../fonts/icomoon.eot?#iefixiupta9") format('embedded-opentype'), url("../fonts/icomoon.ttf?iupta9") format('truetype'), url("../fonts/icomoon.woff?iupta9") format('woff'), url("../fonts/icomoon.svg?iupta9#icomoon") format('svg');
+  src: url("../fonts/icomoon.eot?i5ggn0");
+  src: url("../fonts/icomoon.eot?#iefixi5ggn0") format('embedded-opentype'), url("../fonts/icomoon.ttf?i5ggn0") format('truetype'), url("../fonts/icomoon.woff?i5ggn0") format('woff'), url("../fonts/icomoon.svg?i5ggn0#icomoon") format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -29,6 +43,9 @@
 .icon-inico:before {
   content: "\e600";
 }
+.icon-musica:before {
+  content: "\e611";
+}
 .icon-cursos:before {
   content: "\e601";
 }
@@ -44,6 +61,12 @@
 .icon-ejercicios:before {
   content: "\e605";
 }
+.icon-ajustes:before {
+  content: "\e614";
+}
+.icon-borrar:before {
+  content: "\e612";
+}
 .icon-mas:before {
   content: "\e60f";
 }
@@ -55,6 +78,9 @@
 }
 .icon-correcto:before {
   content: "\e607";
+}
+.icon-shift:before {
+  content: "\e613";
 }
 .icon-developer:before {
   content: "\e608";
@@ -440,11 +466,10 @@ td,
 th {
   padding: 0;
 }
-html,
-body,
-.contenedorDeAncho {
-  height: 100%;
-}
+/*
+html,body,.contenedorDeAncho
+	height 100%
+*/
 input,
 textarea,
 select,
@@ -509,9 +534,6 @@ figure {
   border-top: none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-}
-.seccionAyuda .ocultar {
-  display: none;
 }
 /*
 +-----------------------+
@@ -626,6 +648,9 @@ figure {
 }
 .textoEspecial {
   font-size: 2em;
+}
+.ocultar {
+  display: none;
 }
 .estadoDeRespuesta {
   font-weight: bold;
@@ -848,12 +873,19 @@ nav ul li a.itemsMenu .nombreMenu:first-letter {
 +-----------------------+
 */
 svg {
-  width: 95%;
+  width: 100%;
   display: block;
   margin: 0 auto;
   height: 500px;
   border-top: 5px solid #808080;
   border-bottom: 5px solid #808080;
+}
+svg circle {
+  fill: #ab2121;
+}
+svg line {
+  stroke: #ff9a9a;
+  stroke-width: 10px;
 }
 /*
 +-----------------------+
@@ -967,6 +999,9 @@ table {
   display: inline-block;
   margin: 10px;
 }
+table tr:hover {
+  background-color: rgba(0,0,0,0.1);
+}
 table tr th {
   padding: 10px;
   border: 2px solid #000;
@@ -1006,6 +1041,8 @@ table tr .respuestaEjercicio {
   }
 }
 .respuesta {
+  letter-spacing: 5px;
+  font-size: 1.5em;
   width: 50%;
   margin: 30px auto;
   display: block;
@@ -1035,6 +1072,56 @@ table tr .respuestaEjercicio {
   -webkit-animation: 2s parpadeoError linear infinite;
   -moz-animation: 2s parpadeoError linear infinite;
   animation: 2s parpadeoError linear infinite;
+}
+/*
++-----------------------------------+
+|	Estilo de teclas o shotcuts		|
++-----------------------------------+
+*/
+.contenedorTeclas p {
+  display: inline-block;
+}
+.contenedorTeclas .tecla {
+  color: #fff;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding: 0 10px;
+  background-color: rgba(0,0,0,0.8);
+}
+/*
++-----------------------------------+
+|				Audio				|
++-----------------------------------+
+*/
+.reproductorMusica {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  border: none;
+  color: #808080;
+}
+.reproductorMusica span:hover {
+  color: #000;
+}
+.reproductorMusica .ajustes {
+  color: #000;
+  background-color: #fff;
+  padding: 3px;
+}
+.reproductorMusica .ajustes:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+.reproductorMusica .listadoAjustesAudio {
+  border: 1px solid #808080;
+  font-size: 0.7em;
+}
+.reproductorMusica .listadoAjustesAudio li {
+  width: auto;
+  padding: 5px 0;
+}
+.reproductorMusica .listadoAjustesAudio input[type="number"] {
+  width: 30px;
 }
 @-moz-keyframes parpadeoError {
   0% {

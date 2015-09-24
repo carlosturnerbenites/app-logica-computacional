@@ -1,45 +1,14 @@
-/*
-try {
-	if (!window.openDatabase) {
-		alert('not supported');
-	} else {
-		var shortName = 'db';
-		var version = '1.0';
-		var displayName = 'My Important Database';
-		var maxSize = 65536; // in bytes
-		var db = openDatabase(shortName, version, displayName, maxSize);
-
-		// You should have a database instance in db.
-
-		db.transaction(function (tx) {
-			tx.executeSql('CREATE TABLE resultados', ('nombre TEXT', 'nota NUMERIC'));
-			tx.executeSql('INSERT INTO resultados (nombre, nota) VALUES ("pepe", 4)');
-			tx.executeSql('SELECT * FROM resultados', ['nombre', 'nota']);
-		});
-	}
-}
-catch(e) {
-	// Error handling code goes here.
-	if (e == 2) {
-		// Version number mismatch.
-		alert("Invalid database version.");
-	} else {
-		alert("Unknown error "+e+".");
-	}
-}
-alert("Database is: "+db);
-*/
-
-var formConjuntos = document.getElementById("formConjuntos")
-var contenedorConjuntoEscogido = document.getElementById("contenedorConjuntoEscogido")
-var conjuntoIngresado = document.getElementById("conjuntoIngresado")
+var formConjuntos = document.getElementById("formConjuntos_js")
+//var contenedorConjuntoEscogido = document.getElementById("contenedorConjuntoEscogido")
+var conjuntoIngresado = document.getElementById("conjuntoIngresado_js")
 var seccionRespuesta = document.getElementById("seccionRespuesta_js")
 var nombreConjunto = document.getElementById("nombreConjunto_js")
 
 
 function validarConjunto(elementosCojuntos){
+
 	var campoValido = true
-	//console.log(elementosCojuntos);
+
 	if((elementosCojuntos.indexOf(".") == -1)){
 		elementosCojuntos = elementosCojuntos.split(",")
 
@@ -119,10 +88,23 @@ function capturarConjunto(evento) {
 			inputSubmitValidar.classList.add("btn","btnConfirmar")
 			inputSubmitValidar.id = "btnValidarconjuntos"
 			inputSubmitValidar.setAttribute("type", "submit")
+
 			respuesta.id = "respuesta"
 			respuesta.classList.add("respuesta")
 			respuesta.setAttribute("required","required")
+			respuesta.setAttribute("spellcheck","false")
 			respuesta.setAttribute("placeholder", "Escriba en este cuadro los posibles subconjuntos del conjunto anterior descrito.")
+			respuesta.addEventListener("keypress", function(evento) {
+				//si se presiona Enter
+				if(evento.keyCode == 13){
+					evento.preventDefault()
+				}
+				//si se presiona 0
+				if(evento.keyCode == 48){
+					evento.preventDefault()
+					respuesta.value += simboloConjuntoVacio
+				}
+			})
 
 			seccionRespuesta.appendChild(respuesta)
 			seccionRespuesta.appendChild(inputSubmitValidar)
@@ -153,7 +135,7 @@ function crearRespuesta(elementosCojuntos,binary){
 		};
 		conjuntoSolucionBinary.push(binary[i])
 	}
-	var conjuntoSolucion = borrarCerros(conjuntoSolucionBinary)
+	var conjuntoSolucion = SeparaCerosDeValoresUtiles(conjuntoSolucionBinary)
 
 	var conjuntoSolucion = ordenarAlfabeticamente(conjuntoSolucion)
 
@@ -213,8 +195,6 @@ function validarRespuesta(evento) {
 
 	}
 	crearYMostrarMensaje(estadoActual)
-	//ordenar un string albabeticamente
-	//array.split("").sort().join("")
 }
 
 //vaciar espacios del campo nombre conjunto

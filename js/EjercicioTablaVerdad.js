@@ -8,12 +8,13 @@ function crearEjercicio(evento) {
 
 
 
+	var inputNumeroProposiciones = document.getElementById("numeroProposiciones")
 	var numeroProposiciones = Number(document.getElementById("numeroProposiciones").value)
 
 	numeroCombinaciones = Math.pow(2,numeroProposiciones)
 
 	var tableHTML = document.createElement("table")
-	tableHTML.id="tablarVerdad_js"
+	tableHTML.id = "tablarVerdad_js"
 
 
 	var trHTML =document.createElement("tr")
@@ -71,9 +72,9 @@ function crearEjercicio(evento) {
 	inputHTML.setAttribute("value", "Verificar")
 	inputHTML.classList.add("btn", "btnConfirmar")
 	inputHTML.id = "verificarEjericio"
-	sectionTablasVerdad.appendChild(btnAgregarColumna)
 	sectionTablasVerdad.appendChild(tableHTML)
 	sectionTablasVerdad.appendChild(inputHTML)
+	sectionTablasVerdad.appendChild(btnAgregarColumna)
 }
 
 function capturarRespuesta(evento) {

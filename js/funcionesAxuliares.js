@@ -1,39 +1,96 @@
-function convertirHTMLCollectionEnArray(HTMLCollections){
-	var nombreArray = [].slice.call(HTMLCollections);
-	return nombreArray
-}
+/*
+	Description:
+	Esta funcion convierte un elemento tipo HTMLCollection en un Array
 
-function numeroAleatorio(max,min) {
-	var aleatorio = Math.floor((Math.random() * max) + min)
-	return aleatorio
-}
-//recibe el value de un input y comprueba si esta vacio
-function ValidarCampoVacio(campo) {
-	if(campo.trim() == 0){
-		return false
-	}else{
-		return true
+	Syntax:
+	convertirHTMLCollectionEnArray(elemento HTMLCollection)
+	*/
+	function convertirHTMLCollectionEnArray(HTMLCollections){
+
+		var nombreArray = [].slice.call(HTMLCollections);
+		return nombreArray
+
 	}
-}
-function decimalToBinary(decimal){
-	return (decimal >>> 0).toString(2);
-}
 
-function convertirStringaArray(textoSinEspacios) {
-	return textoSinEspacios.split('');
-}
+/*
+	Description:
+	Esta funcion devuelve un numero aleatorio, en el rango de los numeros recibidos(max y min)
 
-function completarBinarios(binarios,longitud){
-	for (var binario in binarios){
-		if (binarios[binario].length < longitud) {
-			while(binarios[binario].length < longitud){
-				binarios[binario] = "0" + binarios[binario]
+	Syntax:
+	numeroAleatorio(numero Maximo(Integer), numero Minimo(Integer))
+	*/
+	function numeroAleatorio(max,min) {
+
+		var aleatorio = Math.floor((Math.random() * max) + min)
+		return aleatorio
+
+	}
+/*
+	Description:
+	Esta function recibe un string y comprueba que no sea vacio.
+	Si es vacio devuelve False, y por el contrario, si es no es vacio devuelve True
+
+	Syntax:
+	ValidarCampoVacio(palabra A validar(String)
+		*/
+		function ValidarCampoVacio(campo) {
+
+			if(campo.trim() == 0){
+				return false
+
+			}else{
+				return true
 			}
+
 		}
-		binarios[binario] = binarios[binario].split("")
+/*
+	Description:
+	Esta funcion convierte un decimal en binario
+
+	Syntax:
+	decimalToBinary(numeroDicimal(Integer))
+	*/
+	function decimalToBinary(decimal){
+		return (decimal >>> 0).toString(2);
 	}
-}
-function borrarCerros(conjuntos){
+
+/*
+	Description:
+	Esta funcion convierte un String en Array separandolos caracter a caracter
+
+	Syntax:
+	convertirStringaArray(texto a convertir(String))
+	*/
+	function convertirStringaArray(textoSinEspacios) {
+		return textoSinEspacios.split('');
+	}
+/*
+	Description:
+	Esta funcion Rellena un cadena de texto(elementos de un array) con ceros a la izquierda hasta lalongitud que se envia
+
+	Syntax:
+	completarBinarios(binarios(Array),longitud maxima(Integer))
+	*/
+
+	function completarBinarios(binarios,longitud){
+		for (var binario in binarios){
+			if (binarios[binario].length < longitud) {
+				while(binarios[binario].length < longitud){
+					binarios[binario] = "0" + binarios[binario]
+				}
+			}
+			binarios[binario] = binarios[binario].split("")
+		}
+	}
+
+/*
+Description:
+Esta funcion Rellena un cadena de texto(elementos de un array) con ceros a la izquierda hasta lalongitud que se envia
+
+Syntax:
+completarBinarios(binarios(Array),longitud maxima(Integer))
+*/
+function SeparaCerosDeValoresUtiles(conjuntos){
 	var conjuntoSolucion = []
 
 	for (var i = 0; i < conjuntos.length; i++) {
@@ -43,46 +100,39 @@ function borrarCerros(conjuntos){
 				conjunto.push(conjuntos[i][j])
 			}
 		}
-		/*
-		if(conjunto.toString() == ""){
-			conjunto = simboloConjuntoVacio
-		}*/
+		console.log('_________________');
+		console.log('_________________');
+		console.log(conjunto);
+		if (conjunto.length == 0) {
+			conjunto.push(simboloConjuntoVacio)
+		}
+		console.log('_________________');
+		console.log('_________________');
 		conjuntoSolucion.push(conjunto.join(""))
 	}
 
 	return conjuntoSolucion
 
 }
+/*
+Description:
+Esta funcion ordena alfabeticamente los elementos de un array(String)
 
+Syntax:
+ordenarAlfabeticamente(array a ordenar alfabeticamente(Array))
+*/
 function ordenarAlfabeticamente(array){
 	var arrayOrdenado = []
 	arrayOrdenado = array.sort()
-	console.log(arrayOrdenado);
 	return arrayOrdenado
 }
 
 /*
-//backup fuction
-function borrarCerros(conjuntos){
+Description:
+Esta funcion recibe un objeto y con sus valores añade un mensaje en el DOM(en el section con id ="seccionPrincipal") y posteriormente lo borra.
 
-	for (var i = 0; i < conjuntos.length; i++) {
-		console.log(conjuntos[i])
-
-		var longitud = conjuntos[i].length
-
-		for (var j = 0; j < longitud; j++) {
-			console.log('-------------');
-			if (conjuntos[i][j] == "0") {
-				console.log('hay un cero');
-			};
-			console.log('-------------');
-		};
-
-	}
-
-	console.log('--------');
-	console.log(conjuntos);
-}
+Syntax:
+crearYMostrarMensaje(Objeto)
 */
 function crearYMostrarMensaje(estado){
 	var contenedor = document.createElement("section")
@@ -105,20 +155,24 @@ function crearYMostrarMensaje(estado){
 	contenedorMSG.appendChild(icono)
 	contenedorMSG.appendChild(msg)
 	contenedor.appendChild(contenedorMSG)
-	contenedorPrincipal.insertBefore(contenedor, contenedorPrincipal.firstChild)
+	contenedorPrincipal.appendChild(contenedor)
 
 	setTimeout(function(){
-		//contenedorPrincipal.removeChild(contenedorMSG)
+		contenedorPrincipal.removeChild(contenedorPrincipal.lastChild)
 	}, 2000)
 }
 
 
 
-
-//recibe el value de un input e iguala su value a vacio
+/*
+Description:
+Esta funcion recibe un elemnto HTML(input) y evalua si este es vacio (es decir, igual a "")
+Syntax:
+vaciarCampo(elemnto HTML(input))
+*/
 function vaciarCampo(campo) {
 	if (campo.value.trim() != 0) {
-		console.log('bien');
+
 	}else{
 		campo.value = ""
 
@@ -126,25 +180,21 @@ function vaciarCampo(campo) {
 }
 
 
-//tiene un problema esta funcion
+/*
+Description:
+Esta funcion recibe un elemnto HTML(input) y lo habilita o desabilita dependiendo de su estado actual
+Syntax:
+Habilitar_InhabilitarInputSubmit(elemnto HTML(input))
+*/
 function Habilitar_InhabilitarInputSubmit(input) {
-	console.log(input);
-	//var atributo = "disabled"
-	console.log(input.hasAttributes("disabled"));
 	if(input.hasAttributes("disabled")){
 		input.setAttribute("disabled","disabled")
-		console.log('añadir');
 	}else{
-		console.log('remover');
 		input.removeAttribute("disabled")
 	}
 }
 
 
-
-var estado = {
-
-}
 
 //en proceso
 var crearElemento = {
@@ -178,6 +228,3 @@ var crearElemento = {
 	}
 
 }
-
-
-

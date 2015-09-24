@@ -1,3 +1,4 @@
+@import "general.styl"
 @import "fonts.styl"
 @import "normalize.styl"
 @import url(https://fonts.googleapis.com/css?family=Lato)
@@ -35,10 +36,10 @@ youtubeColor = rgb(236,49,43)
 githubColor = rgb(51,51,51)
 
 colorMenuFooter = rgba(0, 0, 0, .7)
-
+/*
 html,body,.contenedorDeAncho
 	height 100%
-
+*/
 input, textarea, select, button
 	outline none
 input:disabled
@@ -87,8 +88,7 @@ figure
 		border-top none
 		border-top-left-radius 0
 		border-top-right-radius 0
-	.ocultar
-		display none
+
 
 /*
 +-----------------------+
@@ -149,6 +149,8 @@ figure
 	margin-bottom 20px
 .textoEspecial
 	font-size 2em
+.ocultar
+	display none
 
 //las tres siguientes clases son para colorear de rojo o verde dependiendo de si algo esta bien o mal
 .estadoDeRespuesta
@@ -313,12 +315,18 @@ nav
 +-----------------------+
 */
 svg
-	width 95%
+	//width 95%
+	width 100%
 	display block
 	margin 0 auto
 	height 500px
 	border-top 5px solid gray
 	border-bottom 5px solid gray
+	circle
+		fill #AB2121
+	line
+		stroke #FF9A9A
+		stroke-width 10px
 
 /*
 +-----------------------+
@@ -409,6 +417,8 @@ table
 	display inline-block
 	margin 10px
 	tr
+		&:hover
+			background-color rgba(0,0,0,.1)
 		th
 			padding 10px
 			border 2px solid black
@@ -463,6 +473,8 @@ table
 
 //-----------------------
 .respuesta
+	letter-spacing 5px
+	font-size 1.5em
 	width 50%
 	margin 30px auto
 	display block
@@ -483,3 +495,45 @@ table
 
 .valorErroneo
 	animation 2s parpadeoError linear infinite
+/*
++-----------------------------------+
+|	Estilo de teclas o shotcuts		|
++-----------------------------------+
+*/
+.contenedorTeclas
+	p
+		display inline-block
+	.tecla
+		color white
+		border-radius 5px
+		padding 0 10px
+		background-color rgba(0,0,0,.8)
+
+/*
++-----------------------------------+
+|				Audio				|
++-----------------------------------+
+*/
+
+.reproductorMusica
+	appearance none
+	background-color white
+	border none
+	color gray
+	span:hover
+		color black
+	.ajustes
+		color black
+		background-color white
+		padding 3px
+		&:hover
+			background-color rgba(0,0,0,.1)
+	.listadoAjustesAudio
+		li
+			width auto
+			padding 5px 0
+		border 1px solid gray
+		font-size .7em
+		input[type="number"]
+			width 30px
+

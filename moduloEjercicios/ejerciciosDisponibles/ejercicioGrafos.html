@@ -10,6 +10,13 @@
 	<svg id="lienzoGrafo_js">
 
 	</svg>
+
+	<section class="EjercicioPropuesto">
+		<label for="estadoEjercicio">Modo Dibujo Libre</label><input name="estadoEjercicio" type="checkbox" class="checkboxPersonalizadosTipoDeslizable" id="modoDeDibujo_js">
+	</section>
+
+	<button class="btn btnEnviar" id="btnLimpiarLienzo_js">Limpiar Lienzo</button>
+	<span class="textoDescripcion">o <strong>Shift</strong> + <strong>B</strong></span>
 	<section id="contenedorPrincipal_js">
 		<section class="seccionAyuda positionRelative">
 			<button id="btnAyuda_js" class=" btn btnAyuda btnAyuda">Ayuda</button>
@@ -26,6 +33,23 @@
 		<h1 class="textoCentrado">Lorem</h1>
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nam quibusdam sapiente, ullam neque, aliquid debitis repellendus placeat. Minus quod similique mollitia, a et magni quis neque! Aut, tempora. Incidunt.</p>
 	</section>
+
+	<button class="reproductorMusica" id="reproductorMusica_js">
+		<span class="icon-musica "> </span><span id="estadoActualAudio_js" class=" textoDescripcion">Escuchar</span>
+		<span class="icon-ajustes ajustes " id="btnAjustesAudio_js"></span>
+		<div class="ocultar listadoAjustesAudio" id="listadoAjustesAudio_js">
+			<ul>
+				<li>
+					<label for="silenciar">Silenciar</label>
+					<input type="checkbox" name="silenciar">
+				</li>
+				<li>
+					<label for="volumen">Volumen</label>
+					<input type="number" name="volumen">
+				</li>
+			</ul>
+		</div>
+	</button>
 
 	<script src="../../js/principal.js"></script>
 	<script src="../../js/variablesGenerales.js"></script>
