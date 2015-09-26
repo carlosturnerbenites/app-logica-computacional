@@ -22,7 +22,6 @@ function validarConjunto(elementosCojuntos){
 			}
 		}
 		if (campoValido){
-			//console.log('bien bein vien');
 			//refactor luego
 			var estadoActual = {
 				campoValido: true,
@@ -59,6 +58,8 @@ function capturarConjunto(evento) {
 
 
 	evento.preventDefault()
+	formConjuntos.removeEventListener("submit", capturarConjunto)
+	habilitarInhabilitarFormulario(this)
 
 	var valorNombreConjunto = nombreConjunto.value
 
@@ -114,7 +115,6 @@ function capturarConjunto(evento) {
 
 			seccionRespuesta.addEventListener("submit",validarRespuesta)
 
-			Habilitar_InhabilitarInputSubmit(document.getElementById("guardarConjunto_js"))
 		}else{
 			vaciarCampo(nombreConjunto)
 		}
@@ -136,7 +136,6 @@ function crearRespuesta(elementosCojuntos,binary){
 		conjuntoSolucionBinary.push(binary[i])
 	}
 	var conjuntoSolucion = SeparaCerosDeValoresUtiles(conjuntoSolucionBinary)
-
 	var conjuntoSolucion = ordenarAlfabeticamente(conjuntoSolucion)
 
 	return conjuntoSolucion
@@ -144,6 +143,7 @@ function crearRespuesta(elementosCojuntos,binary){
 }
 
 function validarRespuesta(evento) {
+
 
 	evento.preventDefault()
 
@@ -168,14 +168,10 @@ function validarRespuesta(evento) {
 		};
 	}
 	completarBinarios(binary,elementosCojuntos.length)
-	//console.log(binary);
 
 	var conjuntoSolucion = crearRespuesta(elementosCojuntos,binary)
-	console.log(elementosRespuestaEnviada)
 	var elementosRespuestaEnviadaOrdenada = ordenarAlfabeticamente(elementosRespuestaEnviada)
 
-	console.log(conjuntoSolucion)
-	console.log(elementosRespuestaEnviadaOrdenada)
 
 	if (String(ordenarAlfabeticamente(conjuntoSolucion)) == String(ordenarAlfabeticamente(elementosRespuestaEnviadaOrdenada))) {
 		var estadoActual = {
@@ -184,7 +180,8 @@ function validarRespuesta(evento) {
 			clases : ["MSG" ,"MSGBien"],
 			icono : "icon-correcto"
 		}
-
+		formConjuntos.addEventListener("submit", capturarConjunto)
+		habilitarInhabilitarFormulario(formConjuntos)
 	}else{
 		var estadoActual = {
 			campoValido: false,

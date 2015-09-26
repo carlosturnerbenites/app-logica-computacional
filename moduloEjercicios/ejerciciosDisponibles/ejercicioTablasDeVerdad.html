@@ -3,15 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Tablas de Verdad</title>
+	<title>Ejercicios | Tablas de Verdad</title>
 	<link rel="stylesheet" href="../../css/logicacomputacional.css">
 </head>
 <body>
+
 	<section class="contenedorDeAncho" id="contenedorPrincipal_js">
-		<section class="seccionAyuda positionRelative">
+
+		<section class="seccionAyuda seccionDesplegable">
 			<button id="btnAyuda_js" class=" btn btnAyuda btnAyuda">Ayuda</button>
 			<article id="seccionExplicacion_js" class="seccionExplicacion ocultar ">
-
 				<p>Hola, para realizar el ejercicio sigue los paso que damos a continuacion.</p>
 				<ol>
 					<li>Dale un nombre al conjunto</li>
@@ -23,6 +24,7 @@
 				</ol>
 			</article>
 		</section>
+
 		<h1 class="textoCentrado">Ejercicio sobre Tablas de Verdad</h1>
 		<p class="explicacion">
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias nulla, quia quidem natus quam adipisci doloribus ex, odit amet ipsam perspiciatis deleniti iste eos voluptatibus dolor, fuga sint itaque assumenda.
@@ -30,12 +32,12 @@
 
 		<section>
 			<form action="#" id="ejercicioTablaVerdad">
-				<fieldset>
+				<section class="fieldset">
 
 					<label class="textoNegrilla" for="numeroProposiciones">Cantidad de proposiciones: </label>
 					<input class=" inputBorderBottomFocus textoCentrado" value="2" type="number" id="numeroProposiciones" min="0" max="5" autocomplete="off" required>
-				</fieldset>
-				<fieldset>
+				</section >
+				<section class="fieldset">
 
 					<label class="textoNegrilla" for="tipoOperacion">Operado: </label>
 					<select class="borderNone" name="" id="tipoOperacion" required>
@@ -44,22 +46,20 @@
 						<option value="condicional">Condicional</option>
 						<option value="bicondicional">Bicondicional</option>
 					</select>
-				</fieldset>
-				<fieldset>
-
+				</section >
+				<section class="fieldset">
 					<input type="submit" value="Hacer Ejercicio" class="btn btnEnviar" autocomplete="off">
-				</fieldset>
+				</section >
 			</form>
 		</section>
+
 		<form action="#" id="fromValidarRespuesta">
-
 			<section class="displayFlexCenterTotal" id="sectionTablasVerdad_js"></section>
-
 		</form>
-		<!--<button id="agregarFila_js" class="icon-mas agregarFila"></button>-->
-	</section>
-	<script src="../../js/principal.js"></script>
 
+	</section>
+
+	<script src="../../js/principal.js"></script>
 	<script src="../../js/variablesGenerales.js"></script>
 	<script src="../../js/funcionesAxuliares.js"></script>
 	<script src="../../js/ejercicioTablaVerdad.js" ></script>

@@ -100,14 +100,9 @@ function SeparaCerosDeValoresUtiles(conjuntos){
 				conjunto.push(conjuntos[i][j])
 			}
 		}
-		console.log('_________________');
-		console.log('_________________');
-		console.log(conjunto);
 		if (conjunto.length == 0) {
 			conjunto.push(simboloConjuntoVacio)
 		}
-		console.log('_________________');
-		console.log('_________________');
 		conjuntoSolucion.push(conjunto.join(""))
 	}
 
@@ -122,9 +117,13 @@ Syntax:
 ordenarAlfabeticamente(array a ordenar alfabeticamente(Array))
 */
 function ordenarAlfabeticamente(array){
-	var arrayOrdenado = []
-	arrayOrdenado = array.sort()
-	return arrayOrdenado
+
+	for (var i = 0; i < array.length; i++) {
+		array[i] = array[i].split("").sort().join("")
+	};
+	array.sort()
+
+	return array
 }
 
 /*
@@ -186,12 +185,26 @@ Esta funcion recibe un elemnto HTML(input) y lo habilita o desabilita dependiend
 Syntax:
 Habilitar_InhabilitarInputSubmit(elemnto HTML(input))
 */
-function Habilitar_InhabilitarInputSubmit(input) {
-	if(input.hasAttributes("disabled")){
-		input.setAttribute("disabled","disabled")
-	}else{
-		input.removeAttribute("disabled")
-	}
+function habilitarInhabilitarFormulario(elemento) {
+
+	var propiedad = "disabled"
+
+	console.log(elemento)
+
+	var elementosForm = convertirHTMLCollectionEnArray(elemento.elements)
+
+	elementosForm.forEach(function(input,index){
+
+		if(input.hasAttributes(propiedad)){
+			console.log(input);
+			console.log('no lo tiene');
+			input.setAttribute(propiedad,propiedad)
+		}else{
+			console.log(input);
+			console.log('lo tiene');
+			input.removeAttribute(propiedad)
+		}
+	});
 }
 
 

@@ -479,9 +479,13 @@ button {
 input:disabled {
   cursor: not-allowed;
   background-color: #a8a8a8;
+}
+input[type="submit"]:disabled {
+  cursor: not-allowed;
+  background-color: #a8a8a8;
   border-color: #7f7f7f;
 }
-input:disabled:hover {
+input[type="submit"]:disabled:hover {
   -o-transition: background-color 2s;
   -ms-transition: background-color 2s;
   -webkit-transition: background-color 2s;
@@ -508,9 +512,21 @@ ul {
   padding: 0;
   list-style: none;
 }
-fieldset {
+.fieldset {
+  padding: 10px 0;
   border: none;
-  text-align: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -o-box-pack: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
 }
 figure {
   margin: 0;
@@ -542,6 +558,9 @@ figure {
 */
 .positionRelative {
   position: relative;
+}
+.cancelarMargin {
+  margin: 0 !important;
 }
 .positionFija {
   position: fixed;
@@ -1018,6 +1037,10 @@ table tr .respuestaEjercicio {
   font-weight: bold;
   height: 100%;
 }
+table input {
+  background-color: inherit;
+  padding: 0;
+}
 /*
 +-----------------------------------+
 |			Animaciones				|
@@ -1093,7 +1116,7 @@ table tr .respuestaEjercicio {
 |				Audio				|
 +-----------------------------------+
 */
-.reproductorMusica {
+.reproductorMusica button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -1101,8 +1124,8 @@ table tr .respuestaEjercicio {
   border: none;
   color: #808080;
 }
-.reproductorMusica span:hover {
-  color: #000;
+.reproductorMusica button:hover {
+  color: #000 !important;
 }
 .reproductorMusica .ajustes {
   color: #000;

@@ -1,26 +1,22 @@
-
 var contenedorPrincipal = document.getElementById("contenedorPrincipal_js")
 var btnAyuda = document.getElementById("btnAyuda_js")
+//solo puede haer una seccion de explicacion pro pagina
 var seccionExplicacion = document.getElementById("seccionExplicacion_js")
 
+function mostrarOcultarSeccion() {
 
-function mostrarOcultarAyuda() {
+	var seccionAMostrar = this.nextElementSibling
 
-	if (seccionExplicacion.classList.contains("ocultar")) {
-		seccionExplicacion.classList.remove("ocultar")
-
+	if (seccionAMostrar.classList.contains("ocultar")) {
+		seccionAMostrar.classList.remove("ocultar")
 	}else{
-
-		seccionExplicacion.classList.add("ocultar")
-
+		seccionAMostrar.classList.add("ocultar")
 	}
 }
 
 function limpiarLienzo() {
-
 	while (lienzoGrafo.firstChild) {
 		lienzoGrafo.removeChild(lienzoGrafo.firstChild);
-
 	}
 }
 
@@ -30,37 +26,37 @@ function teclapresionada(evento){
 	var codigoTeclaPresionado = evento.keyCode
 
 	if(evento.shiftKey && nombreTeclaPresionado.toLowerCase() == "a"){
-		mostrarOcultarAyuda()
+		btnAyuda.click()
 	}
 
 	if(evento.shiftKey && nombreTeclaPresionado.toLowerCase() == "b"){
 		limpiarLienzo()
 
 	}
-	console.log(evento.keyCode);
 }
 
-
-var musica = new Audio("../../media/audio/tlos.mp3")
-var estadoActualAudio = document.getElementById("estadoActualAudio_js")
-var btnAudio = document.getElementById("reproductorMusica_js")
-
 function reproducirparaAudio(evento) {
+	var barraDePorgresoAudio = document.getElementById("barraDePorgresoAudio_js")
+
+	var duracionAudio = musica.duration
+	var tiempoActual = 0
 
 	if (musica.paused){
 		musica.play()
 		estadoActualAudio.innerHTML = "Pausar"
+
+		tiempoActual = musica.currentTime
+
+		barraDePorgresoAudio.setAttribute("max", duracionAudio)
+		barraDePorgresoAudio.setAttribute("value", tiempoActual)
+
 	}else{
 		musica.pause()
 		estadoActualAudio.innerHTML = "Escuchar"
-
 	}
-
-	console.log(musica.paused);
 }
 
-btnAudio.addEventListener("click", reproducirparaAudio)
-btnAyuda.addEventListener("click", mostrarOcultarAyuda)
+btnAyuda.addEventListener("click", mostrarOcultarSeccion)
 document.body.addEventListener("keypress", teclapresionada)
 
 

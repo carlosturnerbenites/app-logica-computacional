@@ -45,6 +45,9 @@ input, textarea, select, button
 input:disabled
 	cursor not-allowed
 	background-color colorBtnDiabledBackground
+input[type="submit"]:disabled
+	cursor not-allowed
+	background-color colorBtnDiabledBackground
 	border-color colorBtnDiabledBorder
 	&:hover
 		transition background-color 2s
@@ -64,9 +67,11 @@ ul
 	margin 0
 	padding 0
 	list-style none
-fieldset
+.fieldset
+	padding 10px 0
 	border none
-	text-align center
+	display flex
+	justify-content center
 figure
 	margin 0
 	padding 0
@@ -97,6 +102,8 @@ figure
 */
 .positionRelative
 	position relative
+.cancelarMargin
+	margin 0 !important
 .positionFija
 	position fixed
 .contenedorDeAncho
@@ -419,6 +426,7 @@ table
 	tr
 		&:hover
 			background-color rgba(0,0,0,.1)
+
 		th
 			padding 10px
 			border 2px solid black
@@ -432,6 +440,9 @@ table
 			text-transform uppercase
 			font-weight bold
 			height 100%
+	input
+		background-color inherit
+		padding 0
 
 /*
 +-----------------------------------+
@@ -516,12 +527,13 @@ table
 */
 
 .reproductorMusica
-	appearance none
-	background-color white
-	border none
-	color gray
-	span:hover
-		color black
+	button
+		appearance none
+		background-color white
+		border none
+		color gray
+	button:hover
+		color black !important
 	.ajustes
 		color black
 		background-color white

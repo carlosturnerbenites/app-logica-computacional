@@ -1,27 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Tablas de Verdad</title>
+	<title>Ejercicios | Grafos</title>
 	<link rel="stylesheet" href="../../css/logicacomputacional.css">
 </head>
-<body>
-	<svg id="lienzoGrafo_js">
 
-	</svg>
+<body>
+	<svg id="lienzoGrafo_js"></svg>
 
 	<section class="EjercicioPropuesto">
 		<label for="estadoEjercicio">Modo Dibujo Libre</label><input name="estadoEjercicio" type="checkbox" class="checkboxPersonalizadosTipoDeslizable" id="modoDeDibujo_js">
 	</section>
 
 	<button class="btn btnEnviar" id="btnLimpiarLienzo_js">Limpiar Lienzo</button>
-	<span class="textoDescripcion">o <strong>Shift</strong> + <strong>B</strong></span>
-	<section id="contenedorPrincipal_js">
-		<section class="seccionAyuda positionRelative">
-			<button id="btnAyuda_js" class=" btn btnAyuda btnAyuda">Ayuda</button>
-			<article id="seccionExplicacion_js" class="seccionExplicacion ocultar ">
 
+	<span class="textoDescripcion">o <strong>Shift</strong> + <strong>B</strong></span>
+
+	<section id="contenedorPrincipal_js">
+
+		<section class="seccionAyuda seccionDesplegable">
+
+			<button id="btnAyuda_js" class=" btn btnAyuda">Ayuda</button>
+
+			<article id="seccionExplicacion_js" class="seccionExplicacion ocultar ">
 				<p>Hola, para realizar el ejercicio sigue los siguientes pasos</p>
 				<ol>
 					<li>Crea el grafo que se te pide, hazlo dando click en la seccion marcada por la barras grises</li>
@@ -29,15 +33,28 @@
 					<li>Presiona <b>Validar</b></li>
 				</ol>
 			</article>
+
 		</section>
+
 		<h1 class="textoCentrado">Lorem</h1>
+
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nam quibusdam sapiente, ullam neque, aliquid debitis repellendus placeat. Minus quod similique mollitia, a et magni quis neque! Aut, tempora. Incidunt.</p>
+
 	</section>
 
-	<button class="reproductorMusica" id="reproductorMusica_js">
-		<span class="icon-musica "> </span><span id="estadoActualAudio_js" class=" textoDescripcion">Escuchar</span>
-		<span class="icon-ajustes ajustes " id="btnAjustesAudio_js"></span>
-		<div class="ocultar listadoAjustesAudio" id="listadoAjustesAudio_js">
+	<section class="seccionDesplegable reproductorMusica">
+
+		<button id="reproductorMusica_js">
+			<span class="icon-musica"></span>
+			<span id="estadoActualAudio_js" class="cancelarMargin">Escuchar</span>
+		</button>
+
+		<progress id="barraDePorgresoAudio_js" min="0" value="" max=""></progress>
+
+		<button id="btnAjustesAudio_js">
+			<span class="icon-ajustes ajustes " ></span>
+		</button>
+		<article class="ocultar listadoAjustesAudio" id="listadoAjustesAudio_js">
 			<ul>
 				<li>
 					<label for="silenciar">Silenciar</label>
@@ -48,14 +65,14 @@
 					<input type="number" name="volumen">
 				</li>
 			</ul>
-		</div>
-	</button>
+		</article>
+	</section>
 
 	<script src="../../js/principal.js"></script>
 	<script src="../../js/variablesGenerales.js"></script>
 	<script src="../../js/funcionesAxuliares.js"></script>
 	<script src="../../js/ejerciciosGrafos.js"></script>
-
+	<script src="../../js/audio.js"></script>
 
 </body>
 </html>
