@@ -1,7 +1,17 @@
 var contenedorPrincipal = document.getElementById("contenedorPrincipal_js")
+
 var btnAyuda = document.getElementById("btnAyuda_js")
+
 //solo puede haer una seccion de explicacion pro pagina
 var seccionExplicacion = document.getElementById("seccionExplicacion_js")
+
+var htmlInputSubmitBtnrealizarEjercicio = document.getElementById("htmlInputSubmitBtnrealizarEjercicio_js")
+
+htmlInputSubmitBtnrealizarEjercicio.innerHTML = innerHTMLBtnRealizarEjercicio
+
+var HTMLSpanIconoBtn = document.createElement("span")
+HTMLSpanIconoBtn.classList.add(iconoBtnRealizarEjercicio,"marginIconos")
+htmlInputSubmitBtnrealizarEjercicio.insertBefore(HTMLSpanIconoBtn, htmlInputSubmitBtnrealizarEjercicio.firstChild)
 
 function mostrarOcultarSeccion() {
 
@@ -36,26 +46,7 @@ function teclapresionada(evento){
 	}
 }
 
-function reproducirparaAudio(evento) {
-	var barraDePorgresoAudio = document.getElementById("barraDePorgresoAudio_js")
 
-	var duracionAudio = musica.duration
-	var tiempoActual = 0
-
-	if (musica.paused){
-		musica.play()
-		estadoActualAudio.innerHTML = "Pausar"
-
-		tiempoActual = musica.currentTime
-
-		barraDePorgresoAudio.setAttribute("max", duracionAudio)
-		barraDePorgresoAudio.setAttribute("value", tiempoActual)
-
-	}else{
-		musica.pause()
-		estadoActualAudio.innerHTML = "Escuchar"
-	}
-}
 
 btnAyuda.addEventListener("click", mostrarOcultarSeccion)
 document.body.addEventListener("keypress", teclapresionada)

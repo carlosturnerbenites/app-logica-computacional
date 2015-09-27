@@ -11,7 +11,7 @@
 	<section class="contenedorDeAncho" id="contenedorPrincipal_js">
 
 		<section class="seccionAyuda seccionDesplegable">
-			<button id="btnAyuda_js" class=" btn btnAyuda btnAyuda">Ayuda</button>
+			<button id="btnAyuda_js" class=" btn btnAyuda"><span class="icon-ayuda marginIcon"></span>Ayuda</button>
 			<article id="seccionExplicacion_js" class="seccionExplicacion ocultar ">
 				<p>Hola, para realizar el ejercicio sigue los paso que damos a continuacion.</p>
 				<ol>
@@ -48,19 +48,21 @@
 					</select>
 				</section >
 				<section class="fieldset">
-					<input type="submit" value="Hacer Ejercicio" class="btn btnEnviar" autocomplete="off">
+					<button type="submit" value="" class="btn btnEnviar" autocomplete="off" id="htmlInputSubmitBtnrealizarEjercicio_js"></button>
 				</section >
 			</form>
 		</section>
 
 		<form id="htmlFormRespuestaUsuario_js">
-			<section class="displayFlexCenterTotal" id="sectionTablasVerdad_js"></section>
+			<section id="sectionTablasVerdad_js">
+
+			</section>
 		</form>
 
 	</section>
 
-	<script src="../../js/principal.js"></script>
 	<script src="../../js/variablesGenerales.js"></script>
+	<script src="../../js/principal.js"></script>
 	<script src="../../js/funcionesAxuliares.js"></script>
 	<script src="../../js/ejercicioTablaVerdad.js" ></script>
 

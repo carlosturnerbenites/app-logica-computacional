@@ -1,20 +1,75 @@
+//inicializacion de variables
+var valoresCampo = []
+var valoresCampos = []
+
+//Filas de la tabla de verdad
+var respuestas = []
+
+//Simbolo de las operaciones de los conjuntos
+var simbolosOperacion =  ["Λ","v","→","⇔"]
+
+//valores posibles de una Tablas de Verdad
+var posiblesValores = ["V", "F"]
+
+//posibles nombre de las proposiciones
+var proposiciones = ["p","q","r","s","t","u","v","w","x","y"]
+
+//solucion a las cinco operaciones basicas de las tablas de verdad
+var conjuncion =[["p","q","p Λ q"],
+["V","V","V"],
+["V","F","F"],
+["F","V","F"],
+["F","F","F"]]
+var disjuncion = [["p","q","p v q"],
+["V","V","F"],
+["V","F","F"],
+["F","V","F"],
+["F","F","V"]]
+var condicional = [["p","q","p → q"],
+["V","V","F"],
+["V","F","V"],
+["F","V","F"],
+["F","F","F"]]
+var bicondicional = [["p","q","p ⇔ q"],
+["V","V","V"],
+["V","F","F"],
+["F","V","F"],
+["F","F","V"]]
+var negacion = [["p","¬p"],
+["V","F"],
+["F","V"]]
+
+var sectionTablasVerdad = document.getElementById("sectionTablasVerdad_js")
 var htmlFormRespuestaUsuario = document.getElementById("htmlFormRespuestaUsuario_js")
 var htmlFormEjercicioPropuestoTablasVerdad = document.getElementById("htmlFormEjercicioPropuestoTablasVerdad_js")
 var htmSectionContenedoraEjercicioPropuestoTablasVerdad = document.getElementById("sectionTablasVerdad_js")
 
+var htmlInputNumeroProposicionesEscogidasPorUsuario = document.getElementById("htmlInputNumeroProposicionesEscogidasPorUsuario_js")
+
+var limite = 0
+
+var maximaCantidadDeProposiciones = 5
+htmlInputNumeroProposicionesEscogidasPorUsuario.setAttribute("max", maximaCantidadDeProposiciones)
+htmlInputNumeroProposicionesEscogidasPorUsuario.setAttribute("min", 0)
+
+
 function crearEjercicio(evento) {
+
+	var numeroProposicionesEscogidasPorusuario = Number(htmlInputNumeroProposicionesEscogidasPorUsuario.value)
+
+	numeroDeSeparacionesConjuntos = Math.round(numeroProposicionesEscogidasPorusuario/2)
+
 
 	evento.preventDefault()
 
 	var ejercicioPropuesto = new Array()
 
-
 	htmlFormEjercicioPropuestoTablasVerdad.removeEventListener("submit", crearEjercicio)
 
-	var htmlInputNumeroProposicionesEscogidasPorUsuario = document.getElementById("htmlInputNumeroProposicionesEscogidasPorUsuario_js")
-	var numeroProposicionesEscogidasPorusuario = Number(htmlInputNumeroProposicionesEscogidasPorUsuario.value)
 
 	numeroCombinacionesPosibles = Math.pow(2,numeroProposicionesEscogidasPorusuario)
+
+	console.log(numeroCombinacionesPosibles);
 
 	var htmlTableEjercicioPropuesto = document.createElement("table")
 	htmlTableEjercicioPropuesto.id = "tablarVerdad_js"
@@ -90,15 +145,22 @@ function crearEjercicio(evento) {
 	btnAgregarColumna.classList.add("icon-mas","agregarFila")
 	btnAgregarColumna.addEventListener("click", crearAgregarFila)
 
-	inputHTML = document.createElement("input")
-	inputHTML.setAttribute("type", "submit")
-	inputHTML.setAttribute("value", "Verificar")
-	inputHTML.classList.add("btn", "btnConfirmar")
-	inputHTML.id = "verificarEjericio"
+	htmlButton = document.createElement("button")
+	htmlButton.setAttribute("type", "submit")
+	htmlButton.innerHTML = innerHTMLBtnVerificar
+	htmlButton.classList.add("btn", "btnConfirmar","centrarConMargin")
+	htmlButton.id = "verificarEjericio"
 
-	sectionTablasVerdad.appendChild(htmlTableEjercicioPropuesto)
-	sectionTablasVerdad.appendChild(inputHTML)
+	var HTMLSpanIconoBtn = document.createElement("span")
+	HTMLSpanIconoBtn.classList.add(iconoBtnVerificar,"marginIconos")
+
+	htmlButton.insertBefore(HTMLSpanIconoBtn, htmlButton.firstChild)
+
+
+	sectionTablasVerdad.appendChild(htmlHrSeparadorContenido)
 	sectionTablasVerdad.appendChild(btnAgregarColumna)
+	sectionTablasVerdad.appendChild(htmlTableEjercicioPropuesto)
+	sectionTablasVerdad.appendChild(htmlButton)
 
 	habilitarInhabilitarFormulario(this)
 
@@ -148,7 +210,8 @@ function capturarRespuesta(evento) {
 		console.log(valoresCampos);
 		//reinicializar variable
 		valoresCampo = []
-	};
+	}
+	console.log(respuestas);
 	validarRespuesta(valoresCampos,valueOperacionEscogida,inputsDeRespuesta)
 }
 
@@ -202,8 +265,12 @@ function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuesta
 		htmlFormRespuestaUsuario.removeEventListener("submit", capturarRespuesta)
 
 		var btnVolver = document.getElementById("verificarEjericio")
-		btnVolver.value = "Volver"
+		btnVolver.innerHTML = innerHTMLBtnVolver
 		btnVolver.addEventListener("click", reiniciarEjercicio)
+
+		var HTMLSpanIconoBtn = document.createElement("span")
+		HTMLSpanIconoBtn.classList.add(iconoBtnVolver,"marginIconos")
+		btnVolver.insertBefore(HTMLSpanIconoBtn, btnVolver.firstChild)
 
 		for (var l = 0; l < inputsDeRespuestaCapturados.length; l++) {
 
@@ -214,7 +281,7 @@ function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuesta
 		var estadoActual = {
 			campoValido: true,
 			msg : "Listo, todo bien",
-			clases : ["MSG" ,"MSGCorrecto"],
+			clases : ["MSG" ,"MSGBien"],
 			icono : "icon-correcto"
 		}
 
@@ -237,13 +304,13 @@ function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuesta
 
 function marcarColumna(){
 
-	var indiceThClickeadoParaMarcar = this.cellIndex
+	var indexColumnaAMarcar = this.cellIndex
 	var trPadreDeThClikeado = this.parentNode
 	var TrsTable = convertirHTMLCollectionEnArray(trPadreDeThClikeado.parentNode.rows)
 
-	for (var i = 0; i < hijosPadreMayor.length; i++) {
+	for (var i = 0; i < TrsTable.length; i++) {
 
-		hijosTr = convertirHTMLCollectionEnArray(hijosPadreMayor[i].childNodes)
+		hijosTr = convertirHTMLCollectionEnArray(TrsTable[i].childNodes)
 
 		for(var j = 0, length2 = hijosTr.length; j < length2; j++){
 

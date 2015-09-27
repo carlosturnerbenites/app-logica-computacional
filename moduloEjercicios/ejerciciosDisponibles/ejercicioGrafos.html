@@ -9,21 +9,11 @@
 </head>
 
 <body>
-	<svg id="lienzoGrafo_js"></svg>
-
-	<section class="EjercicioPropuesto">
-		<label for="estadoEjercicio">Modo Dibujo Libre</label><input name="estadoEjercicio" type="checkbox" class="checkboxPersonalizadosTipoDeslizable" id="modoDeDibujo_js">
-	</section>
-
-	<button class="btn btnEnviar" id="btnLimpiarLienzo_js">Limpiar Lienzo</button>
-
-	<span class="textoDescripcion">o <strong>Shift</strong> + <strong>B</strong></span>
-
 	<section id="contenedorPrincipal_js">
 
 		<section class="seccionAyuda seccionDesplegable">
 
-			<button id="btnAyuda_js" class=" btn btnAyuda">Ayuda</button>
+			<button id="btnAyuda_js" class=" btn btnAyuda"><span class="icon-ayuda marginIcon"></span>Ayuda</button>
 
 			<article id="seccionExplicacion_js" class="seccionExplicacion ocultar ">
 				<p>Hola, para realizar el ejercicio sigue los siguientes pasos</p>
@@ -39,8 +29,25 @@
 		<h1 class="textoCentrado">Lorem</h1>
 
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nam quibusdam sapiente, ullam neque, aliquid debitis repellendus placeat. Minus quod similique mollitia, a et magni quis neque! Aut, tempora. Incidunt.</p>
+		<section class="EjercicioPropuesto">
+			<form  class="formGrafos" id="formGrafos_js">
+				<section class="fieldset">
+					<label for="cantidadVertices_js">Numero de Vertices :</label>
+					<input  id="cantidadVertices_js" class=" inputBorderBottomFocus inputCorto" type="number" max="10" required autofocus autocomplete="off"/>
 
+				</section>
+
+				<section class="fieldset">
+					<button class="btn btnEnviar" id="htmlInputSubmitBtnrealizarEjercicio_js" type="submit" value="" autocomplete="off"></button>
+				</section>
+			</form>
+		</section>
 	</section>
+	<svg id="lienzoGrafo_js"></svg>
+	<button class="btn btnEnviar" id="btnLimpiarLienzo_js"><span class="icon-borrar marginIconos"></span>Limpiar Lienzo</button><span class="textoDescripcion">o <strong>Shift</strong> + <strong>B</strong></span>
+
+
+
 
 	<section class="seccionDesplegable reproductorMusica">
 
@@ -50,6 +57,7 @@
 		</button>
 
 		<progress id="barraDePorgresoAudio_js" min="0" value="" max=""></progress>
+		<span id="htmlSpanIconoVolumenActual_js"></span>
 
 		<button id="btnAjustesAudio_js">
 			<span class="icon-ajustes ajustes " ></span>
@@ -58,21 +66,30 @@
 			<ul>
 				<li>
 					<label for="silenciar">Silenciar</label>
-					<input type="checkbox" name="silenciar">
+					<input type="checkbox" id="silenciarAudio_js" name="silenciar">
 				</li>
 				<li>
 					<label for="volumen">Volumen</label>
-					<input type="number" name="volumen">
+					<input value="1" type="range" max="1" min="0" step="0.1" id="volumenAudio_js" name="volumen">
 				</li>
 			</ul>
 		</article>
 	</section>
 
-	<script src="../../js/principal.js"></script>
 	<script src="../../js/variablesGenerales.js"></script>
+	<script src="../../js/principal.js"></script>
 	<script src="../../js/funcionesAxuliares.js"></script>
 	<script src="../../js/ejerciciosGrafos.js"></script>
 	<script src="../../js/audio.js"></script>
+
+
+
+
+
+
+
+
+	<span id="htmlInputSubmitBtnrealizarEjercicio_js"></span>
 
 </body>
 </html>

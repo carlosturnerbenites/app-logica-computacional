@@ -1,3 +1,5 @@
+//Simbolo que representa al conjunto vacio el los elementos de un conjunto, se utilizapara validar la respuesta a los conjuntos
+var simboloConjuntoVacio = "Ø"
 var formConjuntos = document.getElementById("formConjuntos_js")
 //var contenedorConjuntoEscogido = document.getElementById("contenedorConjuntoEscogido")
 var conjuntoIngresado = document.getElementById("conjuntoIngresado_js")
@@ -8,7 +10,7 @@ var nombreConjunto = document.getElementById("nombreConjunto_js")
 function validarConjunto(elementosCojuntos){
 	var campoValido = true
 
-	var formatoCorrectoDeConjuntos = /^([\w|\d])+([(,)\w|\d(,)])+([\w|\d])$/g
+	var formatoCorrectoDeConjuntos = /(^([\w|\d])\b)+(([(,)+(\w|\d)+(,)])\b)+(([\w|\d])\b)$/g
 
 	if((formatoCorrectoDeConjuntos.test(elementosCojuntos))){
 		elementosCojuntos = elementosCojuntos.split(",")
@@ -90,12 +92,17 @@ function capturarConjunto(evento) {
 
 
 			var respuesta = document.createElement("textarea")
-			var inputSubmitValidar = document.createElement("input")
+			var htmlButtonValidar = document.createElement("button")
 
-			inputSubmitValidar.value = "Validar"
-			inputSubmitValidar.classList.add("btn","btnConfirmar")
-			inputSubmitValidar.id = "btnValidarconjuntos"
-			inputSubmitValidar.setAttribute("type", "submit")
+			htmlButtonValidar.innerHTML = innerHTMLBtnVerificar
+			htmlButtonValidar.classList.add("btn","btnConfirmar","centrarConMargin")
+			htmlButtonValidar.id = "btnValidarconjuntos"
+			htmlButtonValidar.setAttribute("type", "submit")
+
+			var HTMLSpanIconoBtn = document.createElement("span")
+			HTMLSpanIconoBtn.classList.add(iconoBtnVerificar,"marginIconos")
+
+			htmlButtonValidar.insertBefore(HTMLSpanIconoBtn, htmlButtonValidar.firstChild)
 
 			respuesta.id = "respuesta"
 			respuesta.classList.add("respuesta")
@@ -114,9 +121,10 @@ function capturarConjunto(evento) {
 				}
 			})
 
+			seccionRespuesta.appendChild(htmlHrSeparadorContenido)
 			seccionRespuesta.appendChild(contenedorConjuntoActual)
 			seccionRespuesta.appendChild(respuesta)
-			seccionRespuesta.appendChild(inputSubmitValidar)
+			seccionRespuesta.appendChild(htmlButtonValidar)
 
 
 			seccionRespuesta.addEventListener("submit",validarRespuesta)
@@ -155,14 +163,16 @@ function validarRespuesta(evento) {
 
 	evento.preventDefault()
 
+	var respuestaEnviada = document.getElementById("respuesta")
+	var elementosCojuntos = (document.getElementById("elementosCojuntos_js").value).split(",")
 	var binary = []
 
+	habilitarInhabilitarInput(respuestaEnviada)
+
 	//refactorizar luego
-	var elementosCojuntos = (document.getElementById("elementosCojuntos_js").value).split(",")
 
 	numeroCombinaciones = Math.pow(2,elementosCojuntos.length)
 
-	var respuestaEnviada = document.getElementById("respuesta")
 
 	elementosRespuestaEnviada = respuestaEnviada.value.split(",")
 
@@ -190,8 +200,12 @@ function validarRespuesta(evento) {
 		}
 
 		var btnVolver = document.getElementById("btnValidarconjuntos")
-		btnVolver.value = "Volver"
+		btnVolver.innerHTML = innerHTMLBtnVolver
 		btnVolver.addEventListener("click", reiniciarEjercicio)
+
+		var HTMLSpanIconoBtn = document.createElement("span")
+		HTMLSpanIconoBtn.classList.add(iconoBtnVolver,"marginIconos")
+		btnVolver.insertBefore(HTMLSpanIconoBtn, btnVolver.firstChild)
 
 
 	}else{

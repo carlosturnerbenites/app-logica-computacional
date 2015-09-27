@@ -44,15 +44,22 @@ html,body,.contenedorDeAncho
 */
 input, textarea, select, button
 	outline none
-input:disabled
+hr
+	width 90%
+	margin 10px auto
+	color gray
+	box-shadow 0px 4px 16px gray
+	border-radius 50%
+
+input:disabled,select:disabled
 	cursor not-allowed
-	background-color colorBtnDiabledBackground
 	border none
 	border-radius 5px
 
 input[type="submit"]:disabled
 	cursor not-allowed
 	border 2px solid colorBtnDiabledBackground
+	background-color colorBtnDiabledBackground
 	border-color colorBtnDiabledBorder
 	&:hover
 		transition background-color 2s
@@ -114,6 +121,7 @@ figure
 .contenedorDeAncho
 	max-width 90%
 	margin 0 auto
+	position relative
 .borderNone
 	border none
 .textoNegrilla
@@ -129,7 +137,8 @@ figure
 	justify-content center
 	align-items center
 	flex-wrap wrap
-
+.marginIconos
+	margin 0 10px
 .displayFlexCenterSpaceAround
 	display flex
 	justify-content space-around
@@ -163,6 +172,9 @@ figure
 	font-size 2em
 .ocultar
 	display none
+.centrarConMargin
+	margin 0 auto
+	display block
 
 //las tres siguientes clases son para colorear de rojo o verde dependiendo de si algo esta bien o mal
 .estadoDeRespuesta
@@ -177,35 +189,52 @@ figure
 |		MSG 			|
 +-----------------------+
 */
-.MSG
-	color white
-	border 3px solid
-	border-radius 10px
-	display inline-block
-	padding 0 10px
-
-	span,p
+.contenedorMensaje
+	position absolute
+	bottom 0
+	animation 2s ascender 1 linear
+	.MSG
+		color white
+		border 3px solid
+		border-radius 10px
 		display inline-block
-	span
-		margin-right 20px
-		animation 1s aumentaDisminuye infinite linear
+		padding 0 10px
 
-	&Bien
-		background-color colorBtnEnviarBackground
-		border-color colorBtnEnviarBorder
-		&:hover
-			transition background-color 2s
-			background-color colorBtnEnviarBorder
+		span,p
+			display inline-block
+		span
+			margin-right 20px
+			animation 1s aumentaDisminuye infinite linear
 
-	&Error
-		background-color colorBtnCancelarBackground
-		border-color colorBtnCancelarBorder
-		&:hover
-			transition background-color 2s
-			background-color colorBtnCancelarBorder
+		&Bien
+			background-color colorBtnEnviarBackground
+			border-color colorBtnEnviarBorder
+			&:hover
+				transition background-color 2s
+				background-color colorBtnEnviarBorder
+
+		&Error
+			background-color colorBtnCancelarBackground
+			border-color colorBtnCancelarBorder
+			&:hover
+				transition background-color 2s
+				background-color colorBtnCancelarBorder
 
 
 
+/*
++-----------------------+
+|Iconos de Volumen 		|
++-----------------------+
+*/
+.icon-volumenBajo
+	color #D4A16A
+.icon-volumenAlto
+	color #567714
+.icon-volumenMedio
+	color #D4C66A
+.icon-silenciado
+	color #D46A6A
 /*
 +-----------------------+
 |		Menu 			|
@@ -312,10 +341,9 @@ nav
 +-----------------------+
 */
 
-.formConjuntos
-	.nombreConjunto
-		width 20px
-		text-align center
+.inputCorto
+	width 40px
+	text-align center
 .corchetesConjuntos:after
 	content "}"
 .corchetesConjuntos:before
@@ -336,9 +364,13 @@ svg
 	border-bottom 5px solid gray
 	circle
 		fill #AB2121
+		z-index 1
+		position: absolute;
 	line
 		stroke #FF9A9A
 		stroke-width 10px
+		z-index 0
+		position: absolute;
 
 /*
 +-----------------------+
@@ -425,9 +457,10 @@ footer
 */
 
 table
-	border-collapse:collapse;
-	display inline-block
-	margin 10px
+	border-collapse collapse
+	margin 0 auto
+	margin-top 20px
+	margin-bottom 20px
 	tr
 		&:hover
 			background-color colorCoumnaMarcada
@@ -473,6 +506,18 @@ table
 		transform scale(1)
 	100%
 		transform scale(1.1)
+@keyframes ascender
+	0%
+		transform translateY(-10px)
+	25%
+		transform translateY(-30px)
+	50%
+		transform translateY(-40px)
+	75%
+		transform translateY(-50px)
+	100%
+		transform translateY(-60px)
+
 
 /*
 +-----------------------------------+

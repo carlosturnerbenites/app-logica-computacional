@@ -135,6 +135,7 @@ crearYMostrarMensaje(Objeto)
 */
 function crearYMostrarMensaje(estado){
 	var contenedor = document.createElement("section")
+	contenedor.classList.add("contenedorMensaje")
 
 	var contenedorMSG = document.createElement("article")
 
@@ -181,9 +182,9 @@ function vaciarCampo(campo) {
 
 /*
 Description:
-Esta funcion recibe un elemnto HTML(input) y lo habilita o desabilita dependiendo de su estado actual
+Esta funcion recibe un elemento HTML(form) y lo habilita o desabilita dependiendo de su estado actual
 Syntax:
-Habilitar_InhabilitarInputSubmit(elemnto HTML(input))
+habilitarInhabilitarFormulario(elemnto HTML(form))
 */
 function habilitarInhabilitarFormulario(elemento) {
 
@@ -198,12 +199,10 @@ function habilitarInhabilitarFormulario(elemento) {
 
 		if(elementosForm[index].disabled){
 
-			console.log('lo tiene');
 			elementosForm[index].removeAttribute(propiedad)
 
 		}else{
 
-			console.log('no lo tiene');
 			elementosForm[index].setAttribute(propiedad,propiedad)
 
 		}
@@ -211,6 +210,26 @@ function habilitarInhabilitarFormulario(elemento) {
 
 }
 
+/*
+Description:
+Esta funcion recibe un elemento HTML(Input) y lo habilita o desabilita dependiendo de su estado actual
+Syntax:
+habilitarInhabilitarInput(elemnto HTML(Input))
+*/
+function habilitarInhabilitarInput(elemento) {
+	var propiedad = "disabled"
+
+	if(elemento.disabled){
+
+		elemento.removeAttribute(propiedad)
+
+	}else{
+
+		elemento.setAttribute(propiedad,propiedad)
+
+	}
+
+}
 
 
 //en proceso
