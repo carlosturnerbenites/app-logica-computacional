@@ -32,13 +32,13 @@
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nam quibusdam sapiente, ullam neque, aliquid debitis repellendus placeat. Minus quod similique mollitia, a et magni quis neque! Aut, tempora. Incidunt.</p>
 
 		<section>
-			<form  action="#" class="formConjuntos" id="formConjuntos_js">
+			<form  class="formConjuntos" id="formConjuntos_js">
 				<section class="fieldset">
 					<input  id="nombreConjunto_js" class=" nombreConjunto inputCenterUppercase inputBorderBottomFocus" type="text" maxlength="1" required autofocus autocomplete="off"/>
 
 					<span class=" corchetesConjuntos">
-						<input pattern="^([\w|\d])+([(,)\w|\d(,)])+([\w|\d])$" type="text" class="inputCenterUppercase inputBorderBottomFocus" id="elementosCojuntos_js" required autocomplete="off"/>
-						<!--pattern="/(^[a-zA-Z])+(,)/g"-->
+						<input formnovalidate type="text" class="inputCenterUppercase inputBorderBottomFocus" id="elementosCojuntos_js" required autocomplete="off"/>
+						<!-- pattern="^([\w|\d])+([(,)\w|\d(,)])+([\w|\d])$" -->
 					</span>
 				</section>
 
@@ -51,7 +51,7 @@
 		<section id="conjuntoIngresado_js"class="textoCentrado textoEspecial"></section>
 
 		<section>
-			<form action="#" id="seccionRespuesta_js" class="seccionRespuesta"></form>
+			<form id="seccionRespuesta_js" class="seccionRespuesta"></form>
 		</section>
 
 	</section>

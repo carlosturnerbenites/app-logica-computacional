@@ -480,12 +480,12 @@ input:disabled {
   cursor: not-allowed;
   background-color: #a8a8a8;
   border: none;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
 }
 input[type="submit"]:disabled {
   cursor: not-allowed;
-  background-color: #a8a8a8;
+  border: 2px solid #a8a8a8;
   border-color: #7f7f7f;
 }
 input[type="submit"]:disabled:hover {

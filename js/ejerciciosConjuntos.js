@@ -6,10 +6,11 @@ var nombreConjunto = document.getElementById("nombreConjunto_js")
 
 
 function validarConjunto(elementosCojuntos){
-
 	var campoValido = true
 
-	if((elementosCojuntos.indexOf(".") == -1)){
+	var formatoCorrectoDeConjuntos = /^([\w|\d])+([(,)\w|\d(,)])+([\w|\d])$/g
+
+	if((formatoCorrectoDeConjuntos.test(elementosCojuntos))){
 		elementosCojuntos = elementosCojuntos.split(",")
 
 		for (var i = 0; i < elementosCojuntos.length; i++) {
@@ -58,8 +59,8 @@ function capturarConjunto(evento) {
 
 
 	evento.preventDefault()
+
 	formConjuntos.removeEventListener("submit", capturarConjunto)
-	habilitarInhabilitarFormulario(this)
 
 	var valorNombreConjunto = nombreConjunto.value
 
@@ -72,6 +73,7 @@ function capturarConjunto(evento) {
 	var estado = validarConjunto(elementosCojuntos)
 
 	if (estado.campoValido){
+		habilitarInhabilitarFormulario(this)
 
 		if (ValidarCampoVacio(elementosCojuntos) && ValidarCampoVacio(valorNombreConjunto)) {
 			elementosCojuntos = elementosCojuntos.split(",")
@@ -125,6 +127,8 @@ function capturarConjunto(evento) {
 	}else{
 		//esta funcion recibe un objeto cestado y crea un mensaje y lo inserta en el contenedor principal
 		crearYMostrarMensaje(estado)
+		formConjuntos.addEventListener("submit", capturarConjunto)
+
 	}
 }
 
