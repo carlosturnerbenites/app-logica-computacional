@@ -14,9 +14,10 @@ function mostrarOcultarSeccion() {
 	}
 }
 
-function limpiarLienzo() {
-	while (lienzoGrafo.firstChild) {
-		lienzoGrafo.removeChild(lienzoGrafo.firstChild);
+
+function limpiarContenedorHTML(contenedor) {
+	while (contenedor.firstChild) {
+		contenedor.removeChild(contenedor.firstChild);
 	}
 }
 

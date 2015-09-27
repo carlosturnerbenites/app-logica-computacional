@@ -71,3 +71,8 @@ function escogerModoDeDibujo() {
 	}
 	limpiarLienzo()
 }
+function limpiarLienzo() {
+	while (lienzoGrafo.firstChild) {
+		lienzoGrafo.removeChild(lienzoGrafo.firstChild);
+	}
+}

@@ -1,63 +1,87 @@
-var fromValidarRespuesta = document.getElementById("fromValidarRespuesta")
-var ejercicioTablaVerdad = document.getElementById("ejercicioTablaVerdad")
-
+var htmlFormRespuestaUsuario = document.getElementById("htmlFormRespuestaUsuario_js")
+var htmlFormEjercicioPropuestoTablasVerdad = document.getElementById("htmlFormEjercicioPropuestoTablasVerdad_js")
+var htmSectionContenedoraEjercicioPropuestoTablasVerdad = document.getElementById("sectionTablasVerdad_js")
 
 function crearEjercicio(evento) {
+
 	evento.preventDefault()
-	ejercicioTablaVerdad.removeEventListener("submit", crearEjercicio)
+
+	var ejercicioPropuesto = new Array()
 
 
+	htmlFormEjercicioPropuestoTablasVerdad.removeEventListener("submit", crearEjercicio)
 
-	var inputNumeroProposiciones = document.getElementById("numeroProposiciones")
-	var numeroProposiciones = Number(document.getElementById("numeroProposiciones").value)
+	var htmlInputNumeroProposicionesEscogidasPorUsuario = document.getElementById("htmlInputNumeroProposicionesEscogidasPorUsuario_js")
+	var numeroProposicionesEscogidasPorusuario = Number(htmlInputNumeroProposicionesEscogidasPorUsuario.value)
 
-	numeroCombinaciones = Math.pow(2,numeroProposiciones)
+	numeroCombinacionesPosibles = Math.pow(2,numeroProposicionesEscogidasPorusuario)
 
-	var tableHTML = document.createElement("table")
-	tableHTML.id = "tablarVerdad_js"
+	var htmlTableEjercicioPropuesto = document.createElement("table")
+	htmlTableEjercicioPropuesto.id = "tablarVerdad_js"
 
+	var htmlTrTableEjercicioPropuesto = document.createElement("tr")
 
-	var trHTML =document.createElement("tr")
-	for (var filas = 0; filas <= numeroProposiciones; filas++) {
-		var thHTML =document.createElement("th")
-		if(filas != numeroProposiciones){
-			thHTML.innerHTML = proposiciones[filas]
-			solucion += proposiciones[filas]
+	for (var filas = 0; filas <= numeroProposicionesEscogidasPorusuario; filas++) {
+
+		var htmlThColumnasEjercicioPropuesto = document.createElement("th")
+
+		if(filas != numeroProposicionesEscogidasPorusuario){
+
+			htmlThColumnasEjercicioPropuesto.innerHTML = proposiciones[filas]
+			ejercicioPropuesto.push(proposiciones[numeroAleatorio(proposiciones.length,0)])
+
 		}else{
-			thHTML.innerHTML = solucion
+
+			for (var posicion = 0; posicion < ejercicioPropuesto.length-1; posicion++) {
+
+				ejercicioPropuesto[posicion] += simbolosOperacion[numeroAleatorio(simbolosOperacion.length,0)]
+
+			}
+
+			//console.log(ejercicioPropuesto.toString().split(","));
+
+			htmlThColumnasEjercicioPropuesto.innerHTML = ejercicioPropuesto.join("")
+
 		}
-		trHTML.appendChild(thHTML)
+
+		htmlTrTableEjercicioPropuesto.appendChild(htmlThColumnasEjercicioPropuesto)
+
 	}
-	//reinicia el valor del campo de soluciones
-	solucion = ""
-	tableHTML.appendChild(trHTML)
 
-	for (var filas = 0; filas < numeroCombinaciones; filas++) {
+	htmlTableEjercicioPropuesto.appendChild(htmlTrTableEjercicioPropuesto)
 
-		var trHTML =document.createElement("tr")
-		trHTML.id=filas
-		for (var columnas = 0; columnas <= numeroProposiciones; columnas++) {
-			var thHTML =document.createElement("th")
-			if (columnas == numeroProposiciones) {
+	for (var filas = 0; filas < numeroCombinacionesPosibles; filas++) {
+
+		var htmlTrTableEjercicioPropuesto =document.createElement("tr")
+		htmlTrTableEjercicioPropuesto.id=filas
+
+		for (var columnas = 0; columnas <= numeroProposicionesEscogidasPorusuario; columnas++) {
+
+			var htmlThColumnasEjercicioPropuesto =document.createElement("th")
+
+			if (columnas == numeroProposicionesEscogidasPorusuario) {
+
 				var inputHTML = document.createElement("input")
-				//inputHTML.setAttribute("autofocus", "autofocus")
 				inputHTML.classList.add("respuestaEjercicio")
 				inputHTML.setAttribute("required", "required")
 				inputHTML.setAttribute("maxlength", "1")
-
 				inputHTML.addEventListener("change", verificarRespuestaIngresada)
 
-				thHTML.appendChild(inputHTML)
+				htmlThColumnasEjercicioPropuesto.appendChild(inputHTML)
+
 			}else{
-				thHTML.innerHTML = posiblesValores[numeroAleatorio(2,0)]
+
+				htmlThColumnasEjercicioPropuesto.innerHTML = posiblesValores[numeroAleatorio(2,0)]
+
 			}
 
-			trHTML.appendChild(thHTML)
+			htmlTrTableEjercicioPropuesto.appendChild(htmlThColumnasEjercicioPropuesto)
 
 		};
 
-		tableHTML.appendChild(trHTML)
-	};
+		htmlTableEjercicioPropuesto.appendChild(htmlTrTableEjercicioPropuesto)
+
+	}
 
 
 	//agregar columnas
@@ -66,28 +90,33 @@ function crearEjercicio(evento) {
 	btnAgregarColumna.classList.add("icon-mas","agregarFila")
 	btnAgregarColumna.addEventListener("click", crearAgregarFila)
 
-
 	inputHTML = document.createElement("input")
 	inputHTML.setAttribute("type", "submit")
 	inputHTML.setAttribute("value", "Verificar")
 	inputHTML.classList.add("btn", "btnConfirmar")
 	inputHTML.id = "verificarEjericio"
-	sectionTablasVerdad.appendChild(tableHTML)
+
+	sectionTablasVerdad.appendChild(htmlTableEjercicioPropuesto)
 	sectionTablasVerdad.appendChild(inputHTML)
 	sectionTablasVerdad.appendChild(btnAgregarColumna)
+
+	habilitarInhabilitarFormulario(this)
+
 }
 
 function capturarRespuesta(evento) {
+
+	evento.preventDefault()
+
 
 	respuestas = []
 	valoresCampos = []
 	inputsDeRespuesta = []
 
 
-	evento.preventDefault()
 	var valueOperacionEscogida = document.getElementById("tipoOperacion").value
 
-	for (var campos = 0; campos < numeroCombinaciones; campos++) {
+	for (var campos = 0; campos < numeroCombinacionesPosibles; campos++) {
 		var respuesta = document.getElementById(campos)
 		respuestas.push(respuesta)
 
@@ -126,89 +155,136 @@ function capturarRespuesta(evento) {
 function verificarRespuestaIngresada(){
 
 	var valor = this.value
-	console.log(valor)
 
 	if (valor.toUpperCase() == "V" || valor.toUpperCase() == "F") {
+
 		this.classList.remove("valorErroneo")
+
 	}else{
+
 		this.value = ""
 		this.classList.add("valorErroneo")
+
 	}
+
 }
+
 function reiniciarEjercicio() {
-	console.log('Reiniciando');
+	limpiarContenedorHTML(htmSectionContenedoraEjercicioPropuestoTablasVerdad)
+	htmlFormEjercicioPropuestoTablasVerdad.addEventListener("submit", crearEjercicio)
+	htmlFormRespuestaUsuario.addEventListener("submit", capturarRespuesta)
+	habilitarInhabilitarFormulario(htmlFormEjercicioPropuestoTablasVerdad)
+
+
 }
+
 function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuestaCapturados) {
-	respuestasBien = 0
-	respuestasMal = 0
+
+	var respuestasBien = 0
 
 	tablaEscogida = eval(operacionEscogida)
 
 	for (var a = 1; a <= tablaEscogida.length; a++) {
+
 		for (var b = 0; b < respuestaCapturada.length; b++) {
+
 			if( String(tablaEscogida[a]) == String(respuestaCapturada[b])){
+
 				respuestasBien += 1
-			}else{
-				respuestasMal += 1
+
 			}
 
 		}
 	}
+
 	if(respuestasBien == respuestaCapturada.length){
-		fromValidarRespuesta.removeEventListener("submit", capturarRespuesta)
+
+		htmlFormRespuestaUsuario.removeEventListener("submit", capturarRespuesta)
+
 		var btnVolver = document.getElementById("verificarEjericio")
 		btnVolver.value = "Volver"
 		btnVolver.addEventListener("click", reiniciarEjercicio)
+
 		for (var l = 0; l < inputsDeRespuestaCapturados.length; l++) {
+
 			inputsDeRespuestaCapturados[l].setAttribute("disabled", "disabled")
-		};
+
+		}
+
 		var estadoActual = {
 			campoValido: true,
 			msg : "Listo, todo bien",
 			clases : ["MSG" ,"MSGCorrecto"],
 			icono : "icon-correcto"
-
 		}
+
 	}
+
 	else{
+
 		var estadoActual = {
 			campoValido: false,
 			msg : "Huu, algo va mal",
 			clases : ["MSG" ,"MSGError"],
 			icono : "icon-equivocado"
-
 		}
+
 	}
+
 	crearYMostrarMensaje(estadoActual)
 
-};
+}
 
 function marcarColumna(){
-	var nodoPadre = this.parentNode
-	console.log(nodoPadre);
+
+	var indiceThClickeadoParaMarcar = this.cellIndex
+	var trPadreDeThClikeado = this.parentNode
+	var TrsTable = convertirHTMLCollectionEnArray(trPadreDeThClikeado.parentNode.rows)
+
+	for (var i = 0; i < hijosPadreMayor.length; i++) {
+
+		hijosTr = convertirHTMLCollectionEnArray(hijosPadreMayor[i].childNodes)
+
+		for(var j = 0, length2 = hijosTr.length; j < length2; j++){
+
+			if (hijosTr[j].cellIndex == indexColumnaAMarcar) {
+
+				hijosTr[j].classList.toggle("columnaMarcada")
+
+			}
+
+		}
+
+	}
+
 }
 
 function crearAgregarFila(evento){
+
 	evento.preventDefault()
+
 	var tablaVerdad = document.getElementById("tablarVerdad_js")
 	var tablaVerdadHijos = tablaVerdad.childNodes
+
 	for (var i = 0; i < tablaVerdadHijos.length; i++) {
-		console.log(tablaVerdadHijos[i])
-		var thHTML = document.createElement("th")
-		thHTML.id = "ColumnadeApoyo"
+
+		var htmlThColumnasEjercicioPropuesto = document.createElement("th")
+		htmlThColumnasEjercicioPropuesto.id = "ColumnadeApoyo"
+
 		var inputHTML = document.createElement("input")
 		inputHTML.classList.add("respuestaEjercicio")
 		inputHTML.setAttribute("maxlength", "1")
 		inputHTML.addEventListener("change", verificarRespuestaIngresada)
 
-		thHTML.appendChild(inputHTML)
-		tablaVerdadHijos[i].insertBefore(thHTML,tablaVerdadHijos[i].lastChild)
+		htmlThColumnasEjercicioPropuesto.appendChild(inputHTML)
+		tablaVerdadHijos[i].insertBefore(htmlThColumnasEjercicioPropuesto,tablaVerdadHijos[i].lastChild)
 
-		thHTML.addEventListener("dblclick", marcarColumna)
-	};
+		htmlThColumnasEjercicioPropuesto.addEventListener("dblclick", marcarColumna)
+
+	}
+
 }
 
 
-
-ejercicioTablaVerdad.addEventListener("submit", crearEjercicio)
-fromValidarRespuesta.addEventListener("submit", capturarRespuesta)
+htmlFormEjercicioPropuestoTablasVerdad.addEventListener("submit", crearEjercicio)
+htmlFormRespuestaUsuario.addEventListener("submit", capturarRespuesta)

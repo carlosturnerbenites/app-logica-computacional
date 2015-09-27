@@ -81,6 +81,11 @@ function capturarConjunto(evento) {
 			contenedorElementosCojunto.classList.add("corchetesConjuntos")
 			contenedorElementosCojunto.innerHTML = elementosCojuntos
 
+			var contenedorConjuntoActual = document.createElement("section")
+			contenedorConjuntoActual.classList.add("textoCentrado","textoEspecial")
+			contenedorConjuntoActual.appendChild(contenedorNombreCojunto)
+			contenedorConjuntoActual.appendChild(contenedorElementosCojunto)
+
 
 			var respuesta = document.createElement("textarea")
 			var inputSubmitValidar = document.createElement("input")
@@ -107,11 +112,10 @@ function capturarConjunto(evento) {
 				}
 			})
 
+			seccionRespuesta.appendChild(contenedorConjuntoActual)
 			seccionRespuesta.appendChild(respuesta)
 			seccionRespuesta.appendChild(inputSubmitValidar)
 
-			conjuntoIngresado.appendChild(contenedorNombreCojunto)
-			conjuntoIngresado.appendChild(contenedorElementosCojunto)
 
 			seccionRespuesta.addEventListener("submit",validarRespuesta)
 
@@ -180,8 +184,12 @@ function validarRespuesta(evento) {
 			clases : ["MSG" ,"MSGBien"],
 			icono : "icon-correcto"
 		}
-		formConjuntos.addEventListener("submit", capturarConjunto)
-		habilitarInhabilitarFormulario(formConjuntos)
+
+		var btnVolver = document.getElementById("btnValidarconjuntos")
+		btnVolver.value = "Volver"
+		btnVolver.addEventListener("click", reiniciarEjercicio)
+
+
 	}else{
 		var estadoActual = {
 			campoValido: false,
@@ -198,6 +206,13 @@ function validarRespuesta(evento) {
 nombreConjunto.addEventListener("change", limpiarCampo)
 function limpiarCampo(){
 	vaciarCampo(this)
+}
+
+function reiniciarEjercicio () {
+	formConjuntos.addEventListener("submit", capturarConjunto)
+	habilitarInhabilitarFormulario(formConjuntos)
+	limpiarContenedorHTML(seccionRespuesta)
+	formConjuntos.reset()
 }
 
 formConjuntos.addEventListener("submit", capturarConjunto)

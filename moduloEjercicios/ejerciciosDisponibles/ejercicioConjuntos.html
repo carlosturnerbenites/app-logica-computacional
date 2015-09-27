@@ -37,8 +37,8 @@
 					<input  id="nombreConjunto_js" class=" nombreConjunto inputCenterUppercase inputBorderBottomFocus" type="text" maxlength="1" required autofocus autocomplete="off"/>
 
 					<span class=" corchetesConjuntos">
-						<input  type="text" class="inputCenterUppercase inputBorderBottomFocus" id="elementosCojuntos_js" required autocomplete="off"/>
-						<!--pattern=""-->
+						<input pattern="^([\w|\d])+([(,)\w|\d(,)])+([\w|\d])$" type="text" class="inputCenterUppercase inputBorderBottomFocus" id="elementosCojuntos_js" required autocomplete="off"/>
+						<!--pattern="/(^[a-zA-Z])+(,)/g"-->
 					</span>
 				</section>
 
@@ -51,7 +51,7 @@
 		<section id="conjuntoIngresado_js"class="textoCentrado textoEspecial"></section>
 
 		<section>
-			<form action="#" id="seccionRespuesta_js"></form>
+			<form action="#" id="seccionRespuesta_js" class="seccionRespuesta"></form>
 		</section>
 
 	</section>

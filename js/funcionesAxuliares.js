@@ -189,22 +189,26 @@ function habilitarInhabilitarFormulario(elemento) {
 
 	var propiedad = "disabled"
 
-	console.log(elemento)
 
 	var elementosForm = convertirHTMLCollectionEnArray(elemento.elements)
 
-	elementosForm.forEach(function(input,index){
+	console.log(elementosForm);
 
-		if(input.hasAttributes(propiedad)){
-			console.log(input);
-			console.log('no lo tiene');
-			input.setAttribute(propiedad,propiedad)
-		}else{
-			console.log(input);
+	for (var index = 0; index < elementosForm.length; index++) {
+
+		if(elementosForm[index].disabled){
+
 			console.log('lo tiene');
-			input.removeAttribute(propiedad)
+			elementosForm[index].removeAttribute(propiedad)
+
+		}else{
+
+			console.log('no lo tiene');
+			elementosForm[index].setAttribute(propiedad,propiedad)
+
 		}
-	});
+	}
+
 }
 
 

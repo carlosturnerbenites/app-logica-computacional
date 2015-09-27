@@ -479,6 +479,9 @@ button {
 input:disabled {
   cursor: not-allowed;
   background-color: #a8a8a8;
+  border: none;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
 }
 input[type="submit"]:disabled {
   cursor: not-allowed;
@@ -878,7 +881,7 @@ nav ul li a.itemsMenu .nombreMenu:first-letter {
 */
 .formConjuntos .nombreConjunto {
   width: 20px;
-  text-align: right;
+  text-align: center;
 }
 .corchetesConjuntos:after {
   content: "}";
@@ -1040,6 +1043,12 @@ table tr .respuestaEjercicio {
 table input {
   background-color: inherit;
   padding: 0;
+}
+.columnaMarcada {
+  background-color: rgba(0,0,0,0.1);
+}
+.columnaMarcada input {
+  background-color: initial;
 }
 /*
 +-----------------------------------+

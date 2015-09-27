@@ -5,8 +5,6 @@ var sectionTablasVerdad = document.getElementById("sectionTablasVerdad_js")
 
 var heightContenedorPrincipal = contenedorPrincipal.clientHeight
 
-//var respuestasBien = 0
-//var respuestasMal = 0
 
 var simboloConjuntoVacio = "Ø"
 
@@ -15,15 +13,11 @@ var simboloConjuntoVacio = "Ø"
 var valoresCampo = []
 var valoresCampos = []
 
-var solucion = ""
 
 var respuestas = []
 
 
-var simboloConjuncion =  "Λ"
-var simboloDisjuncion =  "V"
-var simboloCondicional =  "→"
-var simboloBicondicional =  "⇔"
+var simbolosOperacion =  ["Λ","V","→","⇔"]
 
 //valores Tablas de Verdad
 var posiblesValores = ["V", "F"]

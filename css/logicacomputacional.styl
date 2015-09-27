@@ -35,6 +35,8 @@ twitterColor = #55acee
 youtubeColor = rgb(236,49,43)
 githubColor = rgb(51,51,51)
 
+colorCoumnaMarcada = rgba(0,0,0,.1)
+
 colorMenuFooter = rgba(0, 0, 0, .7)
 /*
 html,body,.contenedorDeAncho
@@ -45,6 +47,9 @@ input, textarea, select, button
 input:disabled
 	cursor not-allowed
 	background-color colorBtnDiabledBackground
+	border none
+	border-radius 10px
+
 input[type="submit"]:disabled
 	cursor not-allowed
 	background-color colorBtnDiabledBackground
@@ -310,7 +315,7 @@ nav
 .formConjuntos
 	.nombreConjunto
 		width 20px
-		text-align right
+		text-align center
 .corchetesConjuntos:after
 	content "}"
 .corchetesConjuntos:before
@@ -425,7 +430,7 @@ table
 	margin 10px
 	tr
 		&:hover
-			background-color rgba(0,0,0,.1)
+			background-color colorCoumnaMarcada
 
 		th
 			padding 10px
@@ -443,7 +448,10 @@ table
 	input
 		background-color inherit
 		padding 0
-
+.columnaMarcada
+	background-color colorCoumnaMarcada
+	input
+		background-color initial
 /*
 +-----------------------------------+
 |			Animaciones				|
