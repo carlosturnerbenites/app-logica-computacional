@@ -45,7 +45,7 @@ var htmlFormEjercicioPropuestoTablasVerdad = document.getElementById("htmlFormEj
 var htmSectionContenedoraEjercicioPropuestoTablasVerdad = document.getElementById("sectionTablasVerdad_js")
 
 var htmlInputNumeroProposicionesEscogidasPorUsuario = document.getElementById("htmlInputNumeroProposicionesEscogidasPorUsuario_js")
-
+var numeroCombinacionesPosibles
 var limite = 0
 
 var maximaCantidadDeProposiciones = 5
@@ -55,21 +55,16 @@ htmlInputNumeroProposicionesEscogidasPorUsuario.setAttribute("min", 0)
 
 function crearEjercicio(evento) {
 
-	var numeroProposicionesEscogidasPorusuario = Number(htmlInputNumeroProposicionesEscogidasPorUsuario.value)
-
-	numeroDeSeparacionesConjuntos = Math.round(numeroProposicionesEscogidasPorusuario/2)
-
-
 	evento.preventDefault()
 
+	var numeroProposicionesEscogidasPorusuario = Number(htmlInputNumeroProposicionesEscogidasPorUsuario.value)
+	numeroCombinacionesPosibles = Math.pow(2,numeroProposicionesEscogidasPorusuario)
 	var ejercicioPropuesto = new Array()
 
 	htmlFormEjercicioPropuestoTablasVerdad.removeEventListener("submit", crearEjercicio)
 
 
-	numeroCombinacionesPosibles = Math.pow(2,numeroProposicionesEscogidasPorusuario)
 
-	console.log(numeroCombinacionesPosibles);
 
 	var htmlTableEjercicioPropuesto = document.createElement("table")
 	htmlTableEjercicioPropuesto.id = "tablarVerdad_js"
@@ -89,12 +84,11 @@ function crearEjercicio(evento) {
 
 			for (var posicion = 0; posicion < ejercicioPropuesto.length-1; posicion++) {
 
-				ejercicioPropuesto[posicion] += simbolosOperacion[numeroAleatorio(simbolosOperacion.length,0)]
+				ejercicioPropuesto[posicion] += " " + simbolosOperacion[numeroAleatorio(simbolosOperacion.length,0)] + " "
 
 			}
 
-			//console.log(ejercicioPropuesto.toString().split(","));
-
+			console.log(ejercicioPropuesto.join(""))
 			htmlThColumnasEjercicioPropuesto.innerHTML = ejercicioPropuesto.join("")
 
 		}
@@ -125,8 +119,13 @@ function crearEjercicio(evento) {
 				htmlThColumnasEjercicioPropuesto.appendChild(inputHTML)
 
 			}else{
-
-				htmlThColumnasEjercicioPropuesto.innerHTML = posiblesValores[numeroAleatorio(2,0)]
+				var valorDeVerdad = posiblesValores[numeroAleatorio(2,0)]
+				htmlThColumnasEjercicioPropuesto.innerHTML = valorDeVerdad
+				if (valorDeVerdad == posiblesValores[0]) {
+					htmlThColumnasEjercicioPropuesto.setAttribute("data-ValorBoleano", true)
+				}else{
+					htmlThColumnasEjercicioPropuesto.setAttribute("data-ValorBoleano", false)
+				}
 
 			}
 
@@ -181,47 +180,57 @@ function capturarRespuesta(evento) {
 	for (var campos = 0; campos < numeroCombinacionesPosibles; campos++) {
 		var respuesta = document.getElementById(campos)
 		respuestas.push(respuesta)
-
 	};
 
+	var valoresboleanos = new Array()
 	for (var campo = 0; campo < respuestas.length; campo++) {
+		var valoreboleano = new Array()
 
 		var nombreFila = convertirHTMLCollectionEnArray(respuestas[campo].childNodes)
-
 		for (var i = 0; i < nombreFila.length; i++) {
+
 			if (i == nombreFila.length-1) {
 				var valorCampo = nombreFila[i].lastChild.value.toUpperCase()
+				var boleano = nombreFila[i].lastChild.getAttribute("data-valorboleano")
 				inputsDeRespuesta.push(nombreFila[i].lastChild)
 				//repito esta linea dos veces por que por el momento no veo otra forma(refactor luego)
 				valoresCampo.push(valorCampo)
+				valoreboleano.push(boleano)
 			}else{
 				if (!(nombreFila[i].id == "ColumnadeApoyo")) {
-
-					console.log(nombreFila[i].id == "ColumnadeApoyo");
+					var boleano = nombreFila[i].getAttribute("data-valorboleano")
 					var valorCampo = nombreFila[i].innerHTML
 					//repito esta linea dos veces por que por el momento no veo otra forma(refactor luego)
 					valoresCampo.push(valorCampo)
 				}
 
+				valoreboleano.push(boleano)
 			}
+			console.log(nombreFila[i],boleano);
 		}
+		valoresboleanos.push(valoreboleano)
 
 		valoresCampos.push(valoresCampo)
-		console.log(valoresCampos);
 		//reinicializar variable
 		valoresCampo = []
 	}
-	console.log(respuestas);
+	console.log(valoresboleanos);
 	validarRespuesta(valoresCampos,valueOperacionEscogida,inputsDeRespuesta)
 }
 
 function verificarRespuestaIngresada(){
 
-	var valor = this.value
+	var valor = this.value.toUpperCase()
 
-	if (valor.toUpperCase() == "V" || valor.toUpperCase() == "F") {
+	if (valor == posiblesValores[0] || valor == posiblesValores[1]) {
 
 		this.classList.remove("valorErroneo")
+
+		if (valor == posiblesValores[0]) {
+			this.setAttribute("data-ValorBoleano", true)
+		}else{
+			this.setAttribute("data-ValorBoleano", false)
+		}
 
 	}else{
 
@@ -232,14 +241,6 @@ function verificarRespuestaIngresada(){
 
 }
 
-function reiniciarEjercicio() {
-	limpiarContenedorHTML(htmSectionContenedoraEjercicioPropuestoTablasVerdad)
-	htmlFormEjercicioPropuestoTablasVerdad.addEventListener("submit", crearEjercicio)
-	htmlFormRespuestaUsuario.addEventListener("submit", capturarRespuesta)
-	habilitarInhabilitarFormulario(htmlFormEjercicioPropuestoTablasVerdad)
-
-
-}
 
 function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuestaCapturados) {
 
@@ -271,12 +272,15 @@ function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuesta
 		var HTMLSpanIconoBtn = document.createElement("span")
 		HTMLSpanIconoBtn.classList.add(iconoBtnVolver,"marginIconos")
 		btnVolver.insertBefore(HTMLSpanIconoBtn, btnVolver.firstChild)
-
+		console.log("-----------------");
+		console.log(inputsDeRespuestaCapturados);
+		console.log("-----------------");
 		for (var l = 0; l < inputsDeRespuestaCapturados.length; l++) {
 
-			inputsDeRespuestaCapturados[l].setAttribute("disabled", "disabled")
+			inputsDeRespuestaCapturados[l].disabled = true
 
 		}
+		btnAgregarColumna.removeEventListener("click", crearAgregarFila)
 
 		var estadoActual = {
 			campoValido: true,
@@ -302,27 +306,16 @@ function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuesta
 
 }
 
-function marcarColumna(){
 
-	var indexColumnaAMarcar = this.cellIndex
-	var trPadreDeThClikeado = this.parentNode
-	var TrsTable = convertirHTMLCollectionEnArray(trPadreDeThClikeado.parentNode.rows)
 
-	for (var i = 0; i < TrsTable.length; i++) {
 
-		hijosTr = convertirHTMLCollectionEnArray(TrsTable[i].childNodes)
+function reiniciarEjercicio() {
 
-		for(var j = 0, length2 = hijosTr.length; j < length2; j++){
+	limpiarContenedorHTML(htmSectionContenedoraEjercicioPropuestoTablasVerdad)
+	htmlFormEjercicioPropuestoTablasVerdad.addEventListener("submit", crearEjercicio)
+	htmlFormRespuestaUsuario.addEventListener("submit", capturarRespuesta)
+	habilitarInhabilitarFormulario(htmlFormEjercicioPropuestoTablasVerdad)
 
-			if (hijosTr[j].cellIndex == indexColumnaAMarcar) {
-
-				hijosTr[j].classList.toggle("columnaMarcada")
-
-			}
-
-		}
-
-	}
 
 }
 
@@ -352,6 +345,29 @@ function crearAgregarFila(evento){
 
 }
 
+function marcarColumna(){
+
+	var indexColumnaAMarcar = this.cellIndex
+	var trPadreDeThClikeado = this.parentNode
+	var TrsTable = convertirHTMLCollectionEnArray(trPadreDeThClikeado.parentNode.rows)
+
+	for (var i = 0; i < TrsTable.length; i++) {
+
+		hijosTr = convertirHTMLCollectionEnArray(TrsTable[i].childNodes)
+
+		for(var j = 0, length2 = hijosTr.length; j < length2; j++){
+
+			if (hijosTr[j].cellIndex == indexColumnaAMarcar) {
+
+				hijosTr[j].classList.toggle("columnaMarcada")
+
+			}
+
+		}
+
+	}
+
+}
 
 htmlFormEjercicioPropuestoTablasVerdad.addEventListener("submit", crearEjercicio)
 htmlFormRespuestaUsuario.addEventListener("submit", capturarRespuesta)

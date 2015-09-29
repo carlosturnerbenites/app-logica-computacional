@@ -513,16 +513,15 @@ input:disabled,
 select:disabled {
   cursor: not-allowed;
   border: none;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+  background-color: #a8a8a8;
 }
-input[type="submit"]:disabled {
+button[type="submit"]:disabled {
   cursor: not-allowed;
   border: 2px solid #a8a8a8;
   background-color: #a8a8a8;
   border-color: #7f7f7f;
 }
-input[type="submit"]:disabled:hover {
+button[type="submit"]:disabled:hover {
   -o-transition: background-color 2s;
   -ms-transition: background-color 2s;
   -webkit-transition: background-color 2s;
@@ -972,14 +971,15 @@ svg {
 }
 svg circle {
   fill: #ab2121;
-  z-index: 1;
   position: absolute;
 }
-svg line {
+svg .lineGilla {
+  stroke: rgba(0,0,0,0.1);
+  stroke-width: 1px;
+}
+svg .lineGrafo {
   stroke: #ff9a9a;
-  stroke-width: 10px;
-  z-index: 0;
-  position: absolute;
+  stroke-width: 5px;
 }
 /*
 +-----------------------+
@@ -1198,6 +1198,13 @@ table input {
 |				Audio				|
 +-----------------------------------+
 */
+.reproductorMusica {
+  display: inline-block;
+  border: 1px solid #808080;
+  padding: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
 .reproductorMusica button {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -1219,11 +1226,23 @@ table input {
 }
 .reproductorMusica .listadoAjustesAudio {
   border: 1px solid #808080;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
   font-size: 0.7em;
+  position: absolute;
+  top: -110px;
+  background-color: rgba(0,0,0,0.1);
+  right: 0;
+  padding: 10px;
 }
 .reproductorMusica .listadoAjustesAudio li {
   width: auto;
   padding: 5px 0;
+}
+.reproductorMusica .listadoAjustesAudio li label {
+  width: 70px;
+  display: inline-block;
+  font-weight: bold;
 }
 .reproductorMusica .listadoAjustesAudio input[type="number"] {
   width: 30px;

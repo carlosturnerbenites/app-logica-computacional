@@ -9,6 +9,12 @@
 </head>
 
 <body>
+	<svg id="htmlSvgLienzo_js">
+		<g id="htmlSvgLienzoGrilla_js"></g>
+		<g id="htmlSvgLienzoGrafoAristas_js"></g>
+		<g id="htmlSvgLienzoGrafoVertices_js"></g>
+	</svg>
+
 	<section id="contenedorPrincipal_js">
 
 		<section class="seccionAyuda seccionDesplegable">
@@ -33,7 +39,8 @@
 			<form  class="formGrafos" id="formGrafos_js">
 				<section class="fieldset">
 					<label for="cantidadVertices_js">Numero de Vertices :</label>
-					<input  id="cantidadVertices_js" class=" inputBorderBottomFocus inputCorto" type="number" max="10" required autofocus autocomplete="off"/>
+					<input  id="cantidadVertices_js" class=" inputBorderBottomFocus inputCorto" type="number" max="10" required  autocomplete="off"/>
+					<!--autofocus-->
 
 				</section>
 
@@ -43,14 +50,14 @@
 			</form>
 		</section>
 	</section>
-	<svg id="lienzoGrafo_js"></svg>
 	<button class="btn btnEnviar" id="btnLimpiarLienzo_js"><span class="icon-borrar marginIconos"></span>Limpiar Lienzo</button><span class="textoDescripcion">o <strong>Shift</strong> + <strong>B</strong></span>
 
 
 
 
-	<section class="seccionDesplegable reproductorMusica">
+	<section class="positionRelative seccionDesplegable reproductorMusica">
 
+		<p>Cancion Actual: <span id="nombreCancion"></span></p>
 		<button id="reproductorMusica_js">
 			<span class="icon-musica"></span>
 			<span id="estadoActualAudio_js" class="cancelarMargin">Escuchar</span>
@@ -67,6 +74,10 @@
 				<li>
 					<label for="silenciar">Silenciar</label>
 					<input type="checkbox" id="silenciarAudio_js" name="silenciar">
+				</li>
+				<li>
+					<label for="repetir">Repetir</label>
+					<input type="checkbox" id="repetirAudio_js" name="repetir">
 				</li>
 				<li>
 					<label for="volumen">Volumen</label>

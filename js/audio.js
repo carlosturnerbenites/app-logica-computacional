@@ -1,4 +1,4 @@
-var barraDePorgresoAudio = document.getElementById("barraDePorgresoAudio_js")
+var musicaEscogido = document.getElementById("musicaEscogido_js")
 var musica = new Audio("../../media/audio/tlos.mp3")
 var tiempoActual = 0
 
@@ -7,6 +7,9 @@ var maxVolumen = 1
 var mediumVolumen = maxVolumen/2
 var iconoActual = new String()
 
+
+var listadoAjustesAudio = document.getElementById("listadoAjustesAudio_js")
+var barraDePorgresoAudio = document.getElementById("barraDePorgresoAudio_js")
 var estadoActualAudio = document.getElementById("estadoActualAudio_js")
 
 var btnAudio = document.getElementById("reproductorMusica_js")
@@ -18,12 +21,15 @@ var btnAjustesAudio = document.getElementById("btnAjustesAudio_js")
 var silenciarAudio = document.getElementById("silenciarAudio_js")
 
 var volumenAudio = document.getElementById("volumenAudio_js")
+var BtnrepetirAudio = document.getElementById("repetirAudio_js")
 
 btnAjustesAudio.addEventListener("click", mostrarOcultarSeccion)
 btnAudio.addEventListener("click", reproducirparaAudio)
 silenciarAudio.addEventListener("click", mutedAudio)
 volumenAudio.addEventListener("change", cambiarVolumen)
+BtnrepetirAudio.addEventListener("change", repetirAudio)
 musica.addEventListener("timeupdate", progressBar)
+musica.addEventListener("ended", reiniciarAudio)
 
 function progressBar() {
 	tiempoActual = musica.currentTime
@@ -31,7 +37,9 @@ function progressBar() {
 	barraDePorgresoAudio.setAttribute("value", tiempoActual)
 }
 
-
+function reiniciarAudio() {
+	estadoActualAudio.innerHTML = "Escuchar"
+}
 
 
 
@@ -53,6 +61,15 @@ function mutedAudio() {
 	}else{
 		musica.muted = false
 		cambiarIconoVolumen()
+	}
+}
+function repetirAudio() {
+	if(this.checked){
+		console.log('repetir activado');
+		musica.loop = true
+	}else{
+		console.log('repetir inactivado');
+		musica.loop = false
 	}
 }
 

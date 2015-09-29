@@ -54,9 +54,9 @@ hr
 input:disabled,select:disabled
 	cursor not-allowed
 	border none
-	border-radius 5px
+	background-color colorBtnDiabledBackground
 
-input[type="submit"]:disabled
+button[type="submit"]:disabled
 	cursor not-allowed
 	border 2px solid colorBtnDiabledBackground
 	background-color colorBtnDiabledBackground
@@ -364,13 +364,13 @@ svg
 	border-bottom 5px solid gray
 	circle
 		fill #AB2121
-		z-index 1
 		position: absolute;
-	line
+	.lineGilla
+		stroke rgba(0,0,0,.1)
+		stroke-width 1px
+	.lineGrafo
 		stroke #FF9A9A
-		stroke-width 10px
-		z-index 0
-		position: absolute;
+		stroke-width 5px
 
 /*
 +-----------------------+
@@ -580,6 +580,10 @@ table
 */
 
 .reproductorMusica
+	display inline-block
+	border 1px solid gray
+	padding 10px
+	border-radius 10px
 	button
 		appearance none
 		background-color white
@@ -594,11 +598,22 @@ table
 		&:hover
 			background-color rgba(0,0,0,.1)
 	.listadoAjustesAudio
+		border 1px solid gray
+		border-top-right-radius 10px
+		border-top-left-radius 10px
+		font-size .7em
+		position absolute
+		top -110px
+		background-color rgba(0,0,0,.1)
+		right 0
+		padding 10px
 		li
 			width auto
 			padding 5px 0
-		border 1px solid gray
-		font-size .7em
+			label
+				width 70px
+				display inline-block
+				font-weight bold
 		input[type="number"]
 			width 30px
 
