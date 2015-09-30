@@ -134,6 +134,7 @@ Syntax:
 crearYMostrarMensaje(Objeto)
 */
 function crearYMostrarMensaje(estado){
+	console.log(estado);
 	var contenedor = document.createElement("section")
 	contenedor.classList.add("contenedorMensaje")
 

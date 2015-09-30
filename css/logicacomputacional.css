@@ -962,6 +962,10 @@ nav ul li a.itemsMenu .nombreMenu:first-letter {
 +-----------------------+
 */
 svg {
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
   width: 100%;
   display: block;
   margin: 0 auto;
@@ -971,7 +975,12 @@ svg {
 }
 svg circle {
   fill: #ab2121;
-  position: absolute;
+}
+svg circle:hover {
+  fill: #ec6d6d;
+  stroke: #ab2121;
+  stroke-width: 2px;
+  cursor: pointer;
 }
 svg .lineGilla {
   stroke: rgba(0,0,0,0.1);
@@ -980,6 +989,20 @@ svg .lineGilla {
 svg .lineGrafo {
   stroke: #ff9a9a;
   stroke-width: 5px;
+}
+svg .nombreCircle {
+  font-size: 40px;
+  font-family: 'Lato';
+  stroke: #000;
+  stroke-width: 1px;
+  fill: #fff;
+}
+.agrandarEncoger {
+  -o-animation: 2s aumentaDisminuye 1 linear;
+  -ms-animation: 2s aumentaDisminuye 1 linear;
+  -webkit-animation: 2s aumentaDisminuye 1 linear;
+  -moz-animation: 2s aumentaDisminuye 1 linear;
+  animation: 2s aumentaDisminuye 1 linear;
 }
 /*
 +-----------------------+

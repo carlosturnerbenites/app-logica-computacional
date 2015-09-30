@@ -356,6 +356,7 @@ nav
 */
 svg
 	//width 95%
+	user-select none
 	width 100%
 	display block
 	margin 0 auto
@@ -364,13 +365,26 @@ svg
 	border-bottom 5px solid gray
 	circle
 		fill #AB2121
-		position: absolute;
+		&:hover
+			fill #EC6D6D
+			stroke #AB2121
+			stroke-width 2px
+			cursor pointer
 	.lineGilla
 		stroke rgba(0,0,0,.1)
 		stroke-width 1px
 	.lineGrafo
 		stroke #FF9A9A
 		stroke-width 5px
+	.nombreCircle
+		font-size 40px
+		font-family 'Lato'
+		stroke black
+		stroke-width 1px
+		fill white
+.agrandarEncoger
+	animation 2s aumentaDisminuye 1 linear
+
 
 /*
 +-----------------------+
