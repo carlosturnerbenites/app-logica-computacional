@@ -9,16 +9,6 @@
 </head>
 
 <body>
-	<svg id="htmlSvgLienzo_js">
-		<g id="htmlSvgLienzoGrilla_js"></g>
-		<g id="htmlSvgLienzoGrafo_js">
-			<g id="htmlSvgLienzoGrafoAristas_js"></g>
-			<g id="htmlSvgLienzoGrafoVertices_js"></g>
-			<g id="htmlSvgLienzoGrafoNombres_js"></g>
-
-		</g>
-	</svg>
-
 	<section id="contenedorPrincipal_js">
 
 		<section class="seccionAyuda seccionDesplegable">
@@ -40,21 +30,49 @@
 
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nam quibusdam sapiente, ullam neque, aliquid debitis repellendus placeat. Minus quod similique mollitia, a et magni quis neque! Aut, tempora. Incidunt.</p>
 		<section class="EjercicioPropuesto">
-			<form  class="formGrafos" id="formGrafos_js">
+			<form  class="formGrafos" id="htmlFormformGrafos_js">
 				<section class="fieldset">
-					<label for="cantidadVertices_js">Numero de Vertices :</label>
-					<input  id="cantidadVertices_js" class=" inputBorderBottomFocus inputCorto" type="number" max="10" required  autocomplete="off"/>
+					<label for="htmlLabelCantidadVertices_js">Orden |V| :</label>
+					<input  id="htmlInputCantidadVertices_js" class=" inputBorderBottomFocus inputCorto" type="number" max="" min="2" value="2" required  autocomplete="off"/>
 					<!--autofocus-->
-
 				</section>
+				<section class="fieldset">
+					<label for="htmlLabelCantidadAristas_js">Tamaño |E| :</label>
+					<input  id="htmlInputCantidadAristas_js" class=" inputBorderBottomFocus inputCorto" type="number" max="" min="1" value="1" required  autocomplete="off"/>
+				</section>
+
 
 				<section class="fieldset">
 					<button class="btn btnEnviar" id="htmlInputSubmitBtnrealizarEjercicio_js" type="submit" value="" autocomplete="off"></button>
 				</section>
 			</form>
 		</section>
+
 	</section>
-	<button class="btn btnEnviar" id="btnLimpiarLienzo_js"><span class="icon-borrar marginIconos"></span>Limpiar Lienzo</button><span class="textoDescripcion">o <strong>Shift</strong> + <strong>B</strong></span>
+
+	<svg id="htmlSvgLienzo_js">
+		<g id="htmlSvgLienzoGrilla_js"></g>
+		<g id="htmlSvgLienzoGrafo_js">
+			<g id="htmlSvgLienzoGrafoAristas_js"></g>
+			<g id="htmlSvgLienzoGrafoVertices_js"></g>
+			<g id="htmlSvgLienzoGrafoNombres_js"></g>
+		</g>
+	</svg>
+
+	<section>
+		<div>
+			<button class="btn btnEnviar" id="btnLimpiarLienzo_js"><span class="icon-borrar marginIconos"></span>Limpiar Lienzo</button><span class="textoDescripcion">o <strong>Shift</strong> + <strong>B</strong></span>
+		</div>
+		<form action="" id="htmlFormVerificarDatosGrafo_js">
+			<section class="fieldset">
+				<label for="htmlLabelGradoDeLosVertices_js">Grado de los Vertices :</label>
+				<section class="fieldset" id="htmlSectionGradoDeLosVertices_js">
+
+				</section>
+			</section>
+		</form>
+
+	</section>
 
 
 
@@ -98,13 +116,92 @@
 	<script src="../../js/audio.js"></script>
 
 
+	<script>
+		var htmlFormVerificarDatosGrafo = document.getElementById("htmlFormVerificarDatosGrafo_js")
+		var htmlFormformGrafos = document.getElementById("htmlFormformGrafos_js")
+		var htmlInputCantidadVertices = document.getElementById("htmlInputCantidadVertices_js")
+		var htmlInputCantidadAristas = document.getElementById("htmlInputCantidadAristas_js")
+		var htmlSectionGradoDeLosVertices = document.getElementById("htmlSectionGradoDeLosVertices_js")
+
+		/*la cantidad maxima de vertices se asigna dependiendo de la cantidad de nombre de vertices que hallan(Esto ultimo se obtiene del arreglo "nombresVertices")*/
+		htmlInputCantidadVertices.setAttribute("max", nombreVertices.length)
+
+		htmlInputCantidadVertices.addEventListener("change", validarAristasYGrados)
+
+		function validarAristasYGrados(evento) {
+
+			numeroDeVertices = htmlInputCantidadVertices.value
+			numeroDeAristas = htmlInputCantidadAristas.value
+
+			/*Este maximo de aristas no comtempla cilcos(arista de n a n) ni direccion del grafo*/
+			var numeroMaximoAristas = ((numeroDeVertices*(numeroDeVertices-1))/2)
+
+			htmlInputCantidadAristas.setAttribute("max", numeroMaximoAristas)
+
+		}
 
 
 
+		function crearCamposParaGradoDeVertice() {
+			limpiarContenedorHTML(htmlSectionGradoDeLosVertices)
+
+			var htmlUlContenedorListaGradoDeVertice = document.createElement("ul")
+			htmlUlContenedorListaGradoDeVertice.classList.add("listadoGradoVertices")
+
+			for (var i = 0; i < numeroDeVertices; i++) {
+
+				var htmlUlContenedorGradoDeVertice = document.createElement("li")
+
+				var htmlSpanTextoGradoVertices = document.createElement("span")
+				htmlSpanTextoGradoVertices.classList.add("nombreVertice")
+
+				var htmlInputNombreDeUnVertice = document.createElement("input")
+				htmlInputNombreDeUnVertice.type = "text"
+				htmlInputNombreDeUnVertice.id = "nombreVertice_js"
+				htmlInputNombreDeUnVertice.classList.add("inputBorderBottomFocus","inputCorto")
+
+				htmlSpanTextoGradoVertices.appendChild(htmlInputNombreDeUnVertice)
+
+				var htmlInputGradoDeUnVertice = document.createElement("input")
+				htmlInputGradoDeUnVertice.type = "number"
+				htmlInputGradoDeUnVertice.id = "gradoVertice_js"
+				htmlInputGradoDeUnVertice.classList.add("inputBorderBottomFocus","inputCorto")
+
+				htmlUlContenedorGradoDeVertice.appendChild(htmlSpanTextoGradoVertices)
+				htmlUlContenedorGradoDeVertice.appendChild(htmlInputGradoDeUnVertice)
+				htmlUlContenedorListaGradoDeVertice.appendChild(htmlUlContenedorGradoDeVertice)
+				htmlSectionGradoDeLosVertices.appendChild(htmlUlContenedorListaGradoDeVertice)
+			}			}
 
 
 
-	<span id="htmlInputSubmitBtnrealizarEjercicio_js"></span>
+			htmlFormformGrafos.addEventListener("submit", VerificarFormYHabilitarLienzo)
+
+			function VerificarFormYHabilitarLienzo(evento) {
+				evento.preventDefault()
+				validarAristasYGrados()
+			//Se agrega el evento "doble click" en el lienzo, para que al suceder se cree y agrege un vertice(elemento "circle") en el lienzo
+			lienzo.addEventListener("dblclick", dibujarCirculo)
+			habilitarInhabilitarFormulario(this)
+			htmlFormformGrafos.removeEventListener("submit", VerificarFormYHabilitarLienzo)
+
+			var htmlButtonValidar = document.createElement("button")
+
+			htmlButtonValidar.innerHTML = innerHTMLBtnVerificar
+			htmlButtonValidar.classList.add("btn","btnConfirmar","centrarConMargin")
+			htmlButtonValidar.id = "btnValidargrafo"
+			htmlButtonValidar.setAttribute("type", "submit")
+
+			var HTMLSpanIconoBtn = document.createElement("span")
+			HTMLSpanIconoBtn.classList.add(iconoBtnVerificar,"marginIconos")
+
+			crearCamposParaGradoDeVertice()
+
+			htmlButtonValidar.insertBefore(HTMLSpanIconoBtn, htmlButtonValidar.firstChild)
+			htmlFormVerificarDatosGrafo.appendChild(htmlButtonValidar)
+
+		}
+	</script>
 
 </body>
 </html>

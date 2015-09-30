@@ -1,5 +1,3 @@
-var contenedorPrincipal = document.getElementById("contenedorPrincipal_js")
-
 var btnAyuda = document.getElementById("btnAyuda_js")
 
 //solo puede haer una seccion de explicacion pro pagina

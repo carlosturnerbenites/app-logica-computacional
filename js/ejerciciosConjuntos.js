@@ -26,16 +26,16 @@ function validarConjunto(elementosCojuntos){
 		}
 		if (campoValido){
 			//refactor luego
+			campoValido =  true
 			var estadoActual = {
-				campoValido: true,
 				msg : "Todo listo",
 				clases : ["MSG", "MSGBien"],
 				icono : "icon-correcto"
 			}
 		}else{
 			//refactor luego
+			campoValido =  false
 			var estadoActual = {
-				campoValido: false,
 				msg : "hay un elemento repetido",
 				clases : ["MSG" ,"MSGError"],
 				icono : "icon-equivocado"
@@ -44,17 +44,18 @@ function validarConjunto(elementosCojuntos){
 		}
 	}else{
 		//refactor luego
+		campoValido =  false
 		var estadoActual = {
-			campoValido: false,
-			msg : "hay un caracter no permitido",
+			msg : "hay un caracter no permitido o error de sintaxis",
 			clases : ["MSG" ,"MSGError"],
 			icono : "icon-equivocado"
 
 		}
 	}
+	/*esta funcion recibe un objeto estado y crea un mensaje y lo inserta en el contenedor principal*/
+	crearYMostrarMensaje(estadoActual)
 
-
-	return estadoActual
+	return campoValido
 }
 
 function capturarConjunto(evento) {
@@ -74,7 +75,7 @@ function capturarConjunto(evento) {
 
 	var estado = validarConjunto(elementosCojuntos)
 
-	if (estado.campoValido){
+	if (estado){
 		habilitarInhabilitarFormulario(this)
 
 		if (ValidarCampoVacio(elementosCojuntos) && ValidarCampoVacio(valorNombreConjunto)) {
@@ -133,8 +134,7 @@ function capturarConjunto(evento) {
 			vaciarCampo(nombreConjunto)
 		}
 	}else{
-		//esta funcion recibe un objeto cestado y crea un mensaje y lo inserta en el contenedor principal
-		crearYMostrarMensaje(estado)
+
 		formConjuntos.addEventListener("submit", capturarConjunto)
 
 	}

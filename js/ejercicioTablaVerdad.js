@@ -283,7 +283,6 @@ function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuesta
 		btnAgregarColumna.removeEventListener("click", crearAgregarFila)
 
 		var estadoActual = {
-			campoValido: true,
 			msg : "Listo, todo bien",
 			clases : ["MSG" ,"MSGBien"],
 			icono : "icon-correcto"
@@ -294,7 +293,6 @@ function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuesta
 	else{
 
 		var estadoActual = {
-			campoValido: false,
 			msg : "Huu, algo va mal",
 			clases : ["MSG" ,"MSGError"],
 			icono : "icon-equivocado"
