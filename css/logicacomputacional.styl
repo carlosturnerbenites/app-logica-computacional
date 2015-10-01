@@ -1,10 +1,11 @@
-@import "general.styl"
-@import "fonts.styl"
-@import "normalize.styl"
-@import url(https://fonts.googleapis.com/css?family=Lato)
-
 @import "nib"
 @import "nib/vendor"
+
+@import "normalize.styl"
+@import "fonts.styl"
+@import "general.styl"
+@import url(https://fonts.googleapis.com/css?family=Lato)
+
 vendor-prefixes = o ms webkit moz official
 
 
@@ -54,7 +55,9 @@ hr
 input:disabled,select:disabled
 	cursor not-allowed
 	border none
-	background-color colorBtnDiabledBackground
+	background-color rgba(0, 0, 0, .2)
+input,select
+	border-top 3px solid gray
 
 button[type="submit"]:disabled
 	cursor not-allowed
@@ -84,6 +87,7 @@ ul
 	border none
 	display flex
 	justify-content center
+	flex-wrap wrap
 figure
 	margin 0
 	padding 0
@@ -348,6 +352,16 @@ nav
 	content "}"
 .corchetesConjuntos:before
 	content " = {"
+.respuesta
+	letter-spacing 5px
+	font-size 1.5em
+	width 70%
+	margin 30px auto
+	display block
+	min-height 200px
+	text-align center
+.nombreConjunto
+	width 100px
 
 /*
 +-----------------------+
@@ -551,17 +565,18 @@ table
 @media screen and (max-width:600px)
 	.nombreMenu
 		display none !important
+	.respuesta
+		letter-spacing 3px
+		font-size 1.4em
+		width 100%
+		margin 30px auto
+		display block
+		min-height 200px
+		text-align center
 
 
 //-----------------------
-.respuesta
-	letter-spacing 5px
-	font-size 1.5em
-	width 50%
-	margin 30px auto
-	display block
-	min-height 200px
-	text-align center
+
 
 
 .agregarFila

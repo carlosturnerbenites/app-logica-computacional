@@ -1,4 +1,3 @@
-
 ::-webkit-scrollbar
 	width .7em
 	height .7em
@@ -6,6 +5,27 @@
 	background slategray
 ::-webkit-scrollbar-track
 	background #b7bfc7
+
+input[type="checkbox"],input[type="radio"]
+	cursor pointer
+	font-family 'icomoon'
+	appearance none
+	width 25px
+	height 25px
+	border 2px solid gray
+	&:checked
+		&:before
+			color rgb(0, 0, 0) !important
+			content "\e607"
+	&:hover
+		&:before
+			color rgba(0, 0, 0, .5)
+			content "\e607"
+input[type="radio"]
+	border-radius 50%
+input[type="checkbox"]
+	border-radius 5px
+
 body
 	scrollbar-face-color slategray
 	scrollbar-track-color #b7bfc7

@@ -70,7 +70,6 @@ function removerElementoLinea(evento) {
 		if (evento.which == 2) {
 
 			var estadoActual = {
-				campoValido: true,
 				msg : "La line se borro",
 				clases : ["MSG", "MSGBien"],
 				icono : "icon-correcto"

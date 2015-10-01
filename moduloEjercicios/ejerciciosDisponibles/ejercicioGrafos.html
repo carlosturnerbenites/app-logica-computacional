@@ -39,6 +39,11 @@
 				<section class="fieldset">
 					<label for="htmlLabelCantidadAristas_js">Tamaño |E| :</label>
 					<input  id="htmlInputCantidadAristas_js" class=" inputBorderBottomFocus inputCorto" type="number" max="" min="1" value="1" required  autocomplete="off"/>
+
+					<p class="textoNegrilla ancho100PorCieto textoCentrado cancelarMargin"> ó </p>
+
+					<input type="checkbox" id ="htmlInputgrafoCompleto_js">
+					<label for="htmlInputgrafoCompleto_js">Grafo Completo</label>
 				</section>
 
 
@@ -64,11 +69,8 @@
 			<button class="btn btnEnviar" id="btnLimpiarLienzo_js"><span class="icon-borrar marginIconos"></span>Limpiar Lienzo</button><span class="textoDescripcion">o <strong>Shift</strong> + <strong>B</strong></span>
 		</div>
 		<form action="" id="htmlFormVerificarDatosGrafo_js">
-			<section class="fieldset">
-				<label for="htmlLabelGradoDeLosVertices_js">Grado de los Vertices :</label>
-				<section class="fieldset" id="htmlSectionGradoDeLosVertices_js">
+			<section  id="htmlSectionGradoDeLosVertices_js">
 
-				</section>
 			</section>
 		</form>
 
@@ -117,6 +119,7 @@
 
 
 	<script>
+		var htmlInputgrafoCompleto = document.getElementById("htmlInputgrafoCompleto_js")
 		var htmlFormVerificarDatosGrafo = document.getElementById("htmlFormVerificarDatosGrafo_js")
 		var htmlFormformGrafos = document.getElementById("htmlFormformGrafos_js")
 		var htmlInputCantidadVertices = document.getElementById("htmlInputCantidadVertices_js")
@@ -128,22 +131,34 @@
 
 		htmlInputCantidadVertices.addEventListener("change", validarAristasYGrados)
 
+		function HabilitarGrafocompleto() {
+			habilitarInhabilitarInput(htmlInputCantidadAristas)
+		}
+
 		function validarAristasYGrados(evento) {
 
 			numeroDeVertices = htmlInputCantidadVertices.value
-			numeroDeAristas = htmlInputCantidadAristas.value
+			var numeroMaximoAristas = ((numeroDeVertices*(numeroDeVertices-1))/2)
+			if (htmlInputgrafoCompleto.checked) {
+				numeroDeAristas = numeroMaximoAristas
+			}else{
+				numeroDeAristas = htmlInputCantidadAristas.value
+			}
+			console.log(numeroDeAristas);
 
 			/*Este maximo de aristas no comtempla cilcos(arista de n a n) ni direccion del grafo*/
-			var numeroMaximoAristas = ((numeroDeVertices*(numeroDeVertices-1))/2)
 
 			htmlInputCantidadAristas.setAttribute("max", numeroMaximoAristas)
 
 		}
 
-
-
 		function crearCamposParaGradoDeVertice() {
 			limpiarContenedorHTML(htmlSectionGradoDeLosVertices)
+
+			var htmlLabelGradoVertices = document.createElement("label")
+			htmlLabelGradoVertices.setAttribute("for", "gradoVertice_js")
+			htmlLabelGradoVertices.innerHTML = "Grado de los Vertices"
+			htmlSectionGradoDeLosVertices.appendChild(htmlLabelGradoVertices)
 
 			var htmlUlContenedorListaGradoDeVertice = document.createElement("ul")
 			htmlUlContenedorListaGradoDeVertice.classList.add("listadoGradoVertices")
@@ -156,6 +171,7 @@
 				htmlSpanTextoGradoVertices.classList.add("nombreVertice")
 
 				var htmlInputNombreDeUnVertice = document.createElement("input")
+				htmlInputNombreDeUnVertice.required = true
 				htmlInputNombreDeUnVertice.type = "text"
 				htmlInputNombreDeUnVertice.id = "nombreVertice_js"
 				htmlInputNombreDeUnVertice.classList.add("inputBorderBottomFocus","inputCorto")
@@ -164,6 +180,7 @@
 
 				var htmlInputGradoDeUnVertice = document.createElement("input")
 				htmlInputGradoDeUnVertice.type = "number"
+				htmlInputGradoDeUnVertice.required = true
 				htmlInputGradoDeUnVertice.id = "gradoVertice_js"
 				htmlInputGradoDeUnVertice.classList.add("inputBorderBottomFocus","inputCorto")
 
@@ -171,17 +188,19 @@
 				htmlUlContenedorGradoDeVertice.appendChild(htmlInputGradoDeUnVertice)
 				htmlUlContenedorListaGradoDeVertice.appendChild(htmlUlContenedorGradoDeVertice)
 				htmlSectionGradoDeLosVertices.appendChild(htmlUlContenedorListaGradoDeVertice)
-			}			}
+			}
+		}
 
+		htmlFormformGrafos.addEventListener("submit", VerificarFormYHabilitarLienzo)
 
-
-			htmlFormformGrafos.addEventListener("submit", VerificarFormYHabilitarLienzo)
-
-			function VerificarFormYHabilitarLienzo(evento) {
-				evento.preventDefault()
-				validarAristasYGrados()
+		function VerificarFormYHabilitarLienzo(evento) {
+			evento.preventDefault()
+			validarAristasYGrados()
 			//Se agrega el evento "doble click" en el lienzo, para que al suceder se cree y agrege un vertice(elemento "circle") en el lienzo
 			lienzo.addEventListener("dblclick", dibujarCirculo)
+			if (htmlInputgrafoCompleto.checked) {
+				habilitarInhabilitarInput(htmlInputCantidadAristas)
+			}
 			habilitarInhabilitarFormulario(this)
 			htmlFormformGrafos.removeEventListener("submit", VerificarFormYHabilitarLienzo)
 
@@ -195,12 +214,51 @@
 			var HTMLSpanIconoBtn = document.createElement("span")
 			HTMLSpanIconoBtn.classList.add(iconoBtnVerificar,"marginIconos")
 
+
 			crearCamposParaGradoDeVertice()
 
 			htmlButtonValidar.insertBefore(HTMLSpanIconoBtn, htmlButtonValidar.firstChild)
 			htmlFormVerificarDatosGrafo.appendChild(htmlButtonValidar)
+			htmlFormVerificarDatosGrafo.addEventListener("submit", validarGrafoRespuesta)
+		}
+
+		function verificarGradosDeVertices() {
+
+			var verticesEnLienzo = htmlSvgLienzoGrafoVertices.children
+			var aristasEnLienzo = htmlSvgLienzoGrafoAristas.children
+			console.log(verticesEnLienzo,aristasEnLienzo);
 
 		}
+
+		function validarGrafoRespuesta(evento) {
+			evento.preventDefault()
+
+			var numeroDeVerticesEnLienzo = htmlSvgLienzoGrafoVertices.childElementCount
+			var numeroDeAristasEnLienzo = htmlSvgLienzoGrafoAristas.childElementCount
+
+			if (parseInt(numeroDeVertices) == numeroDeVerticesEnLienzo){
+				if (parseInt(numeroDeAristas) == numeroDeAristasEnLienzo) {
+					verificarGradosDeVertices()
+				}else{
+					var estadoActual = {
+						msg : "Hay un problema con Las Aristas",
+						clases : ["MSG", "MSGError"],
+						icono : "icon-equivocado"
+					}
+				}
+			}else{
+				var estadoActual = {
+					msg : "Hay un problema con los vertices",
+					clases : ["MSG", "MSGError"],
+					icono : "icon-equivocado"
+				}
+
+			}
+			crearYMostrarMensaje(estadoActual)
+
+		}
+
+		htmlInputgrafoCompleto.addEventListener("change", HabilitarGrafocompleto)
 	</script>
 
 </body>

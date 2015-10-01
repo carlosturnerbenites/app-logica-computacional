@@ -34,10 +34,18 @@
 		<section>
 			<form  class="formConjuntos" id="formConjuntos_js">
 				<section class="fieldset">
+					<p class="ancho100PorCieto textoCentrado">Subconjuntos</p>
+					<input type="radio" name="tipiEjercicio" id="htmlRadioConjuntosPropio_js" checked="" />
+					<label for="htmlRadioConjuntosPropio_js">Propios</label>
+					<p class="textoNegrilla ancho100PorCieto textoCentrado cancelarMargin">ó</p>
+					<input type="radio" name="tipiEjercicio" id="htmlRadioConjuntosImpropio_js"/>
+					<label for="htmlRadioConjuntosImpropio_js">Impropios</label>
+				</section>
+				<section class="fieldset">
 					<input  id="nombreConjunto_js" class=" inputCorto inputCenterUppercase inputBorderBottomFocus" type="text" maxlength="1" required autofocus autocomplete="off"/>
 
 					<span class=" corchetesConjuntos">
-						<input formnovalidate type="text" class="inputCenterUppercase inputBorderBottomFocus" id="elementosCojuntos_js" required autocomplete="off"/>
+						<input formnovalidate type="text" class=" inputBorderBottomFocus textoCentrado nombreConjunto" id="elementosCojuntos_js" required autocomplete="off"/>
 						<!-- pattern="^([\w|\d])+([(,)\w|\d(,)])+([\w|\d])$" -->
 					</span>
 				</section>

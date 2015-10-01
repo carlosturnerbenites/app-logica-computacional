@@ -117,7 +117,15 @@ Syntax:
 ordenarAlfabeticamente(array a ordenar alfabeticamente(Array))
 */
 function ordenarAlfabeticamente(array){
+	/*
+	console.log(String(array) );
+	console.log( String(array.sort()));
 
+	if (String(array) != String(array.sort())) {
+		console.log("el conjunto esta desordenado");
+	}else{
+		console.log('el conjunto esta ordenado');
+	}*/
 	for (var i = 0; i < array.length; i++) {
 		array[i] = array[i].split("").sort().join("")
 	};
@@ -134,7 +142,6 @@ Syntax:
 crearYMostrarMensaje(Objeto)
 */
 function crearYMostrarMensaje(estado){
-	console.log(estado);
 	var contenedor = document.createElement("section")
 	contenedor.classList.add("contenedorMensaje")
 

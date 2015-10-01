@@ -5,7 +5,9 @@ var formConjuntos = document.getElementById("formConjuntos_js")
 var conjuntoIngresado = document.getElementById("conjuntoIngresado_js")
 var seccionRespuesta = document.getElementById("seccionRespuesta_js")
 var nombreConjunto = document.getElementById("nombreConjunto_js")
-
+var htmlRadioConjuntosPropio = document.getElementById("htmlRadioConjuntosPropio_js")
+var htmlRadioConjuntosImpropio = document.getElementById("htmlRadioConjuntosImpropio_js")
+var elementosCojuntos = document.getElementById("elementosCojuntos_js").value
 
 function validarConjunto(elementosCojuntos){
 	var campoValido = true
@@ -70,7 +72,7 @@ function capturarConjunto(evento) {
 	var contenedorNombreCojunto = document.createElement("span")
 	contenedorNombreCojunto.innerHTML = valorNombreConjunto
 
-	var elementosCojuntos = document.getElementById("elementosCojuntos_js").value
+	elementosCojuntos = document.getElementById("elementosCojuntos_js").value
 
 
 	var estado = validarConjunto(elementosCojuntos)
@@ -148,13 +150,15 @@ function crearRespuesta(elementosCojuntos,binary){
 			if (binary[i][j] == "1"){
 				binary[i][j] = elementosCojuntos[j]
 			}
-		};
+		}
 		conjuntoSolucionBinary.push(binary[i])
 	}
-	var conjuntoSolucion = SeparaCerosDeValoresUtiles(conjuntoSolucionBinary)
-	var conjuntoSolucion = ordenarAlfabeticamente(conjuntoSolucion)
 
-	return conjuntoSolucion
+	var conjuntoSolucionTemp = SeparaCerosDeValoresUtiles(conjuntoSolucionBinary)
+
+	conjuntoSolucionTemp = ordenarAlfabeticamente(conjuntoSolucionTemp)
+
+	return conjuntoSolucionTemp
 
 }
 
@@ -166,13 +170,16 @@ function validarRespuesta(evento) {
 	var respuestaEnviada = document.getElementById("respuesta")
 	var elementosCojuntos = (document.getElementById("elementosCojuntos_js").value).split(",")
 	var binary = []
+	var conjuntoSolucion
 
-	habilitarInhabilitarInput(respuestaEnviada)
 
 	//refactorizar luego
 
-	numeroCombinaciones = Math.pow(2,elementosCojuntos.length)
-
+	if(htmlRadioConjuntosImpropio.checked){
+		numeroCombinaciones = Math.pow(2,elementosCojuntos.length) - 1
+	}else if(htmlRadioConjuntosPropio.checked){
+		numeroCombinaciones = Math.pow(2,elementosCojuntos.length)
+	}
 
 	elementosRespuestaEnviada = respuestaEnviada.value.split(",")
 
@@ -183,31 +190,48 @@ function validarRespuesta(evento) {
 		for (var i = 0; i < numeroCombinaciones; i++) {
 			binario = decimalToBinary(i)
 			binary.push(binario)
-		};
-	}
-	completarBinarios(binary,elementosCojuntos.length)
-
-	var conjuntoSolucion = crearRespuesta(elementosCojuntos,binary)
-	var elementosRespuestaEnviadaOrdenada = ordenarAlfabeticamente(elementosRespuestaEnviada)
-
-
-	if (String(ordenarAlfabeticamente(conjuntoSolucion)) == String(ordenarAlfabeticamente(elementosRespuestaEnviadaOrdenada))) {
-		var estadoActual = {
-			campoValido: true,
-			msg : "Listo, todo bien",
-			clases : ["MSG" ,"MSGBien"],
-			icono : "icon-correcto"
 		}
+		console.log(binary);
+		completarBinarios(binary,elementosCojuntos.length)
 
-		var btnVolver = document.getElementById("btnValidarconjuntos")
-		btnVolver.innerHTML = innerHTMLBtnVolver
-		btnVolver.addEventListener("click", reiniciarEjercicio)
-
-		var HTMLSpanIconoBtn = document.createElement("span")
-		HTMLSpanIconoBtn.classList.add(iconoBtnVolver,"marginIconos")
-		btnVolver.insertBefore(HTMLSpanIconoBtn, btnVolver.firstChild)
+		conjuntoSolucion = crearRespuesta(elementosCojuntos,binary)
+		console.log(conjuntoSolucion);
 
 
+
+		var elementosRespuestaEnviadaOrdenada = ordenarAlfabeticamente(elementosRespuestaEnviada)
+
+
+		if (String(ordenarAlfabeticamente(conjuntoSolucion)) == String(ordenarAlfabeticamente(elementosRespuestaEnviadaOrdenada))) {
+
+			habilitarInhabilitarInput(respuestaEnviada)
+
+
+			var estadoActual = {
+				campoValido: true,
+				msg : "Listo, todo bien",
+				clases : ["MSG" ,"MSGBien"],
+				icono : "icon-correcto"
+			}
+
+			var btnVolver = document.getElementById("btnValidarconjuntos")
+			btnVolver.innerHTML = innerHTMLBtnVolver
+			btnVolver.addEventListener("click", reiniciarEjercicio)
+
+			var HTMLSpanIconoBtn = document.createElement("span")
+			HTMLSpanIconoBtn.classList.add(iconoBtnVolver,"marginIconos")
+			btnVolver.insertBefore(HTMLSpanIconoBtn, btnVolver.firstChild)
+
+
+		}else{
+			var estadoActual = {
+				campoValido: false,
+				msg : "Huu, algo va mal",
+				clases : ["MSG" ,"MSGError"],
+				icono : "icon-equivocado"
+			}
+
+		}
 	}else{
 		var estadoActual = {
 			campoValido: false,
@@ -215,7 +239,6 @@ function validarRespuesta(evento) {
 			clases : ["MSG" ,"MSGError"],
 			icono : "icon-equivocado"
 		}
-
 	}
 	crearYMostrarMensaje(estadoActual)
 }
