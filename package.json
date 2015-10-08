@@ -1,0 +1,25 @@
+{
+  "name": "ProyectoLogicaComputacional",
+  "version": "1.0.0",
+  "description": "Aplicación web destinada a ayudar en el aprendizaje en el espacio académico de Lógica Computacional. Contara con cursos y ejercicios para los usuarios.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/carlosturnerbenites/AppLogicaComputacional.git"
+  },
+  "author": "Carlos Turner Benites",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/carlosturnerbenites/AppLogicaComputacional/issues"
+  },
+  "homepage": "https://github.com/carlosturnerbenites/AppLogicaComputacional",
+  "dependencies": {
+    "express": "^4.13.3",
+    "jade": "^1.11.0",
+    "nib": "^1.1.0",
+    "stylus": "^0.52.4"
+  }
+}
