@@ -1,0 +1,36 @@
+extends ../templates/templateCursosEjercicios.jade
+block title
+	title Calculo Proposicional || Aplicacion Logica computacional
+block content
+	section.contenedorDeAncho
+		section
+			h1.textoCentrado Calculo Proposicional
+			p.Definicion
+				| Estudio de las relaciones lógicas entre objetos(proposiciones) que se pueden interpretarse comoafirmaciones que tienen algún significado en contextos de la vida real.
+			h2 Proposición
+			p
+				| Cualquier frase que tenga un valor de verdad bien definido, es decir, que sea verdadera o falsa.
+			p ejemplo
+			article.ejemplo.displayFlexCenterSpaceAround
+				div
+					ul
+						h2.estadoDeRespuesta.bien
+							span.icon-correcto
+							| Proposiciones
+						li Chile está en Asia
+						li 2 por 2 es igual a 4
+						li El color de ese auto es rojo
+						li Está lloviendo
+						li Francia está en Europa
+				div
+					ul
+						h2.estadoDeRespuesta.mal
+							span.icon-equivocado
+							| 								No Proposiciones
+						li No son Proposiciones
+						li Inserte el CD
+						li ¿Qué día es hoy?
+						li ¿Dónde estoy?
+						li Ayuda!!!
+			p
+				| En el cálculo proposicional se utilizan letras minúsculas p,q,r,s… para simbolizar proposiciones, las que se combinan para obtener proposiciones compuestas utilizando símbolos conectivos lógicos

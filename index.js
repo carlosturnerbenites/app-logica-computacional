@@ -82,7 +82,7 @@ app.get('/cursos/calculoProposicional',cursoCalculoProposicional)
 app.get('/cursos/tablasDeVerdad',cursoTablasDeVerdad)
 
 app.get('/ejercicios',todosLosEjercicios)
-app.get('/ejercicioss/conjuntoss',ejercicioConjuntos)
+app.get('/ejercicios/conjuntos',ejercicioConjuntos)
 app.get('/ejercicios/grafos',ejercicioGrafos)
 app.get('/ejercicios/calculoProposicional',ejercicioCalculoProposicional)
 app.get('/ejercicios/tablasDeVerdad',ejercicioTablasDeVerdad)
