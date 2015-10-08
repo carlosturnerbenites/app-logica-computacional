@@ -85,6 +85,5 @@ app.get('*', function(req, res,next){
 })
 
 
-server.listen(8000,function() {
-})
+server.listen(process.env.PORT || 8000)
 
