@@ -12,7 +12,6 @@ app.set('views', __dirname + '/vistas')
 app.set('view engine', 'jade')
 
 //ruta estaticos
-app.use(express.static('public'))
 
 function compile(str, path) {
 	return stylus(str)
@@ -22,11 +21,14 @@ function compile(str, path) {
 
 //app.use(express.logger('dev'))
 app.use(stylus.middleware(
-	{ src: __dirname + '/public/stylus',
+{
+	src: __dirname + '/public/stylus',
 	dest: __dirname + '/public/css'
 	, compile: compile
 }
 ))
+
+app.use(express.static('public'))
 
 
 function inicio(request, response,next) {

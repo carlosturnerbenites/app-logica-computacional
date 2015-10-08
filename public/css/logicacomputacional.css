@@ -851,7 +851,6 @@ figure {
 */
 nav {
   width: 100%;
-  position: fixed;
 }
 nav ul {
   background-color: rgba(0,0,0,0.7);
