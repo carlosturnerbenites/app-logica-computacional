@@ -1145,6 +1145,7 @@ footer .contactoRedes a {
 }
 footer .contactoRedes a .iconoRed {
   -webkit-filter: grayscale(100%);
+  margin: 0 5px;
 }
 footer .contactoRedes a .iconoRed:hover {
   -o-transition: -webkit-filter 1s;

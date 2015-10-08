@@ -64,8 +64,16 @@ function cursoCalculoProposicional(request, response,next) {
 function cursoTablasDeVerdad(request, response,next) {
 	response.render('cursos/tablasDeVerdad')
 }
+function ayuda(request, response,next) {
+	response.render('ayuda')
+}
+function nosotros(request, response,next) {
+	response.render('acercaDe')
+}
 
 app.get('/',inicio)
+app.get('/ayuda',ayuda)
+app.get('/nosotros',nosotros)
 
 app.get('/cursos',listadoCursos)
 app.get('/cursos/conjuntos',cursoConjuntos)
@@ -84,6 +92,6 @@ app.get('*', function(req, res,next){
 	next()
 })
 
-
+//este configuracion
 server.listen(process.env.PORT || 8000)
 
