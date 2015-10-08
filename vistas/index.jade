@@ -1,29 +1,6 @@
-doctype html
-html(lang='en')
-  head
-    meta(charset='UTF-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    title Inicio || Aplicacion Logica computacional
-    link(rel='stylesheet', href='css/logicacomputacional.css')
-  body
-    nav
-      ul.displayFlexCenterTotal
-        li
-          a.itemsMenu(href='index.html')
-            span.icono.icon-inico
-            span.nombreMenu Inicio
-        li
-          a.itemsMenu(href='moduloCursos/todosLosCursos.html')
-            span.icono.icon-cursos
-            span.nombreMenu Cursos
-        li
-          a.itemsMenu(href='moduloEjercicios/todosLosEjercicios.html')
-            span.icono.icon-ejercicios
-            span.nombreMenu Ejercicios
-        li
-          a.itemsMenu(href='acercaDe.html')
-            span.icono.icon-nosotros
-            span.nombreMenu Acerca de..
+extends template.jade
+
+block content
     section.imagenFondo.displayFlexCenterTotal
       header.textoCentrado
         h2 Logica computacional

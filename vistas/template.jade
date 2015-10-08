@@ -1,0 +1,55 @@
+doctype html
+html(lang='en')
+	head
+		meta(charset='UTF-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		title Inicio || Aplicacion Logica computacional
+		link(rel='stylesheet', href='css/logicacomputacional.css')
+	body
+		nav
+			ul.displayFlexCenterTotal
+				li
+					a.itemsMenu(href='/')
+						span.icono.icon-inico
+						span.nombreMenu Inicio
+				li
+					a.itemsMenu(href='/cursos')
+						span.icono.icon-cursos
+						span.nombreMenu Cursos
+				li
+					a.itemsMenu(href='/ejercicios')
+						span.icono.icon-ejercicios
+						span.nombreMenu Ejercicios
+				li
+					a.itemsMenu(href='acercaDe.html')
+						span.icono.icon-nosotros
+						span.nombreMenu Acerca de..
+
+	block content
+
+	footer
+		section.contenedorDeAncho
+			p Aplicacion Logica Computacional
+			p Calle 34 Cra 4 Barrio Lorem Girardot-Cund
+			p 456 5412 - 123 6589
+			p 321 456 9878 - 123 654 7896
+			article.acciones
+				p
+					a(href='ayuda.html') Ayuda
+				p
+					a(href='#') Contacto
+				p
+					a(href='#') Terminos de Uso
+				p
+					a(href='#') Referencias
+		section.contactoRedes
+			a(target='_black', href='#')
+				span.iconoRed.icon-facebook
+			a(target='_black', href='#')
+				span.iconoRed.icon-google
+			a(target='_black', href='#')
+				span.iconoRed.icon-twitter
+			a(target='_black', href='#')
+				span.iconoRed.icon-youtube
+			a(target='_black', href='https://github.com/carlosturnerbenites/AppLogicaComputacional')
+				span.iconoRed.icon-github

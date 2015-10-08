@@ -22,7 +22,8 @@ function compile(str, path) {
 
 //app.use(express.logger('dev'))
 app.use(stylus.middleware(
-	{ src: __dirname + '/public'
+	{ src: __dirname + '/public/stylus',
+	dest: __dirname + '/public/css'
 	, compile: compile
 }
 ))
@@ -76,11 +77,12 @@ app.get('/ejercicios/grafos',ejercicioGrafos)
 app.get('/ejercicios/calculoProposicional',ejercicioCalculoProposicional)
 app.get('/ejercicios/tablasDeVerdad',ejercicioTablasDeVerdad)
 
-app.get('*', function(req, res){
+app.get('*', function(req, res,next){
 	console.log("recurso no encontrado")
+	next()
 })
 
+
 server.listen(8000,function() {
-	console.log('Run server in port 8000');
 })
 
