@@ -88,7 +88,7 @@ app.get('/ejercicios/calculoProposicional',ejercicioCalculoProposicional)
 app.get('/ejercicios/tablasDeVerdad',ejercicioTablasDeVerdad)
 
 app.get('*', function(req, res,next){
-	console.log("recurso no encontrado")
+	console.log("recurso no encontrado en la app")
 	next()
 })
 

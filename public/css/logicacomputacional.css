@@ -525,10 +525,13 @@ body {
   scrollbar-track-color: #b7bfc7;
 }
 @import url("https://fonts.googleapis.com/css?family=Lato");
-/*
-html,body,.contenedorDeAncho
-	height 100%
-*/
+html,
+body {
+  height: 100%;
+}
+.c {
+  position: relative;
+}
 input,
 textarea,
 select,
@@ -1111,6 +1114,7 @@ footer {
   border-top: 5px solid #000;
   background-color: rgba(0,0,0,0.7);
   color: #fff;
+  width: 100%;
 }
 footer .contactoRedes {
   font-size: 2em;
