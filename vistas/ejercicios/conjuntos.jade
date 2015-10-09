@@ -25,7 +25,7 @@ block content
 			h1.textoCentrado Lorem
 			p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nam quibusdam sapiente, ullam neque, aliquid debitis repellendus placeat. Minus quod similique mollitia, a et magni quis neque! Aut, tempora. Incidunt.
 			section
-				form#formConjuntos_js.formConjuntos
+				form(method="post" action="http://localhost:8000/post")#formConjuntos_js.formConjuntos
 					section.fieldset
 						p.ancho100PorCieto.textoCentrado Subconjuntos
 						input#htmlRadioConjuntosPropio_js(type='radio', name='tipiEjercicio', checked='')
@@ -34,9 +34,9 @@ block content
 						input#htmlRadioConjuntosImpropio_js(type='radio', name='tipiEjercicio')
 						label(for='htmlRadioConjuntosImpropio_js') Impropios
 					section.fieldset
-						input#nombreConjunto_js.inputCorto.inputCenterUppercase.inputBorderBottomFocus(type='text', maxlength='1', required='', autofocus='', autocomplete='off')
+						input#nombreConjunto_js.inputCorto.inputCenterUppercase.inputBorderBottomFocus(type='text', maxlength='1', required='', autofocus='', autocomplete='off' name="nombreConjunto")
 						span.corchetesConjuntos
-							input#elementosCojuntos_js.inputBorderBottomFocus.textoCentrado.nombreConjunto(formnovalidate='', type='text', required='', autocomplete='off')
+							input#elementosCojuntos_js.inputBorderBottomFocus.textoCentrado.nombreConjunto(formnovalidate='', type='text', required='', autocomplete='off' name="elementosCojuntos")
 					section.fieldset
 						button#htmlInputSubmitBtnrealizarEjercicio_js.btn.btnEnviar(type='submit', value='', autocomplete='off')
 			section#conjuntoIngresado_js.textoCentrado.textoEspecial

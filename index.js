@@ -9,7 +9,17 @@ server = http.createServer(app),
 //Definir Stylus
 stylus = require('stylus'),
 //Definir nib
-nib = require('nib')
+nib = require('nib'),
+bodyParser = require('body-parser');
+
+//app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+//app.use(bodyParser.urlencoded({ extended: true }));
+
+app.post('/post',function(request,response){
+	console.log(request.body)
+})
+
 
 //definir carpeta para vistas
 app.set('views', __dirname + '/vistas')
@@ -141,7 +151,7 @@ app.use(function(req, res) {
 	res.status(404);
 	/* respond with html page*/
 	if (req.accepts('html')) {
-		res.render('404', { url: req.url });
+		res.render('404', { inicio: req.hostname });
 		return;
 	}
 
