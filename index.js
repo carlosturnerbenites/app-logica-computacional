@@ -9,20 +9,13 @@ server = http.createServer(app),
 //Definir Stylus
 stylus = require('stylus'),
 //Definir nib
-nib = require('nib'),
-//No estoy seguro, pero creo que sirve para enviar parametos el renderizar un vista(Se utiliza aqui para poder manejar de forma simultanea handlebars y jade)
-cons = require('consolidate')
+nib = require('nib')
 
 //definir carpeta para vistas
 app.set('views', __dirname + '/vistas')
 
-//Deinir motor de vistas
-app.set('view engine', 'hbs');
-//app.set('view engine', 'jade')
-
-//Registrar motor de plantilla
-app.engine('hbs', cons.handlebars);
-
+//Definir motor de vistas
+app.set('view engine', 'jade')
 
 //funcion para compilar stylus
 function compile(str, path) {
@@ -41,46 +34,69 @@ app.use(stylus.middleware({
 //ruta estaticos
 app.use(express.static('public'))
 
+var temas = {
+	cursoUno:{
+		curso:"Calculo Proposicional",
+		urlCurso:"/cursos/calculoProposicional",
+		urlEjercicio:"/ejercicios/calculoProposicional"
+	},
+	cursoDos:{
+		curso: "Tablas de Verdad",
+		urlCurso:"/cursos/tablasDeVerdad",
+		urlEjercicio:"/ejercicios/tablasDeVerdad"
+	},
+	cursoTres:{
+		curso: "Grafos",
+		urlCurso:"/cursos/grafos",
+		urlEjercicio:"/ejercicios/grafos"
+	},
+	cursoCuatro:{
+		curso: "Conjuntos",
+		urlCurso:"/cursos/conjuntos",
+		urlEjercicio:"/ejercicios/conjuntos"
+	}
+}
+
 
 //deinificon de vistas
 function inicio(request, response,next) {
-	response.render('index.jade',{title:"heeeeeeeee"})
+	response.render('index')
 }
 function listadoCursos(request, response,next) {
-	response.render('todosLosCursos.jade')
+	response.render('todosLosCursos',{"temas":temas})
 }
 function todosLosEjercicios(request, response,next) {
-	response.render('todosLosEjercicios.jade')
+	response.render('todosLosEjercicios',{"temas":temas})
 }
 function ejercicioConjuntos(request, response,next) {
-	response.render('ejercicios/conjuntos.jade')
+	response.render('ejercicios/conjuntos')
 }
 function ejercicioGrafos(request, response,next) {
-	response.render('ejercicios/grafos.jade')
+	response.render('ejercicios/grafos')
 }
 function ejercicioCalculoProposicional(request, response,next) {
-	response.render('ejercicios/calculoProposicional.jade')
+	response.render('ejercicios/calculoProposicional')
 }
 function ejercicioTablasDeVerdad(request, response,next) {
-	response.render('ejercicios/tablasDeVerdad.jade')
+	response.render('ejercicios/tablasDeVerdad')
 }
 function cursoConjuntos(request, response,next) {
-	response.render('cursos/conjuntos.jade')
+	response.render('cursos/conjuntos')
 }
 function cursoGrafos(request, response,next) {
-	response.render('cursos/grafos.jade')
+	response.render('cursos/grafos')
 }
 function cursoCalculoProposicional(request, response,next) {
-	response.render('cursos/calculoProposicional.jade')
+	response.render('cursos/calculoProposicional')
 }
 function cursoTablasDeVerdad(request, response,next) {
-	response.render('cursos/tablasDeVerdad.jade')
+	response.render('cursos/tablasDeVerdad')
 }
 function ayuda(request, response,next) {
-	response.render('ayuda.jade')
+	response.render('ayuda')
 }
 function nosotros(request, response,next) {
-	response.render('acercaDe.jade')
+	response.render('acercaDe')
 }
 
 //Definicion de url

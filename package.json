@@ -18,9 +18,7 @@
   },
   "homepage": "https://github.com/carlosturnerbenites/AppLogicaComputacional",
   "dependencies": {
-    "consolidate": "^0.13.1",
     "express": "^4.13.3",
-    "handlebars": "^4.0.3",
     "jade": "^1.11.0",
     "nib": "^1.1.0",
     "stylus": "^0.52.4"
