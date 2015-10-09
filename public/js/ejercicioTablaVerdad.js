@@ -399,14 +399,19 @@ function proposicionSimple(porp){
 	return proposicionSimpleCompleta
 }
 
-var nuemro = 6
-for (var i = 0; i <= nuemro/2; i++) {
-	if (nuemro % 2 == 0) {
+var nuemro = 7
+if (nuemro % 2 == 0) {
+	for (var i = 0; i < nuemro/2; i++) {
 		var p = proposicionSimple(2)
 		console.log(p);
-	}else{
-		var p = proposicionSimple(1)
+	}
+}else{
+	for (var i = 0; i < nuemro/2; i++) {
+		if (i == 1 || nuemro == 1) {
+			var p = proposicionSimple(1)
+		}else{
+			var p = proposicionSimple(2)
+		}
 		console.log(p);
 	}
-	nuemro -= Math.floor(nuemro/2)
 }
