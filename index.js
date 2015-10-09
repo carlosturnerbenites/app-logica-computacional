@@ -14,6 +14,8 @@ nib = require('nib')
 //definir carpeta para vistas
 app.set('views', __dirname + '/vistas')
 
+//nom comprimir html con jade
+app.locals.pretty = true;
 //Definir motor de vistas
 app.set('view engine', 'jade')
 
@@ -24,6 +26,13 @@ function compile(str, path) {
 	.use(nib())
 }
 
+//middleware para eliminar la barra invertida del final de una url
+app.use(function(req, res, next) {
+	if(req.url.substr(-1) == '/' && req.url.length > 1)
+		res.redirect(301, req.url.slice(0, -1));
+	else
+		next();
+});
 //definir el middleware de stylus y sus parametros
 app.use(stylus.middleware({
 	src: __dirname + '/public/stylus',
@@ -54,6 +63,16 @@ var temas = {
 		curso: "Conjuntos",
 		urlCurso:"/cursos/conjuntos",
 		urlEjercicio:"/ejercicios/conjuntos"
+	}
+}
+var shortcuts = {
+	ayuda:{
+		tecla:"?",
+		descripcion:"Desplegar Ayuda"
+	},
+	limpiar:{
+		tecla:"¡",
+		descripcion:"Desplegar Ayuda"
 	}
 }
 
@@ -93,7 +112,7 @@ function cursoTablasDeVerdad(request, response,next) {
 	response.render('cursos/tablasDeVerdad')
 }
 function ayuda(request, response,next) {
-	response.render('ayuda')
+	response.render('ayuda',{"shortcuts":shortcuts})
 }
 function nosotros(request, response,next) {
 	response.render('acercaDe')
@@ -117,12 +136,30 @@ app.get('/ejercicios/calculoProposicional',ejercicioCalculoProposicional)
 app.get('/ejercicios/tablasDeVerdad',ejercicioTablasDeVerdad)
 
 
-//definir url no definidas
-app.get('*', function(req, res,next){
-	console.log("recurso no encontrado en la app")
-	next()
-})
+/*error perzonalizado de archivo no encontrado*/
+app.use(function(req, res) {
+	res.status(404);
+	/* respond with html page*/
+	if (req.accepts('html')) {
+		res.render('404', { url: req.url });
+		return;
+	}
 
+	/* respond with json*/
+	if (req.accepts('json')) {
+		res.send({ error: 'Not found' });
+		return;
+	}
+
+	/*default to plain-text. send()*/
+	res.type('txt').send('Not found');
+
+});
+/*error perzonalizado del servidor*/
+app.use(function(err, req, res, next){
+	res.status(err.status || 500);
+	res.render('500', { error: err });
+});
 //Configurra el puerto de escucha
 //"process.env.PORT" es una variable que hace referencia al puerto a escuchar - Utilizada para heroku
 server.listen(process.env.PORT || 8000)

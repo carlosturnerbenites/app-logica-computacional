@@ -34,11 +34,11 @@ function teclapresionada(evento){
 	var nombreTeclaPresionado = String.fromCharCode(evento.keyCode)
 	var codigoTeclaPresionado = evento.keyCode
 
-	if(evento.shiftKey && nombreTeclaPresionado.toLowerCase() == "a"){
+	if(evento.shiftKey && nombreTeclaPresionado == "?"){
 		btnAyuda.click()
 	}
 
-	if(evento.shiftKey && nombreTeclaPresionado.toLowerCase() == "b"){
+	if(evento.shiftKey && nombreTeclaPresionado == "¡"){
 		limpiarLienzo()
 
 	}

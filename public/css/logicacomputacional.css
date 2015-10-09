@@ -646,6 +646,9 @@ figure {
 .cancelarMargin {
   margin: 0 !important;
 }
+.cursorPointer {
+  cursor: pointer;
+}
 .positionFija {
   position: fixed;
 }
@@ -667,6 +670,9 @@ figure {
 }
 .ancho100PorCieto {
   width: 100%;
+}
+.alto100PorCieto {
+  height: 100%;
 }
 .displayFlexCenterTotal {
   display: -webkit-box;
@@ -1175,6 +1181,15 @@ footer .acciones {
 }
 /*
 +-----------------------+
+|	Errores de pagina	|
++-----------------------+
+*/
+.error .code {
+  font-size: 6em;
+  margin: 10px 0;
+}
+/*
++-----------------------+
 |	Tablas de Verdad	|
 +-----------------------+
 */
@@ -1274,9 +1289,9 @@ table input {
 +-----------------------------------+
 */
 .contenedorTeclas p {
-  display: inline-block;
+  display: inline-block !important;
 }
-.contenedorTeclas .tecla {
+.tecla {
   color: #fff;
   -webkit-border-radius: 5px;
   border-radius: 5px;

@@ -1,0 +1,12 @@
+extends templates/templateCursosEjercicios.jade
+
+block content
+	section.alto100PorCieto.displayFlexCenterTotal
+		section.textoCentrado.error
+			p.textoDescripcion Disculpa,Erro Interno
+			p.code 500
+			a#BackURL(href="") volver a la pagina anterior
+
+			block script
+				script.
+					document.getElementById("BackURL").addEventListener("click",function(){window.history.back()})

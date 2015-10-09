@@ -40,7 +40,8 @@ function dibujarCirculo(evento){
 
 
 		var cxActuales = evento.clientX
-		var cyActuales = evento.clientY - heightContenedorPrincipal
+		var cyActuales = evento.clientY
+		console.log(cxActuales,cyActuales);
 
 		htmlCircleVerticeDelGrafo.setAttribute("cx",cxActuales)
 		htmlCircleVerticeDelGrafo.setAttribute("cy",cyActuales)
