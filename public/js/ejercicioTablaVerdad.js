@@ -1,54 +1,54 @@
 //inicializacion de variables
 var valoresCampo = []
-var valoresCampos = []
+,valoresCampos = []
 
 //Filas de la tabla de verdad
-var respuestas = []
+,respuestas = []
 
 //Simbolo de las operaciones de los conjuntos
 var simbolosOperacion =  ["Λ","v","→","⇔"]
 
 //valores posibles de una Tablas de Verdad
-var posiblesValores = ["V", "F"]
+,posiblesValores = ["V", "F"]
 
 //posibles nombre de las proposiciones
-var proposiciones = ["p","q","r","s","t","u","v","w","x","y"]
+,proposiciones = ["p","q","r","s","t","u","v","w","x","y"]
 
 //solucion a las cinco operaciones basicas de las tablas de verdad
-var conjuncion =[["p","q","p Λ q"],
+,conjuncion =[["p","q","p Λ q"],
 ["V","V","V"],
 ["V","F","F"],
 ["F","V","F"],
 ["F","F","F"]]
-var disjuncion = [["p","q","p v q"],
+,disjuncion = [["p","q","p v q"],
 ["V","V","F"],
 ["V","F","F"],
 ["F","V","F"],
 ["F","F","V"]]
-var condicional = [["p","q","p → q"],
+,condicional = [["p","q","p → q"],
 ["V","V","F"],
 ["V","F","V"],
 ["F","V","F"],
 ["F","F","F"]]
-var bicondicional = [["p","q","p ⇔ q"],
+,bicondicional = [["p","q","p ⇔ q"],
 ["V","V","V"],
 ["V","F","F"],
 ["F","V","F"],
 ["F","F","V"]]
-var negacion = [["p","¬p"],
+,negacion = [["p","¬p"],
 ["V","F"],
 ["F","V"]]
 
 var sectionTablasVerdad = document.getElementById("sectionTablasVerdad_js")
-var htmlFormRespuestaUsuario = document.getElementById("htmlFormRespuestaUsuario_js")
-var htmlFormEjercicioPropuestoTablasVerdad = document.getElementById("htmlFormEjercicioPropuestoTablasVerdad_js")
-var htmSectionContenedoraEjercicioPropuestoTablasVerdad = document.getElementById("sectionTablasVerdad_js")
+,htmlFormRespuestaUsuario = document.getElementById("htmlFormRespuestaUsuario_js")
+,htmlFormEjercicioPropuestoTablasVerdad = document.getElementById("htmlFormEjercicioPropuestoTablasVerdad_js")
+,htmSectionContenedoraEjercicioPropuestoTablasVerdad = document.getElementById("sectionTablasVerdad_js")
+,htmlInputNumeroProposicionesEscogidasPorUsuario = document.getElementById("htmlInputNumeroProposicionesEscogidasPorUsuario_js")
+,numeroCombinacionesPosibles = 0
 
-var htmlInputNumeroProposicionesEscogidasPorUsuario = document.getElementById("htmlInputNumeroProposicionesEscogidasPorUsuario_js")
-var numeroCombinacionesPosibles
 var limite = 0
+,maximaCantidadDeProposiciones = 5
 
-var maximaCantidadDeProposiciones = 5
 htmlInputNumeroProposicionesEscogidasPorUsuario.setAttribute("max", maximaCantidadDeProposiciones)
 htmlInputNumeroProposicionesEscogidasPorUsuario.setAttribute("min", 0)
 
@@ -83,12 +83,12 @@ function crearEjercicio(evento) {
 		}else{
 
 			for (var posicion = 0; posicion < ejercicioPropuesto.length-1; posicion++) {
-
+				console.log('........------------------');
 				ejercicioPropuesto[posicion] += " " + simbolosOperacion[numeroAleatorio(simbolosOperacion.length,0)] + " "
+				console.log(ejercicioPropuesto);
 
 			}
 
-			console.log(ejercicioPropuesto.join(""))
 			htmlThColumnasEjercicioPropuesto.innerHTML = ejercicioPropuesto.join("")
 
 		}
@@ -369,3 +369,44 @@ function marcarColumna(){
 
 htmlFormEjercicioPropuestoTablasVerdad.addEventListener("submit", crearEjercicio)
 htmlFormRespuestaUsuario.addEventListener("submit", capturarRespuesta)
+
+
+function negacionFunc(proposicion) {
+	var negar = numeroAleatorio(2,0)
+	if (negar == 1 ){
+		proposicion = "!"+proposicion
+	}
+	return proposicion
+}
+
+function generarProposicionSimpleCompleta(proposicionUno,operacion,proposicionDos) {
+	var proposicionSimpleCompleta = "(" + proposicionUno + " " + operacion + " " + proposicionDos + ")"
+	return proposicionSimpleCompleta
+}
+
+function proposicionSimple(porp){
+
+	var operacion = simbolosOperacion[numeroAleatorio(simbolosOperacion.length,0)]
+	if (porp == 1) {
+		var proposicionSimpleCompleta = negacionFunc(proposiciones[numeroAleatorio(proposiciones.length,0)])
+
+	}else{
+		var proposicionUnoCompleta = negacionFunc(proposiciones[numeroAleatorio(proposiciones.length,0)])
+		var proposicionDosCompleta = negacionFunc(proposiciones[numeroAleatorio(proposiciones.length,0)])
+
+		var proposicionSimpleCompleta = generarProposicionSimpleCompleta(proposicionUnoCompleta,operacion,proposicionDosCompleta)
+	}
+	return proposicionSimpleCompleta
+}
+
+var nuemro = 6
+for (var i = 0; i <= nuemro/2; i++) {
+	if (nuemro % 2 == 0) {
+		var p = proposicionSimple(2)
+		console.log(p);
+	}else{
+		var p = proposicionSimple(1)
+		console.log(p);
+	}
+	nuemro -= Math.floor(nuemro/2)
+}
