@@ -58,6 +58,21 @@ function crearEjercicio(evento) {
 	evento.preventDefault()
 
 	var numeroProposicionesEscogidasPorusuario = Number(htmlInputNumeroProposicionesEscogidasPorUsuario.value)
+
+	/**/
+
+	for (var i = 0; i < numeroProposicionesEscogidasPorusuario; i++) {
+		var letraProposicion = proposiciones[numeroAleatorio(proposiciones.length,0)]
+		console.log(letraProposicion);
+		var eval(letraProposicion) = new proposicion()
+		letraProposicion.letra = letraProposicion
+
+
+		console.log(eval(letraProposicion))
+	}
+
+	/**/
+
 	numeroCombinacionesPosibles = Math.pow(2,numeroProposicionesEscogidasPorusuario)
 	var ejercicioPropuesto = new Array()
 
@@ -359,10 +374,52 @@ function marcarColumna(){
 
 	}
 }
+function and(proposiciones) {
+	this.operar = function(){
+		var resultado = proposiciones.pUno.valor && proposiciones.pDos.valor
+		return resultado
+	}
+}
+function or(proposiciones) {
+	this.operar = function(){
+		var resultado = proposiciones.pUno.valor || proposiciones.pDos.valor
+		return resultado
+
+	}
+}
+function conditional(proposiciones) {
+	this.operar = function(){
+		var resultado = !proposiciones.pUno.valor || proposiciones.pDos.valor
+		return resultado
+
+	}
+}
+function biconditional(proposiciones) {
+	this.operar = function(){
+		var resultado = (proposiciones.pUno.valor && proposiciones.pDos.valor) || (!proposiciones.pUno.valor && !proposiciones.pDos.valor)
+		return resultado
+	}
+}
+
+function proposicion(){
+	this.letra = new String(),
+	this.negacion = new Boolean(),
+	this.valor = new Boolean(),
+	this.negar = function(){
+		if (this.negacion){
+			this.valor = !this.valor
+			this.letra = "!" + this.letra
+		}
+	},
+	this.getPorposicion = function() {
+		var data = {
+			letra:this.letra,
+			valorBoleano:this.valor
+		}
+		return data
+	}
+}
+
 
 htmlFormEjercicioPropuestoTablasVerdad.addEventListener("submit", crearEjercicio)
 htmlFormRespuestaUsuario.addEventListener("submit", capturarRespuesta)
-
-
-
-
