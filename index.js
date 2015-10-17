@@ -9,23 +9,14 @@ server = http.createServer(app),
 //Definir Stylus
 stylus = require('stylus'),
 //Definir nib
-nib = require('nib'),
-bodyParser = require('body-parser');
-
-//app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-//app.use(bodyParser.urlencoded({ extended: true }));
-
-app.post('/post',function(request,response){
-	console.log(request.body)
-})
-
+nib = require('nib')
 
 //definir carpeta para vistas
 app.set('views', __dirname + '/vistas')
 
-//nom comprimir html con jade
+//no comprimir html con jade
 app.locals.pretty = true;
+
 //Definir motor de vistas
 app.set('view engine', 'jade')
 
@@ -42,7 +33,8 @@ app.use(function(req, res, next) {
 		res.redirect(301, req.url.slice(0, -1));
 	else
 		next();
-});
+})
+
 //definir el middleware de stylus y sus parametros
 app.use(stylus.middleware({
 	src: __dirname + '/public/stylus',
@@ -85,6 +77,7 @@ var shortcuts = {
 		descripcion:"Desplegar Ayuda"
 	}
 }
+
 
 
 //deinificon de vistas
@@ -163,13 +156,14 @@ app.use(function(req, res) {
 
 	/*default to plain-text. send()*/
 	res.type('txt').send('Not found');
+})
 
-});
 /*error perzonalizado del servidor*/
 app.use(function(err, req, res, next){
 	res.status(err.status || 500);
 	res.render('500', { error: err });
-});
+})
+
 //Configurra el puerto de escucha
 //"process.env.PORT" es una variable que hace referencia al puerto a escuchar - Utilizada para heroku
 server.listen(process.env.PORT || 8000)

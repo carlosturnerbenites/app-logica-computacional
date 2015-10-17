@@ -63,7 +63,7 @@ function validarConjunto(elementosCojuntos){
 function capturarConjunto(evento) {
 
 
-	//evento.preventDefault()
+	evento.preventDefault()
 
 	formConjuntos.removeEventListener("submit", capturarConjunto)
 

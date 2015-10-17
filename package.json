@@ -18,10 +18,12 @@
   },
   "homepage": "https://github.com/carlosturnerbenites/AppLogicaComputacional",
   "dependencies": {
-    "body-parser": "^1.14.1",
     "express": "^4.13.3",
+    "body-parser": "^1.14.1",
+    "express-form": "^0.12.4",
     "jade": "^1.11.0",
     "nib": "^1.1.0",
-    "stylus": "^0.52.4"
+    "stylus": "^0.52.4",
+    "supervisor": "^0.9.1"
   }
 }

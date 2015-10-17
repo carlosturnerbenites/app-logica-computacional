@@ -301,10 +301,7 @@ function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuesta
 	}
 
 	crearYMostrarMensaje(estadoActual)
-
 }
-
-
 
 
 function reiniciarEjercicio() {
@@ -313,8 +310,6 @@ function reiniciarEjercicio() {
 	htmlFormEjercicioPropuestoTablasVerdad.addEventListener("submit", crearEjercicio)
 	htmlFormRespuestaUsuario.addEventListener("submit", capturarRespuesta)
 	habilitarInhabilitarFormulario(htmlFormEjercicioPropuestoTablasVerdad)
-
-
 }
 
 function crearAgregarFila(evento){
@@ -340,7 +335,6 @@ function crearAgregarFila(evento){
 		htmlThColumnasEjercicioPropuesto.addEventListener("dblclick", marcarColumna)
 
 	}
-
 }
 
 function marcarColumna(){
@@ -364,54 +358,11 @@ function marcarColumna(){
 		}
 
 	}
-
 }
 
 htmlFormEjercicioPropuestoTablasVerdad.addEventListener("submit", crearEjercicio)
 htmlFormRespuestaUsuario.addEventListener("submit", capturarRespuesta)
 
 
-function negacionFunc(proposicion) {
-	var negar = numeroAleatorio(2,0)
-	if (negar == 1 ){
-		proposicion = "!"+proposicion
-	}
-	return proposicion
-}
 
-function generarProposicionSimpleCompleta(proposicionUno,operacion,proposicionDos) {
-	var proposicionSimpleCompleta = "(" + proposicionUno + " " + operacion + " " + proposicionDos + ")"
-	return proposicionSimpleCompleta
-}
 
-function proposicionSimple(porp){
-
-	var operacion = simbolosOperacion[numeroAleatorio(simbolosOperacion.length,0)]
-	if (porp == 1) {
-		var proposicionSimpleCompleta = negacionFunc(proposiciones[numeroAleatorio(proposiciones.length,0)])
-
-	}else{
-		var proposicionUnoCompleta = negacionFunc(proposiciones[numeroAleatorio(proposiciones.length,0)])
-		var proposicionDosCompleta = negacionFunc(proposiciones[numeroAleatorio(proposiciones.length,0)])
-
-		var proposicionSimpleCompleta = generarProposicionSimpleCompleta(proposicionUnoCompleta,operacion,proposicionDosCompleta)
-	}
-	return proposicionSimpleCompleta
-}
-
-var nuemro = 7
-if (nuemro % 2 == 0) {
-	for (var i = 0; i < nuemro/2; i++) {
-		var p = proposicionSimple(2)
-		console.log(p);
-	}
-}else{
-	for (var i = 0; i < nuemro/2; i++) {
-		if (i == 1 || nuemro == 1) {
-			var p = proposicionSimple(1)
-		}else{
-			var p = proposicionSimple(2)
-		}
-		console.log(p);
-	}
-}
