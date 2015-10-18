@@ -52,6 +52,17 @@ var limite = 0
 htmlInputNumeroProposicionesEscogidasPorUsuario.setAttribute("max", maximaCantidadDeProposiciones)
 htmlInputNumeroProposicionesEscogidasPorUsuario.setAttribute("min", 0)
 
+var arrayProposiciones = new Array()
+var proposicionesCompuesta = new Array()
+
+function crearProposicionCompuesta(props) {
+	console.log(props);
+	while(props.length >= 2 && props.length%2 == 0){
+		var auxCont = 0
+		var
+	}
+
+}
 
 function crearEjercicio(evento) {
 
@@ -63,14 +74,16 @@ function crearEjercicio(evento) {
 
 	for (var i = 0; i < numeroProposicionesEscogidasPorusuario; i++) {
 		var letraProposicion = proposiciones[numeroAleatorio(proposiciones.length,0)]
-		console.log(letraProposicion);
-		var eval(letraProposicion) = new proposicion()
-		letraProposicion.letra = letraProposicion
+		var prop = new proposicion()
+		prop["letra"] = letraProposicion
+		prop["negacion"] = getValuBoolean()
+		prop["valorBoleano"] = getValuBoolean()
+		prop.getProposicion()
 
+		arrayProposiciones.push(prop)
 
-		console.log(eval(letraProposicion))
 	}
-
+	crearProposicionCompuesta(arrayProposiciones)
 	/**/
 
 	numeroCombinacionesPosibles = Math.pow(2,numeroProposicionesEscogidasPorusuario)
@@ -98,9 +111,7 @@ function crearEjercicio(evento) {
 		}else{
 
 			for (var posicion = 0; posicion < ejercicioPropuesto.length-1; posicion++) {
-				console.log('........------------------');
 				ejercicioPropuesto[posicion] += " " + simbolosOperacion[numeroAleatorio(simbolosOperacion.length,0)] + " "
-				console.log(ejercicioPropuesto);
 
 			}
 
@@ -221,7 +232,6 @@ function capturarRespuesta(evento) {
 
 				valoreboleano.push(boleano)
 			}
-			console.log(nombreFila[i],boleano);
 		}
 		valoresboleanos.push(valoreboleano)
 
@@ -229,7 +239,6 @@ function capturarRespuesta(evento) {
 		//reinicializar variable
 		valoresCampo = []
 	}
-	console.log(valoresboleanos);
 	validarRespuesta(valoresCampos,valueOperacionEscogida,inputsDeRespuesta)
 }
 
@@ -287,9 +296,6 @@ function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuesta
 		var HTMLSpanIconoBtn = document.createElement("span")
 		HTMLSpanIconoBtn.classList.add(iconoBtnVolver,"marginIconos")
 		btnVolver.insertBefore(HTMLSpanIconoBtn, btnVolver.firstChild)
-		console.log("-----------------");
-		console.log(inputsDeRespuestaCapturados);
-		console.log("-----------------");
 		for (var l = 0; l < inputsDeRespuestaCapturados.length; l++) {
 
 			inputsDeRespuestaCapturados[l].disabled = true
@@ -376,45 +382,51 @@ function marcarColumna(){
 }
 function and(proposiciones) {
 	this.operar = function(){
-		var resultado = proposiciones.pUno.valor && proposiciones.pDos.valor
+		var resultado = proposiciones.pUno.valorBoleano && proposiciones.pDos.valorBoleano
 		return resultado
 	}
 }
 function or(proposiciones) {
 	this.operar = function(){
-		var resultado = proposiciones.pUno.valor || proposiciones.pDos.valor
+		var resultado = proposiciones.pUno.valorBoleano || proposiciones.pDos.valorBoleano
 		return resultado
 
 	}
 }
 function conditional(proposiciones) {
 	this.operar = function(){
-		var resultado = !proposiciones.pUno.valor || proposiciones.pDos.valor
+		var resultado = !proposiciones.pUno.valorBoleano || proposiciones.pDos.valorBoleano
 		return resultado
 
 	}
 }
 function biconditional(proposiciones) {
 	this.operar = function(){
-		var resultado = (proposiciones.pUno.valor && proposiciones.pDos.valor) || (!proposiciones.pUno.valor && !proposiciones.pDos.valor)
+		var resultado = (proposiciones.pUno.valorBoleano && proposiciones.pDos.valorBoleano) || (!proposiciones.pUno.valorBoleano && !proposiciones.pDos.valorBoleano)
 		return resultado
 	}
+}
+
+function getValuBoolean(){
+	var aux = numeroAleatorio(2,0)
+	return !!aux
 }
 
 function proposicion(){
 	this.letra = new String(),
 	this.negacion = new Boolean(),
-	this.valor = new Boolean(),
+	this.valorBoleano = new Boolean(),
 	this.negar = function(){
 		if (this.negacion){
-			this.valor = !this.valor
+			this.valorBoleano = !this.valorBoleano
 			this.letra = "!" + this.letra
 		}
 	},
-	this.getPorposicion = function() {
+	this.getProposicion = function() {
+		this.negar()
 		var data = {
 			letra:this.letra,
-			valorBoleano:this.valor
+			valorBoleano:this.valorBoleano
 		}
 		return data
 	}

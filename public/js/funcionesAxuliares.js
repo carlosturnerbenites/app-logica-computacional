@@ -117,15 +117,6 @@ Syntax:
 ordenarAlfabeticamente(array a ordenar alfabeticamente(Array))
 */
 function ordenarAlfabeticamente(array){
-	/*
-	console.log(String(array) );
-	console.log( String(array.sort()));
-
-	if (String(array) != String(array.sort())) {
-		console.log("el conjunto esta desordenado");
-	}else{
-		console.log('el conjunto esta ordenado');
-	}*/
 	for (var i = 0; i < array.length; i++) {
 		array[i] = array[i].split("").sort().join("")
 	};
@@ -201,7 +192,6 @@ function habilitarInhabilitarFormulario(elemento) {
 
 	var elementosForm = convertirHTMLCollectionEnArray(elemento.elements)
 
-	console.log(elementosForm);
 
 	for (var index = 0; index < elementosForm.length; index++) {
 

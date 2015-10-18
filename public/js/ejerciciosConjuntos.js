@@ -191,12 +191,10 @@ function validarRespuesta(evento) {
 			binario = decimalToBinary(i)
 			binary.push(binario)
 		}
-		console.log(binary);
 		completarBinarios(binary,elementosCojuntos.length)
 
 		conjuntoSolucion = crearRespuesta(elementosCojuntos,binary)
-		console.log(conjuntoSolucion);
-
+		
 
 
 		var elementosRespuestaEnviadaOrdenada = ordenarAlfabeticamente(elementosRespuestaEnviada)

@@ -28,7 +28,7 @@ var posicionAux = 0
 var continuarAux = new Boolean()
 
 function dibujarCirculo(evento){
-
+	console.log('jejejejeej');
 	if(evento.which == 1){
 
 		var nombreVertice = nombreVertices[posicionAux]
@@ -41,7 +41,6 @@ function dibujarCirculo(evento){
 
 		var cxActuales = evento.clientX
 		var cyActuales = evento.clientY
-		console.log(cxActuales,cyActuales);
 
 		htmlCircleVerticeDelGrafo.setAttribute("cx",cxActuales)
 		htmlCircleVerticeDelGrafo.setAttribute("cy",cyActuales)
@@ -189,7 +188,6 @@ function circuloPresionado(evento) {
 	/*Si se presiona el boton Derecho se inicia el proceso de arrastre y soltar*/
 	else if(evento.which == 3){
 
-		console.log('drag drag')
 
 	}
 	/*Si se presiona la rueda del raton, se inicia el proceso para eleminar un vertice(elemento "circle") y sus aristas asociadas(elemento "line")*/
