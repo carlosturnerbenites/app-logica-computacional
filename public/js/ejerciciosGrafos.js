@@ -28,8 +28,10 @@ var posicionAux = 0
 var continuarAux = new Boolean()
 
 function dibujarCirculo(evento){
+	console.log(evento.pageX);
 	console.log('jejejejeej');
-	if(evento.which == 1){
+	if(true){
+	//if(evento.which == 1){
 
 		var nombreVertice = nombreVertices[posicionAux]
 		var htmlCircleVerticeDelGrafo = document.createElementNS(namespaceURI, "circle")

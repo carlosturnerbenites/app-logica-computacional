@@ -53,15 +53,12 @@ htmlInputNumeroProposicionesEscogidasPorUsuario.setAttribute("max", maximaCantid
 htmlInputNumeroProposicionesEscogidasPorUsuario.setAttribute("min", 0)
 
 var arrayProposiciones = new Array()
+var arrayaux = new Array()
 var proposicionesCompuesta = new Array()
 
 function crearProposicionCompuesta(props) {
-	console.log(props);
-	while(props.length >= 2 && props.length%2 == 0){
-		var auxCont = 0
-		var
-	}
 
+	console.log(props);
 }
 
 function crearEjercicio(evento) {
@@ -71,7 +68,7 @@ function crearEjercicio(evento) {
 	var numeroProposicionesEscogidasPorusuario = Number(htmlInputNumeroProposicionesEscogidasPorUsuario.value)
 
 	/**/
-
+	var star = 0
 	for (var i = 0; i < numeroProposicionesEscogidasPorusuario; i++) {
 		var letraProposicion = proposiciones[numeroAleatorio(proposiciones.length,0)]
 		var prop = new proposicion()
@@ -80,8 +77,31 @@ function crearEjercicio(evento) {
 		prop["valorBoleano"] = getValuBoolean()
 		prop.getProposicion()
 
-		arrayProposiciones.push(prop)
 
+		arrayProposiciones.push(prop)
+		proposicionesCompuesta.push(prop)
+		/*
+		console.group("base")
+		console.log(arrayProposiciones);
+		console.groupEnd()
+		*/
+		if ((i+1)%2 == 0){
+			console.log(arrayProposiciones);
+			console.warn('entro');
+
+			//arrayProposiciones = []
+			arrayProposiciones.push(proposicionesCompuesta)
+
+			arrayProposiciones.splice(star, 2)
+
+			proposicionesCompuesta = []
+
+			console.group("valores")
+			console.log(star);
+			console.groupEnd()
+
+			star+=1
+		};
 	}
 	crearProposicionCompuesta(arrayProposiciones)
 	/**/
