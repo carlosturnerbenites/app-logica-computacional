@@ -23,6 +23,10 @@ var cxIniciales, cyIniciales
 var cxFinales, cyFinales
 var nombreVerticeInicial, nombreVerticeFinal
 
+var cxElementEnMovimiento
+,cyElementEnMovimiento
+,posicionCirculo
+
 var posicionAux = 0
 /*Variable Auxiliar utilizada para bloquear el flujo de creacion de un elemento "line". Si al crear el elemento se confirma que este ya existe, entonces no se continuacion con la creacion; por el contrario se prosigue con la creacion e insercion del elemento.*/
 var continuarAux = new Boolean()
@@ -30,8 +34,8 @@ var continuarAux = new Boolean()
 function dibujarCirculo(evento){
 	console.log(evento.pageX);
 	console.log('jejejejeej');
-	if(true){
-	//if(evento.which == 1){
+
+	if(evento.which == 1){
 
 		var nombreVertice = nombreVertices[posicionAux]
 		var htmlCircleVerticeDelGrafo = document.createElementNS(namespaceURI, "circle")
@@ -86,7 +90,7 @@ function removerElementoLinea(evento) {
 }
 
 /*refactor nombre variable "name".*/
-function dibujarLinea(x1,y1,x2,y2,contenedor,clase,name) {
+function dibujarLinea(x1,y1,x2,y2,contenedor,clase,name,origen,destino) {
 
 	/*definicion de variable que contendra el nombre de la arista(elementos "line"), creado apartir del atributo "name" de la misma.*/
 	var nombreAristaExistente
@@ -132,6 +136,8 @@ function dibujarLinea(x1,y1,x2,y2,contenedor,clase,name) {
 		htmlLineAristaDelGrafo.setAttribute("x2",x2)
 		htmlLineAristaDelGrafo.setAttribute("y2",y2)
 		htmlLineAristaDelGrafo.setAttribute("name",name)
+		htmlLineAristaDelGrafo.setAttribute("origen",origen)
+		htmlLineAristaDelGrafo.setAttribute("destino",destino)
 
 		/*Envio de clases CSS al elemento "line"*/
 		htmlLineAristaDelGrafo.classList.add(clase)
@@ -169,6 +175,79 @@ function limpiarLienzo() {
 
 }
 
+
+
+var lineasDelVertice = new Array()
+
+
+
+function cambiarPosisionElmento(evento) {
+	var posicionLinea
+	var lineaDelVertice = new Array()
+
+	var aristasExistentes = htmlSvgLienzoGrafoAristas.childNodes
+
+	var nuevaPosicionX = evento.clientX
+	var nuevaPosicionY = evento.clientY
+	var nombreCirculo = this.getAttribute("name")
+
+	for (var j = 0; j < aristasExistentes.length; j++) {
+		if (nombreCirculo == aristasExistentes[j].getAttribute("origen") || nombreCirculo == aristasExistentes[j].getAttribute("destino")){
+			lineaDelVertice.push(aristasExistentes[j])
+		}
+	}
+	for (var i = 0; i <= lineaDelVertice.length; i++) {
+		if (lineaDelVertice[i] != undefined){
+			if (nombreCirculo == lineaDelVertice[i].getAttribute("origen")){
+
+				lineaDelVertice[i].setAttribute("x1", nuevaPosicionX)
+				lineaDelVertice[i].setAttribute("y1", nuevaPosicionY)
+			}else{
+				lineaDelVertice[i].setAttribute("x2", nuevaPosicionX)
+				lineaDelVertice[i].setAttribute("y2", nuevaPosicionY)
+
+			}
+		}
+	}
+
+	document.getElementById(nombreCirculo).setAttribute("x", nuevaPosicionX)
+	document.getElementById(nombreCirculo).setAttribute("y", nuevaPosicionY)
+
+	this.setAttribute("cx", nuevaPosicionX)
+	this.setAttribute("cy", nuevaPosicionY)
+
+}
+
+
+
+
+
+
+
+
+
+function terminarMoverElemento(evento) {
+	console.log('cancelando');
+	this.removeEventListener("mousemove", cambiarPosisionElmento)
+}
+function moverElemento(evento) {
+	if (evento.which == 3){
+
+		cxElementEnMovimiento = this.getAttribute("cx")
+		cyElementEnMovimiento = this.getAttribute("cy")
+		posicionCirculo = cxElementEnMovimiento+","+cyElementEnMovimiento
+
+		this.addEventListener("mousemove", cambiarPosisionElmento)
+	}
+}
+
+
+
+
+
+
+
+
 /*Funcion encargada de ecoger que accion ejecutar sobre un elemento segun el boton del mouse oprimido*/
 function circuloPresionado(evento) {
 
@@ -189,7 +268,9 @@ function circuloPresionado(evento) {
 	}
 	/*Si se presiona el boton Derecho se inicia el proceso de arrastre y soltar*/
 	else if(evento.which == 3){
-
+		console.log('drag');
+		this.addEventListener("mousedown", moverElemento)
+		this.addEventListener("mouseup", terminarMoverElemento)
 
 	}
 	/*Si se presiona la rueda del raton, se inicia el proceso para eleminar un vertice(elemento "circle") y sus aristas asociadas(elemento "line")*/
@@ -233,8 +314,10 @@ function circuloDesprecionado(evento) {
 		cyFinales = this.getAttribute("cy")
 
 		var nombreNuevaArista = nombreVerticeInicial + conectorDireccionalDeVertices + nombreVerticeFinal
+		,origen = nombreVerticeInicial
+		,destino = nombreVerticeFinal
 
-		dibujarLinea(cxIniciales,cyIniciales,cxFinales,cyFinales,htmlSvgLienzoGrafoAristas,"lineGrafo",nombreNuevaArista)
+		dibujarLinea(cxIniciales,cyIniciales,cxFinales,cyFinales,htmlSvgLienzoGrafoAristas,"lineGrafo",nombreNuevaArista,origen,destino)
 
 	}
 
@@ -248,16 +331,18 @@ function dibujarGrilla() {
 	var lienzoWidth = lienzo.clientWidth
 
 	/*Se define el nombre de las lineas de la grilla(elementos "line").*/
-	nombreLineasGrilla = "lineasGrilla"
+	var nombreLineasGrilla = "lineasGrilla"
+	,origen = "/"
+	,destino = "/"
 
 	/*Se crean la lineas Verticales de la grilla.*/
 	for (var j = 0; j <= lienzoHeight; j+=20) {
-		dibujarLinea(0,j,lienzoWidth,j,htmlSvgLienzoGrilla,"lineGilla",nombreLineasGrilla)
+		dibujarLinea(0,j,lienzoWidth,j,htmlSvgLienzoGrilla,"lineGilla",nombreLineasGrilla,origen,destino)
 	}
 
 	/*Se crean la lineas Horizontales de la grilla.*/
 	for (var i = 0; i <= lienzoWidth; i+=20) {
-		dibujarLinea(i,0,i,lienzoHeight,htmlSvgLienzoGrilla,"lineGilla",nombreLineasGrilla)
+		dibujarLinea(i,0,i,lienzoHeight,htmlSvgLienzoGrilla,"lineGilla",nombreLineasGrilla,origen,destino)
 	}
 
 }
