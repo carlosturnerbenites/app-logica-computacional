@@ -32,8 +32,6 @@ var posicionAux = 0
 var continuarAux = new Boolean()
 
 function dibujarCirculo(evento){
-	console.log(evento.pageX);
-	console.log('jejejejeej');
 
 	if(evento.which == 1){
 
@@ -71,9 +69,9 @@ function removerElementoLinea(evento) {
 
 	evento.preventDefault()
 
-	if (confirm(mensajeDeConfirmacionDeBorradoDeElemento_s)) {
+	if (evento.which == 2) {
+		if (confirm(mensajeDeConfirmacionDeBorradoDeElemento_s)) {
 
-		if (evento.which == 2) {
 
 			var estadoActual = {
 				msg : "La line se borro",
@@ -181,25 +179,41 @@ var lineasDelVertice = new Array()
 
 
 
-function cambiarPosisionElmento(evento) {
-	var posicionLinea
+
+
+/*se oprime sobre un nod para empezar el evento drag*/
+function preparandoDrag(evento) {
+	if (evento.which == 3){
+
+		cxElementEnMovimiento = this.getAttribute("cx")
+		cyElementEnMovimiento = this.getAttribute("cy")
+		posicionCirculo = cxElementEnMovimiento+","+cyElementEnMovimiento
+
+		this.addEventListener("mousemove", drag)
+	}
+}
+
+/*se inicia el drag*/
+function drag(evento) {
 	var lineaDelVertice = new Array()
 
 	var aristasExistentes = htmlSvgLienzoGrafoAristas.childNodes
 
 	var nuevaPosicionX = evento.clientX
-	var nuevaPosicionY = evento.clientY
-	var nombreCirculo = this.getAttribute("name")
+	,nuevaPosicionY = evento.clientY
+	,nombreCirculo = this.getAttribute("name")
+	,letra =document.getElementById(nombreCirculo)
 
+	/*mover lineas asociadas al nodo*/
 	for (var j = 0; j < aristasExistentes.length; j++) {
 		if (nombreCirculo == aristasExistentes[j].getAttribute("origen") || nombreCirculo == aristasExistentes[j].getAttribute("destino")){
 			lineaDelVertice.push(aristasExistentes[j])
 		}
 	}
+
 	for (var i = 0; i <= lineaDelVertice.length; i++) {
 		if (lineaDelVertice[i] != undefined){
 			if (nombreCirculo == lineaDelVertice[i].getAttribute("origen")){
-
 				lineaDelVertice[i].setAttribute("x1", nuevaPosicionX)
 				lineaDelVertice[i].setAttribute("y1", nuevaPosicionY)
 			}else{
@@ -210,43 +224,19 @@ function cambiarPosisionElmento(evento) {
 		}
 	}
 
-	document.getElementById(nombreCirculo).setAttribute("x", nuevaPosicionX)
-	document.getElementById(nombreCirculo).setAttribute("y", nuevaPosicionY)
+	/*mover letra del nodo*/
+	letra.setAttribute("x", nuevaPosicionX)
+	letra.setAttribute("y", nuevaPosicionY)
 
+	/*mover nodo*/
 	this.setAttribute("cx", nuevaPosicionX)
 	this.setAttribute("cy", nuevaPosicionY)
-
 }
 
-
-
-
-
-
-
-
-
-function terminarMoverElemento(evento) {
-	console.log('cancelando');
-	this.removeEventListener("mousemove", cambiarPosisionElmento)
+/*Terminar el evento drag*/
+function terminarDrag(evento) {
+	this.removeEventListener("mousemove", drag)
 }
-function moverElemento(evento) {
-	if (evento.which == 3){
-
-		cxElementEnMovimiento = this.getAttribute("cx")
-		cyElementEnMovimiento = this.getAttribute("cy")
-		posicionCirculo = cxElementEnMovimiento+","+cyElementEnMovimiento
-
-		this.addEventListener("mousemove", cambiarPosisionElmento)
-	}
-}
-
-
-
-
-
-
-
 
 /*Funcion encargada de ecoger que accion ejecutar sobre un elemento segun el boton del mouse oprimido*/
 function circuloPresionado(evento) {
@@ -268,12 +258,11 @@ function circuloPresionado(evento) {
 	}
 	/*Si se presiona el boton Derecho se inicia el proceso de arrastre y soltar*/
 	else if(evento.which == 3){
-		console.log('drag');
-		this.addEventListener("mousedown", moverElemento)
-		this.addEventListener("mouseup", terminarMoverElemento)
+		this.addEventListener("mousedown", preparandoDrag)
+		this.addEventListener("mouseup", terminarDrag)
 
 	}
-	/*Si se presiona la rueda del raton, se inicia el proceso para eleminar un vertice(elemento "circle") y sus aristas asociadas(elemento "line")*/
+	/*Si se presiona la rueda del raton, se inicia el proceso para eliminar un vertice(elemento "circle") y sus aristas asociadas(elemento "line")*/
 	else if(evento.which == 2){
 		/*Se pide confirmacion para borrar*/
 		if (confirm(mensajeDeConfirmacionDeBorradoDeElemento_s)) {
