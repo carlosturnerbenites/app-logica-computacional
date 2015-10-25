@@ -1039,11 +1039,10 @@ svg {
   border-bottom: 5px solid #808080;
 }
 svg circle {
-  fill: #ab2121;
+  fill: rgba(0,0,0,0.4);
 }
 svg circle:hover {
-  fill: #ec6d6d;
-  stroke: #ab2121;
+  stroke: rgba(0,0,0,0.6);
   stroke-width: 2px;
   cursor: pointer;
 }
@@ -1052,7 +1051,7 @@ svg .lineGilla {
   stroke-width: 1px;
 }
 svg .lineGrafo {
-  stroke: #ff9a9a;
+  stroke: rgba(0,0,0,0.6);
   stroke-width: 5px;
 }
 svg .nombreCircle {

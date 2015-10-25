@@ -30,14 +30,14 @@ function limpiarContenedorHTML(contenedor) {
 
 function teclapresionada(evento){
 
-	var nombreTeclaPresionado = String.fromCharCode(evento.keyCode)
+	var nombreTeclaPresionado = String.fromCharCode(evento.keyCode).toLowerCase()
 	var codigoTeclaPresionado = evento.keyCode
 
 	if(evento.shiftKey && nombreTeclaPresionado == "?"){
 		btnAyuda.click()
 	}
 
-	if(evento.shiftKey && nombreTeclaPresionado == "¡"){
+	if(evento.shiftKey && nombreTeclaPresionado == "b"){
 		limpiarLienzo()
 
 	}
