@@ -55,10 +55,35 @@ htmlInputNumeroProposicionesEscogidasPorUsuario.setAttribute("min", 0)
 var arrayProposiciones = new Array()
 var arrayaux = new Array()
 var proposicionesCompuesta = new Array()
+var ejercicioPropuesto = new Array()
+
+function expresion(p1,p2,conector) {
+	this.p1 = p1
+	this.p2 = p2
+	this.conector = conector
+	this.getExpresionCompleta = function() {
+		expresionCompleta = "(" + this.p1.letra + this.conector.simbolo + this.p2.letra + ")"
+		return expresionCompleta
+	}
+}
+
+function conectarProposiciones(array) {
+	conector = new and(array)
+	exp = new expresion(array[0],array[1],conector);
+	var expComp = exp.getExpresionCompleta()
+	ejercicioPropuesto.push(expComp)
+
+}
 
 function crearProposicionCompuesta(props) {
+	for (var i = 0; i < props.length; i++) {
+		if (props[i].length == 2){
 
-	console.log(props);
+			conectarProposiciones(props[i])
+		}else{
+			ejercicioPropuesto.push(props[i].letra)
+		}
+	}
 }
 
 function crearEjercicio(evento) {
@@ -81,13 +106,8 @@ function crearEjercicio(evento) {
 		arrayProposiciones.push(prop)
 		proposicionesCompuesta.push(prop)
 		/*
-		console.group("base")
-		console.log(arrayProposiciones);
-		console.groupEnd()
 		*/
 		if ((i+1)%2 == 0){
-			console.log(arrayProposiciones);
-			console.warn('entro');
 
 			//arrayProposiciones = []
 			arrayProposiciones.push(proposicionesCompuesta)
@@ -96,9 +116,6 @@ function crearEjercicio(evento) {
 
 			proposicionesCompuesta = []
 
-			console.group("valores")
-			console.log(star);
-			console.groupEnd()
 
 			star+=1
 		};
@@ -107,7 +124,6 @@ function crearEjercicio(evento) {
 	/**/
 
 	numeroCombinacionesPosibles = Math.pow(2,numeroProposicionesEscogidasPorusuario)
-	var ejercicioPropuesto = new Array()
 
 	htmlFormEjercicioPropuestoTablasVerdad.removeEventListener("submit", crearEjercicio)
 
@@ -126,15 +142,7 @@ function crearEjercicio(evento) {
 		if(filas != numeroProposicionesEscogidasPorusuario){
 
 			htmlThColumnasEjercicioPropuesto.innerHTML = proposiciones[filas]
-			ejercicioPropuesto.push(proposiciones[numeroAleatorio(proposiciones.length,0)])
-
 		}else{
-
-			for (var posicion = 0; posicion < ejercicioPropuesto.length-1; posicion++) {
-				ejercicioPropuesto[posicion] += " " + simbolosOperacion[numeroAleatorio(simbolosOperacion.length,0)] + " "
-
-			}
-
 			htmlThColumnasEjercicioPropuesto.innerHTML = ejercicioPropuesto.join("")
 
 		}
@@ -401,10 +409,9 @@ function marcarColumna(){
 	}
 }
 function and(proposiciones) {
-	this.operar = function(){
-		var resultado = proposiciones.pUno.valorBoleano && proposiciones.pDos.valorBoleano
-		return resultado
-	}
+	this.simbolo = " Λ "
+	var resultado = proposiciones[0].valorBoleano && proposiciones[1].valorBoleano
+	console.log(resultado)
 }
 function or(proposiciones) {
 	this.operar = function(){

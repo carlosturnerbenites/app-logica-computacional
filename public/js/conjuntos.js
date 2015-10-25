@@ -1,76 +1,24 @@
-//Simbolo que representa al conjunto vacio el los elementos de un conjunto, se utilizapara validar la respuesta a los conjuntos
+//Simbolo que representa al conjunto vacio en los elementos de un conjunto, se utilizapara validar la respuesta a los conjuntos
 var simboloConjuntoVacio = "Ø"
+
 var formConjuntos = document.getElementById("formConjuntos_js")
-//var contenedorConjuntoEscogido = document.getElementById("contenedorConjuntoEscogido")
-var conjuntoIngresado = document.getElementById("conjuntoIngresado_js")
-var seccionRespuesta = document.getElementById("seccionRespuesta_js")
-var nombreConjunto = document.getElementById("nombreConjunto_js")
-var htmlRadioConjuntosPropio = document.getElementById("htmlRadioConjuntosPropio_js")
-var htmlRadioConjuntosImpropio = document.getElementById("htmlRadioConjuntosImpropio_js")
-var elementosCojuntos = document.getElementById("elementosCojuntos_js").value
-
-function validarConjunto(elementosCojuntos){
-	var campoValido = true
-
-	var formatoCorrectoDeConjuntos = /(^([\w|\d])\b)+(([(,)+(\w|\d)+(,)])\b)+(([\w|\d])\b)$/g
-
-	if((formatoCorrectoDeConjuntos.test(elementosCojuntos))){
-		elementosCojuntos = elementosCojuntos.split(",")
-
-		for (var i = 0; i < elementosCojuntos.length; i++) {
-			for (var j = 0; j < elementosCojuntos.length; j++) {
-				if (i != j) {
-					if (elementosCojuntos[i] == elementosCojuntos[j]) {
-						campoValido = false
-					}
-				}
-			}
-		}
-		if (campoValido){
-			//refactor luego
-			campoValido =  true
-			var estadoActual = {
-				msg : "Todo listo",
-				clases : ["MSG", "MSGBien"],
-				icono : "icon-correcto"
-			}
-		}else{
-			//refactor luego
-			campoValido =  false
-			var estadoActual = {
-				msg : "hay un elemento repetido",
-				clases : ["MSG" ,"MSGError"],
-				icono : "icon-equivocado"
-
-			}
-		}
-	}else{
-		//refactor luego
-		campoValido =  false
-		var estadoActual = {
-			msg : "hay un caracter no permitido o error de sintaxis",
-			clases : ["MSG" ,"MSGError"],
-			icono : "icon-equivocado"
-
-		}
-	}
-	/*esta funcion recibe un objeto estado y crea un mensaje y lo inserta en el contenedor principal*/
-	crearYMostrarMensaje(estadoActual)
-
-	return campoValido
-}
+,conjuntoIngresado = document.getElementById("conjuntoIngresado_js")
+,seccionRespuesta = document.getElementById("seccionRespuesta_js")
+,input_nombreConjunto = document.getElementById("nombreConjunto_js")
+,htmlRadioConjuntosPropio = document.getElementById("htmlRadioConjuntosPropio_js")
+,htmlRadioConjuntosImpropio = document.getElementById("htmlRadioConjuntosImpropio_js")
+,elementosCojuntos = document.getElementById("elementosCojuntos_js").value
 
 function capturarConjunto(evento) {
-
 
 	evento.preventDefault()
 
 	formConjuntos.removeEventListener("submit", capturarConjunto)
 
-	var valorNombreConjunto = nombreConjunto.value
+	var nombreConjunto = input_nombreConjunto.value
 
 	var contenedorNombreCojunto = document.createElement("span")
-	contenedorNombreCojunto.innerHTML = valorNombreConjunto
+	contenedorNombreCojunto.innerText = nombreConjunto.toUpperCase()
 
 	elementosCojuntos = document.getElementById("elementosCojuntos_js").value
 
@@ -78,26 +26,26 @@ function capturarConjunto(evento) {
 	var estado = validarConjunto(elementosCojuntos)
 
 	if (estado){
+
 		habilitarInhabilitarFormulario(this)
 
-		if (ValidarCampoVacio(elementosCojuntos) && ValidarCampoVacio(valorNombreConjunto)) {
-			elementosCojuntos = elementosCojuntos.split(",")
+		if (ValidarCampoVacio(elementosCojuntos) && ValidarCampoVacio(nombreConjunto)) {
 
+			elementosCojuntos = elementosCojuntos.split(",")
 
 			var contenedorElementosCojunto = document.createElement("span")
 			contenedorElementosCojunto.classList.add("corchetesConjuntos")
-			contenedorElementosCojunto.innerHTML = elementosCojuntos
+			contenedorElementosCojunto.innerText = elementosCojuntos
 
 			var contenedorConjuntoActual = document.createElement("section")
 			contenedorConjuntoActual.classList.add("textoCentrado","textoEspecial")
 			contenedorConjuntoActual.appendChild(contenedorNombreCojunto)
 			contenedorConjuntoActual.appendChild(contenedorElementosCojunto)
 
-
 			var respuesta = document.createElement("textarea")
 			var htmlButtonValidar = document.createElement("button")
 
-			htmlButtonValidar.innerHTML = innerHTMLBtnVerificar
+			htmlButtonValidar.innerText = innerHTMLBtnVerificar
 			htmlButtonValidar.classList.add("btn","btnConfirmar","centrarConMargin")
 			htmlButtonValidar.id = "btnValidarconjuntos"
 			htmlButtonValidar.setAttribute("type", "submit")
@@ -111,7 +59,7 @@ function capturarConjunto(evento) {
 			respuesta.classList.add("respuesta")
 			respuesta.setAttribute("required","required")
 			respuesta.setAttribute("spellcheck","false")
-			respuesta.setAttribute("placeholder", "Escriba en este cuadro los posibles subconjuntos del conjunto anterior descrito.")
+			respuesta.setAttribute("placeholder", "Escriba en este cuadro su respuesta.")
 			respuesta.addEventListener("keypress", function(evento) {
 				//si se presiona Enter
 				if(evento.keyCode == 13){
@@ -142,7 +90,56 @@ function capturarConjunto(evento) {
 	}
 }
 
+function validarConjunto(elementosCojuntos){
+
+	var campoValido = true
+
+	var formatoCorrectoDeConjuntos = /(^([\w|\d])\b)+(([(,)+(\w|\d)+(,)])\b)+(([\w|\d])\b)$/g
+
+	if((formatoCorrectoDeConjuntos.test(elementosCojuntos))){
+		elementosCojuntos = elementosCojuntos.split(",")
+
+		for (var contUno = 0; contUno < elementosCojuntos.length; contUno++) {
+			for (var contDos = 0; contDos < elementosCojuntos.length; contDos++) {
+				if (contUno != contDos) {
+					if (elementosCojuntos[contUno] == elementosCojuntos[contDos]) {
+						campoValido = false
+					}
+				}
+			}
+		}
+		if (campoValido){
+			var estadoActual = {
+				msg : "Todo listo",
+				clases : ["MSG", "MSGBien"],
+				icono : "icon-correcto"
+			}
+		}else{
+			campoValido =  false
+			var estadoActual = {
+				msg : "hay un elemento repetido",
+				clases : ["MSG" ,"MSGError"],
+				icono : "icon-equivocado"
+
+			}
+		}
+	}else{
+		campoValido =  false
+		var estadoActual = {
+			msg : "hay un caracter no permitido o error de sintaxis",
+			clases : ["MSG" ,"MSGError"],
+			icono : "icon-equivocado"
+
+		}
+	}
+	/*esta funcion recibe un objeto estado y crea un mensaje y lo inserta en el contenedor principal*/
+	crearYMostrarMensaje(estadoActual)
+
+	return campoValido
+}
+
 function crearRespuesta(elementosCojuntos,binary){
+
 	var conjuntoSolucionBinary = []
 
 	for (var i = 0; i < binary.length; i++) {
@@ -159,11 +156,9 @@ function crearRespuesta(elementosCojuntos,binary){
 	conjuntoSolucionTemp = ordenarAlfabeticamente(conjuntoSolucionTemp)
 
 	return conjuntoSolucionTemp
-
 }
 
 function validarRespuesta(evento) {
-
 
 	evento.preventDefault()
 
@@ -194,8 +189,6 @@ function validarRespuesta(evento) {
 		completarBinarios(binary,elementosCojuntos.length)
 
 		conjuntoSolucion = crearRespuesta(elementosCojuntos,binary)
-		
-
 
 		var elementosRespuestaEnviadaOrdenada = ordenarAlfabeticamente(elementosRespuestaEnviada)
 
@@ -241,12 +234,6 @@ function validarRespuesta(evento) {
 	crearYMostrarMensaje(estadoActual)
 }
 
-//vaciar espacios del campo nombre conjunto
-nombreConjunto.addEventListener("change", limpiarCampo)
-function limpiarCampo(){
-	vaciarCampo(this)
-}
-
 function reiniciarEjercicio () {
 	formConjuntos.addEventListener("submit", capturarConjunto)
 	habilitarInhabilitarFormulario(formConjuntos)
@@ -254,4 +241,12 @@ function reiniciarEjercicio () {
 	formConjuntos.reset()
 }
 
+function limpiarCampo(){
+	vaciarCampo(this)
+}
+
 formConjuntos.addEventListener("submit", capturarConjunto)
+
+//Borrar espacios en blanco en el campo de nombre de conjunto
+input_nombreConjunto.addEventListener("change", limpiarCampo)
+

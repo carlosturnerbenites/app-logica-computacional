@@ -6,7 +6,9 @@ block content
 			p.textoDescripcion Disculpa,Erro Interno
 			p.code 500
 			a#BackURL(href="") volver a la pagina anterior
+			p ó
+			a(href="/") Ir al inicio
 
-			block script
-				script.
-					document.getElementById("BackURL").addEventListener("click",function(){window.history.back()})
+block script
+	script.
+		document.getElementById("BackURL").addEventListener("click",function(){window.history.back()})

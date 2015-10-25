@@ -22,7 +22,6 @@ function mostrarOcultarSeccion() {
 	}
 }
 
-
 function limpiarContenedorHTML(contenedor) {
 	while (contenedor.firstChild) {
 		contenedor.removeChild(contenedor.firstChild);
@@ -44,11 +43,8 @@ function teclapresionada(evento){
 	}
 }
 
-
-
 btnAyuda.addEventListener("click", mostrarOcultarSeccion)
 document.body.addEventListener("keypress", teclapresionada)
-
 
 /*
 //Activar en produccion

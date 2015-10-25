@@ -41,9 +41,6 @@ function reiniciarAudio() {
 	estadoActualAudio.innerHTML = "Escuchar"
 }
 
-
-
-
 function cambiarVolumen() {
 	var nuevoVolumen = this.value
 	musica.volume = nuevoVolumen
@@ -63,6 +60,7 @@ function mutedAudio() {
 		cambiarIconoVolumen()
 	}
 }
+
 function repetirAudio() {
 	if(this.checked){
 		console.log('repetir activado');
@@ -74,8 +72,6 @@ function repetirAudio() {
 }
 
 function reproducirparaAudio(evento) {
-
-
 
 	var duracionAudio = musica.duration
 	barraDePorgresoAudio.setAttribute("max", duracionAudio)
@@ -91,8 +87,6 @@ function reproducirparaAudio(evento) {
 	}
 	cambiarIconoVolumen()
 }
-
-
 
 function cambiarIconoVolumen() {
 	console.log('cambiando volumen');
@@ -114,6 +108,5 @@ function cambiarIconoVolumen() {
 		htmlSpanIconoVolumenActual.classList.add("icon-volumenMedio")
 
 	}
-
 }
 
