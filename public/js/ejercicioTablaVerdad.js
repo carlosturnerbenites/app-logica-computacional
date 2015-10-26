@@ -57,34 +57,6 @@ var arrayaux = new Array()
 var proposicionesCompuesta = new Array()
 var ejercicioPropuesto = new Array()
 
-function expresion(p1,p2,conector) {
-	this.p1 = p1
-	this.p2 = p2
-	this.conector = conector
-	this.getExpresionCompleta = function() {
-		expresionCompleta = "(" + this.p1.letra + this.conector.simbolo + this.p2.letra + ")"
-		return expresionCompleta
-	}
-}
-
-function conectarProposiciones(array) {
-	conector = new and(array)
-	exp = new expresion(array[0],array[1],conector);
-	var expComp = exp.getExpresionCompleta()
-	ejercicioPropuesto.push(expComp)
-
-}
-
-function crearProposicionCompuesta(props) {
-	for (var i = 0; i < props.length; i++) {
-		if (props[i].length == 2){
-
-			conectarProposiciones(props[i])
-		}else{
-			ejercicioPropuesto.push(props[i].letra)
-		}
-	}
-}
 
 function crearEjercicio(evento) {
 
@@ -354,7 +326,6 @@ function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuesta
 
 
 function reiniciarEjercicio() {
-
 	limpiarContenedorHTML(htmSectionContenedoraEjercicioPropuestoTablasVerdad)
 	htmlFormEjercicioPropuestoTablasVerdad.addEventListener("submit", crearEjercicio)
 	htmlFormRespuestaUsuario.addEventListener("submit", capturarRespuesta)
@@ -408,6 +379,7 @@ function marcarColumna(){
 
 	}
 }
+
 function and(proposiciones) {
 	this.simbolo = " Λ "
 	var resultado = proposiciones[0].valorBoleano && proposiciones[1].valorBoleano
@@ -459,6 +431,34 @@ function proposicion(){
 	}
 }
 
+function expresion(p1,p2,conector) {
+	this.p1 = p1
+	this.p2 = p2
+	this.conector = conector
+	this.getExpresionCompleta = function() {
+		expresionCompleta = "(" + this.p1.letra + this.conector.simbolo + this.p2.letra + ")"
+		return expresionCompleta
+	}
+}
+
+function conectarProposiciones(array) {
+	conector = new and(array)
+	exp = new expresion(array[0],array[1],conector);
+	var expComp = exp.getExpresionCompleta()
+	ejercicioPropuesto.push(expComp)
+
+}
+
+function crearProposicionCompuesta(props) {
+	for (var i = 0; i < props.length; i++) {
+		if (props[i].length == 2){
+
+			conectarProposiciones(props[i])
+		}else{
+			ejercicioPropuesto.push(props[i].letra)
+		}
+	}
+}
 
 htmlFormEjercicioPropuestoTablasVerdad.addEventListener("submit", crearEjercicio)
 htmlFormRespuestaUsuario.addEventListener("submit", capturarRespuesta)

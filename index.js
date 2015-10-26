@@ -11,6 +11,8 @@ stylus = require('stylus'),
 //Definir nib
 nib = require('nib')
 
+
+
 //definir carpeta para vistas
 app.set('views', __dirname + '/vistas')
 
@@ -57,16 +59,17 @@ var temas = {
 		urlEjercicio:"/ejercicios/tablasDeVerdad"
 	},
 	cursoTres:{
-		curso: "Grafos",
-		urlCurso:"/cursos/grafos",
-		urlEjercicio:"/ejercicios/grafos"
-	},
-	cursoCuatro:{
 		curso: "Conjuntos",
 		urlCurso:"/cursos/conjuntos",
 		urlEjercicio:"/ejercicios/conjuntos"
+	},
+	cursoCuatro:{
+		curso: "Grafos",
+		urlCurso:"/cursos/grafos",
+		urlEjercicio:"/ejercicios/grafos"
 	}
 }
+
 var shortcuts = {
 	ayuda:{
 		tecla:"?",

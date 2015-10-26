@@ -185,12 +185,12 @@ Esta funcion recibe un elemento HTML(form) y lo habilita o desabilita dependiend
 Syntax:
 habilitarInhabilitarFormulario(elemnto HTML(form))
 */
-function habilitarInhabilitarFormulario(elemento) {
+function habilitarInhabilitarFormulario(formulario) {
 
 	var propiedad = "disabled"
 
 
-	var elementosForm = convertirHTMLCollectionEnArray(elemento.elements)
+	var elementosForm = convertirHTMLCollectionEnArray(formulario.elements)
 
 
 	for (var index = 0; index < elementosForm.length; index++) {
@@ -214,16 +214,16 @@ Esta funcion recibe un elemento HTML(Input) y lo habilita o desabilita dependien
 Syntax:
 habilitarInhabilitarInput(elemnto HTML(Input))
 */
-function habilitarInhabilitarInput(elemento) {
+function habilitarInhabilitarInput(input) {
 	var propiedad = "disabled"
 
-	if(elemento.disabled){
+	if(input.disabled){
 
-		elemento.removeAttribute(propiedad)
+		input.removeAttribute(propiedad)
 
 	}else{
 
-		elemento.setAttribute(propiedad,propiedad)
+		input.setAttribute(propiedad,propiedad)
 
 	}
 
