@@ -35,8 +35,13 @@ block script
 	script.
 		var pruebaForm = document.getElementById("pruebaForm")
 		pruebaForm.addEventListener("submit", function(evento){
-			evento.preventDefautlt()
+			evento.preventDefault()
+			var data = {}
+			data.asunto = "holaaaaa"
+			data.mensage = "holaaaaa"
+			console.log(data)
 			var oReq = new XMLHttpRequest();
 			//oReq.addEventListener("load", reqListener);
 			oReq.open("POST", "/enviar_mensaje");
+			oReq.send(JSON.parse(data))
 		})
