@@ -21,8 +21,22 @@ block content
 			button(type="submit").btn.btnConfirmar.centrarConMargin#btnValidarEjercicio_js
 				span.icon-verificar
 				span.marginIconos Verificar
+	form(id="pruebaForm"/* method="post", action="/enviar_mensaje"*/)
+		label Asunto
+		input(type="text", name="asunto")
+		label Mensaje
+		textarea(cols="40", rows="10", name="mensaje")
+		input(type="submit", value="Enviar mensaje")
 
 block script
 	script(src='../js/funcionesAxuliares.js')
 	script(src='../js/variablesGenerales.js')
 	script(src='../js/calculoProposicional.js')
+	script.
+		var pruebaForm = document.getElementById("pruebaForm")
+		pruebaForm.addEventListener("submit", function(evento){
+			evento.preventDefautlt()
+			var oReq = new XMLHttpRequest();
+			//oReq.addEventListener("load", reqListener);
+			oReq.open("POST", "/enviar_mensaje");
+		})

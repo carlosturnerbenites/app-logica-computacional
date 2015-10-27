@@ -48,23 +48,33 @@ function dibujarCirculo(evento){
 
 		htmlCircleVerticeDelGrafo.setAttribute("cx",cxActuales)
 		htmlCircleVerticeDelGrafo.setAttribute("cy",cyActuales)
+		htmlCircleVerticeDelGrafo.setAttribute("r",radio)
+		htmlCircleVerticeDelGrafo.setAttribute("name",nombreVertice)
 		htmlTextNombreVerticeDelGrafo.setAttribute("x",cxActuales)
 		htmlTextNombreVerticeDelGrafo.setAttribute("y",cyActuales)
 		htmlTextNombreVerticeDelGrafo.classList.add("nombreCircle")
 		htmlTextNombreVerticeDelGrafo.innerHTML = nombreVertice
 		htmlTextNombreVerticeDelGrafo.id = nombreVertice
-		htmlCircleVerticeDelGrafo.setAttribute("r",radio)
-		htmlCircleVerticeDelGrafo.setAttribute("name",nombreVertice)
-		htmlCircleVerticeDelGrafo.setAttribute("draggable","true")
 		/*htmlCircleVerticeDelGrafo.classList.add("agrandarEncoger")*/
 		posicionAux += 1
 
 		htmlSvgLienzoGrafoVertices.appendChild(htmlCircleVerticeDelGrafo)
 		htmlSvgLienzoGrafoNombres.appendChild(htmlTextNombreVerticeDelGrafo)
+
+		infoCircle = {
+			type:"circle",
+			position : {
+				cx:cxActuales,
+				cy:cyActuales,
+				r:radio
+			}
+		}
+		console.log(infoCircle);
+
 	}
 
 }
-
+var infoCircle
 function removerElementoLinea(evento) {
 
 	evento.preventDefault()

@@ -1,15 +1,21 @@
 //Definir un modulo de express
 var express = require('express'),
-//Crear aplicacion express
-app = express(),
 //Definir el modulo http de nodeJS
 http = require('http'),
-//Crear un servidor http basado en la app de Express
-server = http.createServer(app),
 //Definir Stylus
 stylus = require('stylus'),
 //Definir nib
-nib = require('nib')
+nib = require('nib'),
+//
+bodyParser = require('body-parser'),
+//Crear aplicacion express
+app = express(),
+//Crear un servidor http basado en la app de Express
+server = http.createServer(app)
+
+
+app.use(bodyParser.urlencoded({ extended: false }))
+
 
 
 
@@ -122,7 +128,15 @@ function ayuda(request, response,next) {
 }
 function nosotros(request, response,next) {
 	response.render('acercaDe')
+
 }
+
+function formu(req,res){
+	console.log(req.body)
+	res.end()
+}
+
+app.post("/enviar_mensaje",formu)
 
 //Definicion de url
 app.get('/',inicio)
