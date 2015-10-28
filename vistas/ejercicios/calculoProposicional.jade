@@ -26,7 +26,8 @@ block content
 		input(type="text", name="asunto")
 		label Mensaje
 		textarea(cols="40", rows="10", name="mensaje")
-		input(type="submit", value="Enviar mensaje")
+		input#p(type="checkbox")
+		input(type="submit", value="Enviar mensaje" readonly)
 
 block script
 	script(src='../js/funcionesAxuliares.js')
@@ -34,14 +35,34 @@ block script
 	script(src='../js/calculoProposicional.js')
 	script.
 		var pruebaForm = document.getElementById("pruebaForm")
+		var ignore = ["submit","reset"]
 		pruebaForm.addEventListener("submit", function(evento){
 			evento.preventDefault()
+			/*
 			var data = {}
 			data.asunto = "holaaaaa"
 			data.mensage = "holaaaaa"
-			console.log(data)
+			*/
+
+			var data = getValuesJSON(this.elements)
+
+			console.log(JSON.stringify(data))
 			var oReq = new XMLHttpRequest();
 			//oReq.addEventListener("load", reqListener);
 			oReq.open("POST", "/enviar_mensaje");
-			oReq.send(JSON.parse(data))
+			oReq.setRequestHeader('Content-Type', 'application/json')
+			//oReq.setRequestHeader('Content-Type', 'application/json')
+			oReq.send(JSON.stringify(data))
 		})
+		function getValuesJSON(elementos){
+
+		var data = {}
+
+		for(var i = 0; i < elementos.length; i++){
+			if(ignore.indexOf(elementos[i].type) == -1){
+				data[elementos[i].name] = elementos[i].value
+				}
+			}
+
+		return data
+		}

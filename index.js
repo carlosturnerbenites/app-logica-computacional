@@ -13,7 +13,7 @@ app = express(),
 //Crear un servidor http basado en la app de Express
 server = http.createServer(app)
 
-
+app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 
@@ -133,7 +133,7 @@ function nosotros(request, response,next) {
 
 function formu(req,res){
 	console.log(req.body)
-	res.end()
+
 }
 
 app.post("/enviar_mensaje",formu)
