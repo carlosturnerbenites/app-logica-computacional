@@ -1,5 +1,5 @@
 var musicaEscogido = document.getElementById("musicaEscogido_js")
-var musica = new Audio("../../media/audio/tlos.mp3")
+var musica = new Audio("/audio/tlos.mp3")
 var tiempoActual = 0
 
 var minVolumen = 0

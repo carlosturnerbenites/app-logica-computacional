@@ -4,40 +4,24 @@ block title
 	title Tablas de Verdad || Aplicacion Logica computacional
 
 block content
-	section#contenedorPrincipal_js.contenedorDeAncho
-		section.seccionAyuda.seccionDesplegable
-			button#btnAyuda_js.btn.btnAyuda
-				span.icon-ayuda.marginIcon
-				span Ayuda
-			article#seccionExplicacion_js.seccionExplicacion.ocultar
-				p Hola, para realizar el ejercicio sigue los paso que damos a continuacion.
-				ol
-					li Dale un nombre al conjunto
-					li Ingresa los elementos del gupo separados por coma(,)
-					li Presiona
-						b Guardar Conjunto
-					h3 Luego
-					li Escribe los subconjuntos en la caja de texto que aparecera, nuevamente separados por coma(,)
-					li Cuando termines, presiona
-						b Verificar
-		h1.textoCentrado Ejercicio sobre Tablas de Verdad
-		p.explicacion Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias nulla, quia quidem natus quam adipisci doloribus ex, odit amet ipsam perspiciatis deleniti iste eos voluptatibus dolor, fuga sint itaque assumenda.
-		section
-			form#htmlFormEjercicioPropuestoTablasVerdad_js
-				section.fieldset
-					label.textoNegrilla(for='numeroProposiciones_js') Cantidad de proposiciones:
-					input#htmlInputNumeroProposicionesEscogidasPorUsuario_js.inputBorderBottomFocus.textoCentrado(value='2', type='number', min='0', max='5', autocomplete='off', required='')
-				section.fieldset
-					label.textoNegrilla(for='tipoOperacion') Operado:
-					select#tipoOperacion.borderNone(name='', required='')
-						option(value='conjuncion') Conjuncion
-						option(value='disjuncion') Disjuncion
-						option(value='condicional') Condicional
-						option(value='bicondicional') Bicondicional
-				section.fieldset
-					button#htmlInputSubmitBtnrealizarEjercicio_js.btn.btnEnviar(type='submit', value='', autocomplete='off')
-		form#htmlFormRespuestaUsuario_js
-			section#sectionTablasVerdad_js
+	h1.textoCentrado Ejercicio sobre Tablas de Verdad
+	p.explicacion Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias nulla, quia quidem natus quam adipisci doloribus ex, odit amet ipsam perspiciatis deleniti iste eos voluptatibus dolor, fuga sint itaque assumenda.
+	section
+		form#htmlFormEjercicioPropuestoTablasVerdad_js
+			section.fieldset
+				label.textoNegrilla(for='numeroProposiciones_js') Cantidad de proposiciones:
+				input#htmlInputNumeroProposicionesEscogidasPorUsuario_js.inputBorderBottomFocus.textoCentrado(value='2', type='number', min='0', max='5', autocomplete='off', required='')
+			section.fieldset
+				label.textoNegrilla(for='tipoOperacion') Operado:
+				select#tipoOperacion.borderNone(name='', required='')
+					option(value='conjuncion') Conjuncion
+					option(value='disjuncion') Disjuncion
+					option(value='condicional') Condicional
+					option(value='bicondicional') Bicondicional
+			section.fieldset
+				button#htmlInputSubmitBtnrealizarEjercicio_js.btn.btnEnviar(type='submit', value='', autocomplete='off')
+	form#htmlFormRespuestaUsuario_js
+		section#sectionTablasVerdad_js
 
 block script
 	script(src='../js/variablesGenerales.js')

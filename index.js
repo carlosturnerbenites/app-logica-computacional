@@ -11,7 +11,9 @@ bodyParser = require('body-parser'),
 //Crear aplicacion express
 app = express(),
 //Crear un servidor http basado en la app de Express
-server = http.createServer(app)
+server = http.createServer(app),
+//File System
+fs = require('fs')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -135,8 +137,20 @@ function formu(req,res){
 	console.log(req.body)
 
 }
+function guardarGrafo(req,res){
+	console.log(req.body)
+	fs.open('public/grafos/grafo.grf','wx',function(error, fd){
+		console.log('heeeeee');
+	})
+	fs.writeFile('public/grafos/grafo.grf', req.body, function (err) {
+		if (err) throw err;
+		console.log('It\'s saved!');
+	});
+
+}
 
 app.post("/enviar_mensaje",formu)
+app.post("/guardarGrafo",guardarGrafo)
 
 //Definicion de url
 app.get('/',inicio)

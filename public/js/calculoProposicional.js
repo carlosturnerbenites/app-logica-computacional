@@ -47,6 +47,7 @@ function dropElementsDOM(evento){
 		this.innerHTML += evento.dataTransfer.getData('text/html')
 	}
 
+
 	hijosActuales = this.children
 
 	for (var i = 0; i < hijosActuales.length; i++) {

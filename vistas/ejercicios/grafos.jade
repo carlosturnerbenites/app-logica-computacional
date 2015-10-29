@@ -4,34 +4,22 @@ block title
 	title Grafos || Aplicacion Logica computacional
 
 block content
-	section#contenedorPrincipal_js
-		section.seccionAyuda.seccionDesplegable
-			button#btnAyuda_js.btn.btnAyuda
-				span.icon-ayuda.marginIcon
-				span Ayuda
-			article#seccionExplicacion_js.seccionExplicacion.ocultar
-				p Hola, para realizar el ejercicio sigue los siguientes pasos
-				ol
-					li Crea el grafo que se te pide, hazlo dando click en la seccion marcada por la barras grises
-					li Cuendo termine presiona Validar
-					li Presiona
-						b Validar
-		h1.textoCentrado Lorem
-		p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nam quibusdam sapiente, ullam neque, aliquid debitis repellendus placeat. Minus quod similique mollitia, a et magni quis neque! Aut, tempora. Incidunt.
-		section.EjercicioPropuesto
-			form#htmlFormformGrafos_js.formGrafos
-				section.fieldset
-					label(for='htmlLabelCantidadVertices_js') Orden |V| :
-					input#htmlInputCantidadVertices_js.inputBorderBottomFocus.inputCorto(type='number', max='', min='2', value='2', required='', autocomplete='off')
-					// autofocus
-				section.fieldset
-					label(for='htmlLabelCantidadAristas_js') Tamaño |E| :
-					input#htmlInputCantidadAristas_js.inputBorderBottomFocus.inputCorto(type='number', max='', min='1', value='1', required='', autocomplete='off')
-					p.textoNegrilla.ancho100PorCieto.textoCentrado.cancelarMargin  ó
-					input#htmlInputgrafoCompleto_js(type='checkbox')
-					label(for='htmlInputgrafoCompleto_js') Grafo Completo
-				section.fieldset
-					button#htmlInputSubmitBtnrealizarEjercicio_js.btn.btnEnviar(type='submit', value='', autocomplete='off')
+	h1.textoCentrado Lorem
+	p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nam quibusdam sapiente, ullam neque, aliquid debitis repellendus placeat. Minus quod similique mollitia, a et magni quis neque! Aut, tempora. Incidunt.
+	section.EjercicioPropuesto
+		form#htmlFormformGrafos_js.formGrafos
+			section.fieldset
+				label(for='htmlLabelCantidadVertices_js') Orden |V| :
+				input#htmlInputCantidadVertices_js.inputBorderBottomFocus.inputCorto(type='number', max='', min='2', value='2', required='', autocomplete='off')
+				// autofocus
+			section.fieldset
+				label(for='htmlLabelCantidadAristas_js') Tamaño |E| :
+				input#htmlInputCantidadAristas_js.inputBorderBottomFocus.inputCorto(type='number', max='', min='1', value='1', required='', autocomplete='off')
+				p.textoNegrilla.ancho100PorCieto.textoCentrado.cancelarMargin  ó
+				input#htmlInputgrafoCompleto_js(type='checkbox')
+				label(for='htmlInputgrafoCompleto_js') Grafo Completo
+			section.fieldset
+				button#htmlInputSubmitBtnrealizarEjercicio_js.btn.btnEnviar(type='submit', value='', autocomplete='off')
 	svg#htmlSvgLienzo_js
 		g#htmlSvgLienzoGrilla_js
 		g#htmlSvgLienzoGrafo_js
@@ -49,137 +37,11 @@ block content
 				strong B
 		form#htmlFormVerificarDatosGrafo_js(action='')
 			section#htmlSectionGradoDeLosVertices_js
-	section.positionRelative.seccionDesplegable.reproductorMusica
-		p Cancion Actual:
-			span#nombreCancion
-		button#reproductorMusica_js
-			span.icon-musica
-			span#estadoActualAudio_js.cancelarMargin Escuchar
-		progress#barraDePorgresoAudio_js(min='0', value='', max='')
-		span#htmlSpanIconoVolumenActual_js
-		button#btnAjustesAudio_js
-			span.icon-ajustes.ajustes
-		article#listadoAjustesAudio_js.ocultar.listadoAjustesAudio
-			ul
-				li
-					label(for='silenciar') Silenciar
-					input#silenciarAudio_js(type='checkbox', name='silenciar')
-				li
-					label(for='repetir') Repetir
-					input#repetirAudio_js(type='checkbox', name='repetir')
-				li
-					label(for='volumen') Volumen
-					input#volumenAudio_js(value='1', type='range', max='1', min='0', step='0.1', name='volumen')
+
 block script
-	script(src='../js/variablesGenerales.js')
-	script(src='../js/principal.js')
-	script(src='../js/funcionesAxuliares.js')
-	script(src='../js/ejerciciosGrafos.js')
-	script(src='../js/audio.js')
-	script.
-		var htmlInputgrafoCompleto = document.getElementById("htmlInputgrafoCompleto_js")
-		var htmlFormVerificarDatosGrafo = document.getElementById("htmlFormVerificarDatosGrafo_js")
-		var htmlFormformGrafos = document.getElementById("htmlFormformGrafos_js")
-		var htmlInputCantidadVertices = document.getElementById("htmlInputCantidadVertices_js")
-		var htmlInputCantidadAristas = document.getElementById("htmlInputCantidadAristas_js")
-		var htmlSectionGradoDeLosVertices = document.getElementById("htmlSectionGradoDeLosVertices_js")
-		/*la cantidad maxima de vertices se asigna dependiendo de la cantidad de nombre de vertices que hallan(Esto ultimo se obtiene del arreglo "nombresVertices")*/
-		htmlInputCantidadVertices.setAttribute("max", nombreVertices.length)
-		htmlInputCantidadVertices.addEventListener("change", validarAristasYGrados)
-		function HabilitarGrafocompleto() {
-		habilitarInhabilitarInput(htmlInputCantidadAristas)
-		}
-		function validarAristasYGrados(evento) {
-		numeroDeVertices = htmlInputCantidadVertices.value
-		var numeroMaximoAristas = ((numeroDeVertices*(numeroDeVertices-1))/2)
-		if (htmlInputgrafoCompleto.checked) {
-		numeroDeAristas = numeroMaximoAristas
-		}else{
-		numeroDeAristas = htmlInputCantidadAristas.value
-		}
-		console.log(numeroDeAristas);
-		/*Este maximo de aristas no comtempla cilcos(arista de n a n) ni direccion del grafo*/
-		htmlInputCantidadAristas.setAttribute("max", numeroMaximoAristas)
-		}
-		function crearCamposParaGradoDeVertice() {
-		limpiarContenedorHTML(htmlSectionGradoDeLosVertices)
-		var htmlLabelGradoVertices = document.createElement("label")
-		htmlLabelGradoVertices.setAttribute("for", "gradoVertice_js")
-		htmlLabelGradoVertices.innerHTML = "Grado de los Vertices"
-		htmlSectionGradoDeLosVertices.appendChild(htmlLabelGradoVertices)
-		var htmlUlContenedorListaGradoDeVertice = document.createElement("ul")
-		htmlUlContenedorListaGradoDeVertice.classList.add("listadoGradoVertices")
-		for (var i = 0; i < numeroDeVertices; i++) {
-		var htmlUlContenedorGradoDeVertice = document.createElement("li")
-		var htmlSpanTextoGradoVertices = document.createElement("span")
-		htmlSpanTextoGradoVertices.classList.add("nombreVertice")
-		var htmlInputNombreDeUnVertice = document.createElement("input")
-		htmlInputNombreDeUnVertice.required = true
-		htmlInputNombreDeUnVertice.type = "text"
-		htmlInputNombreDeUnVertice.id = "nombreVertice_js"
-		htmlInputNombreDeUnVertice.classList.add("inputBorderBottomFocus","inputCorto")
-		htmlSpanTextoGradoVertices.appendChild(htmlInputNombreDeUnVertice)
-		var htmlInputGradoDeUnVertice = document.createElement("input")
-		htmlInputGradoDeUnVertice.type = "number"
-		htmlInputGradoDeUnVertice.required = true
-		htmlInputGradoDeUnVertice.id = "gradoVertice_js"
-		htmlInputGradoDeUnVertice.classList.add("inputBorderBottomFocus","inputCorto")
-		htmlUlContenedorGradoDeVertice.appendChild(htmlSpanTextoGradoVertices)
-		htmlUlContenedorGradoDeVertice.appendChild(htmlInputGradoDeUnVertice)
-		htmlUlContenedorListaGradoDeVertice.appendChild(htmlUlContenedorGradoDeVertice)
-		htmlSectionGradoDeLosVertices.appendChild(htmlUlContenedorListaGradoDeVertice)
-		}
-		}
-		htmlFormformGrafos.addEventListener("submit", VerificarFormYHabilitarLienzo)
-		function VerificarFormYHabilitarLienzo(evento) {
-		evento.preventDefault()
-		validarAristasYGrados()
-		//Se agrega el evento "doble click" en el lienzo, para que al suceder se cree y agrege un vertice(elemento "circle") en el lienzo
-		lienzo.addEventListener("dblclick", dibujarCirculo)
-		lienzo.addEventListener("touchstart", dibujarCirculo)
-		if (htmlInputgrafoCompleto.checked) {
-		habilitarInhabilitarInput(htmlInputCantidadAristas)
-		}
-		habilitarInhabilitarFormulario(this)
-		htmlFormformGrafos.removeEventListener("submit", VerificarFormYHabilitarLienzo)
-		var htmlButtonValidar = document.createElement("button")
-		htmlButtonValidar.innerHTML = innerHTMLBtnVerificar
-		htmlButtonValidar.classList.add("btn","btnConfirmar","centrarConMargin")
-		htmlButtonValidar.id = "btnValidargrafo"
-		htmlButtonValidar.setAttribute("type", "submit")
-		var HTMLSpanIconoBtn = document.createElement("span")
-		HTMLSpanIconoBtn.classList.add(iconoBtnVerificar,"marginIconos")
-		crearCamposParaGradoDeVertice()
-		htmlButtonValidar.insertBefore(HTMLSpanIconoBtn, htmlButtonValidar.firstChild)
-		htmlFormVerificarDatosGrafo.appendChild(htmlButtonValidar)
-		htmlFormVerificarDatosGrafo.addEventListener("submit", validarGrafoRespuesta)
-		}
-		function verificarGradosDeVertices() {
-		var verticesEnLienzo = htmlSvgLienzoGrafoVertices.children
-		var aristasEnLienzo = htmlSvgLienzoGrafoAristas.children
-		console.log(verticesEnLienzo,aristasEnLienzo);
-		}
-		function validarGrafoRespuesta(evento) {
-		evento.preventDefault()
-		var numeroDeVerticesEnLienzo = htmlSvgLienzoGrafoVertices.childElementCount
-		var numeroDeAristasEnLienzo = htmlSvgLienzoGrafoAristas.childElementCount
-		if (parseInt(numeroDeVertices) == numeroDeVerticesEnLienzo){
-		if (parseInt(numeroDeAristas) == numeroDeAristasEnLienzo) {
-		verificarGradosDeVertices()
-		}else{
-		var estadoActual = {
-		msg : "Hay un problema con Las Aristas",
-		clases : ["MSG", "MSGError"],
-		icono : "icon-equivocado"
-		}
-		}
-		}else{
-		var estadoActual = {
-		msg : "Hay un problema con los vertices",
-		clases : ["MSG", "MSGError"],
-		icono : "icon-equivocado"
-		}
-		}
-		crearYMostrarMensaje(estadoActual)
-		}
-		htmlInputgrafoCompleto.addEventListener("change", HabilitarGrafocompleto)
+	script(src='/js/variablesGenerales.js')
+	script(src='/js/principal.js')
+	script(src='/js/funcionesAxuliares.js')
+	script(src='/js/ejerciciosGrafos.js')
+	script(src='/js/aux.js')
+

@@ -4,44 +4,26 @@ block title
 	title Conjuntos || Aplicacion Logica computacional
 
 block content
-		section#contenedorPrincipal_js.contenedorDeAncho
-			section.seccionAyuda.seccionDesplegable.positionRelative
-				button#btnAyuda_js.btn.btnAyuda.btnAyuda
-					span.icon-ayuda.marginIcon
-					span Ayuda
-				article#seccionExplicacion_js.seccionExplicacion.ocultar
-					p Hola, para realizar el ejercicio sigue los paso que damos a continuacion.
-					p El elemnto vacio se inserta con la tecla
-						span.tecla 0
-					ol
-						li Dale un nombre al conjunto
-						li Ingresa los elementos del gupo separados por coma(,)
-						li Presiona
-							b Guardar Conjunto
-						h3 Luego
-						li Escribe los subconjuntos en la caja de texto que aparecera, nuevamente separados por coma(,)
-						li Cuando termines, presiona
-							b Verificar
-			h1.textoCentrado Lorem
-			p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nam quibusdam sapiente, ullam neque, aliquid debitis repellendus placeat. Minus quod similique mollitia, a et magni quis neque! Aut, tempora. Incidunt.
-			section
-				form#formConjuntos_js.formConjuntos
-					section.fieldset
-						p.ancho100PorCieto.textoCentrado Subconjuntos
-						input#htmlRadioConjuntosPropio_js(type='radio', name='tipiEjercicio', checked='')
-						label(for='htmlRadioConjuntosPropio_js') Propios
-						p.textoNegrilla.ancho100PorCieto.textoCentrado.cancelarMargin ó
-						input#htmlRadioConjuntosImpropio_js(type='radio', name='tipiEjercicio')
-						label(for='htmlRadioConjuntosImpropio_js') Impropios
-					section.fieldset
-						input#nombreConjunto_js.inputCorto.inputCenterUppercase.inputBorderBottomFocus(type='text', maxlength='1', required='', autofocus='', autocomplete='off' name="nombreConjunto")
-						span.corchetesConjuntos
-							input#elementosCojuntos_js.inputBorderBottomFocus.textoCentrado.nombreConjunto(formnovalidate='', type='text', required='', autocomplete='off' name="elementosCojuntos")
-					section.fieldset
-						button#htmlInputSubmitBtnrealizarEjercicio_js.btn.btnEnviar(type='submit', value='', autocomplete='off')
-			section#conjuntoIngresado_js.textoCentrado.textoEspecial
-			section
-				form#seccionRespuesta_js.seccionRespuesta
+	h1.textoCentrado Lorem
+	p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nam quibusdam sapiente, ullam neque, aliquid debitis repellendus placeat. Minus quod similique mollitia, a et magni quis neque! Aut, tempora. Incidunt.
+	section
+		form#formConjuntos_js.formConjuntos
+			section.fieldset
+				p.ancho100PorCieto.textoCentrado Subconjuntos
+				input#htmlRadioConjuntosPropio_js(type='radio', name='tipiEjercicio', checked='')
+				label(for='htmlRadioConjuntosPropio_js') Propios
+				p.textoNegrilla.ancho100PorCieto.textoCentrado.cancelarMargin ó
+				input#htmlRadioConjuntosImpropio_js(type='radio', name='tipiEjercicio')
+				label(for='htmlRadioConjuntosImpropio_js') Impropios
+			section.fieldset
+				input#nombreConjunto_js.inputCorto.inputCenterUppercase.inputBorderBottomFocus(type='text', maxlength='1', required='', autofocus='', autocomplete='off' name="nombreConjunto")
+				span.corchetesConjuntos
+					input#elementosCojuntos_js.inputBorderBottomFocus.textoCentrado.nombreConjunto(formnovalidate='', type='text', required='', autocomplete='off' name="elementosCojuntos")
+			section.fieldset
+				button#htmlInputSubmitBtnrealizarEjercicio_js.btn.btnEnviar(type='submit', value='', autocomplete='off')
+	section#conjuntoIngresado_js.textoCentrado.textoEspecial
+	section
+		form#seccionRespuesta_js.seccionRespuesta
 block script
 	script(src='../js/variablesGenerales.js')
 	script(src='../js/principal.js')

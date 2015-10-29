@@ -7,7 +7,49 @@ html(lang='es')
 		link(rel='shortcut icon', href='img/favicon.png', type='image/x-icon')
 		link(rel='stylesheet', href='../css/logicacomputacional.css')
 	body
-	block content
+		section#contenedorPrincipal_js.contenedorDeAncho
+			section.seccionAyuda.seccionDesplegable.positionRelative
+				button#btnAyuda_js.btn.btnAyuda.btnAyuda
+					span.icon-ayuda.marginIcon
+					span Ayuda
+				article#seccionExplicacion_js.seccionExplicacion.ocultar
+					p Hola, para realizar el ejercicio sigue los paso que damos a continuacion.
+					p El elemnto vacio se inserta con la tecla
+						span.tecla 0
+					ol
+						li Dale un nombre al conjunto
+						li Ingresa los elementos del gupo separados por coma(,)
+						li Presiona
+							b Guardar Conjunto
+						h3 Luego
+						li Escribe los subconjuntos en la caja de texto que aparecera, nuevamente separados por coma(,)
+						li Cuando termines, presiona
+							b Verificar
+			block content
+			section.positionRelative.seccionDesplegable.reproductorMusica
+					p Cancion Actual:
+						span#nombreCancion
+					button#reproductorMusica_js
+						span.icon-musica
+						span#estadoActualAudio_js.cancelarMargin Escuchar
+					progress#barraDePorgresoAudio_js(min='0', value='', max='')
+					span#htmlSpanIconoVolumenActual_js
+					button#btnAjustesAudio_js
+						span.icon-ajustes.ajustes
+					article#listadoAjustesAudio_js.ocultar.listadoAjustesAudio
+						ul
+							li
+								label(for='silenciar') Silenciar
+								input#silenciarAudio_js(type='checkbox', name='silenciar')
+							li
+								label(for='repetir') Repetir
+								input#repetirAudio_js(type='checkbox', name='repetir')
+							li
+								label(for='volumen') Volumen
+								input#volumenAudio_js(value='1', type='range', max='1', min='0', step='0.1', name='volumen')
+
 	block script
+	script(src='/js/audio.js')
+
 
 

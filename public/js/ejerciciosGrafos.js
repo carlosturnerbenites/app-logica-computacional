@@ -1,20 +1,18 @@
 var lienzo = document.getElementById("htmlSvgLienzo_js")
-
-var htmlSvgLienzoGrafo = document.getElementById("htmlSvgLienzoGrafo_js")
-
-var htmlSvgLienzoGrilla = document.getElementById("htmlSvgLienzoGrilla_js")
-
-var htmlSvgLienzoGrafoVertices = document.getElementById("htmlSvgLienzoGrafoVertices_js")
-var htmlSvgLienzoGrafoNombres = document.getElementById("htmlSvgLienzoGrafoNombres_js")
-var htmlSvgLienzoGrafoAristas = document.getElementById("htmlSvgLienzoGrafoAristas_js")
+,htmlSvgLienzoGrafo = document.getElementById("htmlSvgLienzoGrafo_js")
+,htmlSvgLienzoGrilla = document.getElementById("htmlSvgLienzoGrilla_js")
+,htmlSvgLienzoGrafoVertices = document.getElementById("htmlSvgLienzoGrafoVertices_js")
+,htmlSvgLienzoGrafoNombres = document.getElementById("htmlSvgLienzoGrafoNombres_js")
+,htmlSvgLienzoGrafoAristas = document.getElementById("htmlSvgLienzoGrafoAristas_js")
 
 var btnLimpiarLienzo = document.getElementById("btnLimpiarLienzo_js")
-var mensajeDeConfirmacionDeBorradoDeLienzo = "¿Desea Borrar Todos los Elementos?"
-var mensajeDeConfirmacionDeBorradoDeElemento_s = "¿Desea Borrar el(los) elemento(s)?"
-var nombreVertices = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+,mensajeDeConfirmacionDeBorradoDeLienzo = "¿Desea Borrar Todos los Elementos?"
+,mensajeDeConfirmacionDeBorradoDeElemento_s = "¿Desea Borrar el(los) elemento(s)?"
+,nombreVertices = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 var conectorDireccionalDeVertices = " → "
-var namespaceURI = "http://www.w3.org/2000/svg"
-var nombreLineasGrilla
+,namespaceURI = "http://www.w3.org/2000/svg"
+,nombreLineasGrilla
+,grafo = new Array()
 
 /*Variable que con tiene el valor del radio de los vertices(elementos "circle")*/
 var radio = 20
@@ -31,6 +29,10 @@ var posicionAux = 0
 /*Variable Auxiliar utilizada para bloquear el flujo de creacion de un elemento "line". Si al crear el elemento se confirma que este ya existe, entonces no se continuacion con la creacion; por el contrario se prosigue con la creacion e insercion del elemento.*/
 var continuarAux = new Boolean()
 
+//
+var infoCircle
+//
+
 function dibujarCirculo(evento){
 
 	if(evento.which == 1){
@@ -46,55 +48,56 @@ function dibujarCirculo(evento){
 		var cxActuales = evento.clientX
 		var cyActuales = evento.clientY
 
+		console.log(cxActuales,cyActuales);
+
 		htmlCircleVerticeDelGrafo.setAttribute("cx",cxActuales)
 		htmlCircleVerticeDelGrafo.setAttribute("cy",cyActuales)
 		htmlCircleVerticeDelGrafo.setAttribute("r",radio)
 		htmlCircleVerticeDelGrafo.setAttribute("name",nombreVertice)
+		/*htmlCircleVerticeDelGrafo.classList.add("agrandarEncoger")*/
+
 		htmlTextNombreVerticeDelGrafo.setAttribute("x",cxActuales)
 		htmlTextNombreVerticeDelGrafo.setAttribute("y",cyActuales)
 		htmlTextNombreVerticeDelGrafo.classList.add("nombreCircle")
 		htmlTextNombreVerticeDelGrafo.innerHTML = nombreVertice
 		htmlTextNombreVerticeDelGrafo.id = nombreVertice
-		/*htmlCircleVerticeDelGrafo.classList.add("agrandarEncoger")*/
+
 		posicionAux += 1
 
 		htmlSvgLienzoGrafoVertices.appendChild(htmlCircleVerticeDelGrafo)
 		htmlSvgLienzoGrafoNombres.appendChild(htmlTextNombreVerticeDelGrafo)
 
-		infoCircle = {
+		elemento = {
 			type:"circle",
-			position : {
+			data : {
 				cx:cxActuales,
 				cy:cyActuales,
-				r:radio
+				r:radio,
+				name:nombreVertice
 			}
 		}
-		console.log(infoCircle);
+
+		grafo.push(elemento)
 
 	}
-
 }
-var infoCircle
+
+
 function removerElementoLinea(evento) {
 
 	evento.preventDefault()
 
 	if (evento.which == 2) {
 		if (confirm(mensajeDeConfirmacionDeBorradoDeElemento_s)) {
-
-
 			var estadoActual = {
 				msg : "La line se borro",
 				clases : ["MSG", "MSGBien"],
 				icono : "icon-correcto"
 			}
-
 			crearYMostrarMensaje(estadoActual)
 			htmlSvgLienzoGrafoAristas.removeChild(this)
-
 		}
 	}
-
 }
 
 /*refactor nombre variable "name".*/
@@ -108,10 +111,10 @@ function dibujarLinea(x1,y1,x2,y2,contenedor,clase,name,origen,destino) {
 	/*definicion de variable(tipo Array) que contiene las aristas(elementos "line") del grafo.*/
 	var aristasExistentes = htmlSvgLienzoGrafoAristas.childNodes
 
-	/*Este clico recorre los elementos "line" existentes*/
+	/*Este ciclo recorre los elementos "line" existentes*/
 	for (var i = 0; i < aristasExistentes.length; i++) {
 
-		/*captura del atributo name de elemento "lien"*/
+		/*captura del atributo name de elemento "line"*/
 		nombreAristaExistente = aristasExistentes[i].getAttribute("name")
 
 		/*Verificar que la linea a crear no exista, para ello se comprarn los nombres de las lineas*/
@@ -151,11 +154,29 @@ function dibujarLinea(x1,y1,x2,y2,contenedor,clase,name,origen,destino) {
 		htmlLineAristaDelGrafo.classList.add(clase)
 
 		/*Mediante el atributo "name" se verifica que la linea no pertenezca a la grilla, pues si pertecene no se le deben añadir eventos*/
-		if (name != nombreLineasGrilla) {
-			htmlLineAristaDelGrafo.addEventListener("mousedown", removerElementoLinea)
+		htmlLineAristaDelGrafo.addEventListener("mousedown", removerElementoLinea)
+
+
+		var elemento = {
+			type:"line",
+			data:{
+				x1,x1,
+				y1 : y1,
+				x2 : x2,
+				y2 : y2,
+				name : name,
+				origen : origen,
+				destino : destino
+			}
 		}
 
+		grafo.push(elemento)
+
 		/*Agregar linea al Contenedor*/
+
+
+
+
 		contenedor.appendChild(htmlLineAristaDelGrafo)
 
 	}
@@ -191,8 +212,9 @@ var lineasDelVertice = new Array()
 
 
 
-/*se oprime sobre un nod para empezar el evento drag*/
+/*se oprime sobre un nodo para empezar el evento drag*/
 function preparandoDrag(evento) {
+
 	if (evento.which == 3){
 
 		cxElementEnMovimiento = this.getAttribute("cx")
@@ -201,6 +223,7 @@ function preparandoDrag(evento) {
 
 		this.addEventListener("mousemove", drag)
 	}
+
 }
 
 /*se inicia el drag*/
@@ -336,19 +359,106 @@ function dibujarGrilla() {
 
 	/*Se crean la lineas Verticales de la grilla.*/
 	for (var j = 0; j <= lienzoHeight; j+=20) {
-		dibujarLinea(0,j,lienzoWidth,j,htmlSvgLienzoGrilla,"lineGilla",nombreLineasGrilla,origen,destino)
+		dibujarLineaGrilla(0,j,lienzoWidth,j,htmlSvgLienzoGrilla,"lineGilla")
 	}
 
 	/*Se crean la lineas Horizontales de la grilla.*/
 	for (var i = 0; i <= lienzoWidth; i+=20) {
-		dibujarLinea(i,0,i,lienzoHeight,htmlSvgLienzoGrilla,"lineGilla",nombreLineasGrilla,origen,destino)
+		dibujarLineaGrilla(i,0,i,lienzoHeight,htmlSvgLienzoGrilla,"lineGilla")
 	}
 
 }
 
+
+function dibujarLineaGrilla(x1,y1,x2,y2,contenedor,clase) {
+
+	var htmlLineAristaDelGrafo = document.createElementNS(namespaceURI, "line")
+
+	htmlLineAristaDelGrafo.setAttribute("x1",x1)
+	htmlLineAristaDelGrafo.setAttribute("y1",y1)
+	htmlLineAristaDelGrafo.setAttribute("x2",x2)
+	htmlLineAristaDelGrafo.setAttribute("y2",y2)
+
+	htmlLineAristaDelGrafo.classList.add(clase)
+
+	contenedor.appendChild(htmlLineAristaDelGrafo)
+
+}
+
+
+
 function inhabilitarRezise() {
 	limpiarContenedorHTML(htmlSvgLienzoGrilla)
 	dibujarGrilla()
+}
+
+
+
+function guardarGrafo(){
+	var oReq = new XMLHttpRequest();
+	oReq.open("POST", "/guardarGrafo");
+	oReq.setRequestHeader('Content-Type', 'application/json')
+	oReq.send(JSON.stringify(grafo))
+}
+function crearGrafo(elementos){
+
+	for(var elemento of elementos){
+		if (elemento.type == "line"){
+
+			var htmlLineAristaDelGrafo = document.createElementNS(namespaceURI, "line")
+
+			/*Enviao de Atributos al elemento "line"*/
+			htmlLineAristaDelGrafo.setAttribute("x1",elemento.data.x1)
+			htmlLineAristaDelGrafo.setAttribute("y1",elemento.data.y1)
+			htmlLineAristaDelGrafo.setAttribute("x2",elemento.data.x2)
+			htmlLineAristaDelGrafo.setAttribute("y2",elemento.data.y2)
+			htmlLineAristaDelGrafo.setAttribute("name",elemento.data.name)
+			htmlLineAristaDelGrafo.setAttribute("origen",elemento.data.origen)
+			htmlLineAristaDelGrafo.setAttribute("destino",elemento.data.destino)
+
+			/*Envio de clases CSS al elemento "line"*/
+			htmlLineAristaDelGrafo.classList.add("lineGrafo")
+
+			/*Mediante el atributo "name" se verifica que la linea no pertenezca a la grilla, pues si pertecene no se le deben añadir eventos*/
+			htmlLineAristaDelGrafo.addEventListener("mousedown", removerElementoLinea)
+
+			htmlSvgLienzoGrafoAristas.appendChild(htmlLineAristaDelGrafo)
+
+		}
+		if (elemento.type == "circle"){
+
+			var htmlCircleVerticeDelGrafo = document.createElementNS(namespaceURI, "circle")
+			var htmlTextNombreVerticeDelGrafo = document.createElementNS(namespaceURI,"text")
+
+			htmlCircleVerticeDelGrafo.addEventListener("mousedown", circuloPresionado,true)
+			htmlCircleVerticeDelGrafo.addEventListener("mouseup", circuloDesprecionado,true)
+
+
+			htmlCircleVerticeDelGrafo.setAttribute("cx",elemento.data.cx)
+			htmlCircleVerticeDelGrafo.setAttribute("cy",elemento.data.cy)
+			htmlCircleVerticeDelGrafo.setAttribute("r",elemento.data.r)
+			htmlCircleVerticeDelGrafo.setAttribute("name",elemento.data.name)
+			/*htmlCircleVerticeDelGrafo.classList.add("agrandarEncoger")*/
+
+			htmlTextNombreVerticeDelGrafo.setAttribute("x",elemento.data.cx)
+			htmlTextNombreVerticeDelGrafo.setAttribute("y",elemento.data.cy)
+			htmlTextNombreVerticeDelGrafo.innerHTML = elemento.data.name
+			htmlTextNombreVerticeDelGrafo.id = elemento.data.name
+
+			htmlTextNombreVerticeDelGrafo.classList.add("nombreCircle")
+
+			htmlSvgLienzoGrafoVertices.appendChild(htmlCircleVerticeDelGrafo)
+			htmlSvgLienzoGrafoNombres.appendChild(htmlTextNombreVerticeDelGrafo)
+		}
+	}
+	/*
+	if (true) {};
+	var element = document.createElement(info.type)
+	element.setAttribute("cx",info.position.cx)
+	element.setAttribute("cy",info.position.cy)
+	element.setAttribute("r",info.position.r)
+	htmlSvgLienzoGrafoVertices.appendChild(element)
+	*/
 }
 
 
@@ -363,4 +473,6 @@ lienzo.addEventListener("contextmenu", function(evento){
 })
 
 /*Se ejecuta la funcion para dibujar la grilla.*/
+
+
 dibujarGrilla()

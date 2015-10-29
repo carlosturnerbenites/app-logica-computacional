@@ -4,29 +4,27 @@ block title
 	title Conjuntos || Aplicacion Logica computacional
 
 block content
-	section#contenedorPrincipal_js.contenedorDeAncho
-		section
-			h1.textoCentrado Lorem
-			p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nam quibusdam sapiente, ullam neque, aliquid debitis repellendus placeat. Minus quod similique mollitia, a et magni quis neque! Aut, tempora. Incidunt.
-			section#proposiciones_js
-				p#oracion_js
-			section#respuesta_js
-				article#dropzone_js.descargaEnZona.dropzone
-			section#proposicionesPosibles_js.elementosArrastrables
+	h1.textoCentrado Lorem
+	p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nam quibusdam sapiente, ullam neque, aliquid debitis repellendus placeat. Minus quod similique mollitia, a et magni quis neque! Aut, tempora. Incidunt.
+	section#proposiciones_js
+		p#oracion_js
+	section#respuesta_js
+		article#dropzone_js.descargaEnZona.dropzone
+	section#proposicionesPosibles_js.elementosArrastrables
 
-				p.proposicion.elementoArrastrable(value="0" draggable="true") y ()
-				p.proposicion.elementoArrastrable(value="1" draggable="true") o ()
-				p.proposicion.elementoArrastrable(value="2" draggable="true") Condicion ()
-				p.proposicion.elementoArrastrable(value="3" draggable="true") Bicondicion ()
-			button(type="submit").btn.btnConfirmar.centrarConMargin#btnValidarEjercicio_js
-				span.icon-verificar
-				span.marginIconos Verificar
+		p.proposicion.elementoArrastrable(value="0" draggable="true") y ()
+		p.proposicion.elementoArrastrable(value="1" draggable="true") o ()
+		p.proposicion.elementoArrastrable(value="2" draggable="true") Condicion ()
+		p.proposicion.elementoArrastrable(value="3" draggable="true") Bicondicion ()
+	button(type="submit").btn.btnConfirmar.centrarConMargin#btnValidarEjercicio_js
+		span.icon-verificar
+		span.marginIconos Verificar
 	form(id="pruebaForm"/* method="post", action="/enviar_mensaje"*/)
 		label Asunto
 		input(type="text", name="asunto")
 		label Mensaje
 		textarea(cols="40", rows="10", name="mensaje")
-		input#p(type="checkbox")
+		input#p(name="boolean" type="checkbox")
 		input(type="submit", value="Enviar mensaje" readonly)
 
 block script
@@ -38,20 +36,13 @@ block script
 		var ignore = ["submit","reset"]
 		pruebaForm.addEventListener("submit", function(evento){
 			evento.preventDefault()
-			/*
-			var data = {}
-			data.asunto = "holaaaaa"
-			data.mensage = "holaaaaa"
-			*/
 
 			var data = getValuesJSON(this.elements)
 
 			console.log(JSON.stringify(data))
 			var oReq = new XMLHttpRequest();
-			//oReq.addEventListener("load", reqListener);
 			oReq.open("POST", "/enviar_mensaje");
 			oReq.setRequestHeader('Content-Type', 'application/json')
-			//oReq.setRequestHeader('Content-Type', 'application/json')
 			oReq.send(JSON.stringify(data))
 		})
 		function getValuesJSON(elementos){
@@ -59,10 +50,14 @@ block script
 		var data = {}
 
 		for(var i = 0; i < elementos.length; i++){
-			if(ignore.indexOf(elementos[i].type) == -1){
-				data[elementos[i].name] = elementos[i].value
+			if(elementos[i].type == "checkbox"){
+				data[elementos[i].name] = elementos[i].checked
+			}else{
+				if(ignore.indexOf(elementos[i].type) == -1){
+					data[elementos[i].name] = elementos[i].value
+					}
 				}
-			}
+		}
 
 		return data
 		}
