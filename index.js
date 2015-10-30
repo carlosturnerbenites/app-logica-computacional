@@ -13,10 +13,9 @@ app = express(),
 //Crear un servidor http basado en la app de Express
 server = http.createServer(app),
 //File System
-fs = require('fs'),
+fs = require('fs')
 //
-cursos = require('./cursos')
-app.use('/cursos',cursos)
+var cursos = require('./cursos')
 
 
 app.use(bodyParser.json())
@@ -33,6 +32,7 @@ app.locals.pretty = true;
 //Definir motor de vistas
 app.set('view engine', 'jade')
 
+app.use('/cursos',cursos)
 //funcion para compilar stylus
 function compile(str, path) {
 	return stylus(str)

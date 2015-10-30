@@ -1,3 +1,9 @@
+
+function setAtributes(elemento,ObjAtributes){
+	for (var attribute in ObjAtributes){
+		elemento.setAttribute(attribute,ObjAtributes[attribute])
+	}
+}
 /*
 	Description:
 	Esta funcion convierte un elemento tipo HTMLCollection en un Array
