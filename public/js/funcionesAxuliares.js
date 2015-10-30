@@ -1,5 +1,5 @@
 
-function setAtributes(elemento,ObjAtributes){
+function setAttributes(elemento,ObjAtributes){
 	for (var attribute in ObjAtributes){
 		elemento.setAttribute(attribute,ObjAtributes[attribute])
 	}
