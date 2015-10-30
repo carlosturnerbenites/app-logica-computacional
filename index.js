@@ -138,13 +138,25 @@ function formu(req,res){
 
 }
 function guardarGrafo(req,res){
-	console.log(req.body)
+
+
+	var grafo = JSON.stringify(req.body, null, 4)
+
 	fs.open('public/grafos/grafo.grf','wx',function(error, fd){
 		console.log('heeeeee');
 	})
-	fs.writeFile('public/grafos/grafo.grf', req.body, function (err) {
+
+	fs.writeFile('public/grafos/grafo.grf', grafo, function (err) {
 		if (err) throw err;
-		console.log('It\'s saved!');
+
+		var estadoActual = {
+			msg : "Guardado correctamente",
+			clases : ["MSG" ,"MSGBien"],
+			icono : "icon-correcto"
+
+		}
+
+		res.send(estadoActual);
 	});
 
 }

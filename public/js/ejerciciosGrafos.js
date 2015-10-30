@@ -4,6 +4,7 @@ var lienzo = document.getElementById("htmlSvgLienzo_js")
 ,htmlSvgLienzoGrafoVertices = document.getElementById("htmlSvgLienzoGrafoVertices_js")
 ,htmlSvgLienzoGrafoNombres = document.getElementById("htmlSvgLienzoGrafoNombres_js")
 ,htmlSvgLienzoGrafoAristas = document.getElementById("htmlSvgLienzoGrafoAristas_js")
+,btnGuardarGrafo = document.getElementById("btnGuardarGrafo_js")
 
 var btnLimpiarLienzo = document.getElementById("btnLimpiarLienzo_js")
 ,mensajeDeConfirmacionDeBorradoDeLienzo = "¿Desea Borrar Todos los Elementos?"
@@ -395,14 +396,24 @@ function inhabilitarRezise() {
 
 
 function guardarGrafo(){
+
 	var oReq = new XMLHttpRequest();
+
+	oReq.onreadystatechange = function() {
+		if (oReq.readyState == 4) {
+			crearYMostrarMensaje(JSON.parse(oReq.responseText));
+		}
+	}
+
 	oReq.open("POST", "/guardarGrafo");
 	oReq.setRequestHeader('Content-Type', 'application/json')
 	oReq.send(JSON.stringify(grafo))
+
 }
 function crearGrafo(elementos){
 
 	for(var elemento of elementos){
+
 		if (elemento.type == "line"){
 
 			var htmlLineAristaDelGrafo = document.createElementNS(namespaceURI, "line")
@@ -451,19 +462,43 @@ function crearGrafo(elementos){
 			htmlSvgLienzoGrafoNombres.appendChild(htmlTextNombreVerticeDelGrafo)
 		}
 	}
-	/*
-	if (true) {};
-	var element = document.createElement(info.type)
-	element.setAttribute("cx",info.position.cx)
-	element.setAttribute("cy",info.position.cy)
-	element.setAttribute("r",info.position.r)
-	htmlSvgLienzoGrafoVertices.appendChild(element)
-	*/
 }
 
 
 /*Se agregar el evento "click" al boton de limpiar lienzo, para que al suceder el todos los elementos(Vertices, Aristas y Nombre) se borren del lienzo. No se borra la grilla*/
 btnLimpiarLienzo.addEventListener("click", limpiarLienzo)
+
+btnGuardarGrafo.addEventListener("click", guardarGrafo)
+
+var file = document.getElementById("cargarGrafo_js")
+file.addEventListener("change", archivoSelecionado)
+
+function archivoSelecionado(evento) {
+
+	file = evento.target.files[0]
+	console.log(file);
+
+	var reader = new FileReader();
+
+	reader.onload = function() {
+
+		var grafoACargar = JSON.parse(this.result);
+
+		limpiarLienzo()
+
+		crearGrafo(grafoACargar)
+
+		var estadoActual = {
+			msg : "Cagado Correctamente",
+			clases : ["MSG", "MSGBien"],
+			icono : "icon-correcto"
+		}
+		console.log('estadoActual');
+		crearYMostrarMensaje(estadoActual)
+
+	}
+	reader.readAsText(file)
+}
 
 window.addEventListener("resize", inhabilitarRezise)
 
