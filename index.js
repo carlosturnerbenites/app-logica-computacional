@@ -137,14 +137,8 @@ function guardarGrafo(req,res){
 	fs.writeFile('public/grafos/grafo.grf', grafo, function (err) {
 		if (err) throw err;
 
-		var estadoActual = {
-			msg : "Guardado correctamente",
-			clases : ["MSG" ,"MSGBien"],
-			icono : "icon-correcto"
 
-		}
-
-		res.send(estadoActual);
+		res.send({msg : "Guardado correctamente",clases : ["MSG" ,"MSGBien"],icono : "icon-correcto"});
 	});
 }
 

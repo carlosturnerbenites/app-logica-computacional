@@ -1220,13 +1220,13 @@ svg circle:hover {
   stroke-width: 2px;
   cursor: pointer;
 }
+svg line {
+  stroke: rgba(0,0,0,0.6);
+  stroke-width: 5px;
+}
 svg .lineGilla {
   stroke: rgba(0,0,0,0.1);
   stroke-width: 1px;
-}
-svg .lineGrafo {
-  stroke: rgba(0,0,0,0.6);
-  stroke-width: 5px;
 }
 svg .nombreCircle {
   font-size: 40px;

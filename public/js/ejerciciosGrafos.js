@@ -65,28 +65,10 @@ function dibujarCirculo(evento){
 		htmlSvgLienzoGrafoVertices.appendChild(html_vertice)
 		htmlSvgLienzoGrafoNombres.appendChild(html_nameVertice)
 
-		elemento = {
-			type:"circle",
-			data : {
-				cx:cxActuales,
-				cy:cyActuales,
-				r:radio,
-				name:nombreVertice
-			}
-		}
-
-		grafo.push(elemento)
 
 	}
 }
 
-
-function deleteElement(element, index, array) {
-	if(linea.getAttribute("name") == element.data.name){
-		grafo.splice(index)
-	}
-
-}
 
 function removerElementoLinea(evento) {
 	linea = this
@@ -101,16 +83,12 @@ function removerElementoLinea(evento) {
 			}
 			crearYMostrarMensaje(estadoActual)
 			htmlSvgLienzoGrafoAristas.removeChild(linea)
-			console.log(grafo);
-
-			grafo.forEach(deleteElement)
-
 		}
 	}
 }
 
 /*refactor nombre variable "name".*/
-function dibujarLinea(x1,y1,x2,y2,contenedor,clase,name,origen,destino) {
+function dibujarLinea(x1,y1,x2,y2,name,origen,destino) {
 
 	/*definicion de variable que contendra el nombre de la arista(elementos "line"), creado apartir del atributo "name" de la misma.*/
 	var nombreAristaExistente
@@ -153,34 +131,12 @@ function dibujarLinea(x1,y1,x2,y2,contenedor,clase,name,origen,destino) {
 		/*Enviao de Atributos al elemento "line"*/
 		setAtributes(htmlLineAristaDelGrafo,{x1:x1,y1:y1,x2:x2,y2:y2,name:name,origen:origen,destino:destino})
 
-		/*Envio de clases CSS al elemento "line"*/
-		htmlLineAristaDelGrafo.classList.add(clase)
 
 		/*Mediante el atributo "name" se verifica que la linea no pertenezca a la grilla, pues si pertecene no se le deben añadir eventos*/
 		htmlLineAristaDelGrafo.addEventListener("mousedown", removerElementoLinea)
 
-
-		var elemento = {
-			type:"line",
-			data:{
-				x1,x1,
-				y1 : y1,
-				x2 : x2,
-				y2 : y2,
-				name : name,
-				origen : origen,
-				destino : destino
-			}
-		}
-
-		grafo.push(elemento)
-
 		/*Agregar linea al Contenedor*/
-
-
-
-
-		contenedor.appendChild(htmlLineAristaDelGrafo)
+		htmlSvgLienzoGrafoAristas.appendChild(htmlLineAristaDelGrafo)
 
 	}
 
@@ -346,7 +302,7 @@ function circuloDesprecionado(evento) {
 		,origen = nombreVerticeInicial
 		,destino = nombreVerticeFinal
 
-		dibujarLinea(cxIniciales,cyIniciales,cxFinales,cyFinales,htmlSvgLienzoGrafoAristas,"lineGrafo",nombreNuevaArista,origen,destino)
+		dibujarLinea(cxIniciales,cyIniciales,cxFinales,cyFinales,nombreNuevaArista,origen,destino)
 
 	}
 
@@ -391,22 +347,71 @@ function dibujarLineaGrilla(x1,y1,x2,y2,contenedor,clase) {
 
 
 
+function capturarGrafo(){
+	var vertices = htmlSvgLienzoGrafoVertices.children
+	var aristas = htmlSvgLienzoGrafoAristas.children
+	var grafo = new Array()
 
+	if (vertices.length != 0 && aristas.length != 0){
+		for (var i = 0, vertice; vertice = vertices[i]; i++) {
+			var elemento = {
+				type:"circle",
+				data:{
+					cx : vertice.getAttribute("cx"),
+					cy : vertice.getAttribute("cy"),
+					r : vertice.getAttribute("r"),
+					name : vertice.getAttribute("name")
+				}
+			}
+			grafo.push(elemento)
+		}
+
+		for (var i = 0, arista; arista = aristas[i] ;i++) {
+			var elemento = {
+				type:"line",
+				data:{
+					x1 : arista.getAttribute("x1"),
+					y1 : arista.getAttribute("y1"),
+					x2 : arista.getAttribute("x2"),
+					y2 : arista.getAttribute("y2"),
+					name : arista.getAttribute("name"),
+					origen : arista.getAttribute("origen"),
+					destino : arista.getAttribute("destino")
+				}
+			}
+			grafo.push(elemento)
+		}
+
+		return grafo
+	}else{
+		crearYMostrarMensaje({msg : "Este grafo esta vacio, no vale la pena guardarlo.",clases : ["MSG", "MSGBien"],icono : "icon-correcto"})
+		return
+	}
+
+
+}
 
 
 function guardarGrafo(){
 
-	var oReq = new XMLHttpRequest();
+	var grafo = capturarGrafo()
 
-	oReq.onreadystatechange = function() {
-		if (oReq.readyState == 4) {
-			crearYMostrarMensaje(JSON.parse(oReq.responseText));
+	if (typeof grafo != "undefined"){
+
+		var oReq = new XMLHttpRequest();
+		oReq.onreadystatechange = function() {
+			if (oReq.readyState == 4) {
+				crearYMostrarMensaje(JSON.parse(oReq.responseText));
+			}
 		}
-	}
 
-	oReq.open("POST", "/guardarGrafo");
-	oReq.setRequestHeader('Content-Type', 'application/json')
-	oReq.send(JSON.stringify(grafo))
+		oReq.open("POST", "/guardarGrafo");
+		oReq.setRequestHeader('Content-Type', 'application/json')
+		oReq.send(JSON.stringify(grafo))
+	}else{
+		//crearYMostrarMensaje({msg : "No se guardo el grafo",clases : ["MSG" ,"MSGBien"],icono : "icon-correcto"});
+		return
+	}
 
 }
 function crearGrafo(elementos){
