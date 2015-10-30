@@ -13,11 +13,14 @@ app = express(),
 //Crear un servidor http basado en la app de Express
 server = http.createServer(app),
 //File System
-fs = require('fs')
+fs = require('fs'),
+//
+cursos = require('./cursos')
+app.use('/cursos',cursos)
+
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-
 
 
 
@@ -95,9 +98,6 @@ var shortcuts = {
 function inicio(request, response,next) {
 	response.render('index')
 }
-function listadoCursos(request, response,next) {
-	response.render('todosLosCursos',{"temas":temas})
-}
 function todosLosEjercicios(request, response,next) {
 	response.render('todosLosEjercicios',{"temas":temas})
 }
@@ -112,18 +112,6 @@ function ejercicioCalculoProposicional(request, response,next) {
 }
 function ejercicioTablasDeVerdad(request, response,next) {
 	response.render('ejercicios/tablasDeVerdad')
-}
-function cursoConjuntos(request, response,next) {
-	response.render('cursos/conjuntos')
-}
-function cursoGrafos(request, response,next) {
-	response.render('cursos/grafos')
-}
-function cursoCalculoProposicional(request, response,next) {
-	response.render('cursos/calculoProposicional')
-}
-function cursoTablasDeVerdad(request, response,next) {
-	response.render('cursos/tablasDeVerdad')
 }
 function ayuda(request, response,next) {
 	response.render('ayuda',{"shortcuts":shortcuts})
@@ -158,7 +146,6 @@ function guardarGrafo(req,res){
 
 		res.send(estadoActual);
 	});
-
 }
 
 app.post("/enviar_mensaje",formu)
@@ -169,17 +156,13 @@ app.get('/',inicio)
 app.get('/ayuda',ayuda)
 app.get('/nosotros',nosotros)
 
-app.get('/cursos',listadoCursos)
-app.get('/cursos/conjuntos',cursoConjuntos)
-app.get('/cursos/grafos',cursoGrafos)
-app.get('/cursos/calculoProposicional',cursoCalculoProposicional)
-app.get('/cursos/tablasDeVerdad',cursoTablasDeVerdad)
-
 app.get('/ejercicios',todosLosEjercicios)
 app.get('/ejercicios/conjuntos',ejercicioConjuntos)
 app.get('/ejercicios/grafos',ejercicioGrafos)
 app.get('/ejercicios/calculoProposicional',ejercicioCalculoProposicional)
 app.get('/ejercicios/tablasDeVerdad',ejercicioTablasDeVerdad)
+
+
 
 
 /*error perzonalizado de archivo no encontrado*/

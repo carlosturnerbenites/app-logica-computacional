@@ -530,6 +530,9 @@ body {
   scrollbar-face-color: #708090;
   scrollbar-track-color: #b7bfc7;
 }
+.inputSubirGrafo {
+  display: none;
+}
 .descargaEnZona {
   background-color: #dbdbdb;
   border: 3px dashed #808080 !important;
