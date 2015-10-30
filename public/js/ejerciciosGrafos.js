@@ -34,9 +34,11 @@ var continuarAux = new Boolean()
 var infoCircle
 //
 
+
 function dibujarCirculo(evento){
 
 	if(evento.which == 1){
+
 
 		var nombreVertice = nombreVertices[posicionAux]
 		var htmlCircleVerticeDelGrafo = document.createElementNS(namespaceURI, "circle")
@@ -45,10 +47,18 @@ function dibujarCirculo(evento){
 		htmlCircleVerticeDelGrafo.addEventListener("mousedown", circuloPresionado,true)
 		htmlCircleVerticeDelGrafo.addEventListener("mouseup", circuloDesprecionado,true)
 
-
-		var cxActuales = evento.clientX
-		var cyActuales = evento.clientY
-
+		if(evento.offsetX) {
+			cxActuales = evento.offsetX;
+			cyActuales = evento.offsetY;
+		}
+		else if(evento.layerX) {
+			cxActuales = evento.layerX;
+			cyActuales = evento.layerY;
+		}
+		/*
+		var cxActuales = evento.offsetX
+		var cyActuales = evento.offsetY
+		*/
 		console.log(cxActuales,cyActuales);
 
 		htmlCircleVerticeDelGrafo.setAttribute("cx",cxActuales)
@@ -233,9 +243,17 @@ function drag(evento) {
 
 	var aristasExistentes = htmlSvgLienzoGrafoAristas.childNodes
 
-	var nuevaPosicionX = evento.clientX
-	,nuevaPosicionY = evento.clientY
-	,nombreCirculo = this.getAttribute("name")
+	if(evento.offsetX) {
+		nuevaPosicionX = evento.offsetX;
+		nuevaPosicionY = evento.offsetY;
+	}
+	else if(evento.layerX) {
+		nuevaPosicionX = evento.layerX;
+		nuevaPosicionY = evento.layerY;
+	}
+
+
+	var nombreCirculo = this.getAttribute("name")
 	,letra =document.getElementById(nombreCirculo)
 
 	/*mover lineas asociadas al nodo*/
