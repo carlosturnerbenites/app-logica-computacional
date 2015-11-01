@@ -2,10 +2,73 @@
     {
         "type": "circle",
         "data": {
-            "cx": "606",
-            "cy": "109",
+            "cx": "774",
+            "cy": "174",
             "r": "20",
-            "name": "a"
+            "name": "b"
+        }
+    },
+    {
+        "type": "circle",
+        "data": {
+            "cx": "411",
+            "cy": "295",
+            "r": "20",
+            "name": "c"
+        }
+    },
+    {
+        "type": "circle",
+        "data": {
+            "cx": "730",
+            "cy": "322",
+            "r": "20",
+            "name": "d"
+        }
+    },
+    {
+        "type": "circle",
+        "data": {
+            "cx": "526",
+            "cy": "387",
+            "r": "20",
+            "name": "e"
+        }
+    },
+    {
+        "type": "line",
+        "data": {
+            "x1": "411",
+            "y1": "295",
+            "x2": "526",
+            "y2": "387",
+            "name": "c → e",
+            "origen": "c",
+            "destino": "e"
+        }
+    },
+    {
+        "type": "line",
+        "data": {
+            "x1": "526",
+            "y1": "387",
+            "x2": "730",
+            "y2": "322",
+            "name": "e → d",
+            "origen": "e",
+            "destino": "d"
+        }
+    },
+    {
+        "type": "line",
+        "data": {
+            "x1": "730",
+            "y1": "322",
+            "x2": "774",
+            "y2": "174",
+            "name": "d → b",
+            "origen": "d",
+            "destino": "b"
         }
     }
 ]

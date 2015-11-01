@@ -38,39 +38,45 @@ var accionConectar = document.getElementById("accionConectar_js")
 ,accionBorrar = document.getElementById("accionBorrar_js")
 ,accionMover = document.getElementById("accionMover_js")
 
-
-function dibujarCirculo(evento){
-
+function lienzoPresionado(evento) {
 	if(evento.which == 1){
-		accionCrear.classList.add("accionActiva")
+		var x = evento.offsetX
+		,y = evento.offsetY
+		console.log(x,y)
 		var nombreVertice = nombreVertices[posicionAux]
-		var html_vertice = document.createElementNS(namespaceURI, "circle")
-		var html_nameVertice = document.createElementNS(namespaceURI,"text")
 
-		html_vertice.addEventListener("mousedown", circuloPresionado,true)
-		html_vertice.addEventListener("dblclick", eliminarElemento,true)
-		html_vertice.addEventListener("mouseup", circuloDesprecionado,true)
-
-
-		cxActuales = evento.offsetX;
-		cyActuales = evento.offsetY;
-
-		setAttributes(html_vertice,{cx:cxActuales,cy:cyActuales,r:radio,name:nombreVertice})
-		/*html_vertice.classList.add("agrandarEncoger")*/
-
-		setAttributes(html_nameVertice,{x:cxActuales,y:cyActuales})
-		html_nameVertice.classList.add("nombreCircle")
-		html_nameVertice.innerHTML = nombreVertice
-		html_nameVertice.id = nombreVertice
-
-
-		htmlSvgLienzoGrafoVertices.appendChild(html_vertice)
-		htmlSvgLienzoGrafoNombres.appendChild(html_nameVertice)
-		posicionAux += 1
-		setTimeout(function(){
-			accionCrear.classList.remove("accionActiva")
-		}, 500)
+		dibujarCirculo(x,y,nombreVertice)
 	}
+}
+function dibujarCirculo(posX,posY,name){
+	accionCrear.classList.add("accionActiva")
+	var html_vertice = document.createElementNS(namespaceURI, "circle")
+	var html_nameVertice = document.createElementNS(namespaceURI,"text")
+
+	html_vertice.addEventListener("mousedown", circuloPresionado,true)
+	html_vertice.addEventListener("dblclick", eliminarElemento,true)
+	html_vertice.addEventListener("mouseup", circuloDesprecionado,true)
+
+
+	cxActuales = posX
+	cyActuales = posY
+
+	setAttributes(html_vertice,{cx:cxActuales,cy:cyActuales,r:radio,name:name})
+	/*html_vertice.classList.add("agrandarEncoger")*/
+
+	setAttributes(html_nameVertice,{x:cxActuales,y:cyActuales})
+	html_nameVertice.classList.add("nombreCircle")
+	html_nameVertice.innerHTML = name
+	html_nameVertice.id = name
+
+
+	htmlSvgLienzoGrafoVertices.appendChild(html_vertice)
+	htmlSvgLienzoGrafoNombres.appendChild(html_nameVertice)
+	posicionAux += 1
+	setTimeout(function(){
+		accionCrear.classList.remove("accionActiva")
+	}, 500)
+
 }
 
 /*Funcion encargada de ecoger que accion ejecutar sobre un elemento segun el boton del mouse oprimido*/
@@ -356,28 +362,12 @@ function crearGrafo(elementos){
 
 	for(var elemento of elementos){
 
+		var data = elemento.data
+
 		if (elemento.type == "line"){
-			var data = elemento.data
 			dibujarLinea(data.x1,data.y1,data.x2,data.y2,data.name,data.origen,data.destino)
 		}else{
-			var htmlCircleVerticeDelGrafo = document.createElementNS(namespaceURI, "circle")
-			var htmlTextNombreVerticeDelGrafo = document.createElementNS(namespaceURI,"text")
-
-			htmlCircleVerticeDelGrafo.addEventListener("mousedown", circuloPresionado,true)
-			htmlCircleVerticeDelGrafo.addEventListener("dblclick", eliminarElemento,true)
-			htmlCircleVerticeDelGrafo.addEventListener("mouseup", circuloDesprecionado,true)
-
-			setAttributes(htmlCircleVerticeDelGrafo,{cx:elemento.data.cx, cy:elemento.data.cy,r:elemento.data.r,name:elemento.data.name})
-			/*htmlCircleVerticeDelGrafo.classList.add("agrandarEncoger")*/
-
-			setAttributes(htmlTextNombreVerticeDelGrafo,{x:elemento.data.cx,y:elemento.data.cy})
-			htmlTextNombreVerticeDelGrafo.innerHTML = elemento.data.name
-			htmlTextNombreVerticeDelGrafo.id = elemento.data.name
-
-			htmlTextNombreVerticeDelGrafo.classList.add("nombreCircle")
-
-			htmlSvgLienzoGrafoVertices.appendChild(htmlCircleVerticeDelGrafo)
-			htmlSvgLienzoGrafoNombres.appendChild(htmlTextNombreVerticeDelGrafo)
+			dibujarCirculo(data.cx,data.cy, data.name)
 		}
 	}
 }
