@@ -14,19 +14,19 @@ block content
 	p Hola, ejercita tu logica, relaciona la proposicion que tienes adelante con los conectores que lleva consigo. para mas informacion ver
 		span.btn.btnAyuda.marginLateral Ayuda
 	section#proposiciones_js
-		p.oracion
+		p.oracion.seccionSeparadora
 			span.icon-comillasAbre.marginLateral
 			span#oracion_js
 			span.icon-comillasCierra.marginLateral
 	h2.textoCentrado Conectores
 	section#proposicionesPosibles_js.elementosArrastrables
-		p.proposicion.elementoArrastrable(value="0" draggable="true")
+		p.proposicion.elementoArrastrable(value="0" draggable="true" ayudaEmergente="y")
 			span.icon-y
-		p.proposicion.elementoArrastrable(value="1" draggable="true")
+		p.proposicion.elementoArrastrable(value="1" draggable="true" ayudaEmergente="o")
 			span.icon-o
-		p.proposicion.elementoArrastrable(value="2" draggable="true")
+		p.proposicion.elementoArrastrable(value="2" draggable="true" ayudaEmergente="condicional")
 			span.icon-condicional
-		p.proposicion.elementoArrastrable(value="3" draggable="true")
+		p.proposicion.elementoArrastrable(value="3" draggable="true" ayudaEmergente="bicondicional")
 			span.icon-bicondicional
 	hr
 	section#respuesta_js

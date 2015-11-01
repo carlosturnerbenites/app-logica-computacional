@@ -113,3 +113,14 @@ body
 	padding 0 10px
 	background-color rgba(0,0,0,.8)
 
+[ayudaEmergente]
+	position relative
+	&:hover
+		&:before
+			content attr(ayudaEmergente)
+			position absolute
+			top -20px
+			background-color gray
+			padding 2px
+			border-radius 2px
+			color white
