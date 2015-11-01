@@ -2,23 +2,35 @@ extends ../templates/templateCursosEjercicios.jade
 
 block title
 	title Conjuntos || Aplicacion Logica computacional
-
+block ayuda
+	p Hola, para realizar el ejercicio sigue los paso que damos a continuacion.
+	ol
+		li arrastra con el mouse(click Izquierdo) el conector(es) que creas que correcto para la proposicion.
+		p Luego
+		li Cuando termines, presiona
+			b Realizar Ejercicio
 block content
-	h1.textoCentrado Lorem
-	p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nam quibusdam sapiente, ullam neque, aliquid debitis repellendus placeat. Minus quod similique mollitia, a et magni quis neque! Aut, tempora. Incidunt.
+	h1.textoCentrado Calculo Proposicional
+	p Hola, ejercita tu logica, relaciona la proposicion que tienes adelante con los conectores que lleva consigo. para mas informacion ver
+		span.btn.btnAyuda.marginLateral Ayuda
 	section#proposiciones_js
 		p#oracion_js
+	h2.textoCentrado Conectores
+	section#proposicionesPosibles_js.elementosArrastrables
+		p.proposicion.elementoArrastrable(value="0" draggable="true")
+			span.icon-y
+		p.proposicion.elementoArrastrable(value="1" draggable="true")
+			span.icon-o
+		p.proposicion.elementoArrastrable(value="2" draggable="true")
+			span.icon-condicional
+		p.proposicion.elementoArrastrable(value="3" draggable="true")
+			span.icon-bicondicional
+	hr
 	section#respuesta_js
 		article#dropzone_js.descargaEnZona.dropzone
-	section#proposicionesPosibles_js.elementosArrastrables
 
-		p.proposicion.elementoArrastrable(value="0" draggable="true") y ()
-		p.proposicion.elementoArrastrable(value="1" draggable="true") o ()
-		p.proposicion.elementoArrastrable(value="2" draggable="true") Condicion ()
-		p.proposicion.elementoArrastrable(value="3" draggable="true") Bicondicion ()
+
 	button(type="submit").btn.btnConfirmar.centrarConMargin#htmlInputSubmitBtnrealizarEjercicio_js
-		span.icon-verificar
-		span.marginIconos Verificar
 
 block script
 	script(src='../js/variablesGenerales.js')

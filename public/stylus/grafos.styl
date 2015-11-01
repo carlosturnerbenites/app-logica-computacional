@@ -1,0 +1,40 @@
+
+
+/*
++-----------------------+
+|		Grafos			|
++-----------------------+
+*/
+svg
+	//width 95%
+	user-select none
+	width 100%
+	display block
+	margin 0 auto
+	height 500px
+	border-top 5px solid gray
+	border-bottom 5px solid gray
+	circle
+		fill rgba(0,0,0,.4)
+		&:hover
+			stroke rgba(0,0,0,.6)
+			stroke-width 2px
+			cursor pointer
+	line
+		stroke rgba(0,0,0,.6)
+		stroke-width 5px
+	.lineGilla
+		stroke rgba(0,0,0,.1)
+		stroke-width 1px
+	.nombreCircle
+		font-size 40px
+		font-family 'Lato'
+		stroke black
+		stroke-width 1px
+		fill white
+.agrandarEncoger
+	animation 2s aumentaDisminuye 1 linear
+.nombreVertice:after
+	content " ): "
+.nombreVertice:before
+	content "deg ( "

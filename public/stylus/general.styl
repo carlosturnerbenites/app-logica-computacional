@@ -29,49 +29,105 @@ input[type="checkbox"]
 body
 	scrollbar-face-color slategray
 	scrollbar-track-color #b7bfc7
+
 /*
-input[type="file"]
-	border none
-	color transparent
-input[type="file"]::-webkit-file-upload-button
-	visibility hidden
-
-input[type="file"]:before
-	content 'Seleciona el grafo a subir'
-	display inline-block
-	color black
-	background -webkit-linear-gradient(top, #f9f9f9, #e3e3e3)
-	border 1px solid #999
-	border-radius 3px
-	padding 5px 8px
-	outline none
-	white-space nowrap
-	-webkit-user-select none
-	cursor pointer
-	text-shadow 1px 1px #fff
-	font-weight 700
-	font-size 10pt
-
-input[type="file"]:hover:before
-	border-color black
-
-input[type="file"]:active:before
-	background -webkit-linear-gradient(top, #e3e3e3, #f9f9f9)
++-----------------------+
+|		Ayuda			|
++-----------------------+
 */
+.seccionAyuda
+	.seccionExplicacion
+		padding 20px
+		position absolute
+		border 2px solid colorBtnAyudaBorder
+		background-color colorBtnAyudaBackground
+		border-radius 10px
+		border-top none
+		border-top-left-radius 0
+		border-top-right-radius 0
+
+
+
+/*
++-----------------------+
+|		MSG 			|
++-----------------------+
+*/
+.contenedorMensaje
+	position absolute
+	bottom 0
+	animation 2s ascender 1 linear
+	.MSG
+		color white
+		border 3px solid
+		border-radius 10px
+		display inline-block
+		padding 0 10px
+
+		span,p
+			display inline-block
+		span
+			margin-right 20px
+			animation 1s aumentaDisminuye infinite linear
+
+		&Bien
+			background-color colorBtnEnviarBackground
+			border-color colorBtnEnviarBorder
+			&:hover
+				transition background-color 2s
+				background-color colorBtnEnviarBorder
+
+		&Error
+			background-color colorBtnCancelarBackground
+			border-color colorBtnCancelarBorder
+			&:hover
+				transition background-color 2s
+				background-color colorBtnCancelarBorder
 
 .inputSubirGrafo
 	display none
 
+.barraDeProgreso
+	position relative
 .barraDeProgreso::-webkit-slider-runnable-track
 	background gray
-	height 5px
+	height 3px
 	border-radius 10px
 
 .barraDeProgreso::-webkit-slider-thumb
 	appearance none
 .barraDeProgreso::-webkit-slider-thumb:before
-	content '|'
-	vertical-align middle
+	content ' '
+	display block
+	width 10px
+	height 10px
+	border-radius 50%
+	position absolute
+	background black
+	top -2.5px
+
+/*
++-----------------------+
+|	Errores de pagina	|
++-----------------------+
+*/
+.error
+	.code
+		font-size 6em
+		margin 10px 0
 
 
+/*
++-----------------------------------+
+|	Estilo de teclas o shotcuts		|
++-----------------------------------+
+*/
+.contenedorTeclas
+	p
+		display inline-block !important
+.tecla
+	color white
+	border-radius 5px
+	padding 0 10px
+	background-color rgba(0,0,0,.8)
 

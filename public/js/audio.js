@@ -103,6 +103,7 @@ function cambiarIconoVolumen() {
 	if(valorVolumenAudio > mediumVolumen){
 		htmlSpanIconoVolumenActual.className = ""
 		htmlSpanIconoVolumenActual.classList.add("icon-volumenAlto")
+		htmlSpanIconoVolumenActual.classList.add("marginLateral")
 
 	}
 	if(valorVolumenAudio == mediumVolumen){

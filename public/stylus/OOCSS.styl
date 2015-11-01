@@ -1,0 +1,140 @@
+.btn
+	border none
+	border-radius 5px
+	color #fff
+	padding 10px
+	font-size 1em
+	font-weight bold
+	letter-spacing 3px
+	cursor pointer
+	&:active
+		transition .1s box-shadow
+		box-shadow 0px 0px transparent
+	&Confirmar
+		background-color colorBtnConfirmarBackground
+		box-shadow 0px 6px colorBtnConfirmarBorder
+	&Cancelar
+		background-color colorBtnCancelarBackground
+		box-shadow 0px 6px colorBtnCancelarBorder
+	&Enviar
+		background-color colorBtnEnviarBackground
+		box-shadow 0px 6px colorBtnEnviarBorder
+	&Ayuda
+		box-shadow 0px 6px colorBtnAyudaBorder
+		background-color colorBtnAyudaBackground
+		cursor help
+	&:disabled
+		cursor not-allowed
+		box-shadow 0px 6px colorBtnDiabledBorder
+		background-color colorBtnDiabledBackground
+/*
++-----------------------+
+|		CSSOO			|
++-----------------------+
+*/
+.alignRight
+	display flex
+	justify-content flex-end
+.seccionSeparadora
+	border-top 1px solid gray
+	border-bottom 1px solid gray
+	padding 10px 0
+.positionRelative
+	position relative
+.cancelarMargin
+	margin 0 !important
+.marginLateral
+	margin 0 20px
+.cursorPointer
+	cursor pointer
+.positionFija
+	position fixed
+.contenedorDeAncho
+	max-width 90%
+	margin 0 auto
+	position relative
+.borderNone
+	border none
+.textoNegrilla
+	font-weight bold
+.dosColumnas
+	width 50%
+	margin 0
+	padding 0
+.ancho100PorCieto
+	width 100%
+.alto100PorCieto
+	height 100%
+.displayFlexCenterTotal
+	display flex
+	justify-content center
+	align-items center
+	flex-wrap wrap
+.marginIconos
+	margin 0 10px
+.displayFlexCenterSpaceAround
+	display flex
+	justify-content space-around
+	align-items center
+	flex-wrap wrap
+
+.textoCentrado
+	text-align center
+.textoDerecha
+	text-align right
+.textoIzquierda
+	text-align left
+.containerInfo
+	width 100%
+.titulo
+	font-size 2em
+	text-transform uppercase
+	border-bottom 1px dashed black
+	display inline-block
+	padding 10px
+.inputCenterUppercase
+	text-align center
+	text-transform uppercase
+.textoDescripcion
+	font-size 0.8em
+	color gray
+	margin-left 20px
+	margin-top 2px
+	margin-bottom 20px
+.textoEspecial
+	font-size 2em
+.ocultar
+	display none
+.centrarConMargin
+	margin 0 auto
+	display block
+
+//las tres siguientes clases son para colorear de rojo o verde dependiendo de si algo esta bien o mal
+.estadoDeRespuesta
+	font-weight bold
+.bien
+	color colorEstadoPreguntaBien
+.mal
+	color colorEstadoPreguntaMal
+
+/*
++-----------------------+
+|		Botones 		|
++-----------------------+
+*/
+
+
+/*
++-----------------------------------+
+|		Efecto de linea inferior	|
+|		de los inputs en fous 		|
++-----------------------------------+
+*/
+
+.inputBorderBottomFocus
+	border-color transparent
+	border-bottom 1px solid transparent
+
+.inputBorderBottomFocus:focus
+	transition border-bottom 3s
+	border-bottom 1px solid black

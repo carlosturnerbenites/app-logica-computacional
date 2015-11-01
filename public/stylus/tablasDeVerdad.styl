@@ -1,0 +1,50 @@
+
+/*
++-----------------------+
+|	Tablas de Verdad	|
++-----------------------+
+*/
+
+table
+	border-collapse collapse
+	margin 0 auto
+	margin-top 20px
+	margin-bottom 20px
+	tr
+		&:hover
+			background-color colorCoumnaMarcada
+
+		th
+			padding 10px
+			border 2px solid black
+			&:last-child
+				padding 0
+		.respuestaEjercicio
+			width 130px
+			border none
+			outline none
+			text-align center
+			text-transform uppercase
+			font-weight bold
+			height 100%
+	input
+		background-color inherit
+		padding 0
+.columnaMarcada
+	background-color colorCoumnaMarcada
+	input
+		background-color initial
+
+.agregarFila
+	border-radius 50%
+	background-color colorBtnConfirmarBackground
+	border 2px solid colorBtnConfirmarBorder
+	color white
+	width 41px
+	height 40px
+	&:hover
+		transition background-color 2s
+		background-color colorBtnConfirmarBorder
+
+.valorErroneo
+	animation 2s parpadeoError linear infinite

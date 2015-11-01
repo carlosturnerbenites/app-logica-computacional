@@ -3,16 +3,31 @@ extends ../templates/templateCursosEjercicios.jade
 block title
 	title Conjuntos || Aplicacion Logica computacional
 
+block ayuda
+	p Hola, para realizar el ejercicio sigue los paso que damos a continuacion.
+	p El elemento vacio se inserta con la tecla
+		span.tecla 0
+	ol
+		li Dale un nombre al conjunto
+		li Ingresa los elementos del gupo separados por coma(,)
+		li Presiona
+			b Guardar Conjunto
+		p Luego
+		li Escribe los subconjuntos en la caja de texto que aparecera, nuevamente separados por coma(,)
+		li Cuando termines, presiona
+			b Verificar
+
 block content
-	h1.textoCentrado Lorem
-	p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nam quibusdam sapiente, ullam neque, aliquid debitis repellendus placeat. Minus quod similique mollitia, a et magni quis neque! Aut, tempora. Incidunt.
+	h1.textoCentrado Conjuntos
+	p Hola, en esta practica debes hallar los subconjuntos del conjunto que escogas. para mas informacion ver
+		span.btn.btnAyuda.marginLateral Ayuda
 	section
 		form#formConjuntos_js.formConjuntos
 			section.fieldset
 				p.ancho100PorCieto.textoCentrado Subconjuntos
 				input#htmlRadioConjuntosPropio_js(type='radio', name='tipiEjercicio', checked='')
 				label(for='htmlRadioConjuntosPropio_js') Propios
-				p.textoNegrilla.ancho100PorCieto.textoCentrado.cancelarMargin ó
+				span.textoNegrilla.textoCentrado.marginLateral ó
 				input#htmlRadioConjuntosImpropio_js(type='radio', name='tipiEjercicio')
 				label(for='htmlRadioConjuntosImpropio_js') Impropios
 			section.fieldset

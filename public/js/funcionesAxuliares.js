@@ -139,6 +139,9 @@ Syntax:
 crearYMostrarMensaje(Objeto)
 */
 function crearYMostrarMensaje(estado){
+
+	var notification = new Audio("/audio/notificacion.mp3")
+
 	var contenedor = document.createElement("section")
 	contenedor.classList.add("contenedorMensaje")
 
@@ -161,6 +164,7 @@ function crearYMostrarMensaje(estado){
 	contenedorMSG.appendChild(msg)
 	contenedor.appendChild(contenedorMSG)
 	contenedorPrincipal.appendChild(contenedor)
+	notification.play()
 
 	setTimeout(function(){
 		contenedorPrincipal.removeChild(contenedorPrincipal.lastChild)

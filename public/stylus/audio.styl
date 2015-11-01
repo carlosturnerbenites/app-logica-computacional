@@ -1,0 +1,57 @@
+
+/*
++-----------------------------------+
+|				Audio				|
++-----------------------------------+
+*/
+
+.reproductorMusica
+	display inline-block
+	border 1px solid gray
+	padding 10px
+	border-radius 10px
+	button
+		appearance none
+		background-color white
+		border none
+		color gray
+	button:hover
+		color black !important
+	.ajustes
+		color black
+		background-color white
+		padding 3px
+		&:hover
+			background-color rgba(0,0,0,.1)
+	.listadoAjustesAudio
+		border 1px solid gray
+		border-top-right-radius 10px
+		border-top-left-radius 10px
+		font-size .7em
+		position absolute
+		top -110px
+		background-color rgba(0,0,0,.1)
+		right 0
+		padding 10px
+		li
+			width auto
+			padding 5px 0
+			label
+				width 70px
+				display inline-block
+				font-weight bold
+		input[type="number"]
+			width 30px
+/*
++-----------------------+
+|Iconos de Volumen 		|
++-----------------------+
+*/
+.icon-volumenBajo
+	color #D4A16A
+.icon-volumenAlto
+	color #567714
+.icon-volumenMedio
+	color #D4C66A
+.icon-silenciado
+	color #D46A6A
