@@ -1,10 +1,27 @@
 var express = require("express"),
 router = express.Router()
 
+var temas = {
+	cursoUno:{
+		curso:"Calculo Proposicional",
+		urlCurso:"/cursos/calculoProposicional"
+	},
+	cursoDos:{
+		curso: "Tablas de Verdad",
+		urlCurso:"/cursos/tablasDeVerdad"
+	},
+	cursoTres:{
+		curso: "Conjuntos",
+		urlCurso:"/cursos/conjuntos"
+	},
+	cursoCuatro:{
+		curso: "Grafos",
+		urlCurso:"/cursos/grafos"
+	}
+}
 
 function listadoCursos(request, response) {
-	//response.render('todosLosCursos',{"temas":temas})
-	response.send("funciono")
+	response.render('todosLosCursos',{"temas":temas})
 }
 function cursoConjuntos(request, response) {
 	response.render('cursos/conjuntos')

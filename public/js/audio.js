@@ -114,8 +114,7 @@ function cambiarIconoVolumen() {
 
 function cambiarCancion(evento) {
 	var files = evento.target.files[0]
-	console.log(files)
-	console.log(files.name)
+	console.log(fReader);
 }
 
 musicaEscogido.addEventListener("change", cambiarCancion)

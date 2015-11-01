@@ -37,7 +37,7 @@ function teclapresionada(evento){
 		btnAyuda.click()
 	}
 
-	if(evento.shiftKey && nombreTeclaPresionado == "b"){
+	if(evento.shiftKey && nombreTeclaPresionado == "¡"){
 		limpiarLienzo()
 
 	}

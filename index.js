@@ -14,14 +14,13 @@ app = express(),
 server = http.createServer(app),
 //File System
 fs = require('fs')
-//
-var cursos = require('./cursos')
 
+//
+var refCursos = require('./modulesApp/cursos')
+var refEjercicios = require('./modulesApp/ejercicios')
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
-
-
+//app.use(bodyParser.urlencoded({ extended: false }))
 
 //definir carpeta para vistas
 app.set('views', __dirname + '/vistas')
@@ -32,7 +31,16 @@ app.locals.pretty = true;
 //Definir motor de vistas
 app.set('view engine', 'jade')
 
-app.use('/cursos',cursos)
+app.use('/cursos',refCursos)
+app.use('/ejercicios',refEjercicios)
+
+//definir el middleware de stylus y sus parametros
+app.use(stylus.middleware({
+	src: __dirname + '/public/stylus',
+	dest: __dirname + '/public/css'
+	, compile: compile
+}))
+
 //funcion para compilar stylus
 function compile(str, path) {
 	return stylus(str)
@@ -48,38 +56,9 @@ app.use(function(req, res, next) {
 		next();
 })
 
-//definir el middleware de stylus y sus parametros
-app.use(stylus.middleware({
-	src: __dirname + '/public/stylus',
-	dest: __dirname + '/public/css'
-	, compile: compile
-}))
-
 //ruta estaticos
 app.use(express.static('public'))
 
-var temas = {
-	cursoUno:{
-		curso:"Calculo Proposicional",
-		urlCurso:"/cursos/calculoProposicional",
-		urlEjercicio:"/ejercicios/calculoProposicional"
-	},
-	cursoDos:{
-		curso: "Tablas de Verdad",
-		urlCurso:"/cursos/tablasDeVerdad",
-		urlEjercicio:"/ejercicios/tablasDeVerdad"
-	},
-	cursoTres:{
-		curso: "Conjuntos",
-		urlCurso:"/cursos/conjuntos",
-		urlEjercicio:"/ejercicios/conjuntos"
-	},
-	cursoCuatro:{
-		curso: "Grafos",
-		urlCurso:"/cursos/grafos",
-		urlEjercicio:"/ejercicios/grafos"
-	}
-}
 
 var shortcuts = {
 	ayuda:{
@@ -92,41 +71,18 @@ var shortcuts = {
 	}
 }
 
-
-
 //deinificon de vistas
 function inicio(request, response,next) {
 	response.render('index')
-}
-function todosLosEjercicios(request, response,next) {
-	response.render('todosLosEjercicios',{"temas":temas})
-}
-function ejercicioConjuntos(request, response,next) {
-	response.render('ejercicios/conjuntos')
-}
-function ejercicioGrafos(request, response,next) {
-	response.render('ejercicios/grafos')
-}
-function ejercicioCalculoProposicional(request, response,next) {
-	response.render('ejercicios/calculoProposicional')
-}
-function ejercicioTablasDeVerdad(request, response,next) {
-	response.render('ejercicios/tablasDeVerdad')
 }
 function ayuda(request, response,next) {
 	response.render('ayuda',{"shortcuts":shortcuts})
 }
 function nosotros(request, response,next) {
 	response.render('acercaDe')
-
 }
 
-function formu(req,res){
-	console.log(req.body)
-
-}
 function guardarGrafo(req,res){
-
 
 	var grafo = JSON.stringify(req.body, null, 4)
 
@@ -142,40 +98,19 @@ function guardarGrafo(req,res){
 	});
 }
 
-app.post("/enviar_mensaje",formu)
 app.post("/guardarGrafo",guardarGrafo)
 
-//Definicion de url
 app.get('/',inicio)
 app.get('/ayuda',ayuda)
 app.get('/nosotros',nosotros)
 
-app.get('/ejercicios',todosLosEjercicios)
-app.get('/ejercicios/conjuntos',ejercicioConjuntos)
-app.get('/ejercicios/grafos',ejercicioGrafos)
-app.get('/ejercicios/calculoProposicional',ejercicioCalculoProposicional)
-app.get('/ejercicios/tablasDeVerdad',ejercicioTablasDeVerdad)
-
-
-
-
 /*error perzonalizado de archivo no encontrado*/
 app.use(function(req, res) {
 	res.status(404);
-	/* respond with html page*/
 	if (req.accepts('html')) {
 		res.render('404', { inicio: req.hostname });
 		return;
 	}
-
-	/* respond with json*/
-	if (req.accepts('json')) {
-		res.send({ error: 'Not found' });
-		return;
-	}
-
-	/*default to plain-text. send()*/
-	res.type('txt').send('Not found');
 })
 
 /*error perzonalizado del servidor*/
@@ -187,4 +122,3 @@ app.use(function(err, req, res, next){
 //Configurra el puerto de escucha
 //"process.env.PORT" es una variable que hace referencia al puerto a escuchar - Utilizada para heroku
 server.listen(process.env.PORT || 8000)
-

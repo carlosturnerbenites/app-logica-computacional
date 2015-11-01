@@ -2,94 +2,10 @@
     {
         "type": "circle",
         "data": {
-            "cx": "1189",
-            "cy": "196",
+            "cx": "606",
+            "cy": "109",
             "r": "20",
             "name": "a"
-        }
-    },
-    {
-        "type": "circle",
-        "data": {
-            "cx": "584",
-            "cy": "269",
-            "r": "20",
-            "name": "b"
-        }
-    },
-    {
-        "type": "circle",
-        "data": {
-            "cx": "595",
-            "cy": "205",
-            "r": "20",
-            "name": "c"
-        }
-    },
-    {
-        "type": "circle",
-        "data": {
-            "cx": "1264",
-            "cy": "72",
-            "r": "20",
-            "name": "d"
-        }
-    },
-    {
-        "type": "circle",
-        "data": {
-            "cx": "641",
-            "cy": "90",
-            "r": "20",
-            "name": "e"
-        }
-    },
-    {
-        "type": "line",
-        "data": {
-            "x1": "584",
-            "y1": "269",
-            "x2": "1189",
-            "y2": "196",
-            "name": "b → a",
-            "origen": "b",
-            "destino": "a"
-        }
-    },
-    {
-        "type": "line",
-        "data": {
-            "x1": "595",
-            "y1": "205",
-            "x2": "641",
-            "y2": "90",
-            "name": "c → e",
-            "origen": "c",
-            "destino": "e"
-        }
-    },
-    {
-        "type": "line",
-        "data": {
-            "x1": "641",
-            "y1": "90",
-            "x2": "1264",
-            "y2": "72",
-            "name": "e → d",
-            "origen": "e",
-            "destino": "d"
-        }
-    },
-    {
-        "type": "line",
-        "data": {
-            "x1": "1264",
-            "y1": "72",
-            "x2": "584",
-            "y2": "269",
-            "name": "d → b",
-            "origen": "d",
-            "destino": "b"
         }
     }
 ]

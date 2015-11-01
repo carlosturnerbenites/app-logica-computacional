@@ -36,6 +36,7 @@ var lineasDelVertice = new Array()
 var accionConectar = document.getElementById("accionConectar_js")
 ,accionCrear = document.getElementById("accionCrear_js")
 ,accionBorrar = document.getElementById("accionBorrar_js")
+,accionMover = document.getElementById("accionMover_js")
 
 
 function dibujarCirculo(evento){
@@ -47,7 +48,7 @@ function dibujarCirculo(evento){
 		var html_nameVertice = document.createElementNS(namespaceURI,"text")
 
 		html_vertice.addEventListener("mousedown", circuloPresionado,true)
-		html_vertice.addEventListener("dblclick", eliminarVertice,true)
+		html_vertice.addEventListener("dblclick", eliminarElemento,true)
 		html_vertice.addEventListener("mouseup", circuloDesprecionado,true)
 
 
@@ -69,25 +70,51 @@ function dibujarCirculo(evento){
 		setTimeout(function(){
 			accionCrear.classList.remove("accionActiva")
 		}, 500)
-
-
 	}
 }
 
-function removerElementoLinea(evento) {
-	linea = this
-	evento.preventDefault()
+/*Funcion encargada de ecoger que accion ejecutar sobre un elemento segun el boton del mouse oprimido*/
+function eliminarElemento(evento) {
+	/*Si se presiona la rueda del raton, se inicia el proceso para eliminar un vertice(elemento "circle") y sus aristas asociadas(elemento "line")*/
+	if(evento.which == 2){
+		accionBorrar.classList.add("accionActiva")
 
-	if (evento.which == 2) {
+		/*Se pide confirmacion para borrar*/
 		if (confirm(mensajeDeConfirmacionDeBorradoDeElemento_s)) {
-			var estadoActual = {
-				msg : "La line se borro",
-				clases : ["MSG", "MSGBien"],
-				icono : "icon-correcto"
+
+			if(this.tagName == "circle"){
+
+				var aristasExistentes = convertirHTMLCollectionEnArray(htmlSvgLienzoGrafoAristas.childNodes)
+
+				htmlSvgLienzoGrafoVertices.removeChild(this)
+				htmlSvgLienzoGrafoNombres.removeChild(document.getElementById(this.getAttribute("name")))
+
+				for (var i = 0; i <= aristasExistentes.length; i++) {
+					if (aristasExistentes[i] != undefined) {
+						nombreLinea = aristasExistentes[i].getAttribute("name")
+						nombreCirculo = this.getAttribute("name")
+
+						if (nombreLinea.indexOf(nombreCirculo) != -1) {
+							htmlSvgLienzoGrafoAristas.removeChild(aristasExistentes[i])
+
+						}
+					}
+
+				}
+			}else{
+				htmlSvgLienzoGrafoAristas.removeChild(this)
 			}
-			crearYMostrarMensaje(estadoActual)
-			htmlSvgLienzoGrafoAristas.removeChild(linea)
+
+
+
+
+
+
+
+
 		}
+
+		accionBorrar.classList.remove("accionActiva")
 	}
 }
 
@@ -140,7 +167,7 @@ function dibujarLinea(x1,y1,x2,y2,name,origen,destino) {
 
 
 		/*Mediante el atributo "name" se verifica que la linea no pertenezca a la grilla, pues si pertecene no se le deben añadir eventos*/
-		htmlLineAristaDelGrafo.addEventListener("dblclick", removerElementoLinea)
+		htmlLineAristaDelGrafo.addEventListener("dblclick", eliminarElemento)
 
 		/*Agregar linea al Contenedor*/
 		htmlSvgLienzoGrafoAristas.appendChild(htmlLineAristaDelGrafo)
@@ -150,52 +177,26 @@ function dibujarLinea(x1,y1,x2,y2,name,origen,destino) {
 
 /*Funcion encargada de limpiar el lienzo de dibujo*/
 function limpiarLienzo() {
+	if (lienzo.hasAttribute("disabled")){
+		crearYMostrarMensaje({msg : "El lienzo no esta hailitado",clases : ["MSG", "MSGError"],icono : "icon-equivocado"})
+		html_inputCargarGrafo.value = ""
 
-	/*pedir confirmacion para borar el lienzo*/
-	if (confirm(mensajeDeConfirmacionDeBorradoDeLienzo)) {
+	}else{
+		/*pedir confirmacion para borar el lienzo*/
+		if (confirm(mensajeDeConfirmacionDeBorradoDeLienzo)) {
 
-		while (htmlSvgLienzoGrafoVertices.firstChild) {
-			htmlSvgLienzoGrafoVertices.removeChild(htmlSvgLienzoGrafoVertices.firstChild);
-		}
+			while (htmlSvgLienzoGrafoVertices.firstChild) {
+				htmlSvgLienzoGrafoVertices.removeChild(htmlSvgLienzoGrafoVertices.firstChild);
+			}
 
-		while (htmlSvgLienzoGrafoAristas.firstChild) {
-			htmlSvgLienzoGrafoAristas.removeChild(htmlSvgLienzoGrafoAristas.firstChild);
-		}
+			while (htmlSvgLienzoGrafoAristas.firstChild) {
+				htmlSvgLienzoGrafoAristas.removeChild(htmlSvgLienzoGrafoAristas.firstChild);
+			}
 
-		while (htmlSvgLienzoGrafoNombres.firstChild) {
-			htmlSvgLienzoGrafoNombres.removeChild(htmlSvgLienzoGrafoNombres.firstChild);
-		}
-	}
-}
-
-
-/*Funcion encargada de ecoger que accion ejecutar sobre un elemento segun el boton del mouse oprimido*/
-function eliminarVertice(evento) {
-	/*Si se presiona la rueda del raton, se inicia el proceso para eliminar un vertice(elemento "circle") y sus aristas asociadas(elemento "line")*/
-	if(evento.which == 2){
-		/*Se pide confirmacion para borrar*/
-		if (confirm(mensajeDeConfirmacionDeBorradoDeElemento_s)) {
-
-
-			var aristasExistentes = convertirHTMLCollectionEnArray(htmlSvgLienzoGrafoAristas.childNodes)
-
-			htmlSvgLienzoGrafoVertices.removeChild(this)
-			htmlSvgLienzoGrafoNombres.removeChild(document.getElementById(this.getAttribute("name")))
-
-			for (var i = 0; i <= aristasExistentes.length; i++) {
-				if (aristasExistentes[i] != undefined) {
-					nombreLinea = aristasExistentes[i].getAttribute("name")
-					nombreCirculo = this.getAttribute("name")
-
-					if (nombreLinea.indexOf(nombreCirculo) != -1) {
-						htmlSvgLienzoGrafoAristas.removeChild(aristasExistentes[i])
-
-					}
-				}
-
+			while (htmlSvgLienzoGrafoNombres.firstChild) {
+				htmlSvgLienzoGrafoNombres.removeChild(htmlSvgLienzoGrafoNombres.firstChild);
 			}
 		}
-
 	}
 }
 
@@ -214,22 +215,21 @@ function circuloPresionado(evento) {
 
 		/*Se define el nombre del vertice inicial(del elemento de donde comienza la linea)*/
 		nombreVerticeInicial = this.getAttribute("name")
+		accionConectar.classList.add("accionActiva")
 
 	}
 	/*Si se presiona el boton Derecho se inicia el proceso de arrastre y soltar*/
 	else if(evento.which == 2){
-		if (evento.which == 2){
 
-			cxElementEnMovimiento = this.getAttribute("cx")
-			cyElementEnMovimiento = this.getAttribute("cy")
-			posicionCirculo = cxElementEnMovimiento+","+cyElementEnMovimiento
+		cxElementEnMovimiento = this.getAttribute("cx")
+		cyElementEnMovimiento = this.getAttribute("cy")
+		posicionCirculo = cxElementEnMovimiento+","+cyElementEnMovimiento
 
-			this.addEventListener("mousemove", drag)
-			this.addEventListener("mouseup", terminarDrag)
-		}
+		this.addEventListener("mousemove", drag)
+		this.addEventListener("mouseup", terminarDrag)
+
 
 	}
-
 }
 
 function circuloDesprecionado(evento) {
@@ -248,6 +248,8 @@ function circuloDesprecionado(evento) {
 		,destino = nombreVerticeFinal
 
 		dibujarLinea(cxIniciales,cyIniciales,cxFinales,cyFinales,nombreNuevaArista,origen,destino)
+		accionConectar.classList.remove("accionActiva")
+
 
 	}
 }
@@ -291,7 +293,7 @@ function capturarGrafo(){
 	var aristas = htmlSvgLienzoGrafoAristas.children
 	var grafo = new Array()
 
-	if (vertices.length != 0 && aristas.length != 0){
+	if (vertices.length != 0 || aristas.length != 0){
 		for (var i = 0, vertice; vertice = vertices[i]; i++) {
 			var elemento = {
 				type:"circle",
@@ -323,7 +325,7 @@ function capturarGrafo(){
 
 		return grafo
 	}else{
-		crearYMostrarMensaje({msg : "Este grafo esta vacio, no vale la pena guardarlo.",clases : ["MSG", "MSGBien"],icono : "icon-correcto"})
+		crearYMostrarMensaje({msg : "Este grafo esta vacio, no vale la pena guardarlo.",clases : ["MSG", "MSGError"],icono : "icon-equivocado"})
 		return
 	}
 }
@@ -362,7 +364,7 @@ function crearGrafo(elementos){
 			var htmlTextNombreVerticeDelGrafo = document.createElementNS(namespaceURI,"text")
 
 			htmlCircleVerticeDelGrafo.addEventListener("mousedown", circuloPresionado,true)
-			htmlCircleVerticeDelGrafo.addEventListener("dblclick", eliminarVertice,true)
+			htmlCircleVerticeDelGrafo.addEventListener("dblclick", eliminarElemento,true)
 			htmlCircleVerticeDelGrafo.addEventListener("mouseup", circuloDesprecionado,true)
 
 			setAttributes(htmlCircleVerticeDelGrafo,{cx:elemento.data.cx, cy:elemento.data.cy,r:elemento.data.r,name:elemento.data.name})
@@ -415,7 +417,7 @@ function cargarGrafo(evento) {
 
 /*se inicia el drag*/
 function drag(evento) {
-	accionConectar.classList.add("accionActiva")
+	accionMover.classList.add("accionActiva")
 
 	var lineaDelVertice = new Array()
 
@@ -455,7 +457,7 @@ function drag(evento) {
 
 /*Terminar el evento drag*/
 function terminarDrag(evento) {
-	accionConectar.classList.remove("accionActiva")
+	accionMover.classList.remove("accionActiva")
 
 	this.removeEventListener("mousemove", drag)
 }

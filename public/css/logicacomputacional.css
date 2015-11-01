@@ -395,29 +395,8 @@ th {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon-conectarNodos:before {
+.icon-copyleft:before {
   content: "\e90b";
-}
-.icon-arrow-right-thick:before {
-  content: "\e900";
-}
-.icon-arrow-left-thick:before {
-  content: "\e901";
-}
-.icon-volver:before {
-  content: "\e616";
-}
-.icon-upload:before {
-  content: "\e902";
-}
-.icon-repetir:before {
-  content: "\e00e";
-}
-.icon-guardar:before {
-  content: "\e085";
-}
-.icon-create:before {
-  content: "\e074";
 }
 .icon-o:before {
   content: "\e903";
@@ -442,6 +421,33 @@ th {
 }
 .icon-y2:before {
   content: "\e90a";
+}
+.icon-arrow-right-thick:before {
+  content: "\e900";
+}
+.icon-arrow-left-thick:before {
+  content: "\e901";
+}
+.icon-volver:before {
+  content: "\e616";
+}
+.icon-upload:before {
+  content: "\e902";
+}
+.icon-repetir:before {
+  content: "\e00e";
+}
+.icon-guardar:before {
+  content: "\e085";
+}
+.icon-conectar:before {
+  content: "\e90c";
+}
+.icon-mover:before {
+  content: "\e90d";
+}
+.icon-crear:before {
+  content: "\e074";
 }
 .icon-verificar:before {
   content: "\f076";
@@ -533,7 +539,7 @@ th {
 .icon-github:before {
   content: "\e60e";
 }
-body {
+body.flex {
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -547,17 +553,17 @@ body {
   -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
 }
-body nav {
+body.flex nav {
   -webkit-align-self: flex-start;
   align-self: flex-start;
   -ms-flex-item-align: start;
 }
-body .cP {
+body.flex .cP {
   -webkit-align-self: flex-start;
   align-self: flex-start;
   -ms-flex-item-align: start;
 }
-body footer {
+body.flex footer {
   -webkit-align-self: flex-end;
   align-self: flex-end;
   -ms-flex-item-align: end;
@@ -1687,10 +1693,10 @@ body {
   margin: 0;
 }
 a {
-  color: #164900;
+  color: #23236b;
 }
 a:visited {
-  color: #4e9231;
+  color: #5b5b9e;
 }
 ul {
   margin: 0;
@@ -1732,7 +1738,7 @@ nav {
   width: 100%;
 }
 nav ul {
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0,0,0,0.6);
 }
 nav ul li {
   display: inline-block;
@@ -1798,13 +1804,13 @@ ul.listado li {
 footer {
   padding-top: 10px;
   margin-top: 30px;
-  border-top: 5px solid #000;
-  background-color: rgba(0,0,0,0.7);
+  border-top: 3px solid #000;
+  background-color: rgba(0,0,0,0.6);
   color: #fff;
   width: 100%;
 }
 footer .contactoRedes {
-  font-size: 2em;
+  background-color: rgba(0,0,0,0.6);
 }
 footer .contactoRedes .icon-facebook {
   color: #3b5998;
@@ -1835,6 +1841,7 @@ footer .contactoRedes a {
   text-decoration: none;
 }
 footer .contactoRedes a .iconoRed {
+  font-size: 1rem;
   -webkit-filter: grayscale(100%);
   margin: 0 5px;
 }

@@ -5,44 +5,40 @@ html(lang='es')
 		meta(name='viewport', content='width=device-width, initial-scale=1.0')
 		block title
 		link(rel='shortcut icon', href='img/favicon.png', type='image/x-icon')
-		link(rel='stylesheet', href='css/logicacomputacional.css')
-	body
+		link(rel='stylesheet', href='/css/logicacomputacional.css')
+	body.flex
 		nav
 			ul.displayFlexCenterTotal
 				li
-					a.itemsMenu(href='/')
-						span.icono.icon-inico
+					a.itemsMenu.marginLateral(href='/')
+						span.icono.icon-inico.marginIconos
 						span.nombreMenu Inicio
 				li
-					a.itemsMenu(href='/cursos')
-						span.icono.icon-cursos
+					a.itemsMenu.marginLateral(href='/cursos')
+						span.icono.icon-cursos.marginIconos
 						span.nombreMenu Cursos
 				li
-					a.itemsMenu(href='/ejercicios')
-						span.icono.icon-ejercicios
+					a.itemsMenu.marginLateral(href='/ejercicios')
+						span.icono.icon-ejercicios.marginIconos
 						span.nombreMenu Ejercicios
 				li
-					a.itemsMenu(href='/nosotros')
-						span.icono.icon-nosotros
+					a.itemsMenu.marginLateral(href='/nosotros')
+						span.icono.icon-nosotros.marginIconos
 						span.nombreMenu Acerca de..
 		section.contenedorDeAncho.cP
 			block content
 
 		footer
 			section.contenedorDeAncho
-				p Aplicacion Logica Computacional
-				p Calle 34 Cra 4 Barrio Lorem Girardot-Cund
-				p 456 5412 - 123 6589
-				p 321 456 9878 - 123 654 7896
 				article.acciones
 					p
 						a(href='/ayuda') Ayuda
 					p
-						a(href='#') Contacto
-					p
-						a(href='#') Terminos de Uso
-					p
 						a(href='#') Referencias
+					p
+						span Copyleft
+						span.icon-copyleft.marginIconos
+						span Carlos Turner B
 			section.contactoRedes
 				a(target='_black', href='#')
 					span.iconoRed.icon-facebook
