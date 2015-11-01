@@ -1,8 +1,8 @@
 @import "nib"
 @import "nib/vendor"
+@import "fonts.styl"
 
 @import "normalize.styl"
-@import "fonts.styl"
 @import "general.styl"
 @import "calculoProposicional.styl"
 @import url(https://fonts.googleapis.com/css?family=Lato)
@@ -43,8 +43,7 @@ colorMenuFooter = rgba(0, 0, 0, .7)
 
 html,body
 	height 100%
-.c
-	position relative
+
 input, textarea, select, button
 	outline none
 hr
@@ -61,14 +60,7 @@ input:disabled,select:disabled
 input,select
 	border-top 3px solid gray
 
-button[type="submit"]:disabled
-	cursor not-allowed
-	border 2px solid colorBtnDiabledBackground
-	background-color colorBtnDiabledBackground
-	border-color colorBtnDiabledBorder
-	&:hover
-		transition background-color 2s
-		background-color colorBtnDiabledBorder
+
 
 select
 	background-color transparent
@@ -100,8 +92,6 @@ figure
 +-----------------------+
 */
 .seccionAyuda
-	.btnAyuda
-		cursor help
 	.seccionExplicacion
 		padding 20px
 		position absolute
@@ -118,10 +108,19 @@ figure
 |		CSSOO			|
 +-----------------------+
 */
+.alignRight
+	display flex
+	justify-content flex-end
+.seccionSeparadora
+	border-top 1px solid gray
+	border-bottom 1px solid gray
+	padding 10px 0
 .positionRelative
 	position relative
 .cancelarMargin
 	margin 0 !important
+.marginLateral
+	margin 0 20px
 .cursorPointer
 	cursor pointer
 .positionFija
@@ -295,40 +294,35 @@ nav
 */
 
 .btn
-	border 2px solid #000
+	border none
 	border-radius 5px
 	color #fff
 	padding 10px
 	font-size 1em
 	font-weight bold
 	letter-spacing 3px
+	cursor pointer
+	&:active
+		transition 1s box-shadow
+		box-shadow 0px 0px transparent
 	&Confirmar
 		background-color colorBtnConfirmarBackground
-		border-color colorBtnConfirmarBorder
-		&:hover
-			transition background-color 2s
-			background-color colorBtnConfirmarBorder
+		box-shadow 0px 6px colorBtnConfirmarBorder
 	&Cancelar
 		background-color colorBtnCancelarBackground
-		border-color colorBtnCancelarBorder
-		&:hover
-			transition background-color 2s
-			background-color colorBtnCancelarBorder
+		box-shadow 0px 6px colorBtnCancelarBorder
 	&Enviar
 		background-color colorBtnEnviarBackground
-		border-color colorBtnEnviarBorder
-		&:hover
-			transition background-color 2s
-			background-color colorBtnEnviarBorder
+		box-shadow 0px 6px colorBtnEnviarBorder
 	&Ayuda
-		border-bottom none
-		border-bottom-left-radius 0
-		border-bottom-right-radius 0
+		box-shadow 0px 6px colorBtnAyudaBorder
 		background-color colorBtnAyudaBackground
-		border-color colorBtnAyudaBorder
-		&:hover
-			transition background-color 2s
-			background-color colorBtnAyudaBorder
+		cursor help
+	&:disabled
+		cursor not-allowed
+		box-shadow 0px 6px colorBtnDiabledBorder
+		background-color colorBtnDiabledBackground
+
 
 /*
 +-----------------------------------+
@@ -668,6 +662,7 @@ table
 				font-weight bold
 		input[type="number"]
 			width 30px
+	/*
 	progress
 		appearance none
 		&::-webkit-progress-bar
@@ -676,6 +671,6 @@ table
 			height 5px
 			border-radius 10px
 		&::-webkit-progress-value
-			background-color black
+			background-color black*/
 
 

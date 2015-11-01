@@ -57,7 +57,7 @@
 			validarAristasYGrados()
 		//Se agrega el evento "doble click" en el lienzo, para que al suceder se cree y agrege un vertice(elemento "circle") en el lienzo
 		lienzo.addEventListener("dblclick", dibujarCirculo)
-		lienzo.addEventListener("touchstart", dibujarCirculo)
+		lienzo.removeAttribute("disabled")
 		if (htmlInputgrafoCompleto.checked) {
 			habilitarInhabilitarInput(htmlInputCantidadAristas)
 		}

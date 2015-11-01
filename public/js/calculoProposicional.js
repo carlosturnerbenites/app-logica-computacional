@@ -22,24 +22,23 @@ function dragStartElementsDOM(evento) {
 }
 
 function dragEnterElementsDOM(){
-	this.classList.toggle("dragEnter")
+	this.classList.add("dragEnter")
 }
 
 function dragOverElementsDOM(evento){
 	evento.preventDefault()
-	this.classList.toggle("dragEnter")
 }
 
 function dragLeaveElementsDOM(){
-	this.classList.toggle("dragEnter")
+	this.classList.remove("dragEnter")
 
 }
 
 function dropElementsDOM(evento){
 
-	evento.stopPropagation()
+	evento.preventDefault()
 
-	this.classList.toggle("descargaEnZona")
+	this.classList.remove("dragEnter")
 
 	var hijosActuales = this.children
 
@@ -95,7 +94,7 @@ var oraciones = [
 	conector:[0,3]
 }
 ]
-var btnValidarEjercicio = document.getElementById("btnValidarEjercicio_js")
+var btnValidarEjercicio = document.getElementById("htmlInputSubmitBtnrealizarEjercicio_js")
 var oracion = document.getElementById("oracion_js")
 
 var ejercicioPropuesto = oraciones[0]

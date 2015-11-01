@@ -7,11 +7,14 @@ block content
 	h1.textoCentrado Lorem
 	p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nam quibusdam sapiente, ullam neque, aliquid debitis repellendus placeat. Minus quod similique mollitia, a et magni quis neque! Aut, tempora. Incidunt.
 	section.EjercicioPropuesto
-		button#btnGuardarGrafo_js.btn.btnConfirmar
-			span.icon-guardar
-			span.marginIconos Guardar Grafo
-		label.btn.btnEnviar(for="cargarGrafo_js") Button
-		input.inputSubirGrafo(type="file" id="cargarGrafo_js")
+		article.alignRight.seccionSeparadora
+			button#btnGuardarGrafo_js.btn.btnConfirmar
+				span.icon-guardar
+				span.marginIconos Guardar Grafo
+			label.btn.btnEnviar(for="cargarGrafo_js")
+				span.icon-upload
+				span.marginIconos Subir Grafo
+			input.inputSubirGrafo(type="file" id="cargarGrafo_js")
 
 		form#htmlFormformGrafos_js.formGrafos
 			section.fieldset
@@ -21,19 +24,19 @@ block content
 			section.fieldset
 				label(for='htmlLabelCantidadAristas_js') Tamaño |E| :
 				input#htmlInputCantidadAristas_js.inputBorderBottomFocus.inputCorto(type='number', max='', min='1', value='1', required='', autocomplete='off')
-				p.textoNegrilla.ancho100PorCieto.textoCentrado.cancelarMargin  ó
+				p.textoNegrilla.marginLateral  ó
 				input#htmlInputgrafoCompleto_js(type='checkbox')
 				label(for='htmlInputgrafoCompleto_js') Grafo Completo
 			section.fieldset
 				button#htmlInputSubmitBtnrealizarEjercicio_js.btn.btnEnviar(type='submit', value='', autocomplete='off')
-	svg#htmlSvgLienzo_js
+	svg#htmlSvgLienzo_js(disabled)
 		g#htmlSvgLienzoGrilla_js
 		g#htmlSvgLienzoGrafo_js
 			g#htmlSvgLienzoGrafoNombres_js
 			g#htmlSvgLienzoGrafoAristas_js
 			g#htmlSvgLienzoGrafoVertices_js
 	section
-		div
+		article.alignRight
 			button#btnLimpiarLienzo_js.btn.btnEnviar
 				span.icon-borrar
 				span.marginIconos Limpiar Lienzo

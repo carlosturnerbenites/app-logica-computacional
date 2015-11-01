@@ -30,9 +30,8 @@ html(lang='es')
 					p Cancion Actual:
 						span#nombreCancion
 					button#reproductorMusica_js
-						span.icon-musica
-						span#estadoActualAudio_js.cancelarMargin Escuchar
-					progress#barraDePorgresoAudio_js(min='0', value='', max='')
+						span#estadoActualAudio_js.cancelarMargin.icon-play
+					input#barraDePorgresoAudio_js.barraDeProgreso(type="range" min='0', value='0', step='0.1' max='')
 					span#htmlSpanIconoVolumenActual_js.icon-volumenAlto
 					button#btnAjustesAudio_js
 						span.icon-ajustes.ajustes

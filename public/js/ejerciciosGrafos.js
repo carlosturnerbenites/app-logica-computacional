@@ -356,22 +356,31 @@ function crearGrafo(elementos){
 }
 
 function cargarGrafo(evento) {
-
-	var fileGrafo = evento.target.files[0]
-	,reader = new FileReader();
-
-	reader.onload = function() {
-		var fileGrafoJSON = JSON.parse(this.result);
-
-		limpiarLienzo()
-		crearGrafo(fileGrafoJSON)
-
-		crearYMostrarMensaje({msg : "Cagado Correctamente",clases : ["MSG", "MSGBien"],icono : "icon-correcto"})
-
+	if (lienzo.hasAttribute("disabled")){
+		crearYMostrarMensaje({msg : "El lienzo no esta hailitado",clases : ["MSG", "MSGError"],icono : "icon-equivocado"})
 		html_inputCargarGrafo.value = ""
 
+	}else{
+
+		var fileGrafo = evento.target.files[0]
+		,reader = new FileReader();
+
+		reader.onload = function() {
+			var fileGrafoJSON = JSON.parse(this.result);
+
+			limpiarLienzo()
+			crearGrafo(fileGrafoJSON)
+
+			crearYMostrarMensaje({msg : "Cagado Correctamente",clases : ["MSG", "MSGBien"],icono : "icon-correcto"})
+
+			html_inputCargarGrafo.value = ""
+
+		}
+		reader.onerror = function(error){
+			console.log(error)
+		}
+		reader.readAsText(fileGrafo)
 	}
-	reader.readAsText(fileGrafo)
 }
 
 /*##############################################################

@@ -179,6 +179,139 @@ td,
 th {
   padding: 0;
 }
+@font-face {
+  font-family: 'icomoon';
+  src: url("../fonts/icomoon.eot?knlb04");
+  src: url("../fonts/icomoon.eot?knlb04#iefix") format('embedded-opentype'), url("../fonts/icomoon.ttf?knlb04") format('truetype'), url("../fonts/icomoon.woff?knlb04") format('woff'), url("../fonts/icomoon.svg?knlb04#icomoon") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+/* Enable Ligatures ================ */
+  letter-spacing: 0;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  -o-font-feature-settings: "liga";
+  font-feature-settings: "liga";
+/* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-arrow-right-thick:before {
+  content: "\e900";
+}
+.icon-arrow-left-thick:before {
+  content: "\e901";
+}
+.icon-volver:before {
+  content: "\e616";
+}
+.icon-upload:before {
+  content: "\e902";
+}
+.icon-guardar:before {
+  content: "\e085";
+}
+.icon-verificar:before {
+  content: "\f076";
+}
+.icon-pause:before {
+  content: "\f0bb";
+}
+.icon-play:before {
+  content: "\f0bf";
+}
+.icon-inico:before {
+  content: "\e600";
+}
+.icon-realizarEjercicio:before {
+  content: "\e617";
+}
+.icon-musica:before {
+  content: "\e611";
+}
+.icon-cursos:before {
+  content: "\e601";
+}
+.icon-nosotros:before {
+  content: "\e602";
+}
+.icon-comillasAbre:before {
+  content: "\e603";
+}
+.icon-comillasCierra:before {
+  content: "\e604";
+}
+.icon-ejercicios:before {
+  content: "\e605";
+}
+.icon-ajustes:before {
+  content: "\e614";
+}
+.icon-borrar:before {
+  content: "\e612";
+}
+.icon-ayuda:before {
+  content: "\e615";
+}
+.icon-mas:before {
+  content: "\e60f";
+}
+.icon-menos:before {
+  content: "\e610";
+}
+.icon-equivocado:before {
+  content: "\e606";
+}
+.icon-correcto:before {
+  content: "\e607";
+}
+.icon-volumenAlto:before {
+  content: "\e618";
+}
+.icon-volumenMedio:before {
+  content: "\e619";
+}
+.icon-volumenBajo:before {
+  content: "\e61a";
+}
+.icon-silenciado:before {
+  content: "\e61b";
+}
+.icon-shift:before {
+  content: "\e613";
+}
+.icon-developer:before {
+  content: "\e608";
+}
+.icon-terminal:before {
+  content: "\e609";
+}
+.icon-google:before {
+  content: "\e60a";
+}
+.icon-facebook:before {
+  content: "\e60b";
+}
+.icon-twitter:before {
+  content: "\e60c";
+}
+.icon-youtube:before {
+  content: "\e60d";
+}
+.icon-github:before {
+  content: "\e60e";
+}
 /* normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif; /* 1 */
@@ -366,127 +499,6 @@ td,
 th {
   padding: 0;
 }
-@font-face {
-  font-family: 'icomoon';
-  src: url("../fonts/icomoon.eot?8kjovh");
-  src: url("../fonts/icomoon.eot?8kjovh#iefix") format('embedded-opentype'), url("../fonts/icomoon.ttf?8kjovh") format('truetype'), url("../fonts/icomoon.woff?8kjovh") format('woff'), url("../fonts/icomoon.svg?8kjovh#icomoon") format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-[class^="icon-"],
-[class*=" icon-"] {
-  font-family: 'icomoon';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-/* Enable Ligatures ================ */
-  letter-spacing: 0;
-  -webkit-font-feature-settings: "liga";
-  -moz-font-feature-settings: "liga=1";
-  -moz-font-feature-settings: "liga";
-  -ms-font-feature-settings: "liga" 1;
-  -o-font-feature-settings: "liga";
-  font-feature-settings: "liga";
-/* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.icon-arrow-right-thick:before {
-  content: "\e900";
-}
-.icon-arrow-left-thick:before {
-  content: "\e901";
-}
-.icon-guardar:before {
-  content: "\e085";
-}
-.icon-verificar:before {
-  content: "\f076";
-}
-.icon-inico:before {
-  content: "\e600";
-}
-.icon-realizarEjercicio:before {
-  content: "\e617";
-}
-.icon-musica:before {
-  content: "\e611";
-}
-.icon-cursos:before {
-  content: "\e601";
-}
-.icon-nosotros:before {
-  content: "\e602";
-}
-.icon-comillasAbre:before {
-  content: "\e603";
-}
-.icon-comillasCierra:before {
-  content: "\e604";
-}
-.icon-ejercicios:before {
-  content: "\e605";
-}
-.icon-ajustes:before {
-  content: "\e614";
-}
-.icon-borrar:before {
-  content: "\e612";
-}
-.icon-ayuda:before {
-  content: "\e615";
-}
-.icon-mas:before {
-  content: "\e60f";
-}
-.icon-menos:before {
-  content: "\e610";
-}
-.icon-equivocado:before {
-  content: "\e606";
-}
-.icon-correcto:before {
-  content: "\e607";
-}
-.icon-volumenAlto:before {
-  content: "\e618";
-}
-.icon-volumenMedio:before {
-  content: "\e619";
-}
-.icon-volumenBajo:before {
-  content: "\e61a";
-}
-.icon-silenciado:before {
-  content: "\e61b";
-}
-.icon-shift:before {
-  content: "\e613";
-}
-.icon-developer:before {
-  content: "\e608";
-}
-.icon-terminal:before {
-  content: "\e609";
-}
-.icon-google:before {
-  content: "\e60a";
-}
-.icon-facebook:before {
-  content: "\e60b";
-}
-.icon-twitter:before {
-  content: "\e60c";
-}
-.icon-youtube:before {
-  content: "\e60d";
-}
-.icon-github:before {
-  content: "\e60e";
-}
 ::-webkit-scrollbar {
   width: 0.7em;
   height: 0.7em;
@@ -533,8 +545,22 @@ body {
 .inputSubirGrafo {
   display: none;
 }
+.barraDeProgreso::-webkit-slider-runnable-track {
+  background: #808080;
+  height: 5px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+.barraDeProgreso::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.barraDeProgreso::-webkit-slider-thumb:before {
+  content: '|';
+  vertical-align: middle;
+}
 .descargaEnZona {
-  background-color: #dbdbdb;
   border: 3px dashed #808080 !important;
 }
 .dropzone {
@@ -562,7 +588,6 @@ body {
   -ms-flex-align: center;
   -webkit-align-items: center;
   align-items: center;
-  background-color: #d6d6d6;
 }
 .elementosArrastrables {
   width: 100%;
@@ -585,19 +610,11 @@ body {
   padding: 10px;
   text-align: center;
 }
-.elementoArrastrable:hover {
-  -webkit-transition: 2s background-color;
-  -moz-transition: 2s background-color;
-  -o-transition: 2s background-color;
-  -ms-transition: 2s background-color;
-  transition: 2s background-color;
-  background-color: #bfbfbf;
-}
 .draggable {
   cursor: pointer;
 }
 .dragEnter {
-  background-color: #fff !important;
+  background-color: rgba(0,0,0,0.1) !important;
 }
 .eliminarArtefacto {
   -webkit-animation: 2s eliminar 1 linear;
@@ -703,9 +720,6 @@ html,
 body {
   height: 100%;
 }
-.c {
-  position: relative;
-}
 input,
 textarea,
 select,
@@ -730,20 +744,6 @@ select:disabled {
 input,
 select {
   border-top: 3px solid #808080;
-}
-button[type="submit"]:disabled {
-  cursor: not-allowed;
-  border: 2px solid #a8a8a8;
-  background-color: #a8a8a8;
-  border-color: #7f7f7f;
-}
-button[type="submit"]:disabled:hover {
-  -o-transition: background-color 2s;
-  -ms-transition: background-color 2s;
-  -webkit-transition: background-color 2s;
-  -moz-transition: background-color 2s;
-  transition: background-color 2s;
-  background-color: #7f7f7f;
 }
 select {
   background-color: transparent;
@@ -795,9 +795,6 @@ figure {
 |		Ayuda			|
 +-----------------------+
 */
-.seccionAyuda .btnAyuda {
-  cursor: help;
-}
 .seccionAyuda .seccionExplicacion {
   padding: 20px;
   position: absolute;
@@ -814,11 +811,33 @@ figure {
 |		CSSOO			|
 +-----------------------+
 */
+.alignRight {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -o-box-pack: end;
+  -webkit-box-pack: end;
+  -moz-box-pack: end;
+  -ms-flex-pack: end;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+}
+.seccionSeparadora {
+  border-top: 1px solid #808080;
+  border-bottom: 1px solid #808080;
+  padding: 10px 0;
+}
 .positionRelative {
   position: relative;
 }
 .cancelarMargin {
   margin: 0 !important;
+}
+.marginLateral {
+  margin: 0 20px;
 }
 .cursorPointer {
   cursor: pointer;
@@ -1090,7 +1109,7 @@ nav ul li a.itemsMenu .nombreMenu:first-letter {
 +-----------------------+
 */
 .btn {
-  border: 2px solid #000;
+  border: none;
   -webkit-border-radius: 5px;
   border-radius: 5px;
   color: #fff;
@@ -1098,57 +1117,43 @@ nav ul li a.itemsMenu .nombreMenu:first-letter {
   font-size: 1em;
   font-weight: bold;
   letter-spacing: 3px;
+  cursor: pointer;
+}
+.btn:active {
+  -o-transition: 1s box-shadow;
+  -ms-transition: 1s box-shadow;
+  -webkit-transition: 1s box-shadow;
+  -moz-transition: 1s box-shadow;
+  transition: 1s box-shadow;
+  -webkit-box-shadow: 0px 0px transparent;
+  box-shadow: 0px 0px transparent;
 }
 .btnConfirmar {
   background-color: #87bc5e;
-  border-color: #3c7113;
-}
-.btnConfirmar:hover {
-  -o-transition: background-color 2s;
-  -ms-transition: background-color 2s;
-  -webkit-transition: background-color 2s;
-  -moz-transition: background-color 2s;
-  transition: background-color 2s;
-  background-color: #3c7113;
+  -webkit-box-shadow: 0px 6px #3c7113;
+  box-shadow: 0px 6px #3c7113;
 }
 .btnCancelar {
   background-color: #d46a6a;
-  border-color: #801515;
-}
-.btnCancelar:hover {
-  -o-transition: background-color 2s;
-  -ms-transition: background-color 2s;
-  -webkit-transition: background-color 2s;
-  -moz-transition: background-color 2s;
-  transition: background-color 2s;
-  background-color: #801515;
+  -webkit-box-shadow: 0px 6px #801515;
+  box-shadow: 0px 6px #801515;
 }
 .btnEnviar {
   background-color: #4d658d;
-  border-color: #152d54;
-}
-.btnEnviar:hover {
-  -o-transition: background-color 2s;
-  -ms-transition: background-color 2s;
-  -webkit-transition: background-color 2s;
-  -moz-transition: background-color 2s;
-  transition: background-color 2s;
-  background-color: #152d54;
+  -webkit-box-shadow: 0px 6px #152d54;
+  box-shadow: 0px 6px #152d54;
 }
 .btnAyuda {
-  border-bottom: none;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  -webkit-box-shadow: 0px 6px #803315;
+  box-shadow: 0px 6px #803315;
   background-color: #d4886a;
-  border-color: #803315;
+  cursor: help;
 }
-.btnAyuda:hover {
-  -o-transition: background-color 2s;
-  -ms-transition: background-color 2s;
-  -webkit-transition: background-color 2s;
-  -moz-transition: background-color 2s;
-  transition: background-color 2s;
-  background-color: #803315;
+.btn:disabled {
+  cursor: not-allowed;
+  -webkit-box-shadow: 0px 6px #7f7f7f;
+  box-shadow: 0px 6px #7f7f7f;
+  background-color: #a8a8a8;
 }
 /*
 +-----------------------------------+
@@ -1482,6 +1487,16 @@ table input {
   padding: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
+/*
+	progress
+		appearance none
+		&::-webkit-progress-bar
+			background-color transparent
+			border 1px solid gray
+			height 5px
+			border-radius 10px
+		&::-webkit-progress-value
+			background-color black*/
 }
 .reproductorMusica button {
   -webkit-appearance: none;
@@ -1524,21 +1539,6 @@ table input {
 }
 .reproductorMusica .listadoAjustesAudio input[type="number"] {
   width: 30px;
-}
-.reproductorMusica progress {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-.reproductorMusica progress::-webkit-progress-bar {
-  background-color: transparent;
-  border: 1px solid #808080;
-  height: 5px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-}
-.reproductorMusica progress::-webkit-progress-value {
-  background-color: #000;
 }
 @-moz-keyframes parpadeoError {
   0% {

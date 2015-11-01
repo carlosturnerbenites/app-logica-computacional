@@ -3,8 +3,8 @@ router = express.Router()
 
 
 function listadoCursos(request, response) {
-	response.render('vistas/todosLosCursos',{"temas":temas})
-	//response.send("funciono")
+	//response.render('todosLosCursos',{"temas":temas})
+	response.send("funciono")
 }
 function cursoConjuntos(request, response) {
 	response.render('cursos/conjuntos')

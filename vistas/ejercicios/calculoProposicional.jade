@@ -16,48 +16,12 @@ block content
 		p.proposicion.elementoArrastrable(value="1" draggable="true") o ()
 		p.proposicion.elementoArrastrable(value="2" draggable="true") Condicion ()
 		p.proposicion.elementoArrastrable(value="3" draggable="true") Bicondicion ()
-	button(type="submit").btn.btnConfirmar.centrarConMargin#btnValidarEjercicio_js
+	button(type="submit").btn.btnConfirmar.centrarConMargin#htmlInputSubmitBtnrealizarEjercicio_js
 		span.icon-verificar
 		span.marginIconos Verificar
-	form(id="pruebaForm"/* method="post", action="/enviar_mensaje"*/)
-		label Asunto
-		input(type="text", name="asunto")
-		label Mensaje
-		textarea(cols="40", rows="10", name="mensaje")
-		input#p(name="boolean" type="checkbox")
-		input(type="submit", value="Enviar mensaje" readonly)
 
 block script
-	script(src='../js/funcionesAxuliares.js')
 	script(src='../js/variablesGenerales.js')
+	script(src='../js/principal.js')
+	script(src='../js/funcionesAxuliares.js')
 	script(src='../js/calculoProposicional.js')
-	script.
-		var pruebaForm = document.getElementById("pruebaForm")
-		var ignore = ["submit","reset"]
-		pruebaForm.addEventListener("submit", function(evento){
-			evento.preventDefault()
-
-			var data = getValuesJSON(this.elements)
-
-			console.log(JSON.stringify(data))
-			var oReq = new XMLHttpRequest();
-			oReq.open("POST", "/enviar_mensaje");
-			oReq.setRequestHeader('Content-Type', 'application/json')
-			oReq.send(JSON.stringify(data))
-		})
-		function getValuesJSON(elementos){
-
-		var data = {}
-
-		for(var i = 0; i < elementos.length; i++){
-			if(elementos[i].type == "checkbox"){
-				data[elementos[i].name] = elementos[i].checked
-			}else{
-				if(ignore.indexOf(elementos[i].type) == -1){
-					data[elementos[i].name] = elementos[i].value
-					}
-				}
-		}
-
-		return data
-		}

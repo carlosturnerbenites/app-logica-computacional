@@ -1,5 +1,5 @@
 var musicaEscogido = document.getElementById("musicaEscogido_js")
-var musica = new Audio("/audio/tlos.mp3")
+var musica = new Audio("/audio/audiop.mp3")
 var tiempoActual = 0
 
 var minVolumen = 0
@@ -27,30 +27,34 @@ btnAjustesAudio.addEventListener("click", mostrarOcultarSeccion)
 btnAudio.addEventListener("click", reproducirparaAudio)
 silenciarAudio.addEventListener("click", mutedAudio)
 volumenAudio.addEventListener("change", cambiarVolumen)
+barraDePorgresoAudio.addEventListener("change", cambiarCurrentTime)
 BtnrepetirAudio.addEventListener("change", repetirAudio)
 musica.addEventListener("timeupdate", progressBar)
 musica.addEventListener("ended", reiniciarAudio)
 
+function cambiarCurrentTime() {
+	newCurrentTime = this.value
+	musica.currentTime = newCurrentTime
+}
+
 function progressBar() {
 	tiempoActual = musica.currentTime
 
-	barraDePorgresoAudio.setAttribute("value", tiempoActual)
+	barraDePorgresoAudio.value = tiempoActual
 }
 
 function reiniciarAudio() {
-	estadoActualAudio.innerHTML = "Escuchar"
+	estadoActualAudio.classList.remove("icon-pause")
+	estadoActualAudio.classList.add("icon-play")
 }
 
 function cambiarVolumen() {
 	var nuevoVolumen = this.value
 	musica.volume = nuevoVolumen
-	console.log('se cambio el volumen');
 	cambiarIconoVolumen()
 }
 
 function mutedAudio() {
-	console.log(this);
-	console.log('silenciando');
 	if(this.checked){
 		musica.muted = true
 		htmlSpanIconoVolumenActual.classList.add("icon-silenciado")
@@ -63,10 +67,8 @@ function mutedAudio() {
 
 function repetirAudio() {
 	if(this.checked){
-		console.log('repetir activado');
 		musica.loop = true
 	}else{
-		console.log('repetir inactivado');
 		musica.loop = false
 	}
 }
@@ -79,19 +81,19 @@ function reproducirparaAudio(evento) {
 	if (musica.paused){
 		musica.play()
 
-		estadoActualAudio.innerHTML = "Pausar"
+		estadoActualAudio.classList.remove("icon-play")
+		estadoActualAudio.classList.add("icon-pause")
 
 	}else{
 		musica.pause()
-		estadoActualAudio.innerHTML = "Escuchar"
+		estadoActualAudio.classList.remove("icon-pause")
+		estadoActualAudio.classList.add("icon-play")
 	}
 	cambiarIconoVolumen()
 }
 
 function cambiarIconoVolumen() {
-	console.log('cambiando volumen');
 	var valorVolumenAudio = Number(volumenAudio.value)
-	console.log(valorVolumenAudio);
 	musica.muted = false
 	silenciarAudio.checked = false
 	if (valorVolumenAudio < mediumVolumen) {
