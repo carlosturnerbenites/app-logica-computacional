@@ -9,8 +9,11 @@ function eliminarArtefacto(){
 
 	var nodoActual = this
 
+	dropzone.removeEventListener("drop",dropElementsDOM,false)
 	setTimeout(function(){
 		nodoPadre.removeChild(nodoActual)
+		dropzone.addEventListener("drop",dropElementsDOM,false)
+
 	}, 2000)
 }
 
@@ -78,28 +81,46 @@ dropzone.addEventListener("dragleave",dragLeaveElementsDOM,false)
 
 var oraciones = [
 {
-	oracion : "ipsum cum ut quis cupiditate molestias quibusdam similique!",
+	oracion : "vas a jugar si terminas a tiempo",
+	conector:[2]
+},
+{
+	oracion : "sales y te diviertes o te quedas",
 	conector:[0,1]
 },
 {
-	oracion : "corporis earum necessitatibus voluptatem enim corrupti nihil rerum pariatur.",
-	conector:[1,2]
+	oracion : "Solo si juegas Uncharted sabras que es aventura",
+	conector:[3]
 },
 {
-	oracion : "placeat labore asperiores voluptatibus eius assumenda quasi pariatur molestiae officiis.",
-	conector:[2,3]
-},
-{
-	oracion : "facere totam recusandae architecto. Totam eius eos necessitatibus facere?",
-	conector:[0,3]
+	oracion : "la lluvia depende de las precipitaciones",
+	conector:[2]
 }
 ]
 var btnValidarEjercicio = document.getElementById("htmlInputSubmitBtnrealizarEjercicio_js")
 var oracion = document.getElementById("oracion_js")
 
-var ejercicioPropuesto = oraciones[0]
-//var ejercicioPropuesto = oraciones[numeroAleatorio(oraciones.length,0)]
-oracion.innerText = ejercicioPropuesto.oracion
+var ejercicioPropuesto
+
+function escogerOracion(){
+	ejercicioPropuesto = oraciones[numeroAleatorio(oraciones.length,0)]
+	oracion.innerText = ejercicioPropuesto.oracion
+}
+
+function reiniciarEjercicio () {
+
+	escogerOracion()
+
+	var btnVolver = document.getElementById("btnReiniciarEjercicio_js")
+
+	limpiarContenedorHTML(dropzone)
+	dropzone.addEventListener("drop",dropElementsDOM,false)
+	dropzone.classList.remove("dragEnter")
+	contenedorPrincipal.replaceChild(htmlInputSubmitBtnrealizarEjercicio,btnVolver)
+	habilitarInhabilitarInput(htmlInputSubmitBtnrealizarEjercicio)
+
+}
+
 function verificarEjercicio(){
 	var dropzone = document.getElementById("dropzone_js")
 	if (!dropzone.hasChildNodes()){
@@ -121,6 +142,22 @@ function verificarEjercicio(){
 				clases : ["MSG" ,"MSGBien"],
 				icono : "icon-correcto"
 			}
+			dropzone.removeEventListener("drop",dropElementsDOM,false)
+			dropzone.classList.add("dragEnter")
+			habilitarInhabilitarInput(htmlInputSubmitBtnrealizarEjercicio)
+
+			var btnVolver = document.createElement("button")
+			btnVolver.id = "btnReiniciarEjercicio_js"
+			btnVolver.classList.add("centrarConMargin","btn" ,"btnConfirmar")
+			btnVolver.innerHTML = innerHTMLBtnVolver
+			btnVolver.addEventListener("click", reiniciarEjercicio)
+
+			var HTMLSpanIconoBtn = document.createElement("span")
+			HTMLSpanIconoBtn.classList.add(iconoBtnVolver,"marginIconos")
+			btnVolver.insertBefore(HTMLSpanIconoBtn, btnVolver.firstChild)
+
+			contenedorPrincipal.replaceChild(btnVolver, htmlInputSubmitBtnrealizarEjercicio)
+
 		}else{
 			var estadoActual = {
 				msg : "Algo esta mal en la solucion",
@@ -136,7 +173,7 @@ function verificarEjercicio(){
 
 
 btnValidarEjercicio.addEventListener("click", verificarEjercicio)
-
+escogerOracion()
 
 
 var insertDocument = function(db, callback) {

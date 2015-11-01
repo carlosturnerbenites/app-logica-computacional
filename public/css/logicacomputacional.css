@@ -622,31 +622,6 @@ body {
 .inputSubirGrafo {
   display: none;
 }
-.barraDeProgreso {
-  position: relative;
-}
-.barraDeProgreso::-webkit-slider-runnable-track {
-  background: #808080;
-  height: 3px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-}
-.barraDeProgreso::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-.barraDeProgreso::-webkit-slider-thumb:before {
-  content: ' ';
-  display: block;
-  width: 10px;
-  height: 10px;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  position: absolute;
-  background: #000;
-  top: -2.5px;
-}
 .error .code {
   font-size: 6em;
   margin: 10px 0;
@@ -709,6 +684,32 @@ body {
 }
 .reproductorMusica .listadoAjustesAudio input[type="number"] {
   width: 30px;
+}
+.barraDeProgreso {
+  position: relative;
+  border: none;
+}
+.barraDeProgreso::-webkit-slider-runnable-track {
+  background: #808080;
+  height: 3px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+.barraDeProgreso::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.barraDeProgreso::-webkit-slider-thumb:before {
+  content: ' ';
+  display: block;
+  width: 10px;
+  height: 10px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  position: absolute;
+  background: #000;
+  top: -2.5px;
 }
 .icon-volumenBajo {
   color: #d4a16a;
@@ -870,6 +871,7 @@ svg .nombreCircle {
 .nombreVertice:before {
   content: "deg ( ";
 }
+@import url("https://fonts.googleapis.com/css?family=Oxygen");
 .descargaEnZona {
   border: 3px dashed #808080 !important;
 }
@@ -920,8 +922,13 @@ svg .nombreCircle {
   padding: 10px;
   text-align: center;
 }
-.draggable {
+[draggable] {
   cursor: pointer;
+}
+.oracion {
+  font-size: 1.5em;
+  font-family: 'Oxygen', sans-serif;
+  margin: 40px 0 40px 40px;
 }
 .dragEnter {
   background-color: rgba(0,0,0,0.1) !important;
@@ -1340,6 +1347,9 @@ svg .nombreCircle {
   font-weight: bold;
   letter-spacing: 3px;
   cursor: pointer;
+  display: inline-block;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
 }
 .btn:active {
   -o-transition: 0.1s box-shadow;
@@ -1370,6 +1380,7 @@ svg .nombreCircle {
   box-shadow: 0px 6px #803315;
   background-color: #d4886a;
   cursor: help;
+  margin-top: 0 !important;
 }
 .btn:disabled {
   cursor: not-allowed;

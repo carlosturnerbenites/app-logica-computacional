@@ -1,4 +1,5 @@
-var musicaEscogido = document.getElementById("musicaEscogido_js")
+var musicaEscogido = document.getElementById("selectorDeCancion_js")
+
 var musica = new Audio("/audio/audiop.mp3")
 var tiempoActual = 0
 
@@ -113,3 +114,10 @@ function cambiarIconoVolumen() {
 	}
 }
 
+function cambiarCancion(evento) {
+	var files = evento.target.files[0]
+	console.log(files)
+	console.log(files.name)
+}
+
+musicaEscogido.addEventListener("change", cambiarCancion)
