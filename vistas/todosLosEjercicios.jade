@@ -4,11 +4,10 @@ block title
 	title Ejercicios || Aplicacion Logica computacional
 
 block content
-	section.contenedorDeAncho
-		h2.textoCentrado Ejercicios
-		ul.listado
-			each tema in temas
-				li
-					a(href='#{tema.urlEjercicio}') #{tema.curso}
-					p.textoDescripcion Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dolorem, molestias repudiandae pariatur libero at blanditiis maxime totam odit eveniet dolore ipsa sequi beatae omnis. Rem dignissimos sed quam, quidem!
+	h2.textoCentrado Ejercicios
+	ul.listado
+		each tema in temas
+			li
+				a(href='#{tema.urlEjercicio}') #{tema.curso}
+				p.textoDescripcion Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dolorem, molestias repudiandae pariatur libero at blanditiis maxime totam odit eveniet dolore ipsa sequi beatae omnis. Rem dignissimos sed quam, quidem!
 

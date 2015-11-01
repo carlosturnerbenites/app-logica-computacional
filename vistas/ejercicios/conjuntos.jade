@@ -31,8 +31,9 @@ block content
 				input#htmlRadioConjuntosImpropio_js(type='radio', name='tipiEjercicio')
 				label(for='htmlRadioConjuntosImpropio_js') Impropios
 			section.fieldset
-				input#nombreConjunto_js.inputCorto.inputCenterUppercase.inputBorderBottomFocus(type='text', maxlength='1', required='', autofocus='', autocomplete='off' name="nombreConjunto" )
-				span.corchetesConjuntos
+				span(ayudaEmergente="Nombre")
+					input#nombreConjunto_js.inputCorto.inputCenterUppercase.inputBorderBottomFocus(type='text', maxlength='1', required='', autofocus='', autocomplete='off' name="nombreConjunto" )
+				span.corchetesConjuntos(ayudaEmergente="Elementos")
 					input#elementosCojuntos_js.inputBorderBottomFocus.textoCentrado.nombreConjunto(formnovalidate='', type='text', required='', autocomplete='off' name="elementosCojuntos")
 			section.fieldset
 				button#htmlInputSubmitBtnrealizarEjercicio_js.btn.btnEnviar(type='submit', value='', autocomplete='off')

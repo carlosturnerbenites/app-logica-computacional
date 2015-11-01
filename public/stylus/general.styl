@@ -1,3 +1,14 @@
+body
+	display flex
+	flex-wrap wrap
+	nav
+		align-self flex-start
+	.cP
+		align-self flex-start
+	footer
+		align-self flex-end
+
+
 ::-webkit-scrollbar
 	width .7em
 	height .7em
@@ -7,19 +18,25 @@
 	background #b7bfc7
 
 input[type="checkbox"],input[type="radio"]
+	display flex
+	justify-content center
+	align-items center
 	cursor pointer
 	font-family 'icomoon'
 	appearance none
 	width 25px
 	height 25px
 	border 2px solid gray
+	&:before
+		color rgba(0, 0, 0,.1) !important
+		content "\e607"
 	&:checked
 		&:before
 			color rgb(0, 0, 0) !important
 			content "\e607"
 	&:hover
 		&:before
-			color rgba(0, 0, 0, .5)
+			color rgba(0, 0, 0, .5) !important
 			content "\e607"
 input[type="radio"]
 	border-radius 50%
@@ -124,3 +141,5 @@ body
 			padding 2px
 			border-radius 2px
 			color white
+			width auto
+			z-index 20

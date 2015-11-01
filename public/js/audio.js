@@ -17,14 +17,12 @@ var btnAudio = document.getElementById("reproductorMusica_js")
 
 var htmlSpanIconoVolumenActual = document.getElementById("htmlSpanIconoVolumenActual_js")
 
-var btnAjustesAudio = document.getElementById("btnAjustesAudio_js")
 
 var silenciarAudio = document.getElementById("silenciarAudio_js")
 
 var volumenAudio = document.getElementById("volumenAudio_js")
 var BtnrepetirAudio = document.getElementById("repetirAudio_js")
 
-btnAjustesAudio.addEventListener("click", mostrarOcultarSeccion)
 btnAudio.addEventListener("click", reproducirparaAudio)
 silenciarAudio.addEventListener("click", mutedAudio)
 volumenAudio.addEventListener("change", cambiarVolumen)

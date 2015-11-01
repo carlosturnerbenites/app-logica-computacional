@@ -4,11 +4,10 @@ block title
 	title Cursos || Aplicacion Logica computacional
 
 block content
-	section.contenedorDeAncho
-		h2.textoCentrado Cursos
-		ul.listado
-			each tema in temas
-				li
-					a(href='#{tema.urlCurso}') #{tema.curso}
-					p.textoDescripcion Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dolorem, molestias repudiandae pariatur libero at blanditiis maxime totam odit eveniet dolore ipsa sequi beatae omnis. Rem dignissimos sed quam, quidem!
+	h2.textoCentrado Cursos
+	ul.listado
+		each tema in temas
+			li
+				a(href='#{tema.urlCurso}') #{tema.curso}
+				p.textoDescripcion Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dolorem, molestias repudiandae pariatur libero at blanditiis maxime totam odit eveniet dolore ipsa sequi beatae omnis. Rem dignissimos sed quam, quidem!
 

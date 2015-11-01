@@ -4,14 +4,13 @@ block title
 	title Ayuda || Aplicacion Logica computacional
 
 block content
-	section.contenedorDeAncho
-		h2.textoCentrado Teclas rapidas o shortcut
-		ul.contenedorTeclas
-			each shortcut in shortcuts
-				li
-					p.tecla Shift
-						span.icon-shift
-					span +
-					p.tecla #{shortcut.tecla}
-					span.textoDescripcion #{shortcut.descripcion}
+	h2.textoCentrado Teclas rapidas o shortcut
+	ul.contenedorTeclas
+		each shortcut in shortcuts
+			li
+				p.tecla Shift
+					span.icon-shift
+				span +
+				p.tecla #{shortcut.tecla}
+				span.textoDescripcion #{shortcut.descripcion}
 

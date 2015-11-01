@@ -32,15 +32,22 @@ var posicionAux = 0
 var continuarAux = new Boolean()
 var lineasDelVertice = new Array()
 
+/*Acciones del lienzo*/
+var accionConectar = document.getElementById("accionConectar_js")
+,accionCrear = document.getElementById("accionCrear_js")
+,accionBorrar = document.getElementById("accionBorrar_js")
+
+
 function dibujarCirculo(evento){
 
 	if(evento.which == 1){
-
+		accionCrear.classList.add("accionActiva")
 		var nombreVertice = nombreVertices[posicionAux]
 		var html_vertice = document.createElementNS(namespaceURI, "circle")
 		var html_nameVertice = document.createElementNS(namespaceURI,"text")
 
 		html_vertice.addEventListener("mousedown", circuloPresionado,true)
+		html_vertice.addEventListener("dblclick", eliminarVertice,true)
 		html_vertice.addEventListener("mouseup", circuloDesprecionado,true)
 
 
@@ -55,10 +62,13 @@ function dibujarCirculo(evento){
 		html_nameVertice.innerHTML = nombreVertice
 		html_nameVertice.id = nombreVertice
 
-		posicionAux += 1
 
 		htmlSvgLienzoGrafoVertices.appendChild(html_vertice)
 		htmlSvgLienzoGrafoNombres.appendChild(html_nameVertice)
+		posicionAux += 1
+		setTimeout(function(){
+			accionCrear.classList.remove("accionActiva")
+		}, 500)
 
 
 	}
@@ -123,11 +133,14 @@ function dibujarLinea(x1,y1,x2,y2,name,origen,destino) {
 		var htmlLineAristaDelGrafo = document.createElementNS(namespaceURI, "line")
 
 		/*Enviao de Atributos al elemento "line"*/
+		if (x1 == x2 && y1 == y2){
+			console.log('ciclo');
+		};
 		setAttributes(htmlLineAristaDelGrafo,{x1:x1,y1:y1,x2:x2,y2:y2,name:name,origen:origen,destino:destino})
 
 
 		/*Mediante el atributo "name" se verifica que la linea no pertenezca a la grilla, pues si pertecene no se le deben añadir eventos*/
-		htmlLineAristaDelGrafo.addEventListener("mousedown", removerElementoLinea)
+		htmlLineAristaDelGrafo.addEventListener("dblclick", removerElementoLinea)
 
 		/*Agregar linea al Contenedor*/
 		htmlSvgLienzoGrafoAristas.appendChild(htmlLineAristaDelGrafo)
@@ -157,31 +170,9 @@ function limpiarLienzo() {
 
 
 /*Funcion encargada de ecoger que accion ejecutar sobre un elemento segun el boton del mouse oprimido*/
-function circuloPresionado(evento) {
-
-	evento.preventDefault()
-
-	var nombreLinea
-	var nombreCirculo
-
-	cxIniciales = this.getAttribute("cx")
-	cyIniciales = this.getAttribute("cy")
-
-	/*si se presiono el boton Izquierdo. se inicia el proceso para crear una arista(elemento "line") que conecta dos vertices(elemento "circles")*/
-	if (evento.which == 1) {
-
-		/*Se define el nombre del vertice inicial(del elemento de donde comienza la linea)*/
-		nombreVerticeInicial = this.getAttribute("name")
-
-	}
-	/*Si se presiona el boton Derecho se inicia el proceso de arrastre y soltar*/
-	else if(evento.which == 3){
-		this.addEventListener("mousedown", preparandoDrag)
-		this.addEventListener("mouseup", terminarDrag)
-
-	}
+function eliminarVertice(evento) {
 	/*Si se presiona la rueda del raton, se inicia el proceso para eliminar un vertice(elemento "circle") y sus aristas asociadas(elemento "line")*/
-	else if(evento.which == 2){
+	if(evento.which == 2){
 		/*Se pide confirmacion para borrar*/
 		if (confirm(mensajeDeConfirmacionDeBorradoDeElemento_s)) {
 
@@ -208,13 +199,46 @@ function circuloPresionado(evento) {
 	}
 }
 
+function circuloPresionado(evento) {
+
+	evento.preventDefault()
+
+	var nombreLinea
+	var nombreCirculo
+
+	cxIniciales = this.getAttribute("cx")
+	cyIniciales = this.getAttribute("cy")
+
+	/*si se presiono el boton Izquierdo. se inicia el proceso para crear una arista(elemento "line") que conecta dos vertices(elemento "circles")*/
+	if (evento.which == 3) {
+
+		/*Se define el nombre del vertice inicial(del elemento de donde comienza la linea)*/
+		nombreVerticeInicial = this.getAttribute("name")
+
+	}
+	/*Si se presiona el boton Derecho se inicia el proceso de arrastre y soltar*/
+	else if(evento.which == 2){
+		if (evento.which == 2){
+
+			cxElementEnMovimiento = this.getAttribute("cx")
+			cyElementEnMovimiento = this.getAttribute("cy")
+			posicionCirculo = cxElementEnMovimiento+","+cyElementEnMovimiento
+
+			this.addEventListener("mousemove", drag)
+			this.addEventListener("mouseup", terminarDrag)
+		}
+
+	}
+
+}
+
 function circuloDesprecionado(evento) {
 
 	evento.preventDefault()
 
 	nombreVerticeFinal = this.getAttribute("name")
 
-	if (evento.which == 1) {
+	if (evento.which == 3) {
 
 		cxFinales = this.getAttribute("cx")
 		cyFinales = this.getAttribute("cy")
@@ -338,6 +362,7 @@ function crearGrafo(elementos){
 			var htmlTextNombreVerticeDelGrafo = document.createElementNS(namespaceURI,"text")
 
 			htmlCircleVerticeDelGrafo.addEventListener("mousedown", circuloPresionado,true)
+			htmlCircleVerticeDelGrafo.addEventListener("dblclick", eliminarVertice,true)
 			htmlCircleVerticeDelGrafo.addEventListener("mouseup", circuloDesprecionado,true)
 
 			setAttributes(htmlCircleVerticeDelGrafo,{cx:elemento.data.cx, cy:elemento.data.cy,r:elemento.data.r,name:elemento.data.name})
@@ -387,21 +412,10 @@ function cargarGrafo(evento) {
 ######################Drag And Drop#############################
 ##############################################################*/
 
-/*se oprime sobre un nodo para empezar el evento drag*/
-function preparandoDrag(evento) {
-
-	if (evento.which == 3){
-
-		cxElementEnMovimiento = this.getAttribute("cx")
-		cyElementEnMovimiento = this.getAttribute("cy")
-		posicionCirculo = cxElementEnMovimiento+","+cyElementEnMovimiento
-
-		this.addEventListener("mousemove", drag)
-	}
-}
 
 /*se inicia el drag*/
 function drag(evento) {
+	accionConectar.classList.add("accionActiva")
 
 	var lineaDelVertice = new Array()
 
@@ -441,6 +455,8 @@ function drag(evento) {
 
 /*Terminar el evento drag*/
 function terminarDrag(evento) {
+	accionConectar.classList.remove("accionActiva")
+
 	this.removeEventListener("mousemove", drag)
 }
 
