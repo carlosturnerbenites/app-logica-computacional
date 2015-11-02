@@ -125,11 +125,8 @@ function verificarEjercicio(){
 	var dropzone = document.getElementById("dropzone_js")
 	if (!dropzone.hasChildNodes()){
 		console.log("nada");
-		var estadoActual = {
-			msg : "Huu, no has escogido ningun conector",
-			clases : ["MSG" ,"MSGError"],
-			icono : "icon-equivocado"
-		}
+		var mensaje = {tipoMensaje : 1, mensaje : "Huu, no has escogido ningun conector"}
+
 	}else{
 		var respuestas = dropzone.children
 		,conecotresRespuesta = new Array()
@@ -137,11 +134,8 @@ function verificarEjercicio(){
 			conecotresRespuesta.push(respuesta.getAttribute("value"))
 		}
 		if (String(conecotresRespuesta.sort()) == String(ejercicioPropuesto.conector.sort())){
-			var estadoActual = {
-				msg : "Listo, todo bien",
-				clases : ["MSG" ,"MSGBien"],
-				icono : "icon-correcto"
-			}
+			var mensaje = {tipoMensaje : 0, mensaje : "Listo, todo bien"}
+
 			dropzone.removeEventListener("drop",dropElementsDOM,false)
 			dropzone.classList.add("dragEnter")
 			habilitarInhabilitarInput(htmlInputSubmitBtnrealizarEjercicio)
@@ -159,15 +153,12 @@ function verificarEjercicio(){
 			contenedorPrincipal.replaceChild(btnVolver, htmlInputSubmitBtnrealizarEjercicio)
 
 		}else{
-			var estadoActual = {
-				msg : "Algo esta mal en la solucion",
-				clases : ["MSG" ,"MSGError"],
-				icono : "icon-equivocado"
-			}
+			var mensaje = {tipoMensaje : 1, mensaje : "Algo esta mal en la solucion"}
+
 		}
-		console.log(conecotresRespuesta)
+
 	}
-	crearYMostrarMensaje(estadoActual)
+	crearYMostrarMensaje(mensaje)
 
 }
 

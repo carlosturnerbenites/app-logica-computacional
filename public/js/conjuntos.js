@@ -109,31 +109,17 @@ function validarConjunto(elementosCojuntos){
 			}
 		}
 		if (campoValido){
-			var estadoActual = {
-				msg : "Todo listo",
-				clases : ["MSG", "MSGBien"],
-				icono : "icon-correcto"
-			}
+			var mensaje = {tipoMensaje :0 , mensaje : "Todo listo"}
 		}else{
 			campoValido =  false
-			var estadoActual = {
-				msg : "hay un elemento repetido",
-				clases : ["MSG" ,"MSGError"],
-				icono : "icon-equivocado"
-
-			}
+			var mensaje = {tipoMensaje :1 , mensaje : "hay un elemento repetido"}
 		}
 	}else{
 		campoValido =  false
-		var estadoActual = {
-			msg : "hay un caracter no permitido o error de sintaxis",
-			clases : ["MSG" ,"MSGError"],
-			icono : "icon-equivocado"
-
-		}
+		var mensaje = {tipoMensaje :1 , mensaje : "hay un caracter no permitido o error de sintaxis"}
 	}
 	/*esta funcion recibe un objeto estado y crea un mensaje y lo inserta en el contenedor principal*/
-	crearYMostrarMensaje(estadoActual)
+	crearYMostrarMensaje(mensaje)
 
 	return campoValido
 }
@@ -198,12 +184,7 @@ function validarRespuesta(evento) {
 			habilitarInhabilitarInput(respuestaEnviada)
 
 
-			var estadoActual = {
-				campoValido: true,
-				msg : "Listo, todo bien",
-				clases : ["MSG" ,"MSGBien"],
-				icono : "icon-correcto"
-			}
+			var mensaje = {tipoMensaje : 0, mensaje : "Listo, todo bien"}
 
 			var btnVolver = document.getElementById("btnValidarconjuntos")
 			btnVolver.innerHTML = innerHTMLBtnVolver
@@ -215,23 +196,13 @@ function validarRespuesta(evento) {
 
 
 		}else{
-			var estadoActual = {
-				campoValido: false,
-				msg : "Huu, algo va mal",
-				clases : ["MSG" ,"MSGError"],
-				icono : "icon-equivocado"
-			}
+			var mensaje = {tipoMensaje : 1, mensaje : "Huu, algo va mal"}
 
 		}
 	}else{
-		var estadoActual = {
-			campoValido: false,
-			msg : "Huu, algo va mal",
-			clases : ["MSG" ,"MSGError"],
-			icono : "icon-equivocado"
-		}
+		var mensaje = {tipoMensaje : 1, mensaje : "Huu, algo va mal"}
 	}
-	crearYMostrarMensaje(estadoActual)
+	crearYMostrarMensaje(mensaje)
 }
 
 function reiniciarEjercicio () {

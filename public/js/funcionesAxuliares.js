@@ -138,40 +138,36 @@ Esta funcion recibe un objeto y con sus valores añade un mensaje en el DOM(en e
 Syntax:
 crearYMostrarMensaje(Objeto)
 */
-function crearYMostrarMensaje(estado){
+function crearYMostrarMensaje(msg){
 
 	var notification = new Audio("/audio/notificacion.mp3")
 
 	var contenedor = document.createElement("section")
 	contenedor.classList.add("contenedorMensaje")
-
 	var contenedorMSG = document.createElement("article")
-
-	var msg = document.createElement("p")
-	msg.innerHTML= estado.msg
-
+	var contenedorMensaje = document.createElement("p")
+	contenedorMensaje.innerHTML= msg.mensaje
 	var icono = document.createElement("span")
-	icono.classList.add(estado.icono)
 
-
-	for (var i = 0; i < estado.clases.length; i++) {
-
-		contenedorMSG.classList.add(estado.clases[i])
-	};
+	if (msg.tipoMensaje == 0){
+		icono.classList.add("icon-correcto")
+		contenedorMSG.classList.add("MSG","MSGBien")
+	}else if(msg.tipoMensaje == 1){
+		icono.classList.add("icon-equivocado")
+		contenedorMSG.classList.add("MSG","MSGError")
+	}
 
 
 	contenedorMSG.appendChild(icono)
-	contenedorMSG.appendChild(msg)
+	contenedorMSG.appendChild(contenedorMensaje)
 	contenedor.appendChild(contenedorMSG)
-	contenedorPrincipal.appendChild(contenedor)
 	notification.play()
+	contenedorPrincipal.appendChild(contenedor)
 
 	setTimeout(function(){
 		contenedorPrincipal.removeChild(contenedorPrincipal.lastChild)
 	}, 2000)
 }
-
-
 
 /*
 Description:

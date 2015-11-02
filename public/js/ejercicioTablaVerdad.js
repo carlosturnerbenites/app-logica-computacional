@@ -303,25 +303,17 @@ function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuesta
 		}
 		btnAgregarColumna.removeEventListener("click", crearAgregarFila)
 
-		var estadoActual = {
-			msg : "Listo, todo bien",
-			clases : ["MSG" ,"MSGBien"],
-			icono : "icon-correcto"
-		}
+		var mensaje = {tipoMensaje : 0, mensaje : "Listo, todo bien"}
 
 	}
 
 	else{
 
-		var estadoActual = {
-			msg : "Huu, algo va mal",
-			clases : ["MSG" ,"MSGError"],
-			icono : "icon-equivocado"
-		}
+		var mensaje = {tipoMensaje : 1, mensaje : "Huu, algo va mal"}
 
 	}
 
-	crearYMostrarMensaje(estadoActual)
+	crearYMostrarMensaje(mensaje)
 }
 
 

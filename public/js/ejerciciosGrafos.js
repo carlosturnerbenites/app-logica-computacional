@@ -4,7 +4,23 @@ var htmlFormformGrafos = document.getElementById("htmlFormformGrafos_js")
 var htmlInputCantidadVertices = document.getElementById("htmlInputCantidadVertices_js")
 var htmlInputCantidadAristas = document.getElementById("htmlInputCantidadAristas_js")
 
+var btnVolver = document.createElement("button")
+btnVolver.innerHTML = innerHTMLBtnVolver
+btnVolver.id = "btnReiniciarEjercicio_js"
+btnVolver.classList.add("centrarConMargin","btn" ,"btnConfirmar")
+btnVolver.setAttribute("type", "submit")
+var HTMLSpanIconoBtn = document.createElement("span")
+HTMLSpanIconoBtn.classList.add(iconoBtnVolver,"marginIconos")
+btnVolver.insertBefore(HTMLSpanIconoBtn, btnVolver.firstChild)
 
+var btnValidar = document.createElement("button")
+btnValidar.innerHTML = innerHTMLBtnVerificar
+btnValidar.id = "btnValidargrafo"
+btnValidar.classList.add("btn","btnConfirmar","centrarConMargin")
+btnValidar.setAttribute("type", "submit")
+var HTMLSpanIconoBtn = document.createElement("span")
+HTMLSpanIconoBtn.classList.add(iconoBtnVerificar,"marginIconos")
+btnValidar.insertBefore(HTMLSpanIconoBtn, btnValidar.firstChild)
 
 
 var lienzo = document.getElementById("htmlSvgLienzo_js")
@@ -19,7 +35,7 @@ var lienzo = document.getElementById("htmlSvgLienzo_js")
 
 function lienzohabilitado(){
 	if (lienzo.hasAttribute("disabled")){
-		crearYMostrarMensaje({msg : "El lienzo no esta hailitado",clases : ["MSG", "MSGError"],icono : "icon-equivocado"})
+		crearYMostrarMensaje({tipoMensaje : 1, mensaje : "El lienzo no esta hailitado"})
 		return false
 	}else{
 		return true
@@ -67,7 +83,6 @@ function lienzoPresionado(evento) {
 		if(evento.which == 1){
 			var x = evento.offsetX
 			,y = evento.offsetY
-			console.log(x,y)
 			var nombreVertice = nombreVertices[posicionAux]
 
 			dibujarCirculo(x,y,nombreVertice)
@@ -125,17 +140,10 @@ function dibujarLinea(x1,y1,x2,y2,name,origen,destino) {
 		/*Verificar que la linea a crear no exista, para ello se comprarn los nombres de las lineas*/
 		if (name == nombreAristaExistente) {
 
-			/*Objeto con la informacion para crear un Mensage*/
-			var estadoActual = {
-				msg : "Esta linea ya existe",
-				clases : ["MSG", "MSGError"],
-				icono : "icon-correcto"
-			}
-
 			continuar = false
 
 			/*Se crea e inserta un mensaje en el DOM*/
-			crearYMostrarMensaje(estadoActual)
+			crearYMostrarMensaje({tipoMensaje : 1, mensaje : "Esta linea ya existe"})
 
 		}
 
@@ -148,7 +156,6 @@ function dibujarLinea(x1,y1,x2,y2,name,origen,destino) {
 
 		/*Enviao de Atributos al elemento "line"*/
 		if (x1 == x2 && y1 == y2){
-			console.log('ciclo');
 		};
 		setAttributes(htmlLineAristaDelGrafo,{x1:x1,y1:y1,x2:x2,y2:y2,name:name,origen:origen,destino:destino})
 
@@ -350,13 +357,12 @@ function cargarGrafo(evento) {
 
 				crearGrafo(fileGrafoJSON)
 
-				crearYMostrarMensaje({msg : "Cagado Correctamente",clases : ["MSG", "MSGBien"],icono : "icon-correcto"})
+				crearYMostrarMensaje({tipoMensaje : 0, mensaje : "Cagado Correctamente"})
 
 				html_inputCargarGrafo.value = ""
 
 			}
 			reader.onerror = function(error){
-				console.log(error)
 			}
 			reader.readAsText(fileGrafo)
 		}else{
@@ -421,7 +427,7 @@ function capturarGrafo(){
 			return grafo
 
 		}else{
-			crearYMostrarMensaje({msg : "Este grafo esta vacio, no vale la pena guardarlo.",clases : ["MSG", "MSGError"],icono : "icon-equivocado"})
+			crearYMostrarMensaje({tipoMensaje : 1, mensaje : "Este grafo esta vacio, no vale la pena guardarlo."})
 			return
 		}
 
@@ -485,21 +491,95 @@ function terminarDrag(evento) {
 ##############################################################*/
 
 
-function HabilitarGrafocompleto() {
-	habilitarInhabilitarInput(htmlInputCantidadAristas)
+function VerificarFormYHabilitarLienzo(evento) {
+
+	evento.preventDefault()
+	validarAristasYGrados()
+
+	lienzo.removeAttribute("disabled")
+
+	if (htmlInputgrafoCompleto.checked) {
+		habilitarInhabilitarInput(htmlInputCantidadAristas)
+	}
+
+	habilitarInhabilitarFormulario(this)
+	htmlFormformGrafos.removeEventListener("submit", VerificarFormYHabilitarLienzo)
+
+	htmlFormVerificarDatosGrafo.appendChild(btnValidar)
+	htmlFormVerificarDatosGrafo.addEventListener("submit", validarGrafo)
 }
 
 function validarAristasYGrados(evento) {
+
 	numeroDeVertices = htmlInputCantidadVertices.value
 	var numeroMaximoAristas = ((numeroDeVertices*(numeroDeVertices-1))/2)
+
 	if (htmlInputgrafoCompleto.checked) {
 		numeroDeAristas = numeroMaximoAristas
 	}else{
 		numeroDeAristas = htmlInputCantidadAristas.value
 	}
-	console.log(numeroDeAristas);
+
 	/*Este maximo de aristas no comtempla cilcos(arista de n a n) ni direccion del grafo*/
 	htmlInputCantidadAristas.setAttribute("max", numeroMaximoAristas)
+}
+
+function validarGrafo(evento) {
+
+	evento.preventDefault()
+	htmlFormVerificarDatosGrafo.removeEventListener("submit", validarGrafo)
+
+	var numeroDeVerticesEnLienzo = htmlSvgLienzoGrafoVertices.childElementCount
+	var numeroDeAristasEnLienzo = htmlSvgLienzoGrafoAristas.childElementCount
+
+	if (parseInt(numeroDeVertices) == numeroDeVerticesEnLienzo){
+		if (parseInt(numeroDeAristas) == numeroDeAristasEnLienzo) {
+
+			htmlFormVerificarDatosGrafo.addEventListener("submit", validarGrados)
+
+			crearCamposParaGradoDeVertice()
+
+			var mensaje = {tipoMensaje : 0, mensaje : "Listo, todo bien."}
+		}else{
+			var mensaje = {tipoMensaje : 1, mensaje : "Hay un problema con Las Aristas"}
+		}
+	}else{
+		var mensaje = {tipoMensaje : 1, mensaje : "Hay un problema con los vertices"}
+	}
+	crearYMostrarMensaje(mensaje)
+}
+function validarGrados(evento){
+
+	evento.preventDefault()
+
+	var correcto = true
+	var grados = verificarGradosDeVertices()
+	var inputGrados = htmlFormVerificarDatosGrafo.elements
+
+	for (var i = 0, input; input = inputGrados[i]; i++) {
+		if (input.type.toLowerCase() != "submit"){
+			if (grados[i]["grado"] != input.value){
+				correcto = false
+			}
+		}
+	}
+
+	if (correcto){
+		var mensaje = {tipoMensaje : 0, mensaje : "Listo, todo bien."}
+		habilitarInhabilitarFormulario(htmlFormVerificarDatosGrafo)
+
+		htmlFormVerificarDatosGrafo.replaceChild(btnVolver, btnValidar)
+		htmlFormVerificarDatosGrafo.removeEventListener("submit", validarGrados)
+		htmlFormVerificarDatosGrafo.addEventListener("submit", reiniciarEjercicio)
+
+	}else{
+		var mensaje = {tipoMensaje : 1, mensaje : "Huuu, algo va mal."}
+	}
+	crearYMostrarMensaje(mensaje)
+}
+
+function HabilitarGrafocompleto() {
+	habilitarInhabilitarInput(htmlInputCantidadAristas)
 }
 
 function crearCamposParaGradoDeVertice() {
@@ -533,29 +613,6 @@ function crearCamposParaGradoDeVertice() {
 	}
 }
 
-function VerificarFormYHabilitarLienzo(evento) {
-	evento.preventDefault()
-	validarAristasYGrados()
-	/*Se agrega el evento "doble click" en el lienzo, para que al suceder se cree y agrege un vertice(elemento "circle") en el lienzo*/
-	lienzo.removeAttribute("disabled")
-	if (htmlInputgrafoCompleto.checked) {
-		habilitarInhabilitarInput(htmlInputCantidadAristas)
-	}
-	habilitarInhabilitarFormulario(this)
-	htmlFormformGrafos.removeEventListener("submit", VerificarFormYHabilitarLienzo)
-	var htmlButtonValidar = document.createElement("button")
-	htmlButtonValidar.innerHTML = innerHTMLBtnVerificar
-	htmlButtonValidar.classList.add("btn","btnConfirmar","centrarConMargin")
-	htmlButtonValidar.id = "btnValidargrafo"
-	htmlButtonValidar.setAttribute("type", "submit")
-	var HTMLSpanIconoBtn = document.createElement("span")
-	HTMLSpanIconoBtn.classList.add(iconoBtnVerificar,"marginIconos")
-
-	htmlButtonValidar.insertBefore(HTMLSpanIconoBtn, htmlButtonValidar.firstChild)
-	htmlFormVerificarDatosGrafo.appendChild(htmlButtonValidar)
-	htmlFormVerificarDatosGrafo.addEventListener("submit", validarGrafo)
-}
-
 function verificarGradosDeVertices() {
 	var grados = new Array()
 	var verticesEnLienzo = htmlSvgLienzoGrafoVertices.children
@@ -569,115 +626,40 @@ function verificarGradosDeVertices() {
 		for(var a = 0, arista; arista = aristasEnLienzo[a]; a++){
 
 			var nombreArista = arista.getAttribute("name")
-			console.log(nombreArista+"   "+nombreVertice)
 
 			if (nombreArista.indexOf(nombreVertice) != -1) {
 				contadorConcurrencia += 1
-				console.log(contadorConcurrencia);
 			}
 		}
 		grados.push({vertice:nombreVertice,grado:contadorConcurrencia})
 	}
 	return grados
 }
+
 function reiniciarEjercicio(evento) {
 	evento.preventDefault()
-	console.log("reiniciando");
+
 	if(limpiarLienzo()){
-		htmlFormVerificarDatosGrafo.replaceChild(btnValidargrafo,btnVolver)
+
+		htmlFormVerificarDatosGrafo.removeChild(btnVolver)
 
 		limpiarContenedorHTML(htmlFormVerificarDatosGrafo)
 		habilitarInhabilitarFormulario(htmlFormformGrafos)
+		habilitarInhabilitarInput(btnValidar)
 		htmlFormformGrafos.reset()
 		lienzo.setAttribute("disabled","true")
+		htmlFormVerificarDatosGrafo.removeEventListener("submit", reiniciarEjercicio)
+
 		htmlFormformGrafos.addEventListener("submit", VerificarFormYHabilitarLienzo)
 	}else{
 		return
 	}
 }
 
-function validarGrados(evento){
-	evento.preventDefault()
-	var correcto = true
-	console.log("validando grados");
-	var grados = verificarGradosDeVertices()
-	console.log(grados);
-	var inputGrados = htmlFormVerificarDatosGrafo.elements
-	for (var i = 0, input; input = inputGrados[i]; i++) {
-		if (input.type.toLowerCase() != "submit"){
-			if (grados[i]["grado"] != input.value){
-				correcto = false
-			}
-		}
-	}
-	if (correcto){
-		var estadoActual = {
-			msg : "Listo, todo bien.",
-			clases : ["MSG", "MSGBien"],
-			icono : "icon-correcto"
-		}
-		habilitarInhabilitarFormulario(htmlFormVerificarDatosGrafo)
-		crearYMostrarMensaje(estadoActual)
-
-
-		var btnVolver = document.createElement("button")
-		btnVolver.id = "btnReiniciarEjercicio_js"
-		btnVolver.classList.add("centrarConMargin","btn" ,"btnConfirmar")
-		btnVolver.innerHTML = innerHTMLBtnVolver
-		btnVolver.disabled = false
-		btnVolver.addEventListener("click", reiniciarEjercicio)
-		var HTMLSpanIconoBtn = document.createElement("span")
-		HTMLSpanIconoBtn.classList.add(iconoBtnVolver,"marginIconos")
-		btnVolver.insertBefore(HTMLSpanIconoBtn, btnVolver.firstChild)
-
-		htmlFormVerificarDatosGrafo.replaceChild(btnVolver, btnValidargrafo)
-
-	}else{
-		var estadoActual = {
-			msg : "Huuu, algo va mal.",
-			clases : ["MSG", "MSGError"],
-			icono : "icon-equivocado"
-		}
-		crearYMostrarMensaje(estadoActual)
-	}
-}
-
-function validarGrafo(evento) {
-	evento.preventDefault()
-	htmlFormVerificarDatosGrafo.removeEventListener("submit", validarGrafo)
-
-	var numeroDeVerticesEnLienzo = htmlSvgLienzoGrafoVertices.childElementCount
-	var numeroDeAristasEnLienzo = htmlSvgLienzoGrafoAristas.childElementCount
-	if (parseInt(numeroDeVertices) == numeroDeVerticesEnLienzo){
-		if (parseInt(numeroDeAristas) == numeroDeAristasEnLienzo) {
-			crearCamposParaGradoDeVertice()
-
-			var estadoActual = {
-				msg : "Listo, todo bien.",
-				clases : ["MSG", "MSGBien"],
-				icono : "icon-correcto"
-			}
-		}else{
-			var estadoActual = {
-				msg : "Hay un problema con Las Aristas",
-				clases : ["MSG", "MSGError"],
-				icono : "icon-equivocado"
-			}
-		}
-	}else{
-		var estadoActual = {
-			msg : "Hay un problema con los vertices",
-			clases : ["MSG", "MSGError"],
-			icono : "icon-equivocado"
-		}
-	}
-	crearYMostrarMensaje(estadoActual)
-	htmlFormVerificarDatosGrafo.addEventListener("submit", validarGrados)
-}
-
 htmlFormformGrafos.addEventListener("submit", VerificarFormYHabilitarLienzo)
-lienzo.addEventListener("click", lienzoPresionado)
 htmlInputgrafoCompleto.addEventListener("change", HabilitarGrafocompleto)
+
+lienzo.addEventListener("click", lienzoPresionado)
 
 /*Se agregar el evento "click" al boton de limpiar lienzo, para que al suceder el todos los elementos(Vertices, Aristas y Nombre) se borren del lienzo. No se borra la grilla*/
 btnLimpiarLienzo.addEventListener("click", limpiarLienzo)
