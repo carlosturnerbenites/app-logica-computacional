@@ -1,3 +1,14 @@
+var htmlInputgrafoCompleto = document.getElementById("htmlInputgrafoCompleto_js")
+var htmlFormVerificarDatosGrafo = document.getElementById("htmlFormVerificarDatosGrafo_js")
+var htmlFormformGrafos = document.getElementById("htmlFormformGrafos_js")
+var htmlInputCantidadVertices = document.getElementById("htmlInputCantidadVertices_js")
+var htmlInputCantidadAristas = document.getElementById("htmlInputCantidadAristas_js")
+var htmlSectionGradoDeLosVertices = document.getElementById("htmlSectionGradoDeLosVertices_js")
+
+
+
+
+
 var lienzo = document.getElementById("htmlSvgLienzo_js")
 ,htmlSvgLienzoGrafo = document.getElementById("htmlSvgLienzoGrafo_js")
 ,htmlSvgLienzoGrilla = document.getElementById("htmlSvgLienzoGrilla_js")
@@ -6,6 +17,16 @@ var lienzo = document.getElementById("htmlSvgLienzo_js")
 ,htmlSvgLienzoGrafoAristas = document.getElementById("htmlSvgLienzoGrafoAristas_js")
 ,btnLimpiarLienzo = document.getElementById("btnLimpiarLienzo_js")
 ,btnGuardarGrafo = document.getElementById("btnGuardarGrafo_js")
+
+
+function lienzohabilitado(){
+	if (lienzo.hasAttribute("disabled")){
+		crearYMostrarMensaje({msg : "El lienzo no esta hailitado",clases : ["MSG", "MSGError"],icono : "icon-equivocado"})
+		return false
+	}else{
+		return true
+	}
+}
 
 var html_inputCargarGrafo = document.getElementById("cargarGrafo_js")
 
@@ -38,16 +59,24 @@ var accionConectar = document.getElementById("accionConectar_js")
 ,accionBorrar = document.getElementById("accionBorrar_js")
 ,accionMover = document.getElementById("accionMover_js")
 
-function lienzoPresionado(evento) {
-	if(evento.which == 1){
-		var x = evento.offsetX
-		,y = evento.offsetY
-		console.log(x,y)
-		var nombreVertice = nombreVertices[posicionAux]
+/*la cantidad maxima de vertices se asigna dependiendo de la cantidad de nombre de vertices que hallan(Esto ultimo se obtiene del arreglo "nombresVertices")*/
+htmlInputCantidadVertices.setAttribute("max", nombreVertices.length)
+htmlInputCantidadVertices.addEventListener("change", validarAristasYGrados)
 
-		dibujarCirculo(x,y,nombreVertice)
+function lienzoPresionado(evento) {
+	if (lienzohabilitado()){
+
+		if(evento.which == 1){
+			var x = evento.offsetX
+			,y = evento.offsetY
+			console.log(x,y)
+			var nombreVertice = nombreVertices[posicionAux]
+
+			dibujarCirculo(x,y,nombreVertice)
+		}
 	}
 }
+
 function dibujarCirculo(posX,posY,name){
 	accionCrear.classList.add("accionActiva")
 	var html_vertice = document.createElementNS(namespaceURI, "circle")
@@ -76,56 +105,10 @@ function dibujarCirculo(posX,posY,name){
 	setTimeout(function(){
 		accionCrear.classList.remove("accionActiva")
 	}, 500)
-
 }
 
-/*Funcion encargada de ecoger que accion ejecutar sobre un elemento segun el boton del mouse oprimido*/
-function eliminarElemento(evento) {
-	/*Si se presiona la rueda del raton, se inicia el proceso para eliminar un vertice(elemento "circle") y sus aristas asociadas(elemento "line")*/
-	if(evento.which == 2){
-		accionBorrar.classList.add("accionActiva")
-
-		/*Se pide confirmacion para borrar*/
-		if (confirm(mensajeDeConfirmacionDeBorradoDeElemento_s)) {
-
-			if(this.tagName == "circle"){
-
-				var aristasExistentes = convertirHTMLCollectionEnArray(htmlSvgLienzoGrafoAristas.childNodes)
-
-				htmlSvgLienzoGrafoVertices.removeChild(this)
-				htmlSvgLienzoGrafoNombres.removeChild(document.getElementById(this.getAttribute("name")))
-
-				for (var i = 0; i <= aristasExistentes.length; i++) {
-					if (aristasExistentes[i] != undefined) {
-						nombreLinea = aristasExistentes[i].getAttribute("name")
-						nombreCirculo = this.getAttribute("name")
-
-						if (nombreLinea.indexOf(nombreCirculo) != -1) {
-							htmlSvgLienzoGrafoAristas.removeChild(aristasExistentes[i])
-
-						}
-					}
-
-				}
-			}else{
-				htmlSvgLienzoGrafoAristas.removeChild(this)
-			}
-
-
-
-
-
-
-
-
-		}
-
-		accionBorrar.classList.remove("accionActiva")
-	}
-}
-
-/*refactor nombre variable "name".*/
 function dibujarLinea(x1,y1,x2,y2,name,origen,destino) {
+	/*refactor nombre variable "name".*/
 
 	/*definicion de variable que contendra el nombre de la arista(elementos "line"), creado apartir del atributo "name" de la misma.*/
 	var nombreAristaExistente
@@ -178,31 +161,6 @@ function dibujarLinea(x1,y1,x2,y2,name,origen,destino) {
 		/*Agregar linea al Contenedor*/
 		htmlSvgLienzoGrafoAristas.appendChild(htmlLineAristaDelGrafo)
 
-	}
-}
-
-/*Funcion encargada de limpiar el lienzo de dibujo*/
-function limpiarLienzo() {
-	if (lienzo.hasAttribute("disabled")){
-		crearYMostrarMensaje({msg : "El lienzo no esta hailitado",clases : ["MSG", "MSGError"],icono : "icon-equivocado"})
-		html_inputCargarGrafo.value = ""
-
-	}else{
-		/*pedir confirmacion para borar el lienzo*/
-		if (confirm(mensajeDeConfirmacionDeBorradoDeLienzo)) {
-
-			while (htmlSvgLienzoGrafoVertices.firstChild) {
-				htmlSvgLienzoGrafoVertices.removeChild(htmlSvgLienzoGrafoVertices.firstChild);
-			}
-
-			while (htmlSvgLienzoGrafoAristas.firstChild) {
-				htmlSvgLienzoGrafoAristas.removeChild(htmlSvgLienzoGrafoAristas.firstChild);
-			}
-
-			while (htmlSvgLienzoGrafoNombres.firstChild) {
-				htmlSvgLienzoGrafoNombres.removeChild(htmlSvgLienzoGrafoNombres.firstChild);
-			}
-		}
 	}
 }
 
@@ -260,8 +218,72 @@ function circuloDesprecionado(evento) {
 	}
 }
 
-/*Funcion encargada de dibujar la grilla de refencia en el lienzo.*/
+function eliminarElemento(evento) {
+	/*Funcion encargada de ecoger que accion ejecutar sobre un elemento segun el boton del mouse oprimido*/
+	/*Si se presiona la rueda del raton, se inicia el proceso para eliminar un vertice(elemento "circle") y sus aristas asociadas(elemento "line")*/
+	if(evento.which == 2){
+		accionBorrar.classList.add("accionActiva")
+
+		/*Se pide confirmacion para borrar*/
+		if (confirm(mensajeDeConfirmacionDeBorradoDeElemento_s)) {
+
+			if(this.tagName == "circle"){
+
+				var aristasExistentes = convertirHTMLCollectionEnArray(htmlSvgLienzoGrafoAristas.childNodes)
+
+				htmlSvgLienzoGrafoVertices.removeChild(this)
+				htmlSvgLienzoGrafoNombres.removeChild(document.getElementById(this.getAttribute("name")))
+
+				for (var i = 0; i <= aristasExistentes.length; i++) {
+					if (aristasExistentes[i] != undefined) {
+						nombreLinea = aristasExistentes[i].getAttribute("name")
+						nombreCirculo = this.getAttribute("name")
+
+						if (nombreLinea.indexOf(nombreCirculo) != -1) {
+							htmlSvgLienzoGrafoAristas.removeChild(aristasExistentes[i])
+
+						}
+					}
+
+				}
+			}else{
+				htmlSvgLienzoGrafoAristas.removeChild(this)
+			}
+
+		}
+
+		accionBorrar.classList.remove("accionActiva")
+	}
+}
+
+function limpiarLienzo() {
+	/*Funcion encargada de limpiar el lienzo de dibujo*/
+	if (lienzohabilitado()){
+		//html_inputCargarGrafo.value = ""
+
+		/*pedir confirmacion para borar el lienzo*/
+		if (confirm(mensajeDeConfirmacionDeBorradoDeLienzo)) {
+
+			while (htmlSvgLienzoGrafoVertices.firstChild) {
+				htmlSvgLienzoGrafoVertices.removeChild(htmlSvgLienzoGrafoVertices.firstChild);
+			}
+
+			while (htmlSvgLienzoGrafoAristas.firstChild) {
+				htmlSvgLienzoGrafoAristas.removeChild(htmlSvgLienzoGrafoAristas.firstChild);
+			}
+
+			while (htmlSvgLienzoGrafoNombres.firstChild) {
+				htmlSvgLienzoGrafoNombres.removeChild(htmlSvgLienzoGrafoNombres.firstChild);
+			}
+			return true
+		}else{
+			return false
+		}
+	}
+}
+
 function dibujarGrilla() {
+	/*Funcion encargada de dibujar la grilla de refencia en el lienzo.*/
 
 	/*Se capturan los valores de alto y ancho del lienzo de dibujo.*/
 	var lienzoHeight = lienzo.clientHeight
@@ -294,48 +316,6 @@ function dibujarLineaGrilla(x1,y1,x2,y2,contenedor,clase) {
 	contenedor.appendChild(htmlLineAristaDelGrafo)
 }
 
-function capturarGrafo(){
-	var vertices = htmlSvgLienzoGrafoVertices.children
-	var aristas = htmlSvgLienzoGrafoAristas.children
-	var grafo = new Array()
-
-	if (vertices.length != 0 || aristas.length != 0){
-		for (var i = 0, vertice; vertice = vertices[i]; i++) {
-			var elemento = {
-				type:"circle",
-				data:{
-					cx : vertice.getAttribute("cx"),
-					cy : vertice.getAttribute("cy"),
-					r : vertice.getAttribute("r"),
-					name : vertice.getAttribute("name")
-				}
-			}
-			grafo.push(elemento)
-		}
-
-		for (var i = 0, arista; arista = aristas[i] ;i++) {
-			var elemento = {
-				type:"line",
-				data:{
-					x1 : arista.getAttribute("x1"),
-					y1 : arista.getAttribute("y1"),
-					x2 : arista.getAttribute("x2"),
-					y2 : arista.getAttribute("y2"),
-					name : arista.getAttribute("name"),
-					origen : arista.getAttribute("origen"),
-					destino : arista.getAttribute("destino")
-				}
-			}
-			grafo.push(elemento)
-		}
-
-		return grafo
-	}else{
-		crearYMostrarMensaje({msg : "Este grafo esta vacio, no vale la pena guardarlo.",clases : ["MSG", "MSGError"],icono : "icon-equivocado"})
-		return
-	}
-}
-
 function guardarGrafo(){
 
 	var grafo = capturarGrafo()
@@ -358,6 +338,37 @@ function guardarGrafo(){
 	}
 }
 
+function cargarGrafo(evento) {
+
+	if (lienzohabilitado()){
+
+		if(limpiarLienzo()){
+
+			var fileGrafo = evento.target.files[0]
+			,reader = new FileReader();
+
+			reader.onload = function() {
+				var fileGrafoJSON = JSON.parse(this.result);
+
+				crearGrafo(fileGrafoJSON)
+
+				crearYMostrarMensaje({msg : "Cagado Correctamente",clases : ["MSG", "MSGBien"],icono : "icon-correcto"})
+
+				html_inputCargarGrafo.value = ""
+
+			}
+			reader.onerror = function(error){
+				console.log(error)
+			}
+			reader.readAsText(fileGrafo)
+		}else{
+			html_inputCargarGrafo.value = ""
+		}
+	}else{
+		html_inputCargarGrafo.value = ""
+	}
+}
+
 function crearGrafo(elementos){
 
 	for(var elemento of elementos){
@@ -372,31 +383,50 @@ function crearGrafo(elementos){
 	}
 }
 
-function cargarGrafo(evento) {
-	if (lienzo.hasAttribute("disabled")){
-		crearYMostrarMensaje({msg : "El lienzo no esta hailitado",clases : ["MSG", "MSGError"],icono : "icon-equivocado"})
-		html_inputCargarGrafo.value = ""
+function capturarGrafo(){
+	if (lienzohabilitado()){
 
-	}else{
+		var vertices = htmlSvgLienzoGrafoVertices.children
+		var aristas = htmlSvgLienzoGrafoAristas.children
+		var grafo = new Array()
 
-		var fileGrafo = evento.target.files[0]
-		,reader = new FileReader();
+		if (vertices.length != 0 || aristas.length != 0){
+			for (var i = 0, vertice; vertice = vertices[i]; i++) {
+				var elemento = {
+					type:"circle",
+					data:{
+						cx : vertice.getAttribute("cx"),
+						cy : vertice.getAttribute("cy"),
+						r : vertice.getAttribute("r"),
+						name : vertice.getAttribute("name")
+					}
+				}
+				grafo.push(elemento)
+			}
 
-		reader.onload = function() {
-			var fileGrafoJSON = JSON.parse(this.result);
+			for (var i = 0, arista; arista = aristas[i] ;i++) {
+				var elemento = {
+					type:"line",
+					data:{
+						x1 : arista.getAttribute("x1"),
+						y1 : arista.getAttribute("y1"),
+						x2 : arista.getAttribute("x2"),
+						y2 : arista.getAttribute("y2"),
+						name : arista.getAttribute("name"),
+						origen : arista.getAttribute("origen"),
+						destino : arista.getAttribute("destino")
+					}
+				}
+				grafo.push(elemento)
+			}
 
-			limpiarLienzo()
-			crearGrafo(fileGrafoJSON)
+			return grafo
 
-			crearYMostrarMensaje({msg : "Cagado Correctamente",clases : ["MSG", "MSGBien"],icono : "icon-correcto"})
-
-			html_inputCargarGrafo.value = ""
-
+		}else{
+			crearYMostrarMensaje({msg : "Este grafo esta vacio, no vale la pena guardarlo.",clases : ["MSG", "MSGError"],icono : "icon-equivocado"})
+			return
 		}
-		reader.onerror = function(error){
-			console.log(error)
-		}
-		reader.readAsText(fileGrafo)
+
 	}
 }
 
@@ -405,8 +435,8 @@ function cargarGrafo(evento) {
 ##############################################################*/
 
 
-/*se inicia el drag*/
 function drag(evento) {
+	/*se inicia el drag*/
 	accionMover.classList.add("accionActiva")
 
 	var lineaDelVertice = new Array()
@@ -445,8 +475,8 @@ function drag(evento) {
 	setAttributes(this,{cx: nuevaPosicionX,cy: nuevaPosicionY})
 }
 
-/*Terminar el evento drag*/
 function terminarDrag(evento) {
+	/*Terminar el evento drag*/
 	accionMover.classList.remove("accionActiva")
 
 	this.removeEventListener("mousemove", drag)
@@ -455,6 +485,139 @@ function terminarDrag(evento) {
 /*##############################################################
 ######################Drag And Drop#############################
 ##############################################################*/
+
+
+function HabilitarGrafocompleto() {
+	habilitarInhabilitarInput(htmlInputCantidadAristas)
+}
+
+function validarAristasYGrados(evento) {
+	numeroDeVertices = htmlInputCantidadVertices.value
+	var numeroMaximoAristas = ((numeroDeVertices*(numeroDeVertices-1))/2)
+	if (htmlInputgrafoCompleto.checked) {
+		numeroDeAristas = numeroMaximoAristas
+	}else{
+		numeroDeAristas = htmlInputCantidadAristas.value
+	}
+	console.log(numeroDeAristas);
+	/*Este maximo de aristas no comtempla cilcos(arista de n a n) ni direccion del grafo*/
+	htmlInputCantidadAristas.setAttribute("max", numeroMaximoAristas)
+}
+
+function crearCamposParaGradoDeVertice() {
+
+	limpiarContenedorHTML(htmlSectionGradoDeLosVertices)
+	var htmlLabelGradoVertices = document.createElement("p")
+	htmlLabelGradoVertices.innerHTML = "Grado de los Vertices"
+	htmlSectionGradoDeLosVertices.appendChild(htmlLabelGradoVertices)
+	var htmlUlContenedorListaGradoDeVertice = document.createElement("ul")
+	htmlUlContenedorListaGradoDeVertice.classList.add("listadoGradoVertices")
+	var nombresVertices = htmlSvgLienzoGrafoNombres.children
+
+	for (var i = 0; i < numeroDeVertices; i++) {
+		var htmlUlContenedorGradoDeVertice = document.createElement("li")
+		var htmlSpanTextoGradoVertices = document.createElement("span")
+		htmlSpanTextoGradoVertices.classList.add("nombreVertice")
+
+		var htmlInputNombreDeUnVertice = document.createElement("span")
+		//setAttributes(htmlInputNombreDeUnVertice,{required:true,type:"text",id:"nombreVertice_js"})
+		htmlInputNombreDeUnVertice.innerHTML = nombresVertices[i].id
+
+		htmlSpanTextoGradoVertices.appendChild(htmlInputNombreDeUnVertice)
+
+		var htmlInputGradoDeUnVertice = document.createElement("input")
+		setAttributes(htmlInputGradoDeUnVertice,{required:true,type:"number",id:"gradoVertice_js"})
+		htmlInputGradoDeUnVertice.classList.add("inputBorderBottomFocus","inputCorto")
+
+		htmlUlContenedorGradoDeVertice.appendChild(htmlSpanTextoGradoVertices)
+		htmlUlContenedorGradoDeVertice.appendChild(htmlInputGradoDeUnVertice)
+		htmlUlContenedorListaGradoDeVertice.appendChild(htmlUlContenedorGradoDeVertice)
+		htmlSectionGradoDeLosVertices.appendChild(htmlUlContenedorListaGradoDeVertice)
+	}
+}
+
+function VerificarFormYHabilitarLienzo(evento) {
+	evento.preventDefault()
+	validarAristasYGrados()
+	/*Se agrega el evento "doble click" en el lienzo, para que al suceder se cree y agrege un vertice(elemento "circle") en el lienzo*/
+	lienzo.removeAttribute("disabled")
+	if (htmlInputgrafoCompleto.checked) {
+		habilitarInhabilitarInput(htmlInputCantidadAristas)
+	}
+	habilitarInhabilitarFormulario(this)
+	htmlFormformGrafos.removeEventListener("submit", VerificarFormYHabilitarLienzo)
+	var htmlButtonValidar = document.createElement("button")
+	htmlButtonValidar.innerHTML = innerHTMLBtnVerificar
+	htmlButtonValidar.classList.add("btn","btnConfirmar","centrarConMargin")
+	htmlButtonValidar.id = "btnValidargrafo"
+	htmlButtonValidar.setAttribute("type", "submit")
+	var HTMLSpanIconoBtn = document.createElement("span")
+	HTMLSpanIconoBtn.classList.add(iconoBtnVerificar,"marginIconos")
+
+	htmlButtonValidar.insertBefore(HTMLSpanIconoBtn, htmlButtonValidar.firstChild)
+	htmlFormVerificarDatosGrafo.appendChild(htmlButtonValidar)
+	htmlFormVerificarDatosGrafo.addEventListener("submit", validarGrafoRespuesta)
+}
+
+function verificarGradosDeVertices() {
+	var grados = new Array()
+	var verticesEnLienzo = htmlSvgLienzoGrafoVertices.children
+	var aristasEnLienzo = htmlSvgLienzoGrafoAristas.children
+
+	for(var i = 0, vertice; vertice = verticesEnLienzo[i]; i++){
+
+		var contadorConcurrencia = 0
+		var nombreVertice = vertice.getAttribute("name")
+
+		for(var a = 0, arista; arista = aristasEnLienzo[a]; a++){
+
+			var nombreArista = arista.getAttribute("name")
+			console.log(nombreArista+"   "+nombreVertice)
+
+			if (nombreArista.indexOf(nombreVertice) != -1) {
+				contadorConcurrencia += 1
+				console.log(contadorConcurrencia);
+			}
+		}
+		grados.push({vertice:nombreVertice,grado:contadorConcurrencia})
+	}
+	return grados
+}
+
+function validarGrafoRespuesta(evento) {
+	evento.preventDefault()
+	var numeroDeVerticesEnLienzo = htmlSvgLienzoGrafoVertices.childElementCount
+	var numeroDeAristasEnLienzo = htmlSvgLienzoGrafoAristas.childElementCount
+	if (parseInt(numeroDeVertices) == numeroDeVerticesEnLienzo){
+		if (parseInt(numeroDeAristas) == numeroDeAristasEnLienzo) {
+			crearCamposParaGradoDeVertice()
+			var grados = verificarGradosDeVertices()
+			console.log(grados);
+			var estadoActual = {
+				msg : "temp",
+				clases : ["MSG", "MSGError"],
+				icono : "icon-equivocado"
+			}
+		}else{
+			var estadoActual = {
+				msg : "Hay un problema con Las Aristas",
+				clases : ["MSG", "MSGError"],
+				icono : "icon-equivocado"
+			}
+		}
+	}else{
+		var estadoActual = {
+			msg : "Hay un problema con los vertices",
+			clases : ["MSG", "MSGError"],
+			icono : "icon-equivocado"
+		}
+	}
+	crearYMostrarMensaje(estadoActual)
+}
+
+htmlFormformGrafos.addEventListener("submit", VerificarFormYHabilitarLienzo)
+lienzo.addEventListener("click", lienzoPresionado)
+htmlInputgrafoCompleto.addEventListener("change", HabilitarGrafocompleto)
 
 /*Se agregar el evento "click" al boton de limpiar lienzo, para que al suceder el todos los elementos(Vertices, Aristas y Nombre) se borren del lienzo. No se borra la grilla*/
 btnLimpiarLienzo.addEventListener("click", limpiarLienzo)
