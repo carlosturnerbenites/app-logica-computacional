@@ -3,8 +3,6 @@ var htmlFormVerificarDatosGrafo = document.getElementById("htmlFormVerificarDato
 var htmlFormformGrafos = document.getElementById("htmlFormformGrafos_js")
 var htmlInputCantidadVertices = document.getElementById("htmlInputCantidadVertices_js")
 var htmlInputCantidadAristas = document.getElementById("htmlInputCantidadAristas_js")
-var htmlSectionGradoDeLosVertices = document.getElementById("htmlSectionGradoDeLosVertices_js")
-
 
 
 
@@ -506,13 +504,12 @@ function validarAristasYGrados(evento) {
 
 function crearCamposParaGradoDeVertice() {
 
-	limpiarContenedorHTML(htmlSectionGradoDeLosVertices)
 	var htmlLabelGradoVertices = document.createElement("p")
 	htmlLabelGradoVertices.innerHTML = "Grado de los Vertices"
-	htmlSectionGradoDeLosVertices.appendChild(htmlLabelGradoVertices)
 	var htmlUlContenedorListaGradoDeVertice = document.createElement("ul")
 	htmlUlContenedorListaGradoDeVertice.classList.add("listadoGradoVertices")
 	var nombresVertices = htmlSvgLienzoGrafoNombres.children
+	htmlUlContenedorListaGradoDeVertice.appendChild(htmlLabelGradoVertices)
 
 	for (var i = 0; i < numeroDeVertices; i++) {
 		var htmlUlContenedorGradoDeVertice = document.createElement("li")
@@ -532,7 +529,7 @@ function crearCamposParaGradoDeVertice() {
 		htmlUlContenedorGradoDeVertice.appendChild(htmlSpanTextoGradoVertices)
 		htmlUlContenedorGradoDeVertice.appendChild(htmlInputGradoDeUnVertice)
 		htmlUlContenedorListaGradoDeVertice.appendChild(htmlUlContenedorGradoDeVertice)
-		htmlSectionGradoDeLosVertices.appendChild(htmlUlContenedorListaGradoDeVertice)
+		htmlFormVerificarDatosGrafo.insertBefore(htmlUlContenedorListaGradoDeVertice, htmlFormVerificarDatosGrafo.firstChild)
 	}
 }
 
@@ -556,7 +553,7 @@ function VerificarFormYHabilitarLienzo(evento) {
 
 	htmlButtonValidar.insertBefore(HTMLSpanIconoBtn, htmlButtonValidar.firstChild)
 	htmlFormVerificarDatosGrafo.appendChild(htmlButtonValidar)
-	htmlFormVerificarDatosGrafo.addEventListener("submit", validarGrafoRespuesta)
+	htmlFormVerificarDatosGrafo.addEventListener("submit", validarGrafo)
 }
 
 function verificarGradosDeVertices() {
@@ -583,20 +580,82 @@ function verificarGradosDeVertices() {
 	}
 	return grados
 }
-
-function validarGrafoRespuesta(evento) {
+function reiniciarEjercicio(evento) {
 	evento.preventDefault()
+	console.log("reiniciando");
+	if(limpiarLienzo()){
+		htmlFormVerificarDatosGrafo.replaceChild(btnValidargrafo,btnVolver)
+
+		limpiarContenedorHTML(htmlFormVerificarDatosGrafo)
+		habilitarInhabilitarFormulario(htmlFormformGrafos)
+		htmlFormformGrafos.reset()
+		lienzo.setAttribute("disabled","true")
+		htmlFormformGrafos.addEventListener("submit", VerificarFormYHabilitarLienzo)
+	}else{
+		return
+	}
+}
+
+function validarGrados(evento){
+	evento.preventDefault()
+	var correcto = true
+	console.log("validando grados");
+	var grados = verificarGradosDeVertices()
+	console.log(grados);
+	var inputGrados = htmlFormVerificarDatosGrafo.elements
+	for (var i = 0, input; input = inputGrados[i]; i++) {
+		if (input.type.toLowerCase() != "submit"){
+			if (grados[i]["grado"] != input.value){
+				correcto = false
+			}
+		}
+	}
+	if (correcto){
+		var estadoActual = {
+			msg : "Listo, todo bien.",
+			clases : ["MSG", "MSGBien"],
+			icono : "icon-correcto"
+		}
+		habilitarInhabilitarFormulario(htmlFormVerificarDatosGrafo)
+		crearYMostrarMensaje(estadoActual)
+
+
+		var btnVolver = document.createElement("button")
+		btnVolver.id = "btnReiniciarEjercicio_js"
+		btnVolver.classList.add("centrarConMargin","btn" ,"btnConfirmar")
+		btnVolver.innerHTML = innerHTMLBtnVolver
+		btnVolver.disabled = false
+		btnVolver.addEventListener("click", reiniciarEjercicio)
+		var HTMLSpanIconoBtn = document.createElement("span")
+		HTMLSpanIconoBtn.classList.add(iconoBtnVolver,"marginIconos")
+		btnVolver.insertBefore(HTMLSpanIconoBtn, btnVolver.firstChild)
+
+		htmlFormVerificarDatosGrafo.replaceChild(btnVolver, btnValidargrafo)
+
+	}else{
+		var estadoActual = {
+			msg : "Huuu, algo va mal.",
+			clases : ["MSG", "MSGError"],
+			icono : "icon-equivocado"
+		}
+		crearYMostrarMensaje(estadoActual)
+	}
+}
+
+function validarGrafo(evento) {
+	evento.preventDefault()
+	htmlFormVerificarDatosGrafo.removeEventListener("submit", validarGrafo)
+
 	var numeroDeVerticesEnLienzo = htmlSvgLienzoGrafoVertices.childElementCount
 	var numeroDeAristasEnLienzo = htmlSvgLienzoGrafoAristas.childElementCount
 	if (parseInt(numeroDeVertices) == numeroDeVerticesEnLienzo){
 		if (parseInt(numeroDeAristas) == numeroDeAristasEnLienzo) {
 			crearCamposParaGradoDeVertice()
-			var grados = verificarGradosDeVertices()
-			console.log(grados);
+
 			var estadoActual = {
-				msg : "temp",
-				clases : ["MSG", "MSGError"],
-				icono : "icon-equivocado"
+				msg : "Listo, todo bien.",
+				clases : ["MSG", "MSGBien"],
+				icono : "icon-correcto"
 			}
 		}else{
 			var estadoActual = {
@@ -613,6 +672,7 @@ function validarGrafoRespuesta(evento) {
 		}
 	}
 	crearYMostrarMensaje(estadoActual)
+	htmlFormVerificarDatosGrafo.addEventListener("submit", validarGrados)
 }
 
 htmlFormformGrafos.addEventListener("submit", VerificarFormYHabilitarLienzo)
