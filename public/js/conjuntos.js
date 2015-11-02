@@ -43,17 +43,7 @@ function capturarConjunto(evento) {
 			contenedorConjuntoActual.appendChild(contenedorElementosCojunto)
 
 			var respuesta = document.createElement("textarea")
-			var htmlButtonValidar = document.createElement("button")
 
-			htmlButtonValidar.innerText = innerHTMLBtnVerificar
-			htmlButtonValidar.classList.add("btn","btnConfirmar","centrarConMargin")
-			htmlButtonValidar.id = "btnValidarconjuntos"
-			htmlButtonValidar.setAttribute("type", "submit")
-
-			var HTMLSpanIconoBtn = document.createElement("span")
-			HTMLSpanIconoBtn.classList.add(iconoBtnVerificar,"marginIconos")
-
-			htmlButtonValidar.insertBefore(HTMLSpanIconoBtn, htmlButtonValidar.firstChild)
 
 			respuesta.id = "respuesta"
 			respuesta.classList.add("respuesta")
@@ -75,7 +65,7 @@ function capturarConjunto(evento) {
 			seccionRespuesta.appendChild(htmlHrSeparadorContenido)
 			seccionRespuesta.appendChild(contenedorConjuntoActual)
 			seccionRespuesta.appendChild(respuesta)
-			seccionRespuesta.appendChild(htmlButtonValidar)
+			seccionRespuesta.appendChild(btnValidar)
 
 
 			seccionRespuesta.addEventListener("submit",validarRespuesta)
@@ -161,7 +151,7 @@ function validarRespuesta(evento) {
 	}else if(htmlRadioConjuntosPropio.checked){
 		numeroCombinaciones = Math.pow(2,elementosCojuntos.length)
 	}
-
+	console.log(respuestaEnviada);
 	elementosRespuestaEnviada = respuestaEnviada.value.split(",")
 
 
@@ -186,13 +176,10 @@ function validarRespuesta(evento) {
 
 			var mensaje = {tipoMensaje : 0, mensaje : "Listo, todo bien"}
 
-			var btnVolver = document.getElementById("btnValidarconjuntos")
-			btnVolver.innerHTML = innerHTMLBtnVolver
-			btnVolver.addEventListener("click", reiniciarEjercicio)
+			seccionRespuesta.removeEventListener("submit", validarRespuesta)
+			seccionRespuesta.addEventListener("submit", reiniciarEjercicio)
+			seccionRespuesta.replaceChild(btnVolver, btnValidar)
 
-			var HTMLSpanIconoBtn = document.createElement("span")
-			HTMLSpanIconoBtn.classList.add(iconoBtnVolver,"marginIconos")
-			btnVolver.insertBefore(HTMLSpanIconoBtn, btnVolver.firstChild)
 
 
 		}else{
@@ -205,10 +192,12 @@ function validarRespuesta(evento) {
 	crearYMostrarMensaje(mensaje)
 }
 
-function reiniciarEjercicio () {
+function reiniciarEjercicio (evento) {
+	evento.preventDefault()
 	formConjuntos.addEventListener("submit", capturarConjunto)
 	habilitarInhabilitarFormulario(formConjuntos)
 	limpiarContenedorHTML(seccionRespuesta)
+	seccionRespuesta.removeEventListener("submit", reiniciarEjercicio)
 	formConjuntos.reset()
 }
 

@@ -3,9 +3,10 @@ var elementosArrastrables = document.querySelectorAll("[draggable]")
 ,dropzone = document.getElementById("dropzone_js")
 ,dragSrcEl = null
 
-function eliminarArtefacto(){
+function eliminarElemento(){
+
 	var nodoPadre = this.parentNode
-	this.classList.add("eliminarArtefacto")
+	this.classList.add("eliminarElemento")
 
 	var nodoActual = this
 
@@ -53,13 +54,11 @@ function dropElementsDOM(evento){
 	hijosActuales = this.children
 
 	for (var i = 0; i < hijosActuales.length; i++) {
-		hijosActuales[i].addEventListener("click", eliminarArtefacto)
+		hijosActuales[i].addEventListener("click", eliminarElemento)
 	}
 
 	return false
 }
-
-/*Agregar eventos*/
 
 for (var index = 0; index < elementosArrastrables.length; index++) {
 	/*Agregar evento(Inicio de arrastre) a los elementos*/

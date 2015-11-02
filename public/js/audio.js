@@ -95,26 +95,21 @@ function cambiarIconoVolumen() {
 	var valorVolumenAudio = Number(volumenAudio.value)
 	musica.muted = false
 	silenciarAudio.checked = false
+
+	htmlSpanIconoVolumenActual.className = ""
+
+
 	if (valorVolumenAudio < mediumVolumen) {
-		htmlSpanIconoVolumenActual.className = ""
 		htmlSpanIconoVolumenActual.classList.add("icon-volumenBajo")
 	}
 	if(valorVolumenAudio > mediumVolumen){
-		htmlSpanIconoVolumenActual.className = ""
 		htmlSpanIconoVolumenActual.classList.add("icon-volumenAlto")
-		htmlSpanIconoVolumenActual.classList.add("marginLateral")
 
 	}
 	if(valorVolumenAudio == mediumVolumen){
-		htmlSpanIconoVolumenActual.className = ""
 		htmlSpanIconoVolumenActual.classList.add("icon-volumenMedio")
-
+	}
+	if(valorVolumenAudio == 0){
+		htmlSpanIconoVolumenActual.classList.add("icon-silenciado")
 	}
 }
-
-function cambiarCancion(evento) {
-	var files = evento.target.files[0]
-	console.log(fReader);
-}
-
-musicaEscogido.addEventListener("change", cambiarCancion)

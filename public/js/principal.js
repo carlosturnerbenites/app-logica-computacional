@@ -6,6 +6,7 @@ var seccionExplicacion = document.getElementById("seccionExplicacion_js")
 var htmlInputSubmitBtnrealizarEjercicio = document.getElementById("htmlInputSubmitBtnrealizarEjercicio_js")
 
 htmlInputSubmitBtnrealizarEjercicio.innerHTML = innerHTMLBtnRealizarEjercicio
+htmlInputSubmitBtnrealizarEjercicio.classList.add("btn","btnEnviar")
 
 var HTMLSpanIconoBtn = document.createElement("span")
 HTMLSpanIconoBtn.classList.add(iconoBtnRealizarEjercicio,"marginIconos")

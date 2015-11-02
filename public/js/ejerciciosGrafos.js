@@ -4,25 +4,6 @@ var htmlFormformGrafos = document.getElementById("htmlFormformGrafos_js")
 var htmlInputCantidadVertices = document.getElementById("htmlInputCantidadVertices_js")
 var htmlInputCantidadAristas = document.getElementById("htmlInputCantidadAristas_js")
 
-var btnVolver = document.createElement("button")
-btnVolver.innerHTML = innerHTMLBtnVolver
-btnVolver.id = "btnReiniciarEjercicio_js"
-btnVolver.classList.add("centrarConMargin","btn" ,"btnConfirmar")
-btnVolver.setAttribute("type", "submit")
-var HTMLSpanIconoBtn = document.createElement("span")
-HTMLSpanIconoBtn.classList.add(iconoBtnVolver,"marginIconos")
-btnVolver.insertBefore(HTMLSpanIconoBtn, btnVolver.firstChild)
-
-var btnValidar = document.createElement("button")
-btnValidar.innerHTML = innerHTMLBtnVerificar
-btnValidar.id = "btnValidargrafo"
-btnValidar.classList.add("btn","btnConfirmar","centrarConMargin")
-btnValidar.setAttribute("type", "submit")
-var HTMLSpanIconoBtn = document.createElement("span")
-HTMLSpanIconoBtn.classList.add(iconoBtnVerificar,"marginIconos")
-btnValidar.insertBefore(HTMLSpanIconoBtn, btnValidar.firstChild)
-
-
 var lienzo = document.getElementById("htmlSvgLienzo_js")
 ,htmlSvgLienzoGrafo = document.getElementById("htmlSvgLienzoGrafo_js")
 ,htmlSvgLienzoGrilla = document.getElementById("htmlSvgLienzoGrilla_js")

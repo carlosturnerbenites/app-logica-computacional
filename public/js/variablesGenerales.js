@@ -16,4 +16,20 @@ var iconoBtnVerificar = "icon-verificar"
 var iconoBtnVolver = "icon-volver"
 var iconoBtnRealizarEjercicio = "icon-realizarEjercicio"
 
+var btnVolver = document.createElement("button")
+btnVolver.innerHTML = innerHTMLBtnVolver
+btnVolver.id = "btnReiniciarEjercicio_js"
+btnVolver.classList.add("centrarConMargin","btn" ,"btnConfirmar")
+btnVolver.setAttribute("type", "submit")
+var HTMLSpanIconoBtn = document.createElement("span")
+HTMLSpanIconoBtn.classList.add(iconoBtnVolver,"marginIconos")
+btnVolver.insertBefore(HTMLSpanIconoBtn, btnVolver.firstChild)
 
+var btnValidar = document.createElement("button")
+btnValidar.innerHTML = innerHTMLBtnVerificar
+btnValidar.id = "btnValidargrafo"
+btnValidar.classList.add("btn","btnConfirmar","centrarConMargin")
+btnValidar.setAttribute("type", "submit")
+var HTMLSpanIconoBtn = document.createElement("span")
+HTMLSpanIconoBtn.classList.add(iconoBtnVerificar,"marginIconos")
+btnValidar.insertBefore(HTMLSpanIconoBtn, btnValidar.firstChild)

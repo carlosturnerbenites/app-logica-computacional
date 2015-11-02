@@ -16,24 +16,20 @@ html(lang='es')
 					block ayuda
 			block content
 		section.positionRelative.seccionDesplegable.reproductorMusica
-				label(for ="selectorDeCancion_js") Selecione la Cancion
-				input#selectorDeCancion_js(type="file")
-				p Cancion Actual:
-					span#nombreCancion
-				button#reproductorMusica_js.marginLateral
-					span#estadoActualAudio_js.cancelarMargin.icon-play
-				input#barraDePorgresoAudio_js.marginLateral.barraDeProgreso(type="range" min='0', value='0', step='0.1' max='')
-				ul.listadoAjustesAudio
-					li
-						label.icon-silenciado(for='silenciarAudio_js')
-						input#silenciarAudio_js(type='checkbox', name='silenciar' )
-					li
-						label.icon-repetir(for='repetirAudio_js')
-						input#repetirAudio_js(type='checkbox', name='repetir')
-					li
-						span#htmlSpanIconoVolumenActual_js.marginLateral.icon-volumenAlto
-						input#volumenAudio_js(value='1', type='range', max='1', min='0', step='0.1', name='volumen')
-				article#listadoAjustesAudio_js.ocultar
+			button#reproductorMusica_js.marginLateral
+				span#estadoActualAudio_js.cancelarMargin.icon-play
+			input#barraDePorgresoAudio_js.marginLateral.barraDeProgreso(type="range" min='0', value='0', step='0.1' max='')
+			ul.listadoAjustesAudio
+				li
+					label.icon-silenciado(for='silenciarAudio_js')
+					input#silenciarAudio_js(type='checkbox', name='silenciar' )
+				li
+					label.icon-repetir(for='repetirAudio_js')
+					input#repetirAudio_js(type='checkbox', name='repetir')
+				li
+					span#htmlSpanIconoVolumenActual_js.icon-volumenAlto
+					input#volumenAudio_js(value='1', type='range', max='1', min='0', step='0.1', name='volumen')
+			article#listadoAjustesAudio_js.ocultar
 
 	block script
 	script(src='/js/audio.js')

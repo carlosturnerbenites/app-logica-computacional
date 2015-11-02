@@ -14,31 +14,6 @@ var simbolosOperacion =  ["Λ","v","→","⇔"]
 //posibles nombre de las proposiciones
 ,proposiciones = ["p","q","r","s","t","u","v","w","x","y"]
 
-//solucion a las cinco operaciones basicas de las tablas de verdad
-,conjuncion =[["p","q","p Λ q"],
-["V","V","V"],
-["V","F","F"],
-["F","V","F"],
-["F","F","F"]]
-,disjuncion = [["p","q","p v q"],
-["V","V","F"],
-["V","F","F"],
-["F","V","F"],
-["F","F","V"]]
-,condicional = [["p","q","p → q"],
-["V","V","F"],
-["V","F","V"],
-["F","V","F"],
-["F","F","F"]]
-,bicondicional = [["p","q","p ⇔ q"],
-["V","V","V"],
-["V","F","F"],
-["F","V","F"],
-["F","F","V"]]
-,negacion = [["p","¬p"],
-["V","F"],
-["F","V"]]
-
 var sectionTablasVerdad = document.getElementById("sectionTablasVerdad_js")
 ,htmlFormRespuestaUsuario = document.getElementById("htmlFormRespuestaUsuario_js")
 ,htmlFormEjercicioPropuestoTablasVerdad = document.getElementById("htmlFormEjercicioPropuestoTablasVerdad_js")
@@ -53,86 +28,74 @@ htmlInputNumeroProposicionesEscogidasPorUsuario.setAttribute("max", maximaCantid
 htmlInputNumeroProposicionesEscogidasPorUsuario.setAttribute("min", 0)
 
 var arrayProposiciones = new Array()
-var arrayaux = new Array()
-var proposicionesCompuesta = new Array()
-var ejercicioPropuesto = new Array()
+,arrayaux = new Array()
+,proposicionesCompuesta = new Array()
+,ejercicioPropuesto = new Array()
 
 
 function crearEjercicio(evento) {
 
 	evento.preventDefault()
 
+	htmlFormEjercicioPropuestoTablasVerdad.removeEventListener("submit", crearEjercicio)
+
 	var numeroProposicionesEscogidasPorusuario = Number(htmlInputNumeroProposicionesEscogidasPorUsuario.value)
-
-	/**/
 	var star = 0
-	for (var i = 0; i < numeroProposicionesEscogidasPorusuario; i++) {
-		var letraProposicion = proposiciones[numeroAleatorio(proposiciones.length,0)]
-		var prop = new proposicion()
-		prop["letra"] = letraProposicion
-		prop["negacion"] = getValuBoolean()
-		prop["valorBoleano"] = getValuBoolean()
-		prop.getProposicion()
-
-
-		arrayProposiciones.push(prop)
-		proposicionesCompuesta.push(prop)
-		/*
-		*/
-		if ((i+1)%2 == 0){
-
-			//arrayProposiciones = []
-			arrayProposiciones.push(proposicionesCompuesta)
-
-			arrayProposiciones.splice(star, 2)
-
-			proposicionesCompuesta = []
-
-
-			star+=1
-		};
-	}
-	crearProposicionCompuesta(arrayProposiciones)
-	/**/
 
 	numeroCombinacionesPosibles = Math.pow(2,numeroProposicionesEscogidasPorusuario)
 
-	htmlFormEjercicioPropuestoTablasVerdad.removeEventListener("submit", crearEjercicio)
+	var table = document.createElement("table")
+	table.id = "tablarVerdad_js"
 
-
-
-
-	var htmlTableEjercicioPropuesto = document.createElement("table")
-	htmlTableEjercicioPropuesto.id = "tablarVerdad_js"
-
-	var htmlTrTableEjercicioPropuesto = document.createElement("tr")
+	var tr = document.createElement("tr")
 
 	for (var filas = 0; filas <= numeroProposicionesEscogidasPorusuario; filas++) {
 
-		var htmlThColumnasEjercicioPropuesto = document.createElement("th")
+		var letraProposicion = proposiciones[numeroAleatorio(proposiciones.length,0)]
+		var th = document.createElement("th")
 
-		if(filas != numeroProposicionesEscogidasPorusuario){
 
-			htmlThColumnasEjercicioPropuesto.innerHTML = proposiciones[filas]
+		if (filas != numeroProposicionesEscogidasPorusuario){
+
+			var prop = new proposicion()
+			prop.letra = letraProposicion
+
+			arrayProposiciones.push(prop)
+			proposicionesCompuesta.push(prop)
+
+			if ((filas+1)%2 == 0){
+				arrayProposiciones.push(proposicionesCompuesta)
+
+				arrayProposiciones.splice(star, 2)
+
+				proposicionesCompuesta = []
+
+
+				star+=1
+			}
+
+			th.innerHTML = letraProposicion
+
 		}else{
-			htmlThColumnasEjercicioPropuesto.innerHTML = ejercicioPropuesto.join("")
-
+			th.innerHTML = ejercicioPropuesto.join("")
 		}
 
-		htmlTrTableEjercicioPropuesto.appendChild(htmlThColumnasEjercicioPropuesto)
+
+		tr.appendChild(th)
 
 	}
+	console.log(arrayProposiciones)
 
-	htmlTableEjercicioPropuesto.appendChild(htmlTrTableEjercicioPropuesto)
+	table.appendChild(tr)
 
 	for (var filas = 0; filas < numeroCombinacionesPosibles; filas++) {
 
-		var htmlTrTableEjercicioPropuesto =document.createElement("tr")
-		htmlTrTableEjercicioPropuesto.id=filas
+		var tr =document.createElement("tr")
+		tr.id=filas
 
 		for (var columnas = 0; columnas <= numeroProposicionesEscogidasPorusuario; columnas++) {
 
-			var htmlThColumnasEjercicioPropuesto =document.createElement("th")
+			var th =document.createElement("th")
 
 			if (columnas == numeroProposicionesEscogidasPorusuario) {
 
@@ -142,25 +105,20 @@ function crearEjercicio(evento) {
 				inputHTML.setAttribute("maxlength", "1")
 				inputHTML.addEventListener("change", verificarRespuestaIngresada)
 
-				htmlThColumnasEjercicioPropuesto.appendChild(inputHTML)
+				th.appendChild(inputHTML)
 
 			}else{
 				var valorDeVerdad = posiblesValores[numeroAleatorio(2,0)]
-				htmlThColumnasEjercicioPropuesto.innerHTML = valorDeVerdad
+				th.innerHTML = valorDeVerdad
 				if (valorDeVerdad == posiblesValores[0]) {
-					htmlThColumnasEjercicioPropuesto.setAttribute("data-ValorBoleano", true)
+					th.setAttribute("data-ValorBoleano", true)
 				}else{
-					htmlThColumnasEjercicioPropuesto.setAttribute("data-ValorBoleano", false)
+					th.setAttribute("data-ValorBoleano", false)
 				}
-
 			}
-
-			htmlTrTableEjercicioPropuesto.appendChild(htmlThColumnasEjercicioPropuesto)
-
-		};
-
-		htmlTableEjercicioPropuesto.appendChild(htmlTrTableEjercicioPropuesto)
-
+			tr.appendChild(th)
+		}
+		table.appendChild(tr)
 	}
 
 
@@ -170,78 +128,33 @@ function crearEjercicio(evento) {
 	btnAgregarColumna.classList.add("icon-mas","agregarFila")
 	btnAgregarColumna.addEventListener("click", crearAgregarFila)
 
-	htmlButton = document.createElement("button")
-	htmlButton.setAttribute("type", "submit")
-	htmlButton.innerHTML = innerHTMLBtnVerificar
-	htmlButton.classList.add("btn", "btnConfirmar","centrarConMargin")
-	htmlButton.id = "verificarEjericio"
-
-	var HTMLSpanIconoBtn = document.createElement("span")
-	HTMLSpanIconoBtn.classList.add(iconoBtnVerificar,"marginIconos")
-
-	htmlButton.insertBefore(HTMLSpanIconoBtn, htmlButton.firstChild)
-
-
 	sectionTablasVerdad.appendChild(htmlHrSeparadorContenido)
 	sectionTablasVerdad.appendChild(btnAgregarColumna)
-	sectionTablasVerdad.appendChild(htmlTableEjercicioPropuesto)
-	sectionTablasVerdad.appendChild(htmlButton)
+	sectionTablasVerdad.appendChild(table)
+	sectionTablasVerdad.appendChild(btnValidar)
+
+	htmlFormRespuestaUsuario.addEventListener("submit", capturarRespuesta)
 
 	habilitarInhabilitarFormulario(this)
-
 }
 
 function capturarRespuesta(evento) {
 
 	evento.preventDefault()
 
-
 	respuestas = []
-	valoresCampos = []
-	inputsDeRespuesta = []
-
-
-	var valueOperacionEscogida = document.getElementById("tipoOperacion").value
 
 	for (var campos = 0; campos < numeroCombinacionesPosibles; campos++) {
 		var respuesta = document.getElementById(campos)
 		respuestas.push(respuesta)
 	};
-
-	var valoresboleanos = new Array()
-	for (var campo = 0; campo < respuestas.length; campo++) {
-		var valoreboleano = new Array()
-
-		var nombreFila = convertirHTMLCollectionEnArray(respuestas[campo].childNodes)
-		for (var i = 0; i < nombreFila.length; i++) {
-
-			if (i == nombreFila.length-1) {
-				var valorCampo = nombreFila[i].lastChild.value.toUpperCase()
-				var boleano = nombreFila[i].lastChild.getAttribute("data-valorboleano")
-				inputsDeRespuesta.push(nombreFila[i].lastChild)
-				//repito esta linea dos veces por que por el momento no veo otra forma(refactor luego)
-				valoresCampo.push(valorCampo)
-				valoreboleano.push(boleano)
-			}else{
-				if (!(nombreFila[i].id == "ColumnadeApoyo")) {
-					var boleano = nombreFila[i].getAttribute("data-valorboleano")
-					var valorCampo = nombreFila[i].innerHTML
-					//repito esta linea dos veces por que por el momento no veo otra forma(refactor luego)
-					valoresCampo.push(valorCampo)
-				}
-
-				valoreboleano.push(boleano)
-			}
-		}
-		valoresboleanos.push(valoreboleano)
-
-		valoresCampos.push(valoresCampo)
-		//reinicializar variable
-		valoresCampo = []
-	}
-	validarRespuesta(valoresCampos,valueOperacionEscogida,inputsDeRespuesta)
+	console.log(respuestas)
 }
 
+
+/*###################################
+#####################################
+###################################*/
 function verificarRespuestaIngresada(){
 
 	var valor = this.value.toUpperCase()
@@ -255,67 +168,12 @@ function verificarRespuestaIngresada(){
 		}else{
 			this.setAttribute("data-ValorBoleano", false)
 		}
-
 	}else{
-
 		this.value = ""
+		this.setAttribute("data-ValorBoleano", undefined)
 		this.classList.add("valorErroneo")
-
 	}
-
 }
-
-
-function validarRespuesta(respuestaCapturada,operacionEscogida,inputsDeRespuestaCapturados) {
-
-	var respuestasBien = 0
-
-	tablaEscogida = eval(operacionEscogida)
-
-	for (var a = 1; a <= tablaEscogida.length; a++) {
-
-		for (var b = 0; b < respuestaCapturada.length; b++) {
-
-			if( String(tablaEscogida[a]) == String(respuestaCapturada[b])){
-
-				respuestasBien += 1
-
-			}
-
-		}
-	}
-
-	if(respuestasBien == respuestaCapturada.length){
-
-		htmlFormRespuestaUsuario.removeEventListener("submit", capturarRespuesta)
-
-		var btnVolver = document.getElementById("verificarEjericio")
-		btnVolver.innerHTML = innerHTMLBtnVolver
-		btnVolver.addEventListener("click", reiniciarEjercicio)
-
-		var HTMLSpanIconoBtn = document.createElement("span")
-		HTMLSpanIconoBtn.classList.add(iconoBtnVolver,"marginIconos")
-		btnVolver.insertBefore(HTMLSpanIconoBtn, btnVolver.firstChild)
-		for (var l = 0; l < inputsDeRespuestaCapturados.length; l++) {
-
-			inputsDeRespuestaCapturados[l].disabled = true
-
-		}
-		btnAgregarColumna.removeEventListener("click", crearAgregarFila)
-
-		var mensaje = {tipoMensaje : 0, mensaje : "Listo, todo bien"}
-
-	}
-
-	else{
-
-		var mensaje = {tipoMensaje : 1, mensaje : "Huu, algo va mal"}
-
-	}
-
-	crearYMostrarMensaje(mensaje)
-}
-
 
 function reiniciarEjercicio() {
 	limpiarContenedorHTML(htmSectionContenedoraEjercicioPropuestoTablasVerdad)
@@ -360,23 +218,21 @@ function marcarColumna(){
 		hijosTr = convertirHTMLCollectionEnArray(TrsTable[i].childNodes)
 
 		for(var j = 0, length2 = hijosTr.length; j < length2; j++){
-
 			if (hijosTr[j].cellIndex == indexColumnaAMarcar) {
-
 				hijosTr[j].classList.toggle("columnaMarcada")
-
 			}
-
 		}
-
 	}
 }
-
+/*###################################
+#####################################
+###################################*/
 function and(proposiciones) {
 	this.simbolo = " Λ "
 	var resultado = proposiciones[0].valorBoleano && proposiciones[1].valorBoleano
 	console.log(resultado)
 }
+
 function or(proposiciones) {
 	this.operar = function(){
 		var resultado = proposiciones.pUno.valorBoleano || proposiciones.pDos.valorBoleano
@@ -384,6 +240,7 @@ function or(proposiciones) {
 
 	}
 }
+
 function conditional(proposiciones) {
 	this.operar = function(){
 		var resultado = !proposiciones.pUno.valorBoleano || proposiciones.pDos.valorBoleano
@@ -391,6 +248,7 @@ function conditional(proposiciones) {
 
 	}
 }
+
 function biconditional(proposiciones) {
 	this.operar = function(){
 		var resultado = (proposiciones.pUno.valorBoleano && proposiciones.pDos.valorBoleano) || (!proposiciones.pUno.valorBoleano && !proposiciones.pDos.valorBoleano)
@@ -405,19 +263,26 @@ function getValuBoolean(){
 
 function proposicion(){
 	this.letra = new String(),
+	this.letraFinal = new String(),
 	this.negacion = new Boolean(),
 	this.valorBoleano = new Boolean(),
+	this.getletraFinal = function(){
+		if (this.negacion){
+			this.letraFinal = "!" + this.letra
+			return this.letraFinal
+		}
+	}
+
 	this.negar = function(){
 		if (this.negacion){
 			this.valorBoleano = !this.valorBoleano
-			this.letra = "!" + this.letra
+			return this.valorBoleano
 		}
 	},
 	this.getProposicion = function() {
-		this.negar()
 		var data = {
-			letra:this.letra,
-			valorBoleano:this.valorBoleano
+			letra:this.getletraFinal(),
+			valorBoleano:this.negar()
 		}
 		return data
 	}
@@ -433,24 +298,6 @@ function expresion(p1,p2,conector) {
 	}
 }
 
-function conectarProposiciones(array) {
-	conector = new and(array)
-	exp = new expresion(array[0],array[1],conector);
-	var expComp = exp.getExpresionCompleta()
-	ejercicioPropuesto.push(expComp)
-
-}
-
-function crearProposicionCompuesta(props) {
-	for (var i = 0; i < props.length; i++) {
-		if (props[i].length == 2){
-
-			conectarProposiciones(props[i])
-		}else{
-			ejercicioPropuesto.push(props[i].letra)
-		}
-	}
-}
 
 htmlFormEjercicioPropuestoTablasVerdad.addEventListener("submit", crearEjercicio)
-htmlFormRespuestaUsuario.addEventListener("submit", capturarRespuesta)
+
