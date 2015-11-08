@@ -94,7 +94,7 @@ function guardarGrafo(req,res){
 		if (err) throw err;
 
 
-		res.send({msg : "Guardado correctamente",clases : ["MSG" ,"MSGBien"],icono : "icon-correcto"});
+		res.send({mensaje : "Guardado correctamente",tipoMensaje :0});
 	});
 }
 

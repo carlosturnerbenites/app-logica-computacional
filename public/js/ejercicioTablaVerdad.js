@@ -59,12 +59,16 @@ function crearEjercicio(evento) {
 
 			var prop = new proposicion()
 			prop.letra = letraProposicion
+			prop.negacion = getValuBoolean()
+			prop.getProposicion()
 
 			arrayProposiciones.push(prop)
 			proposicionesCompuesta.push(prop)
 
 			if ((filas+1)%2 == 0){
-				arrayProposiciones.push(proposicionesCompuesta)
+
+				var exp = new expresion(proposicionesCompuesta[0],proposicionesCompuesta[1],"and")
+				arrayProposiciones.push(exp)
 
 				arrayProposiciones.splice(star, 2)
 
@@ -75,9 +79,8 @@ function crearEjercicio(evento) {
 			}
 
 			th.innerHTML = letraProposicion
-
 		}else{
-			th.innerHTML = ejercicioPropuesto.join("")
+			th.innerHTML = arrayProposiciones.join("")
 		}
 
 
@@ -269,7 +272,8 @@ function proposicion(){
 	this.getletraFinal = function(){
 		if (this.negacion){
 			this.letraFinal = "!" + this.letra
-			return this.letraFinal
+		}else{
+			this.letraFinal = this.letra
 		}
 	}
 
@@ -280,11 +284,8 @@ function proposicion(){
 		}
 	},
 	this.getProposicion = function() {
-		var data = {
-			letra:this.getletraFinal(),
-			valorBoleano:this.negar()
-		}
-		return data
+		this.negar()
+		this.getletraFinal()
 	}
 }
 

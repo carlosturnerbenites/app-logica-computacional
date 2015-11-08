@@ -33,8 +33,9 @@ block content
 			section.fieldset
 				span(ayudaEmergente="Nombre")
 					input#nombreConjunto_js.inputCorto.inputCenterUppercase.inputBorderBottomFocus(type='text', maxlength='1', required='', autofocus='', autocomplete='off' name="nombreConjunto" )
-				span.corchetesConjuntos(ayudaEmergente="Elementos")
-					input#elementosCojuntos_js.inputBorderBottomFocus.textoCentrado.nombreConjunto(formnovalidate='', type='text', required='', autocomplete='off' name="elementosCojuntos")
+				span.corchetesConjuntos
+					span(ayudaEmergente="Elementos")
+						input#elementosCojuntos_js.inputBorderBottomFocus.textoCentrado.nombreConjunto(formnovalidate='', type='text', required='', autocomplete='off' name="elementosCojuntos")
 			section.fieldset
 				button#htmlInputSubmitBtnrealizarEjercicio_js(type='submit', value='', autocomplete='off')
 	section#conjuntoIngresado_js.textoCentrado.textoEspecial

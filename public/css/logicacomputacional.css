@@ -1055,6 +1055,12 @@ th {
 .mal {
   color: #801515;
 }
+.userSelectNone {
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
 .inputBorderBottomFocus {
   border-color: transparent;
   border-bottom: 1px solid transparent;

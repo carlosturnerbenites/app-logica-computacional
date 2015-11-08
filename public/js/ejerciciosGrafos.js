@@ -77,8 +77,10 @@ function dibujarCirculo(posX,posY,name){
 	var html_nameVertice = document.createElementNS(namespaceURI,"text")
 
 	html_vertice.addEventListener("mousedown", circuloPresionado,true)
+	html_vertice.addEventListener("touchstart", circuloPresionado,true)
 	html_vertice.addEventListener("dblclick", eliminarElemento,true)
 	html_vertice.addEventListener("mouseup", circuloDesprecionado,true)
+	html_vertice.addEventListener("touchend", circuloDesprecionado,true)
 
 
 	cxActuales = posX
@@ -151,18 +153,20 @@ function dibujarLinea(x1,y1,x2,y2,name,origen,destino) {
 }
 
 function circuloPresionado(evento) {
-
+	console.log(evento);
 	evento.preventDefault()
 
 	var nombreLinea
 	var nombreCirculo
 
 	cxIniciales = this.getAttribute("cx")
+	console.log('cxIniciales ' + cxIniciales);
 	cyIniciales = this.getAttribute("cy")
+	console.log('cyIniciales ' + cyIniciales);
 
 	/*si se presiono el boton Izquierdo. se inicia el proceso para crear una arista(elemento "line") que conecta dos vertices(elemento "circles")*/
-	if (evento.which == 3) {
-
+	if (evento.which == 3 || evento.type =="touchstart")  {
+		console.log("si");
 		/*Se define el nombre del vertice inicial(del elemento de donde comienza la linea)*/
 		nombreVerticeInicial = this.getAttribute("name")
 		accionConectar.classList.add("accionActiva")
@@ -183,15 +187,17 @@ function circuloPresionado(evento) {
 }
 
 function circuloDesprecionado(evento) {
-
+	console.log(evento);
 	evento.preventDefault()
 
 	nombreVerticeFinal = this.getAttribute("name")
 
-	if (evento.which == 3) {
-
+	if (evento.which == 3 || evento.type =="touchend") {
+		console.log("si");
 		cxFinales = this.getAttribute("cx")
+		console.log('cxFinales ' + cxFinales);
 		cyFinales = this.getAttribute("cy")
+		console.log('cyFinales ' + cyFinales);
 
 		var nombreNuevaArista = nombreVerticeInicial + conectorDireccionalDeVertices + nombreVerticeFinal
 		,origen = nombreVerticeInicial
