@@ -60,7 +60,7 @@ function crearEjercicio(evento) {
 			var prop = new proposicion()
 			prop.letra = letraProposicion
 			prop.negacion = getValuBoolean()
-			prop.getProposicion()
+			prop.getExpresionCompleta()
 
 			arrayProposiciones.push(prop)
 			proposicionesCompuesta.push(prop)
@@ -80,14 +80,10 @@ function crearEjercicio(evento) {
 
 			th.innerHTML = letraProposicion
 		}else{
-			th.innerHTML = arrayProposiciones.join("")
+			th.id = "expresionASolucionar_js"
 		}
-
-
 		tr.appendChild(th)
-
 	}
-	console.log(arrayProposiciones)
 
 	table.appendChild(tr)
 
@@ -119,8 +115,10 @@ function crearEjercicio(evento) {
 					th.setAttribute("data-ValorBoleano", false)
 				}
 			}
+			th.addEventListener("dblclick", marcarColumna)
 			tr.appendChild(th)
 		}
+		console.log(tr);
 		table.appendChild(tr)
 	}
 
@@ -139,6 +137,12 @@ function crearEjercicio(evento) {
 	htmlFormRespuestaUsuario.addEventListener("submit", capturarRespuesta)
 
 	habilitarInhabilitarFormulario(this)
+
+	var expresionASolucionar = document.getElementById("expresionASolucionar_js")
+
+	for (var p = 0,prop; prop = arrayProposiciones[p]; p++) {
+		expresionASolucionar.innerHTML += prop.getExpresionCompleta()
+	}
 }
 
 function capturarRespuesta(evento) {
@@ -151,9 +155,7 @@ function capturarRespuesta(evento) {
 		var respuesta = document.getElementById(campos)
 		respuestas.push(respuesta)
 	};
-	console.log(respuestas)
 }
-
 
 /*###################################
 #####################################
@@ -204,9 +206,6 @@ function crearAgregarFila(evento){
 
 		htmlThColumnasEjercicioPropuesto.appendChild(inputHTML)
 		tablaVerdadHijos[i].insertBefore(htmlThColumnasEjercicioPropuesto,tablaVerdadHijos[i].lastChild)
-
-		htmlThColumnasEjercicioPropuesto.addEventListener("dblclick", marcarColumna)
-
 	}
 }
 
@@ -230,10 +229,12 @@ function marcarColumna(){
 /*###################################
 #####################################
 ###################################*/
-function and(proposiciones) {
+function and(p1,p2) {
 	this.simbolo = " Λ "
-	var resultado = proposiciones[0].valorBoleano && proposiciones[1].valorBoleano
-	console.log(resultado)
+	this.operar = function(){
+		var resultado = p1.valorBoleano && p2.valorBoleano
+		return resultado
+	}
 }
 
 function or(proposiciones) {
@@ -283,22 +284,24 @@ function proposicion(){
 			return this.valorBoleano
 		}
 	},
-	this.getProposicion = function() {
+	this.getExpresionCompleta = function() {
 		this.negar()
 		this.getletraFinal()
+		return this.letraFinal
 	}
 }
 
 function expresion(p1,p2,conector) {
 	this.p1 = p1
 	this.p2 = p2
-	this.conector = conector
+
+	this.conector = eval("new "+ conector + "(p1,p2)")
+
 	this.getExpresionCompleta = function() {
 		expresionCompleta = "(" + this.p1.letra + this.conector.simbolo + this.p2.letra + ")"
 		return expresionCompleta
 	}
 }
-
 
 htmlFormEjercicioPropuestoTablasVerdad.addEventListener("submit", crearEjercicio)
 
