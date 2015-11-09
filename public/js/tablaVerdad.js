@@ -1,39 +1,30 @@
-//inicializacion de variables
-var valoresCampo = []
-,valoresCampos = []
-
 //Filas de la tabla de verdad
-,respuestas = []
-
-//Simbolo de las operaciones de los conjuntos
-var simbolosOperacion =  ["Λ","v","→","⇔"]
+var respuestas = []
 
 //valores posibles de una Tablas de Verdad
 ,posiblesValores = ["V", "F"]
 
 //posibles nombre de las proposiciones
 ,proposiciones = ["p","q","r","s","t","u","v","w","x","y"]
-
+,conectores = ["and","or","conditional","biconditional"]
 var sectionTablasVerdad = document.getElementById("sectionTablasVerdad_js")
 ,htmlFormRespuestaUsuario = document.getElementById("htmlFormRespuestaUsuario_js")
 ,htmlFormEjercicioPropuestoTablasVerdad = document.getElementById("htmlFormEjercicioPropuestoTablasVerdad_js")
 ,htmSectionContenedoraEjercicioPropuestoTablasVerdad = document.getElementById("sectionTablasVerdad_js")
 ,htmlInputNumeroProposicionesEscogidasPorUsuario = document.getElementById("htmlInputNumeroProposicionesEscogidasPorUsuario_js")
 ,numeroCombinacionesPosibles = 0
-
-var limite = 0
 ,maximaCantidadDeProposiciones = 5
 
 htmlInputNumeroProposicionesEscogidasPorUsuario.setAttribute("max", maximaCantidadDeProposiciones)
-htmlInputNumeroProposicionesEscogidasPorUsuario.setAttribute("min", 0)
+
 
 var arrayProposiciones = new Array()
-,arrayaux = new Array()
 ,proposicionesCompuesta = new Array()
-,ejercicioPropuesto = new Array()
 
 
 function crearEjercicio(evento) {
+
+	var proposicionesTemp = proposiciones
 
 	evento.preventDefault()
 
@@ -48,79 +39,93 @@ function crearEjercicio(evento) {
 	table.id = "tablarVerdad_js"
 
 	var tr = document.createElement("tr")
+	tr.id = "headerTable_js"
 
 	for (var filas = 0; filas <= numeroProposicionesEscogidasPorusuario; filas++) {
 
-		var letraProposicion = proposiciones[numeroAleatorio(proposiciones.length,0)]
+		var letraProposicion = proposicionesTemp.getElementRandom()
+		proposicionesTemp.splice(letraProposicion.index, 1)
+		console.log(letraProposicion);
+		console.log(proposicionesTemp);
 		var th = document.createElement("th")
 
 
 		if (filas != numeroProposicionesEscogidasPorusuario){
 
 			var prop = new proposicion()
-			prop.letra = letraProposicion
+			prop.letra = letraProposicion.element
 			prop.negacion = getValuBoolean()
 			prop.getExpresionCompleta()
 
 			arrayProposiciones.push(prop)
 			proposicionesCompuesta.push(prop)
 
-			if ((filas+1)%2 == 0){
-
-				var exp = new expresion(proposicionesCompuesta[0],proposicionesCompuesta[1],"and")
+			if ((filas + 1) % 2 == 0){
+				var conector = conectores.getElementRandom()
+				var exp = new expresion(proposicionesCompuesta[0],proposicionesCompuesta[1],conector.element)
 				arrayProposiciones.push(exp)
-
 				arrayProposiciones.splice(star, 2)
-
 				proposicionesCompuesta = []
-
-
 				star+=1
 			}
-
-			th.innerHTML = letraProposicion
+			th.innerHTML = letraProposicion.element
+			tr.appendChild(th)
 		}else{
-			th.id = "expresionASolucionar_js"
+			for (var l = 0, propComp; propComp = arrayProposiciones[l]; l++) {
+				console.log(propComp);
+				console.log(propComp.name);
+				if (propComp.constructor.name == expresion.name){
+					var th = document.createElement("th")
+
+					th.innerHTML = propComp.getExpresionCompleta()
+					tr.appendChild(th)
+					console.log(propComp.getExpresionCompleta());
+				}
+			}
+			var thResponseFinal = document.createElement("th")
+			thResponseFinal.id = "expresionASolucionar_js"
+			tr.appendChild(thResponseFinal)
 		}
-		tr.appendChild(th)
 	}
 
 	table.appendChild(tr)
 
-	for (var filas = 0; filas < numeroCombinacionesPosibles; filas++) {
+	var childrensHeader = tr.childElementCount
 
-		var tr =document.createElement("tr")
-		tr.id=filas
+	//for (var filas = 0; filas < numeroCombinacionesPosibles; filas++) {
+		for (var filas = 0; filas < 5; filas++) {
 
-		for (var columnas = 0; columnas <= numeroProposicionesEscogidasPorusuario; columnas++) {
+			var tr =document.createElement("tr")
+			tr.id=filas
 
-			var th =document.createElement("th")
+			for (var columnas = 0; columnas < childrensHeader; columnas++) {
 
-			if (columnas == numeroProposicionesEscogidasPorusuario) {
+				var th =document.createElement("th")
 
-				var inputHTML = document.createElement("input")
-				inputHTML.classList.add("respuestaEjercicio")
-				inputHTML.setAttribute("required", "required")
-				inputHTML.setAttribute("maxlength", "1")
-				inputHTML.addEventListener("change", verificarRespuestaIngresada)
+				if (columnas >= numeroProposicionesEscogidasPorusuario) {
 
-				th.appendChild(inputHTML)
+					var inputHTML = document.createElement("input")
+					inputHTML.classList.add("respuestaEjercicio")
+					inputHTML.setAttribute("required", "required")
+					inputHTML.setAttribute("maxlength", "1")
+					inputHTML.addEventListener("change", verificarRespuestaIngresada)
 
-			}else{
-				var valorDeVerdad = posiblesValores[numeroAleatorio(2,0)]
-				th.innerHTML = valorDeVerdad
-				if (valorDeVerdad == posiblesValores[0]) {
-					th.setAttribute("data-ValorBoleano", true)
+					th.appendChild(inputHTML)
+
 				}else{
-					th.setAttribute("data-ValorBoleano", false)
+					var valorDeVerdad = posiblesValores[numeroAleatorio(2,0)]
+					th.innerHTML = valorDeVerdad
+					if (valorDeVerdad == posiblesValores[0]) {
+						th.setAttribute("data-ValorBoleano", true)
+					}else{
+						th.setAttribute("data-ValorBoleano", false)
+					}
 				}
+				th.addEventListener("dblclick", marcarColumna)
+				tr.appendChild(th)
 			}
-			th.addEventListener("dblclick", marcarColumna)
-			tr.appendChild(th)
+			table.appendChild(tr)
 		}
-		console.log(tr);
-		table.appendChild(tr)
-	}
 
 
 	//agregar columnas
@@ -151,7 +156,7 @@ function capturarRespuesta(evento) {
 
 	respuestas = []
 
-	for (var campos = 0; campos < numeroCombinacionesPosibles; campos++) {
+	for (var campos = 0; campos < 5; campos++) {
 		var respuesta = document.getElementById(campos)
 		respuestas.push(respuesta)
 	};
@@ -237,25 +242,28 @@ function and(p1,p2) {
 	}
 }
 
-function or(proposiciones) {
+function or(p1,p2) {
+	this.simbolo = " V "
 	this.operar = function(){
-		var resultado = proposiciones.pUno.valorBoleano || proposiciones.pDos.valorBoleano
+		var resultado = p1.valorBoleano || p2.valorBoleano
 		return resultado
 
 	}
 }
 
-function conditional(proposiciones) {
+function conditional(p1,p2) {
+	this.simbolo = " -> "
 	this.operar = function(){
-		var resultado = !proposiciones.pUno.valorBoleano || proposiciones.pDos.valorBoleano
+		var resultado = !p1.valorBoleano || p2.valorBoleano
 		return resultado
 
 	}
 }
 
-function biconditional(proposiciones) {
+function biconditional(p1,p2) {
+	this.simbolo = " <-> "
 	this.operar = function(){
-		var resultado = (proposiciones.pUno.valorBoleano && proposiciones.pDos.valorBoleano) || (!proposiciones.pUno.valorBoleano && !proposiciones.pDos.valorBoleano)
+		var resultado = (p1.valorBoleano && p2.valorBoleano) || (!p1.valorBoleano && !p2.valorBoleano)
 		return resultado
 	}
 }

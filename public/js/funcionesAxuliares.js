@@ -1,4 +1,5 @@
 
+
 function setAttributes(elemento,ObjAtributes){
 	for (var attribute in ObjAtributes){
 		elemento.setAttribute(attribute,ObjAtributes[attribute])
@@ -267,4 +268,11 @@ var crearElemento = {
 
 	}
 
+}
+
+
+Array.prototype.getElementRandom = function(){
+	var elementRandom = this[numeroAleatorio(this.length,0)]
+	,indexElementRandom = this.indexOf(elementRandom)
+	return {element: elementRandom,index: indexElementRandom}
 }
