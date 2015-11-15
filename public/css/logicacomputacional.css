@@ -1541,6 +1541,50 @@ svg .nombreCircle {
   -moz-animation: 2s aumentaDisminuye infinite;
   animation: 2s aumentaDisminuye infinite;
 }
+.mouse {
+  position: relative;
+  width: 140px;
+  height: 230px;
+  border: 5px solid #000;
+  -webkit-border-radius: 60px;
+  border-radius: 60px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.mouse .bottonUno {
+  width: 46%;
+  margin: 0 2%;
+  border-bottom: 2px solid #808080;
+  height: 100px;
+  border-right: 2px solid #808080;
+}
+.mouse .bottonDos {
+  position: absolute;
+  width: 30px;
+  height: 69px;
+  -webkit-border-radius: 40px;
+  border-radius: 40px;
+  border: 2px solid #000;
+  background-color: #000;
+  top: 20px;
+  left: calc(50% - 18px);
+}
+.mouse .bottonTres {
+  width: 46%;
+  padding: 0 2%;
+  border-bottom: 2px solid #808080;
+  height: 100px;
+}
+.mouseActive {
+  background-color: #008000 !important;
+}
 @import url("https://fonts.googleapis.com/css?family=Oxygen");
 .descargaEnZona {
   border: 3px dashed #808080 !important;

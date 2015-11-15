@@ -23,6 +23,11 @@ block content
 	section.controles
 		h3.textoCentrado Para graficar recuerda esto...
 		
+		section.mouse#mouseCotrols_js
+			article.bottonUno#MousebotonUno_js
+			article.bottonDos#MousebotonDos_js
+			article.bottonTres#MousebotonTres_js
+		
 	section.EjercicioPropuesto
 		article.alignRight.seccionSeparadora
 			button#btnGuardarGrafo_js.marginLateral.btn.btnConfirmar
@@ -70,6 +75,7 @@ block content
 
 block script
 	script(src='/js/variablesGenerales.js')
+	script(src='/js/mouse.js')
 	script(src='/js/principal.js')
 	script(src='/js/funcionesAxuliares.js')
 	script(src='/js/ejerciciosGrafos.js')
