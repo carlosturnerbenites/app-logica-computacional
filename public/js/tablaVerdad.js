@@ -45,8 +45,6 @@ function crearEjercicio(evento) {
 
 		var letraProposicion = proposicionesTemp.getElementRandom()
 		proposicionesTemp.splice(letraProposicion.index, 1)
-		console.log(letraProposicion);
-		console.log(proposicionesTemp);
 		var th = document.createElement("th")
 
 
@@ -71,15 +69,15 @@ function crearEjercicio(evento) {
 			th.innerHTML = letraProposicion.element
 			tr.appendChild(th)
 		}else{
-			for (var l = 0, propComp; propComp = arrayProposiciones[l]; l++) {
-				console.log(propComp);
-				console.log(propComp.name);
-				if (propComp.constructor.name == expresion.name){
-					var th = document.createElement("th")
+			console.log(arrayProposiciones.length);
+			if (arrayProposiciones.length > 1){
+				for (var l = 0, propComp; propComp = arrayProposiciones[l]; l++) {
+					if (propComp.constructor.name == expresion.name){
+						var th = document.createElement("th")
 
-					th.innerHTML = propComp.getExpresionCompleta()
-					tr.appendChild(th)
-					console.log(propComp.getExpresionCompleta());
+						th.innerHTML = propComp.getExpresionCompleta()
+						tr.appendChild(th)
+					}
 				}
 			}
 			var thResponseFinal = document.createElement("th")
@@ -87,7 +85,7 @@ function crearEjercicio(evento) {
 			tr.appendChild(thResponseFinal)
 		}
 	}
-
+z
 	table.appendChild(tr)
 
 	var childrensHeader = tr.childElementCount
@@ -159,7 +157,6 @@ function capturarRespuesta(evento) {
 	for (var campos = 0; campos < 5; campos++) {
 		var respuesta = document.getElementById(campos)
 		respuestas.push(respuesta)
-	};
 }
 
 /*###################################
@@ -312,4 +309,3 @@ function expresion(p1,p2,conector) {
 }
 
 htmlFormEjercicioPropuestoTablasVerdad.addEventListener("submit", crearEjercicio)
-

@@ -1,0 +1,12 @@
+extends templates/template.jade
+
+block title
+	title Cursos || Aplicacion Logica computacional
+
+block content
+	h2.textoCentrado Cursos
+	ul.listado
+		each tema in temas
+			li
+				a(href='#{tema.urlCurso}') #{tema.curso}
+				p.textoDescripcion #{tema.descripcion}

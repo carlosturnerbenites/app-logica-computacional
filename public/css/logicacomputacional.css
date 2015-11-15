@@ -1345,24 +1345,49 @@ body {
 .icon-silenciado {
   color: #d46a6a;
 }
-.acercaDe {
-  background-color: #808080;
-  padding: 20px;
-  -webkit-border-radius: 20px;
-  border-radius: 20px;
+.acercaDe .participante {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  border: 1px solid rgba(0,0,0,0.1);
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -o-box-lines: multiple;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 300px;
+  margin: 10px 30px;
 }
-.acercaDe .img {
-  width: 30%;
+.acercaDe .participante .img {
+  width: 100%;
 }
-.acercaDe .img img {
+.acercaDe .participante .img img {
   display: block;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
+  -webkit-filter: grayscale(60%);
+  -o-transition: all 1s linear;
+  -ms-transition: all 1s linear;
+  -webkit-transition: all 1s linear;
+  -moz-transition: all 1s linear;
+  transition: all 1s linear;
 }
-.acercaDe .infoCreador {
-  width: 70%;
+.acercaDe .participante .img img:hover {
+  -webkit-filter: grayscale(0%);
+}
+.acercaDe .participante .infoCreador {
+  padding: 10px;
+  width: 100%;
+}
+.acercaDe .participante .infoCreador ul {
+  margin-left: 30px;
+  list-style: square;
 }
 .inputCorto {
   width: 40px;
@@ -1799,6 +1824,30 @@ nav ul li a.itemsMenu .nombreMenu:first-letter {
   -moz-background-size: cover;
   background-size: cover;
   text-align: center;
+}
+.containerInfo {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+}
+.containerInfo:nth-child(2n+2) background-color #red,
+.containerInfo:nth-child(2n+2) .textoIndex {
+  -o-box-ordinal-group: 2;
+  -webkit-box-ordinal-group: 2;
+  -moz-box-ordinal-group: 2;
+  -ms-flex-order: 2;
+  -webkit-order: 2;
+  order: 2;
+}
+.textoIndex {
+  width: 70%;
+}
+.imgIndex {
+  width: 30%;
 }
 /*
 +---------------------------+

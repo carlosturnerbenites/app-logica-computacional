@@ -1,0 +1,12 @@
+extends templates/template.jade
+
+block title
+	title Ejercicios || Aplicacion Logica computacional
+
+block content
+	h2.textoCentrado Ejercicios
+	ul.listado
+		each tema in temas
+			li
+				a(href='#{tema.urlEjercicio}') #{tema.curso}
+				p.textoDescripcion #{tema.descripcion}

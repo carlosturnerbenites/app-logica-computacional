@@ -1,0 +1,51 @@
+extends templates/template.jade
+
+block title
+	title Inicio || Aplicacion Logica computacional
+
+block content
+	section.imagenFondo.displayFlexCenterTotal
+		header.textoCentrado
+			h2 AppComLogica
+			p Ejercita tu mente
+
+	section.contenedorDeAncho
+
+		section.containerInfo.displayFlexCenterTotal.textoCentrado
+			section.textoIndex
+				h2.titulo Que es
+				p Un lugar para ejercitar tu mente, pensar un rato y estudiar para aprobar logica computacional.
+
+			section.imgIndex
+				figure.ancho100PorCieto
+					img.ancho100PorCieto(src='img/index/queEs.png', alt='')
+
+		section.containerInfo.displayFlexCenterTotal.textoCentrado 
+			section.textoIndex
+				h2.titulo Para que sirve
+				p Utiliza este aplicacion para repazar los temas referentes a logica computacional.
+			section.imgIndex
+				figure.ancho100PorCieto
+					img.ancho100PorCieto(src='img/index/sirve.png', alt='')
+
+		section.containerInfo.displayFlexCenterTotal.textoCentrado
+			section.textoIndex
+				h2.titulo Que vas a ver
+				p El temario principal del espacio academico logica computacional
+				ul
+					li Calculo proposicional
+					li Tablas de Verdad
+					li Conjuntos
+					li Grafos
+					
+			section.imgIndex
+				figure.ancho100PorCieto
+					img.ancho100PorCieto(src='img/index/ver.png', alt='')
+
+		section.containerInfo.displayFlexCenterTotal.textoCentrado
+			section.textoIndex
+				h2.titulo Que ganaras
+				p Estruturacion mental, y dominio en temas de la logica.
+			section.imgIndex
+				figure.ancho100PorCieto
+				img.ancho100PorCieto(src='img/index/ganaras.png', alt='')

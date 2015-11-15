@@ -23,7 +23,7 @@ app.use(bodyParser.json())
 //app.use(bodyParser.urlencoded({ extended: false }))
 
 //definir carpeta para vistas
-app.set('views', __dirname + '/vistas')
+app.set('views', __dirname + '/views')
 
 //no comprimir html con jade
 app.locals.pretty = true;
@@ -67,7 +67,7 @@ var shortcuts = {
 	},
 	limpiar:{
 		tecla:"¡",
-		descripcion:"Desplegar Ayuda"
+		descripcion:"Borrar Lienzo"
 	}
 }
 
