@@ -369,8 +369,8 @@ th {
 }
 @font-face {
   font-family: 'icomoon';
-  src: url("../fonts/icomoon.eot?knlb04");
-  src: url("../fonts/icomoon.eot?knlb04#iefix") format('embedded-opentype'), url("../fonts/icomoon.ttf?knlb04") format('truetype'), url("../fonts/icomoon.woff?knlb04") format('woff'), url("../fonts/icomoon.svg?knlb04#icomoon") format('svg');
+  src: url("../fonts/icomoon.eot?sbk3iu");
+  src: url("../fonts/icomoon.eot?sbk3iu#iefix") format('embedded-opentype'), url("../fonts/icomoon.ttf?sbk3iu") format('truetype'), url("../fonts/icomoon.woff?sbk3iu") format('woff'), url("../fonts/icomoon.svg?sbk3iu#icomoon") format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -410,18 +410,6 @@ th {
 .icon-y:before {
   content: "\e905";
 }
-.icon-o2:before {
-  content: "\e907";
-}
-.icon-bicondicional2:before {
-  content: "\e908";
-}
-.icon-condicional2:before {
-  content: "\e909";
-}
-.icon-y2:before {
-  content: "\e90a";
-}
 .icon-arrow-right-thick:before {
   content: "\e900";
 }
@@ -445,6 +433,12 @@ th {
 }
 .icon-mover:before {
   content: "\e90d";
+}
+.icon-download:before {
+  content: "\e90e";
+}
+.icon-IconMusic:before {
+  content: "\e015";
 }
 .icon-crear:before {
   content: "\e074";
@@ -930,7 +924,7 @@ th {
   position: fixed;
 }
 .contenedorDeAncho {
-  max-width: 90%;
+  width: 90%;
   margin: 0 auto;
   position: relative;
 }
@@ -976,6 +970,9 @@ th {
   -ms-flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
+}
+.displayInlineBlock {
+  display: inline-block;
 }
 .marginIconos {
   margin: 0 10px;
@@ -1040,7 +1037,7 @@ th {
   font-size: 2em;
 }
 .ocultar {
-  display: none;
+  display: none !important;
 }
 .centrarConMargin {
   margin: 0 auto;
@@ -1096,6 +1093,7 @@ body.flex .cP {
   -webkit-align-self: flex-start;
   align-self: flex-start;
   -ms-flex-item-align: start;
+  min-height: calc(100% - 128px);
 }
 body.flex footer {
   -webkit-align-self: flex-end;
@@ -1168,9 +1166,12 @@ body {
   scrollbar-face-color: #708090;
   scrollbar-track-color: #b7bfc7;
 }
-.seccionAyuda .seccionExplicacion {
+.seccionDesplegable .contentDesplegable {
   padding: 20px;
   position: absolute;
+  z-index: 2;
+}
+.seccionDesplegable .seccionAyuda {
   border: 2px solid #803315;
   background-color: #d4886a;
   -webkit-border-radius: 10px;
@@ -1178,6 +1179,7 @@ body {
   border-top: none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  width: 500px;
 }
 .contenedorMensaje {
   position: absolute;
@@ -1271,6 +1273,8 @@ body {
   padding: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
+  background-color: #fff;
+  width: 270px;
 }
 .reproductorMusica button {
   -webkit-appearance: none;
@@ -1418,7 +1422,7 @@ table {
   margin-bottom: 20px;
 }
 table tr:hover {
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0,0,0,0.3);
 }
 table tr th {
   padding: 10px;
@@ -1441,7 +1445,7 @@ table input {
   padding: 0;
 }
 .columnaMarcada {
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0,0,0,0.3);
 }
 .columnaMarcada input {
   background-color: initial;
@@ -1732,10 +1736,10 @@ body {
   margin: 0;
 }
 a {
-  color: #23236b;
+  color: #4a9130;
 }
 a:visited {
-  color: #5b5b9e;
+  color: rgba(74,145,48,0.5);
 }
 ul {
   margin: 0;
@@ -1777,7 +1781,7 @@ nav {
   width: 100%;
 }
 nav ul {
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0,0,0,0.5);
 }
 nav ul li {
   display: inline-block;
@@ -1849,6 +1853,12 @@ nav ul li a.itemsMenu .nombreMenu:first-letter {
 .imgIndex {
   width: 30%;
 }
+.AppComLogica .nombreApp {
+  font-size: 100px;
+}
+.AppComLogica .faseApp {
+  font-size: 50px;
+}
 /*
 +---------------------------+
 |	Listado de Ejercicios	|
@@ -1866,14 +1876,13 @@ ul.listado li {
 */
 footer {
   padding-top: 10px;
-  margin-top: 30px;
   border-top: 3px solid #000;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0,0,0,0.5);
   color: #fff;
   width: 100%;
 }
 footer .contactoRedes {
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0,0,0,0.5);
 }
 footer .contactoRedes .icon-facebook {
   color: #3b5998;

@@ -1,4 +1,5 @@
 var btnAyuda = document.getElementById("btnAyuda_js")
+var btnMusica = document.getElementById("btnMusica_js")
 
 //solo puede haer una seccion de explicacion pro pagina
 var seccionExplicacion = document.getElementById("seccionExplicacion_js")
@@ -45,14 +46,13 @@ function teclapresionada(evento){
 }
 
 btnAyuda.addEventListener("click", mostrarOcultarSeccion)
+btnMusica.addEventListener("click", mostrarOcultarSeccion)
 document.body.addEventListener("keypress", teclapresionada)
 
-/*
+
 //Activar en produccion
 window.onbeforeunload = confirmarCierreVentana
 
 function confirmarCierreVentana(){
 	return 'Si cierra se perdera todo el progreso.'
 }
-*/
-

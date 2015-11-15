@@ -5,6 +5,7 @@ body.flex
 		align-self flex-start
 	.cP
 		align-self flex-start
+		min-height: calc(100% - 128px)
 	footer
 		align-self flex-end
 
@@ -52,16 +53,19 @@ body
 |		Ayuda			|
 +-----------------------+
 */
-.seccionAyuda
-	.seccionExplicacion
+.seccionDesplegable
+	.contentDesplegable
 		padding 20px
 		position absolute
+		z-index 2
+	.seccionAyuda
 		border 2px solid colorBtnAyudaBorder
 		background-color colorBtnAyudaBackground
 		border-radius 10px
 		border-top none
 		border-top-left-radius 0
 		border-top-right-radius 0
+		width 500px
 
 
 
