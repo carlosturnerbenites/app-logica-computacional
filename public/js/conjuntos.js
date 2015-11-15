@@ -98,18 +98,18 @@ function validarConjunto(elementosCojuntos){
 				}
 			}
 		}
-		if (campoValido){
-			var mensaje = {tipoMensaje :0 , mensaje : "Todo listo"}
-		}else{
-			campoValido =  false
-			var mensaje = {tipoMensaje :1 , mensaje : "hay un elemento repetido"}
-		}
+	}else {
+		campoValido =  false
+	}
+
+	if (campoValido){
+		//pass
 	}else{
 		campoValido =  false
-		var mensaje = {tipoMensaje :1 , mensaje : "hay un caracter no permitido o error de sintaxis"}
+		var mensaje = {tipoMensaje :1 , mensaje : "Hay un caracter no permitido o error de sintaxis"}
+		crearYMostrarMensaje(mensaje.tipoMensaje,mensaje.mensaje)
 	}
-	/*esta funcion recibe un objeto estado y crea un mensaje y lo inserta en el contenedor principal*/
-	crearYMostrarMensaje(mensaje)
+
 
 	return campoValido
 }
@@ -189,7 +189,7 @@ function validarRespuesta(evento) {
 	}else{
 		var mensaje = {tipoMensaje : 1, mensaje : "Huu, algo va mal"}
 	}
-	crearYMostrarMensaje(mensaje)
+	crearYMostrarMensaje(mensaje.tipoMensaje,mensaje.mensaje)
 }
 
 function reiniciarEjercicio (evento) {
@@ -209,4 +209,3 @@ formConjuntos.addEventListener("submit", capturarConjunto)
 
 //Borrar espacios en blanco en el campo de nombre de conjunto
 input_nombreConjunto.addEventListener("change", limpiarCampo)
-

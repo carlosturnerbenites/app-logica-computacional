@@ -16,8 +16,7 @@ var lienzo = document.getElementById("htmlSvgLienzo_js")
 
 function lienzohabilitado(){
 	if (lienzo.hasAttribute("disabled")){
-		//crearYMostrarMensaje( {body: "El grafo se guardo correctamente",icon:"../img/correcto.png"})
-		crearYMostrarMensaje({tipoMensaje : 1, mensaje : "El lienzo no esta hailitado"})
+		crearYMostrarMensaje(1,"El lienzo no esta habilitado")
 		return false
 	}else{
 		return true
@@ -127,7 +126,7 @@ function dibujarLinea(x1,y1,x2,y2,name,origen,destino) {
 			continuar = false
 
 			/*Se crea e inserta un mensaje en el DOM*/
-			crearYMostrarMensaje({tipoMensaje : 1, mensaje : "Esta linea ya existe"})
+			crearYMostrarMensaje( 1,"Esta linea ya existe")
 
 		}
 
@@ -318,7 +317,8 @@ function guardarGrafo(){
 		var oReq = new XMLHttpRequest();
 		oReq.onreadystatechange = function() {
 			if (oReq.readyState == 4) {
-				crearYMostrarMensaje(JSON.parse(oReq.responseText));
+				var mensaje = JSON.parse(oReq.responseText)
+				crearYMostrarMensaje(mensaje.tipoMensaje,mensaje.mensaje);
 			}
 		}
 
@@ -345,7 +345,7 @@ function cargarGrafo(evento) {
 
 				crearGrafo(fileGrafoJSON)
 
-				crearYMostrarMensaje({tipoMensaje : 0, mensaje : "Cagado Correctamente"})
+				crearYMostrarMensaje(0,"Cagado Correctamente")
 
 				html_inputCargarGrafo.value = ""
 
@@ -415,7 +415,7 @@ function capturarGrafo(){
 			return grafo
 
 		}else{
-			crearYMostrarMensaje({tipoMensaje : 1, mensaje : "Este grafo esta vacio, no vale la pena guardarlo."})
+			crearYMostrarMensaje(1,  "Este grafo esta vacio, no vale la pena guardarlo.")
 			return
 		}
 
@@ -534,7 +534,7 @@ function validarGrafo(evento) {
 	}else{
 		var mensaje = {tipoMensaje : 1, mensaje : "Hay un problema con los vertices"}
 	}
-	crearYMostrarMensaje(mensaje)
+	crearYMostrarMensaje(mensaje.tipoMensaje,mensaje.mensaje)
 }
 function validarGrados(evento){
 
@@ -563,7 +563,7 @@ function validarGrados(evento){
 	}else{
 		var mensaje = {tipoMensaje : 1, mensaje : "Huuu, algo va mal."}
 	}
-	crearYMostrarMensaje(mensaje)
+	crearYMostrarMensaje(mensaje.tipoMensaje,mensaje.mensaje)
 }
 
 function HabilitarGrafocompleto() {

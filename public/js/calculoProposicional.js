@@ -157,7 +157,7 @@ function verificarEjercicio(){
 		}
 
 	}
-	crearYMostrarMensaje(mensaje)
+	crearYMostrarMensaje(mensaje.tipoMensaje,mensaje.mensaje)
 
 }
 

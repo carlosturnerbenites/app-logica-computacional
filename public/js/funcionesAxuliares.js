@@ -139,48 +139,32 @@ Esta funcion recibe un objeto y con sus valores añade un mensaje en el DOM(en e
 Syntax:
 crearYMostrarMensaje(Objeto)
 */
-function crearYMostrarMensaje(msg){
-	/*
+function crearYMostrarMensaje(tipo,msg){
+
 	var Notification = window.Notification || window.mozNotification || window.webkitNotification;
 
 	Notification.requestPermission(function (permission) {
-		// console.log(permission);
+		console.log(permission);
 	});
-console.log(options);
-	var notification = new Notification("Notificacion",options);
-	console.log("not")
-window.setTimeout(function () {
-		notification.close()
-	}, 3000);
-	*/
 
 	var Soundnotification = new Audio("/audio/notificacion.mp3")
 
-	var contenedor = document.createElement("section")
-	contenedor.classList.add("contenedorMensaje")
-	var contenedorMSG = document.createElement("article")
-	var contenedorMensaje = document.createElement("p")
-	contenedorMensaje.innerHTML= msg.mensaje
-	var icono = document.createElement("span")
-
-	if (msg.tipoMensaje == 0){
-		icono.classList.add("icon-correcto")
-		contenedorMSG.classList.add("MSG","MSGBien")
-	}else if(msg.tipoMensaje == 1){
-		icono.classList.add("icon-equivocado")
-		contenedorMSG.classList.add("MSG","MSGError")
+	if (tipo == 0){
+		urlIcon = "../img/correcto.png"
+	}else if(tipo == 1){
+		urlIcon = "../img/incorrecto.png"
+	}
+else if(tipo == 2){
+		urlIcon = "../img/informacion.png"
 	}
 
+	var notification = new Notification("Notificacion",{body:msg,icon:urlIcon});
 
-	contenedorMSG.appendChild(icono)
-	contenedorMSG.appendChild(contenedorMensaje)
-	contenedor.appendChild(contenedorMSG)
 	Soundnotification.play()
-	contenedorPrincipal.appendChild(contenedor)
 
-	setTimeout(function(){
-		contenedorPrincipal.removeChild(contenedorPrincipal.lastChild)
-	}, 2000)
+	window.setTimeout(function () {
+		notification.close()
+	}, 3000)
 }
 
 /*
