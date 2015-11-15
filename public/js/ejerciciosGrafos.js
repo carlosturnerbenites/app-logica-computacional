@@ -16,6 +16,7 @@ var lienzo = document.getElementById("htmlSvgLienzo_js")
 
 function lienzohabilitado(){
 	if (lienzo.hasAttribute("disabled")){
+		//crearYMostrarMensaje( {body: "El grafo se guardo correctamente",icon:"../img/correcto.png"})
 		crearYMostrarMensaje({tipoMensaje : 1, mensaje : "El lienzo no esta hailitado"})
 		return false
 	}else{

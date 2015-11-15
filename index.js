@@ -81,6 +81,9 @@ function ayuda(request, response,next) {
 function nosotros(request, response,next) {
 	response.render('acercaDe')
 }
+function referencia(request, response,next) {
+	response.render('referencias')
+}
 
 function guardarGrafo(req,res){
 
@@ -103,6 +106,7 @@ app.post("/guardarGrafo",guardarGrafo)
 app.get('/',inicio)
 app.get('/ayuda',ayuda)
 app.get('/nosotros',nosotros)
+app.get('/referencias',referencia)
 
 /*error perzonalizado de archivo no encontrado*/
 app.use(function(req, res) {

@@ -140,8 +140,21 @@ Syntax:
 crearYMostrarMensaje(Objeto)
 */
 function crearYMostrarMensaje(msg){
+	/*
+	var Notification = window.Notification || window.mozNotification || window.webkitNotification;
 
-	var notification = new Audio("/audio/notificacion.mp3")
+	Notification.requestPermission(function (permission) {
+		// console.log(permission);
+	});
+console.log(options);
+	var notification = new Notification("Notificacion",options);
+	console.log("not")
+window.setTimeout(function () {
+		notification.close()
+	}, 3000);
+	*/
+
+	var Soundnotification = new Audio("/audio/notificacion.mp3")
 
 	var contenedor = document.createElement("section")
 	contenedor.classList.add("contenedorMensaje")
@@ -162,7 +175,7 @@ function crearYMostrarMensaje(msg){
 	contenedorMSG.appendChild(icono)
 	contenedorMSG.appendChild(contenedorMensaje)
 	contenedor.appendChild(contenedorMSG)
-	notification.play()
+	Soundnotification.play()
 	contenedorPrincipal.appendChild(contenedor)
 
 	setTimeout(function(){

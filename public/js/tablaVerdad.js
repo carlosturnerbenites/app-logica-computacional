@@ -69,23 +69,22 @@ function crearEjercicio(evento) {
 			th.innerHTML = letraProposicion.element
 			tr.appendChild(th)
 		}else{
-			console.log(arrayProposiciones.length);
-			if (arrayProposiciones.length > 1){
-				for (var l = 0, propComp; propComp = arrayProposiciones[l]; l++) {
+			for (var l = 0, propComp; propComp = arrayProposiciones[l]; l++) {
+				if ( arrayProposiciones.length > 1) {
 					if (propComp.constructor.name == expresion.name){
 						var th = document.createElement("th")
 
 						th.innerHTML = propComp.getExpresionCompleta()
 						tr.appendChild(th)
 					}
-				}
+					}
 			}
 			var thResponseFinal = document.createElement("th")
 			thResponseFinal.id = "expresionASolucionar_js"
 			tr.appendChild(thResponseFinal)
 		}
 	}
-z
+
 	table.appendChild(tr)
 
 	var childrensHeader = tr.childElementCount
@@ -157,6 +156,7 @@ function capturarRespuesta(evento) {
 	for (var campos = 0; campos < 5; campos++) {
 		var respuesta = document.getElementById(campos)
 		respuestas.push(respuesta)
+	};
 }
 
 /*###################################
