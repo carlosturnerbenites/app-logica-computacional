@@ -2,10 +2,27 @@ extends ../templates/templateCursosEjercicios.jade
 
 block title
 	title Grafos || Aplicacion Logica computacional
+block ayuda
+	p Hola, para realizar el ejercicio sigue los paso que damos a continuación.
+	ol
+		li Selecciona el número de vertices y aristas con los que quieres dibujar tu Grafo y presiona 
+			b Realizar Ejercicio
+		p Luego
+		li Empieza a dibujar y cuando este listo presiona 
+			b Verificar
+		p Despues
+		li Ingresa el grado de cada uno de los vertices y para terminar oprime de nuevo 
+			b Verificar 
+		
 
 block content
-	h1.textoCentrado Lorem
-	p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nam quibusdam sapiente, ullam neque, aliquid debitis repellendus placeat. Minus quod similique mollitia, a et magni quis neque! Aut, tempora. Incidunt.
+	h1.textoCentrado Grafos
+	p Dibuja en el lienzo lo que quieras dibujar, define los parametros y ponte a graficar. Para mas informacion ve a
+		span.btn.btnAyuda.marginLateral Ayuda
+		
+	section.controles
+		h3.textoCentrado Para graficar recuerda esto...
+		
 	section.EjercicioPropuesto
 		article.alignRight.seccionSeparadora
 			button#btnGuardarGrafo_js.marginLateral.btn.btnConfirmar
@@ -16,7 +33,7 @@ block content
 				span.marginIconos Subir Grafo
 			input.inputSubirGrafo(type="file" id="cargarGrafo_js")
 
-		form#htmlFormformGrafos_js.formGrafos
+		form#htmlFormGrafos_js.formGrafos
 			section.fieldset
 				label(for='htmlLabelCantidadVertices_js') Orden |V| :
 				input#htmlInputCantidadVertices_js.inputBorderBottomFocus.inputCorto(type='number', max='', min='2', value='2', required='', autocomplete='off')
@@ -56,4 +73,3 @@ block script
 	script(src='/js/principal.js')
 	script(src='/js/funcionesAxuliares.js')
 	script(src='/js/ejerciciosGrafos.js')
-

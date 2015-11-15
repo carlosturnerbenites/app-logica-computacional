@@ -10,6 +10,7 @@ var formConjuntos = document.getElementById("formConjuntos_js")
 ,elementosCojuntos = document.getElementById("elementosCojuntos_js").value
 
 function capturarConjunto(evento) {
+	ejecicioEnEjecucion = true
 
 	evento.preventDefault()
 
@@ -193,6 +194,7 @@ function validarRespuesta(evento) {
 }
 
 function reiniciarEjercicio (evento) {
+	ejecicioEnEjecucion = false
 	evento.preventDefault()
 	formConjuntos.addEventListener("submit", capturarConjunto)
 	habilitarInhabilitarFormulario(formConjuntos)

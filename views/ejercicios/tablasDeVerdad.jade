@@ -2,10 +2,25 @@ extends ../templates/templateCursosEjercicios.jade
 
 block title
 	title Tablas de Verdad || Aplicacion Logica computacional
-
+block ayuda
+	p Hola, para realizar el ejercicio sigue los paso que damos a continuación.
+	ol
+		li Escoge el número de proposiciones con las cuales quiere  realizar el ejercicio y presiona
+			b Realizar Ejercicio.
+		p Luego 
+		li LLena los campos con los valores correspondiente(V : Verdadero y F : Falso)
+		li Y por ultimo  verifica el ejercicio presionando
+			b Verificar
+		p Recuerda que:
+		li Puedes agregar columnas auxilires con el boton 
+			button.icon-mas.agregarFila
+		li Estas columnas no infuiran en la respuesta final
+		li Puedes marcar columnas dando doble clic sobre ella y realizando la misma accion para desmarcarlas.
+	
 block content
-	h1.textoCentrado Ejercicio sobre Tablas de Verdad
-	p.explicacion Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias nulla, quia quidem natus quam adipisci doloribus ex, odit amet ipsam perspiciatis deleniti iste eos voluptatibus dolor, fuga sint itaque assumenda.
+	h1.textoCentrado Tablas de Verdad
+	p.explicacion Hola, resuelve la tabla, ingresa los valores y verifica si en correcto. Para mas informacion ve a
+		span.btn.btnAyuda.marginLateral Ayuda
 	section
 		form#htmlFormEjercicioPropuestoTablasVerdad_js
 			section.fieldset

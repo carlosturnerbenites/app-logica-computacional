@@ -23,6 +23,7 @@ var arrayProposiciones = new Array()
 
 
 function crearEjercicio(evento) {
+	ejecicioEnEjecucion = true
 
 	var proposicionesTemp = proposiciones
 
@@ -183,6 +184,7 @@ function verificarRespuestaIngresada(){
 }
 
 function reiniciarEjercicio() {
+	ejecicioEnEjecucion = false
 	limpiarContenedorHTML(htmSectionContenedoraEjercicioPropuestoTablasVerdad)
 	htmlFormEjercicioPropuestoTablasVerdad.addEventListener("submit", crearEjercicio)
 	htmlFormRespuestaUsuario.addEventListener("submit", capturarRespuesta)

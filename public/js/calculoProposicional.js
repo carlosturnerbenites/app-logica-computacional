@@ -80,11 +80,11 @@ dropzone.addEventListener("dragleave",dragLeaveElementsDOM,false)
 
 var oraciones = [
 {
-	oracion : "vas a jugar si terminas a tiempo",
+	oracion : "vas a jugar si terminas a tiempo.",
 	conector:[2]
 },
 {
-	oracion : "sales y te diviertes o te quedas",
+	oracion : "sales y te diviertes o te quedas.",
 	conector:[0,1]
 },
 {
@@ -92,8 +92,12 @@ var oraciones = [
 	conector:[3]
 },
 {
-	oracion : "la lluvia depende de las precipitaciones",
+	oracion : "la lluvia depende de las precipitaciones.",
 	conector:[2]
+},
+{
+	oracion : "El almacen ofrece descuentos para los usuarios con tarjeta platino pero su compra es mayor a $100.000.",
+	conector:[2,0]
 }
 ]
 var btnValidarEjercicio = document.getElementById("htmlInputSubmitBtnrealizarEjercicio_js")

@@ -1,6 +1,6 @@
 var htmlInputgrafoCompleto = document.getElementById("htmlInputgrafoCompleto_js")
 var htmlFormVerificarDatosGrafo = document.getElementById("htmlFormVerificarDatosGrafo_js")
-var htmlFormformGrafos = document.getElementById("htmlFormformGrafos_js")
+var htmlFormGrafos = document.getElementById("htmlFormGrafos_js")
 var htmlInputCantidadVertices = document.getElementById("htmlInputCantidadVertices_js")
 var htmlInputCantidadAristas = document.getElementById("htmlInputCantidadAristas_js")
 
@@ -480,6 +480,7 @@ function terminarDrag(evento) {
 
 
 function VerificarFormYHabilitarLienzo(evento) {
+	ejecicioEnEjecucion = true
 
 	evento.preventDefault()
 	validarAristasYGrados()
@@ -491,7 +492,7 @@ function VerificarFormYHabilitarLienzo(evento) {
 	}
 
 	habilitarInhabilitarFormulario(this)
-	htmlFormformGrafos.removeEventListener("submit", VerificarFormYHabilitarLienzo)
+	htmlFormGrafos.removeEventListener("submit", VerificarFormYHabilitarLienzo)
 
 	htmlFormVerificarDatosGrafo.appendChild(btnValidar)
 	htmlFormVerificarDatosGrafo.addEventListener("submit", validarGrafo)
@@ -625,6 +626,7 @@ function verificarGradosDeVertices() {
 }
 
 function reiniciarEjercicio(evento) {
+	ejecicioEnEjecucion = false
 	evento.preventDefault()
 
 	if(limpiarLienzo()){
@@ -632,19 +634,19 @@ function reiniciarEjercicio(evento) {
 		htmlFormVerificarDatosGrafo.removeChild(btnVolver)
 
 		limpiarContenedorHTML(htmlFormVerificarDatosGrafo)
-		habilitarInhabilitarFormulario(htmlFormformGrafos)
+		habilitarInhabilitarFormulario(htmlFormGrafos)
 		habilitarInhabilitarInput(btnValidar)
-		htmlFormformGrafos.reset()
+		htmlFormGrafos.reset()
 		lienzo.setAttribute("disabled","true")
 		htmlFormVerificarDatosGrafo.removeEventListener("submit", reiniciarEjercicio)
 
-		htmlFormformGrafos.addEventListener("submit", VerificarFormYHabilitarLienzo)
+		htmlFormGrafos.addEventListener("submit", VerificarFormYHabilitarLienzo)
 	}else{
 		return
 	}
 }
 
-htmlFormformGrafos.addEventListener("submit", VerificarFormYHabilitarLienzo)
+htmlFormGrafos.addEventListener("submit", VerificarFormYHabilitarLienzo)
 htmlInputgrafoCompleto.addEventListener("change", HabilitarGrafocompleto)
 
 lienzo.addEventListener("click", lienzoPresionado)

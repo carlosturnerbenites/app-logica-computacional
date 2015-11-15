@@ -1,6 +1,8 @@
 //seccion prinicipal que tiene todas la paginas, esta se encarga de contenedor el ancho y todo el contenido, se captura para poder añadir elementos en el
 var contenedorPrincipal = document.getElementById("contenedorPrincipal_js")
 
+//variable que verifica si un ejercicio ya comenzo
+var ejecicioEnEjecucion = false
 //Alto de px de la seccion contenedor principal de todas las paginas
 var heightContenedorPrincipal = contenedorPrincipal.clientHeight
 

@@ -54,5 +54,7 @@ document.body.addEventListener("keypress", teclapresionada)
 window.onbeforeunload = confirmarCierreVentana
 
 function confirmarCierreVentana(){
-	return 'Si cierra se perdera todo el progreso.'
+	if (ejecicioEnEjecucion) {
+		return 'Si cierra se perdera todo el progreso.'
+	}
 }

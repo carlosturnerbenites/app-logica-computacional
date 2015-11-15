@@ -837,6 +837,12 @@ th {
     min-height: 200px;
     text-align: center;
   }
+  .AppComLogica .nombreApp {
+    font-size: 65px !important;
+  }
+  .AppComLogica .faseApp {
+    font-size: 20px !important;
+  }
 }
 .btn {
   border: none;
@@ -1248,8 +1254,9 @@ body {
   color: #fff;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  padding: 0 10px;
+  padding: 10px;
   background-color: rgba(0,0,0,0.8);
+  font-weight: bold;
 }
 [ayudaEmergente] {
   position: relative;
@@ -1854,7 +1861,7 @@ nav ul li a.itemsMenu .nombreMenu:first-letter {
   width: 30%;
 }
 .AppComLogica .nombreApp {
-  font-size: 100px;
+  font-size: 80px;
 }
 .AppComLogica .faseApp {
   font-size: 50px;
