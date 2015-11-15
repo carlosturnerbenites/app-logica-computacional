@@ -1559,8 +1559,8 @@ svg .nombreCircle {
   margin-bottom: 20px;
 }
 .mouse .bottonUno {
-  width: 46%;
-  margin: 0 2%;
+  width: 50%;
+  border-top-left-radius: 52px;
   border-bottom: 2px solid #808080;
   height: 100px;
   border-right: 2px solid #808080;
@@ -1577,8 +1577,8 @@ svg .nombreCircle {
   left: calc(50% - 18px);
 }
 .mouse .bottonTres {
-  width: 46%;
-  padding: 0 2%;
+  border-top-right-radius: 52px;
+  width: 50%;
   border-bottom: 2px solid #808080;
   height: 100px;
 }
