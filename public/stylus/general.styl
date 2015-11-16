@@ -74,36 +74,25 @@ body
 |		MSG 			|
 +-----------------------+
 */
-.contenedorMensaje
+
+.MSG
+	animation 2s ascender linear forwards
 	position absolute
-	bottom 0
-	animation 2s ascender 1 linear
-	.MSG
-		color white
-		border 3px solid
-		border-radius 10px
-		display inline-block
-		padding 0 10px
-
-		span,p
-			display inline-block
-		span
-			margin-right 20px
-			animation 1s aumentaDisminuye infinite linear
-
-		&Bien
-			background-color colorBtnEnviarBackground
-			border-color colorBtnEnviarBorder
-			&:hover
-				transition background-color 2s
-				background-color colorBtnEnviarBorder
-
-		&Error
-			background-color colorBtnCancelarBackground
-			border-color colorBtnCancelarBorder
-			&:hover
-				transition background-color 2s
-				background-color colorBtnCancelarBorder
+	right 0
+	color black
+	font-weight bold
+	display flex
+	background-color white
+	height 100px
+	min-width 500px
+	box-shadow 4px 5px 10px 0px gray
+	.contenedorMensaje
+		width calc(100% - 110px)
+		padding 10px
+	.contenedorIcon
+		width 110px
+		img
+			width 100%
 
 .inputSubirGrafo
 	display none

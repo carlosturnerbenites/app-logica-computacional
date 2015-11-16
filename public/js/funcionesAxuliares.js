@@ -141,30 +141,45 @@ crearYMostrarMensaje(Objeto)
 */
 function crearYMostrarMensaje(tipo,msg){
 
-	var Notification = window.Notification || window.mozNotification || window.webkitNotification;
 
-	Notification.requestPermission(function (permission) {
-		console.log(permission);
-	});
 
-	var Soundnotification = new Audio("/audio/notificacion.mp3")
 
-	if (tipo == 0){
-		urlIcon = "../img/correcto.png"
-	}else if(tipo == 1){
-		urlIcon = "../img/incorrecto.png"
-	}
-else if(tipo == 2){
-		urlIcon = "../img/informacion.png"
-	}
+	var notification = new Audio("/audio/notificacion.mp3")
 
-	var notification = new Notification("Notificacion",{body:msg,icon:urlIcon});
+		var contenedorMSG = document.createElement("article")
+		contenedorMSG.classList.add("contenedorMensaje")
+		var mensaje = document.createElement("p")
+		var contenedorIcon = document.createElement("article")
+		var contenedorMensaje = document.createElement("article")
+		mensaje.innerHTML= msg
+		var icono = document.createElement("span")
+		contenedorMSG.classList.add("MSG")
 
-	Soundnotification.play()
+		if (tipo == 0){
+			var icon = document.createElement("img")
+			icon.src = "../img/correcto.png"
+		}else if(tipo == 1){
+			var icon = document.createElement("img")
+			icon.src = "../img/incorrecto.png"
+		}
 
-	window.setTimeout(function () {
-		notification.close()
-	}, 3000)
+		icon.classList.add("contenedorIcon")
+		mensaje.classList.add("contenedorMensaje")
+
+		var top = window.window.scrollY
+		contenedorMSG.appendChild(icon)
+		contenedorMSG.appendChild(mensaje)
+		notification.play()
+
+		contenedorMSG.setAttribute("style", "top:" + top + "px")
+
+
+		contenedorPrincipal.appendChild(contenedorMSG)
+
+		setTimeout(function(){
+			contenedorPrincipal.removeChild(contenedorPrincipal.lastChild)
+		}, 2000)
+
 }
 
 /*
