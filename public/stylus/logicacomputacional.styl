@@ -6,22 +6,22 @@ vendor-prefixes = o ms webkit moz official
 
 @import url(https://fonts.googleapis.com/css?family=Lato)
 
-@import "varStylus.styl"
-@import "normalize.styl"
-@import "fonts.styl"
+@import "general/varStylus.styl"
+@import "general/normalize.styl"
+@import "general/fonts.styl"
 
-@import "animations.styl"
-@import "querys.styl"
-@import "OOCSS.styl"
+@import "general/animations.styl"
+@import "general/querys.styl"
+@import "general/OOCSS.styl"
 
-@import "general.styl"
-@import "audio.styl"
+@import "general/general.styl"
+@import "general/audio.styl"
 
-@import "acercaDe.styl"
-@import "conjuntos.styl"
-@import "tablasDeVerdad.styl"
-@import "grafos.styl"
-@import "calculoProposicional.styl"
+@import "ejercicios/acercaDe.styl"
+@import "ejercicios/conjuntos.styl"
+@import "ejercicios/tablasDeVerdad.styl"
+@import "ejercicios/grafos.styl"
+@import "ejercicios/calculoProposicional.styl"
 
 html,body
 	height 100%
@@ -44,6 +44,8 @@ input:disabled,select:disabled
 	background-color rgba(0, 0, 0, .2)
 input,select
 	border-top 3px solid gray
+input[type="text"]
+input[type="number"]
 	box-shadow 2px 2px 16px 2px rgba(0,0,0,0.3)
 select
 	background-color transparent
@@ -99,6 +101,38 @@ nav
 				.nombreMenu:first-letter
 					font-size 1.3em
 
+
+/*
++-----------------------+
+|	Pagina -> Acerca de	|
++-----------------------+
+*/
+.acercaDe
+	.participante
+		display flex
+		border 1px solid rgba(0,0,0,.1)
+		border-radius 10px
+		flex-wrap  wrap
+		width 300px
+		margin 10px 30px
+		.img
+			width 100%
+			img
+				display block
+				width 100%
+				margin 0 auto
+				-webkit-filter grayscale(60%)
+				transition all 1s linear
+				&:hover
+					-webkit-filter grayscale(0%)
+
+		.infoCreador
+			padding 10px
+			width 100%
+			ul
+				margin-left 30px
+				list-style square
+
 /*
 +----------------------------+
 |Imagen con paralax - Iniciio|
@@ -106,7 +140,7 @@ nav
 */
 
 .imagenFondo
-	background-image url('../img/backgroundIndex.jpg')
+	background-image url('../img/backgroundIndex.png')
 	width 100%
 	height 600px
 	background-attachment fixed

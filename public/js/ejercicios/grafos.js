@@ -337,7 +337,7 @@ function guardarGrafo(evento){
 				crearYMostrarMensaje(mensaje.tipoMensaje,mensaje.mensaje)
 				var linkDownload = document.getElementById("linkDownload_js")
 				linkDownload.href = mensaje.file
-				linkDownload.click()
+				//linkDownload.click()
 			}
 		}
 
@@ -644,13 +644,9 @@ function verificarGradosDeVertices() {
 	return grados
 }
 
-function DownloadGhrapAsFile() {
-	var nombre = nameFileGraph.value
-
-}
 function DownloadGhrapAsPNG() {
 	if (lienzohabilitado()) {
-		var nombre = nameFileGraph.value
+		var nombre = (nameFileGraph.value.trim().length == 0) ? "grafo" : nameFileGraph.value
 		saveSvgAsPng(lienzo, nombre + ".png")
 
 	}
@@ -681,11 +677,8 @@ htmlFormGrafos.addEventListener("submit", VerificarFormYHabilitarLienzo)
 htmlInputgrafoCompleto.addEventListener("change", HabilitarGrafocompleto)
 
 lienzo.addEventListener("click", lienzoPresionado)
-
-/*Se agregar el evento "click" al boton de limpiar lienzo, para que al suceder el todos los elementos(Vertices, Aristas y Nombre) se borren del lienzo. No se borra la grilla*/
 btnLimpiarLienzo.addEventListener("click", limpiarLienzo)
 
-DLGrapAsFile.addEventListener("click", DownloadGhrapAsFile)
 DLGrapAsPNG.addEventListener("click", DownloadGhrapAsPNG)
 
 html_inputCargarGrafo.addEventListener("change", cargarGrafo)

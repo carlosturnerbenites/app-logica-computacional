@@ -28,17 +28,24 @@ block content
 			article.bottonUno#MousebotonUno_js
 			article.bottonDos#MousebotonDos_js
 			article.bottonTres#MousebotonTres_js
-		p.textoDescripcion presiona los botones del mouse dentro del grafico para ver su funcion.
+		p.textoDescripcion Presiona los botones del mouse dentro del grafico para ver su funcion.
 		ul
-			li Clic Derecho : Enlazar Vertices
-			li Clic Izquierdo : Crear Vertices
-			li Rueda(Clic Central Sostenido) : Mover Vertices
-			li Rueda(Doble Clic Central) : Eliminar Elemento
+			li 
+				strong Clic Derecho :
+				| Enlazar Vertices
+			li 
+				strong Clic Izquierdo :
+				| Crear Vertices
+			li 
+				strong Rueda(Clic Central Sostenido) :
+				| Mover Vertices
+			li 
+				strong Rueda(Doble Clic) :
+				| Eliminar Elemento
 	section.EjercicioPropuesto
 		article.seccionSeparadora#seccionAccionesPlusGrafos_js
-			input#nameFileGraph_js(placeholder="Nombre del grafo" type="text" required)
-			section.alignRight
-
+			input#nameFileGraph_js.inputFileGraph.boxShadow.borderNone.inputBorderBottomFocus(placeholder="Nombre del Archivo, por decto es grafo" type="text" )
+			section.alignCenter
 				section
 					p.textoCentrado.cancelarMargin
 						span.icon-download
