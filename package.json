@@ -25,6 +25,7 @@
     "nib": "^1.1.0",
     "node-livereload": "^0.6.0",
     "routes": "^2.1.0",
+    "save-svg-as-png": "^1.0.1",
     "stylus": "^0.52.4",
     "supervisor": "^0.9.1"
   }

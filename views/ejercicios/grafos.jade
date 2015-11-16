@@ -35,9 +35,11 @@ block content
 			li Rueda(Doble Clic Central) : Eliminar Elemento
 	section.EjercicioPropuesto
 		article.alignRight.seccionSeparadora
-			button#btnGuardarGrafo_js.marginLateral.btn.btnConfirmar
-				span.icon-guardar
-				span.marginIconos Guardar Grafo
+			form#btnGuardarGrafo_js
+				input#nameFileGraph_js(placeholder="Nombre del grafo" type="text" required)
+				button.marginLateral.btn.btnConfirmar
+					span.icon-guardar
+					span.marginIconos Guardar Grafo
 			label.marginLateral.btn.btnEnviar(for="cargarGrafo_js")
 				span.icon-upload
 				span.marginIconos Subir Grafo
@@ -84,3 +86,4 @@ block script
 	script(src='/js/principal.js')
 	script(src='/js/funcionesAxuliares.js')
 	script(src='/js/ejerciciosGrafos.js')
+	script(src='/js/saveSvgAsPng.js')

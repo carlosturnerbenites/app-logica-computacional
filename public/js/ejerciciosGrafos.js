@@ -72,101 +72,113 @@ function lienzoPresionado(evento) {
 }
 
 function dibujarCirculo(posX,posY,name){
-	accionCrear.classList.add("accionActiva")
-	var html_vertice = document.createElementNS(namespaceURI, "circle")
-	var html_nameVertice = document.createElementNS(namespaceURI,"text")
 
-	html_vertice.addEventListener("mousedown", circuloPresionado,true)
-	html_vertice.addEventListener("touchstart", circuloPresionado,true)
-	html_vertice.addEventListener("dblclick", eliminarElemento,true)
-	html_vertice.addEventListener("mouseup", circuloDesprecionado,true)
-	html_vertice.addEventListener("touchend", circuloDesprecionado,true)
+	if (posX != undefined && posY != undefined) {
 
+		accionCrear.classList.add("accionActiva")
+		var html_vertice = document.createElementNS(namespaceURI, "circle")
+		var html_nameVertice = document.createElementNS(namespaceURI,"text")
 
-	cxActuales = posX
-	cyActuales = posY
-
-	setAttributes(html_vertice,{cx:cxActuales,cy:cyActuales,r:radio,name:name})
-	/*html_vertice.classList.add("agrandarEncoger")*/
-
-	setAttributes(html_nameVertice,{x:cxActuales,y:cyActuales})
-	html_nameVertice.classList.add("nombreCircle")
-	html_nameVertice.innerHTML = name
-	html_nameVertice.id = name
+		html_vertice.addEventListener("mousedown", circuloPresionado,true)
+		html_vertice.addEventListener("touchstart", circuloPresionado,true)
+		html_vertice.addEventListener("dblclick", eliminarElemento,true)
+		html_vertice.addEventListener("mouseup", circuloDesprecionado,true)
+		html_vertice.addEventListener("touchend", circuloDesprecionado,true)
 
 
-	htmlSvgLienzoGrafoVertices.appendChild(html_vertice)
-	htmlSvgLienzoGrafoNombres.appendChild(html_nameVertice)
-	posicionAux += 1
-	setTimeout(function(){
-		accionCrear.classList.remove("accionActiva")
-	}, 500)
+		cxActuales = posX
+		cyActuales = posY
+
+		setAttributes(html_vertice,{cx:cxActuales,cy:cyActuales,r:radio,name:name})
+		/*html_vertice.classList.add("agrandarEncoger")*/
+
+		setAttributes(html_nameVertice,{x:cxActuales,y:cyActuales})
+		html_nameVertice.classList.add("nombreCircle")
+		html_nameVertice.innerHTML = name
+		html_nameVertice.id = name
+
+
+		htmlSvgLienzoGrafoVertices.appendChild(html_vertice)
+		htmlSvgLienzoGrafoNombres.appendChild(html_nameVertice)
+		posicionAux += 1
+		setTimeout(function(){
+			accionCrear.classList.remove("accionActiva")
+		}, 500)
+
+	}
 }
 
 function dibujarLinea(x1,y1,x2,y2,name,origen,destino) {
 	/*refactor nombre variable "name".*/
+	if (x1 != undefined && y1 != undefined && x2 != undefined && y2 != undefined) {
+		if(x1 != x2 && y1 != y2){
 
-	/*definicion de variable que contendra el nombre de la arista(elementos "line"), creado apartir del atributo "name" de la misma.*/
-	var nombreAristaExistente
 
-	continuar = true
+		/*definicion de variable que contendra el nombre de la arista(elementos "line"), creado apartir del atributo "name" de la misma.*/
+		var nombreAristaExistente
 
-	/*definicion de variable(tipo Array) que contiene las aristas(elementos "line") del grafo.*/
-	var aristasExistentes = htmlSvgLienzoGrafoAristas.childNodes
+		continuar = true
 
-	/*Este ciclo recorre los elementos "line" existentes*/
-	for (var i = 0; i < aristasExistentes.length; i++) {
+		/*definicion de variable(tipo Array) que contiene las aristas(elementos "line") del grafo.*/
+		var aristasExistentes = htmlSvgLienzoGrafoAristas.childNodes
 
-		/*captura del atributo name de elemento "line"*/
-		nombreAristaExistente = aristasExistentes[i].getAttribute("name")
+		/*Este ciclo recorre los elementos "line" existentes*/
+		for (var i = 0; i < aristasExistentes.length; i++) {
 
-		/*Verificar que la linea a crear no exista, para ello se comprarn los nombres de las lineas*/
-		if (name == nombreAristaExistente) {
+			/*captura del atributo name de elemento "line"*/
+			nombreAristaExistente = aristasExistentes[i].getAttribute("name")
 
-			continuar = false
+			/*Verificar que la linea a crear no exista, para ello se comprarn los nombres de las lineas*/
+			if (name == nombreAristaExistente) {
 
-			/*Se crea e inserta un mensaje en el DOM*/
-			crearYMostrarMensaje( 1,"Esta linea ya existe")
+				continuar = false
 
+				/*Se crea e inserta un mensaje en el DOM*/
+				crearYMostrarMensaje( 1,"Esta linea ya existe")
+
+			}
 		}
 
+		}else {
+			continuar = false
+		}
+
+		if (continuar) {
+
+			/*Creacion del elemento "line"*/
+			var htmlLineAristaDelGrafo = document.createElementNS(namespaceURI, "line")
+
+			/*Enviao de Atributos al elemento "line"*/
+			if (x1 == x2 && y1 == y2){
+			};
+			setAttributes(htmlLineAristaDelGrafo,{x1:x1,y1:y1,x2:x2,y2:y2,name:name,origen:origen,destino:destino})
+
+
+			/*Mediante el atributo "name" se verifica que la linea no pertenezca a la grilla, pues si pertecene no se le deben añadir eventos*/
+			htmlLineAristaDelGrafo.addEventListener("dblclick", eliminarElemento)
+
+			/*Agregar linea al Contenedor*/
+			htmlSvgLienzoGrafoAristas.appendChild(htmlLineAristaDelGrafo)
+
+		}
+	}else {
+		crearYMostrarMensaje( 1,"Disculpa, ocurrio un error interno")
+		console.log("error");
 	}
 
-	if (continuar) {
-
-		/*Creacion del elemento "line"*/
-		var htmlLineAristaDelGrafo = document.createElementNS(namespaceURI, "line")
-
-		/*Enviao de Atributos al elemento "line"*/
-		if (x1 == x2 && y1 == y2){
-		};
-		setAttributes(htmlLineAristaDelGrafo,{x1:x1,y1:y1,x2:x2,y2:y2,name:name,origen:origen,destino:destino})
-
-
-		/*Mediante el atributo "name" se verifica que la linea no pertenezca a la grilla, pues si pertecene no se le deben añadir eventos*/
-		htmlLineAristaDelGrafo.addEventListener("dblclick", eliminarElemento)
-
-		/*Agregar linea al Contenedor*/
-		htmlSvgLienzoGrafoAristas.appendChild(htmlLineAristaDelGrafo)
-
-	}
 }
 
 function circuloPresionado(evento) {
-	console.log(evento);
 	evento.preventDefault()
 
 	var nombreLinea
 	var nombreCirculo
 
 	cxIniciales = this.getAttribute("cx")
-	console.log('cxIniciales ' + cxIniciales);
 	cyIniciales = this.getAttribute("cy")
-	console.log('cyIniciales ' + cyIniciales);
 
 	/*si se presiono el boton Izquierdo. se inicia el proceso para crear una arista(elemento "line") que conecta dos vertices(elemento "circles")*/
 	if (evento.which == 3 || evento.type =="touchstart")  {
-		console.log("si");
 		/*Se define el nombre del vertice inicial(del elemento de donde comienza la linea)*/
 		nombreVerticeInicial = this.getAttribute("name")
 		accionConectar.classList.add("accionActiva")
@@ -187,17 +199,13 @@ function circuloPresionado(evento) {
 }
 
 function circuloDesprecionado(evento) {
-	console.log(evento);
 	evento.preventDefault()
 
 	nombreVerticeFinal = this.getAttribute("name")
 
 	if (evento.which == 3 || evento.type =="touchend") {
-		console.log("si");
 		cxFinales = this.getAttribute("cx")
-		console.log('cxFinales ' + cxFinales);
 		cyFinales = this.getAttribute("cy")
-		console.log('cyFinales ' + cyFinales);
 
 		var nombreNuevaArista = nombreVerticeInicial + conectorDireccionalDeVertices + nombreVerticeFinal
 		,origen = nombreVerticeInicial
@@ -308,9 +316,14 @@ function dibujarLineaGrilla(x1,y1,x2,y2,contenedor,clase) {
 	contenedor.appendChild(htmlLineAristaDelGrafo)
 }
 
-function guardarGrafo(){
+function guardarGrafo(evento){
+
+var nameFileGraph = document.getElementById("nameFileGraph_js")
+
+	evento.preventDefault()
 
 	var grafo = capturarGrafo()
+
 
 	if (typeof grafo != "undefined"){
 
@@ -323,6 +336,7 @@ function guardarGrafo(){
 		}
 
 		oReq.open("POST", "/guardarGrafo");
+		oReq.setRequestHeader('name-File', nameFileGraph.value)
 		oReq.setRequestHeader('Content-Type', 'application/json')
 		oReq.send(JSON.stringify(grafo))
 	}else{
@@ -516,7 +530,6 @@ function validarAristasYGrados(evento) {
 function validarGrafo(evento) {
 
 	evento.preventDefault()
-	htmlFormVerificarDatosGrafo.removeEventListener("submit", validarGrafo)
 
 	var numeroDeVerticesEnLienzo = htmlSvgLienzoGrafoVertices.childElementCount
 	var numeroDeAristasEnLienzo = htmlSvgLienzoGrafoAristas.childElementCount
@@ -527,6 +540,9 @@ function validarGrafo(evento) {
 			htmlFormVerificarDatosGrafo.addEventListener("submit", validarGrados)
 
 			crearCamposParaGradoDeVertice()
+
+			htmlFormVerificarDatosGrafo.removeEventListener("submit", validarGrafo)
+
 
 			var mensaje = {tipoMensaje : 0, mensaje : "Listo, todo bien."}
 		}else{
@@ -656,7 +672,7 @@ btnLimpiarLienzo.addEventListener("click", limpiarLienzo)
 
 html_inputCargarGrafo.addEventListener("change", cargarGrafo)
 
-btnGuardarGrafo.addEventListener("click", guardarGrafo)
+btnGuardarGrafo.addEventListener("submit", guardarGrafo)
 
 /*Se desactiva el menu contextual del elemento html "svg"*/
 lienzo.addEventListener("contextmenu", function(evento){

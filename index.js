@@ -86,14 +86,18 @@ function referencia(request, response,next) {
 }
 
 function guardarGrafo(req,res){
-
+	console.log(req.headers);
+	console.log( req.headers["name-file"]);
+	var name = req.headers["name-file"]
+	var file = 'public/grafos/' + name + '.grf'
+	console.log(file)
 	var grafo = JSON.stringify(req.body, null, 4)
 
-	fs.open('public/grafos/grafo.grf','wx',function(error, fd){
+	fs.open(file,'wx',function(error, fd){
 		console.log('heeeeee');
 	})
 
-	fs.writeFile('public/grafos/grafo.grf', grafo, function (err) {
+	fs.writeFile(file, grafo, function (err) {
 		if (err) throw err;
 
 
