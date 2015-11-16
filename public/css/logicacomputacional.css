@@ -854,7 +854,6 @@ th {
   color: #fff;
   padding: 10px;
   font-size: 1em;
-  font-weight: bold;
   letter-spacing: 3px;
   cursor: pointer;
   display: inline-block;
@@ -911,6 +910,12 @@ th {
   -ms-flex-pack: end;
   -webkit-justify-content: flex-end;
   justify-content: flex-end;
+  -o-box-lines: multiple;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 .seccionSeparadora {
   border-top: 1px solid #808080;

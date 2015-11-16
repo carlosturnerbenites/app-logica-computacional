@@ -1,0 +1,137 @@
+[
+    {
+        "type": "circle",
+        "data": {
+            "cx": "455",
+            "cy": "61",
+            "r": "20",
+            "name": "a"
+        }
+    },
+    {
+        "type": "circle",
+        "data": {
+            "cx": "778",
+            "cy": "69",
+            "r": "20",
+            "name": "b"
+        }
+    },
+    {
+        "type": "circle",
+        "data": {
+            "cx": "887",
+            "cy": "106",
+            "r": "20",
+            "name": "c"
+        }
+    },
+    {
+        "type": "circle",
+        "data": {
+            "cx": "873",
+            "cy": "176",
+            "r": "20",
+            "name": "d"
+        }
+    },
+    {
+        "type": "circle",
+        "data": {
+            "cx": "805",
+            "cy": "231",
+            "r": "20",
+            "name": "e"
+        }
+    },
+    {
+        "type": "circle",
+        "data": {
+            "cx": "687",
+            "cy": "232",
+            "r": "20",
+            "name": "f"
+        }
+    },
+    {
+        "type": "circle",
+        "data": {
+            "cx": "589",
+            "cy": "193",
+            "r": "20",
+            "name": "g"
+        }
+    },
+    {
+        "type": "line",
+        "data": {
+            "x1": "455",
+            "y1": "61",
+            "x2": "589",
+            "y2": "193",
+            "name": "a → g",
+            "origen": "a",
+            "destino": "g"
+        }
+    },
+    {
+        "type": "line",
+        "data": {
+            "x1": "589",
+            "y1": "193",
+            "x2": "687",
+            "y2": "232",
+            "name": "g → f",
+            "origen": "g",
+            "destino": "f"
+        }
+    },
+    {
+        "type": "line",
+        "data": {
+            "x1": "687",
+            "y1": "232",
+            "x2": "805",
+            "y2": "231",
+            "name": "f → e",
+            "origen": "f",
+            "destino": "e"
+        }
+    },
+    {
+        "type": "line",
+        "data": {
+            "x1": "805",
+            "y1": "231",
+            "x2": "873",
+            "y2": "176",
+            "name": "e → d",
+            "origen": "e",
+            "destino": "d"
+        }
+    },
+    {
+        "type": "line",
+        "data": {
+            "x1": "873",
+            "y1": "176",
+            "x2": "887",
+            "y2": "106",
+            "name": "d → c",
+            "origen": "d",
+            "destino": "c"
+        }
+    },
+    {
+        "type": "line",
+        "data": {
+            "x1": "778",
+            "y1": "69",
+            "x2": "887",
+            "y2": "106",
+            "name": "b → c",
+            "origen": "b",
+            "destino": "c"
+        }
+    }
+]

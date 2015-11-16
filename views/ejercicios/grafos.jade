@@ -34,16 +34,22 @@ block content
 			li Rueda(Clic Central Sostenido) : Mover Vertices
 			li Rueda(Doble Clic Central) : Eliminar Elemento
 	section.EjercicioPropuesto
-		article.alignRight.seccionSeparadora
-			form#btnGuardarGrafo_js
-				input#nameFileGraph_js(placeholder="Nombre del grafo" type="text" required)
-				button.marginLateral.btn.btnConfirmar
-					span.icon-guardar
-					span.marginIconos Guardar Grafo
-			label.marginLateral.btn.btnEnviar(for="cargarGrafo_js")
-				span.icon-upload
-				span.marginIconos Subir Grafo
-			input.inputSubirGrafo(type="file" id="cargarGrafo_js")
+		article.seccionSeparadora
+			input#nameFileGraph_js(placeholder="Nombre del grafo" type="text" required)
+			section.alignRight
+
+				section
+					p.textoCentrado.cancelarMargin
+						span.icon-download
+						span.marginIconos Descargar
+					article.options
+						button#DLGrapAsFile_js.btn.btnConfirmar Archivo
+						button#DLGrapAsPNG_js.btn.btnConfirmar PNG
+				section
+					label.marginLateral.btn.btnEnviar(for="cargarGrafo_js")
+						span.icon-upload
+						span.marginIconos Subir 
+					input.inputSubirGrafo(type="file" id="cargarGrafo_js")
 
 		form#htmlFormGrafos_js.formGrafos
 			section.fieldset
@@ -81,9 +87,9 @@ block content
 		form#htmlFormVerificarDatosGrafo_js(action='')
 
 block script
+	script(src='/js/lib/saveSvgAsPng.js')
 	script(src='/js/variablesGenerales.js')
 	script(src='/js/mouse.js')
 	script(src='/js/principal.js')
 	script(src='/js/funcionesAxuliares.js')
 	script(src='/js/ejerciciosGrafos.js')
-	script(src='/js/saveSvgAsPng.js')

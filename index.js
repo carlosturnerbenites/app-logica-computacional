@@ -86,23 +86,36 @@ function referencia(request, response,next) {
 }
 
 function guardarGrafo(req,res){
-	console.log(req.headers);
-	console.log( req.headers["name-file"]);
-	var name = req.headers["name-file"]
+	var headerName = req.headers["name-file"]
+
+	var name  = (headerName.trim.length == 0) ? headerName : "grafo"
+
 	var file = 'public/grafos/' + name + '.grf'
-	console.log(file)
-	var grafo = JSON.stringify(req.body, null, 4)
-
-	fs.open(file,'wx',function(error, fd){
-		console.log('heeeeee');
-	})
-
-	fs.writeFile(file, grafo, function (err) {
-		if (err) throw err;
 
 
-		res.send({mensaje : "Guardado correctamente",tipoMensaje :0});
+	fs.stat(file, function(err, stat) {
+	    if(err == null) {
+	        console.log('File exists');
+				res.send({mensaje : "El archivo ya existe",tipoMensaje :1});
+	    } else if(err.code == 'ENOENT') {
+			var grafo = JSON.stringify(req.body, null, 4)
+
+			fs.open(file,'wx',function(error, fd){
+				console.log('heeeeee');
+			})
+
+			fs.writeFile(file, grafo, function (err) {
+				if (err) throw err;})
+				res.send({mensaje : "Guardado correctamente",tipoMensaje :0});
+	    } else {
+	        console.log('Some other error: ', err.code);
+	    }
 	});
+
+
+
+
+
 }
 
 app.post("/guardarGrafo",guardarGrafo)

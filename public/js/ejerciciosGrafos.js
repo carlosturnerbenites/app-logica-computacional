@@ -4,6 +4,11 @@ var htmlFormGrafos = document.getElementById("htmlFormGrafos_js")
 var htmlInputCantidadVertices = document.getElementById("htmlInputCantidadVertices_js")
 var htmlInputCantidadAristas = document.getElementById("htmlInputCantidadAristas_js")
 
+var DLGrapAsFile = document.getElementById("DLGrapAsFile_js")
+,DLGrapAsPNG = document.getElementById("DLGrapAsPNG_js")
+,nameFileGraph = document.getElementById("nameFileGraph_js")
+
+
 var lienzo = document.getElementById("htmlSvgLienzo_js")
 ,htmlSvgLienzoGrafo = document.getElementById("htmlSvgLienzoGrafo_js")
 ,htmlSvgLienzoGrilla = document.getElementById("htmlSvgLienzoGrilla_js")
@@ -11,7 +16,6 @@ var lienzo = document.getElementById("htmlSvgLienzo_js")
 ,htmlSvgLienzoGrafoNombres = document.getElementById("htmlSvgLienzoGrafoNombres_js")
 ,htmlSvgLienzoGrafoAristas = document.getElementById("htmlSvgLienzoGrafoAristas_js")
 ,btnLimpiarLienzo = document.getElementById("btnLimpiarLienzo_js")
-,btnGuardarGrafo = document.getElementById("btnGuardarGrafo_js")
 
 
 function lienzohabilitado(){
@@ -317,8 +321,6 @@ function dibujarLineaGrilla(x1,y1,x2,y2,contenedor,clase) {
 }
 
 function guardarGrafo(evento){
-
-var nameFileGraph = document.getElementById("nameFileGraph_js")
 
 	evento.preventDefault()
 
@@ -641,6 +643,18 @@ function verificarGradosDeVertices() {
 	return grados
 }
 
+function DownloadGhrapAsFile() {
+	var nombre = nameFileGraph.value
+
+}
+function DownloadGhrapAsPNG() {
+	if (lienzohabilitado()) {
+		var nombre = nameFileGraph.value
+		saveSvgAsPng(lienzo, nombre + ".png")
+
+	}
+}
+
 function reiniciarEjercicio(evento) {
 	ejecicioEnEjecucion = false
 	evento.preventDefault()
@@ -670,9 +684,12 @@ lienzo.addEventListener("click", lienzoPresionado)
 /*Se agregar el evento "click" al boton de limpiar lienzo, para que al suceder el todos los elementos(Vertices, Aristas y Nombre) se borren del lienzo. No se borra la grilla*/
 btnLimpiarLienzo.addEventListener("click", limpiarLienzo)
 
+DLGrapAsFile.addEventListener("click", DownloadGhrapAsFile)
+DLGrapAsPNG.addEventListener("click", DownloadGhrapAsPNG)
+
 html_inputCargarGrafo.addEventListener("change", cargarGrafo)
 
-btnGuardarGrafo.addEventListener("submit", guardarGrafo)
+DLGrapAsFile.addEventListener("click", guardarGrafo)
 
 /*Se desactiva el menu contextual del elemento html "svg"*/
 lienzo.addEventListener("contextmenu", function(evento){
