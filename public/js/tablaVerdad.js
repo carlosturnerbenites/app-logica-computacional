@@ -162,6 +162,7 @@ function capturarRespuesta(evento) {
 
 	evento.preventDefault()
 
+	var correcto = true
 	respuestas = []
 
 	var respuestaEnviada = document.querySelectorAll("[expresionasolucionar]")
@@ -171,26 +172,45 @@ function capturarRespuesta(evento) {
 		var temprespuestas = document.querySelectorAll(id)
 		respuestas.push(temprespuestas)
 	}
-console.log(respuestas)
-console.log(respuestaEnviada)
+	console.log(respuestas)
+	console.log(respuestaEnviada)
 	for (var j = 0; j < respuestaEnviada.length; j++) {
+		console.group()
 		var expresion = arrayProposiciones[j]
 		for (var k = 0; k < respuestas[j].length; k++) {
 			console.group()
-			var idp1 = expresion.p1.letra + k
-			expresion.p1.valorBoleano = eval(document.getElementById(idp1).getAttribute("data-valorBoleano"))
+			if (expresion.constructor.name == "expresion") {
 
-			var idp2= expresion.p2.letra + k
-			expresion.p2.valorBoleano = eval(document.getElementById(idp2).getAttribute("data-valorBoleano"))
+				var idp1 = expresion.p1.letra + k
+				expresion.p1.valorBoleano = eval(document.getElementById(idp1).getAttribute("data-valorBoleano"))
 
-			expresion.p1.negar()
-			expresion.p2.negar()
-			console.log(expresion.conector.operar())
+				var idp2= expresion.p2.letra + k
+				expresion.p2.valorBoleano = eval(document.getElementById(idp2).getAttribute("data-valorBoleano"))
 
-			console.log(expresion)
-			console.groupEnd()
-			valorBooleanoIngresado = eval(respuestas[j][k].getAttribute("data-valorboleano"))
+				expresion.p1.negar()
+				expresion.p2.negar()
+				respuestaCorrecta = expresion.conector.operar()
+
+				console.log(expresion)
+				console.groupEnd()
+				valorBooleanoIngresado = eval(respuestas[j][k].getAttribute("data-valorboleano"))
+				console.log("valor ingresado " + valorBooleanoIngresado) ;
+				console.log(typeof valorBooleanoIngresado)
+				console.log("correcta " + respuestaCorrecta)
+				console.log(typeof respuestaCorrecta)
+				if (valorBooleanoIngresado != respuestaCorrecta) {
+					correcto = false
+				}
+
+			}
 		}
+		console.groupEnd()
+	}
+	if (correcto) {
+
+	crearYMostrarMensaje(0,"Listo Todo bien")
+	}else {
+		crearYMostrarMensaje(1,"huuu, algo va mal")
 
 	}
 }
@@ -235,11 +255,16 @@ function crearAgregarFila(){
 
 		var htmlThColumnasEjercicioPropuesto = document.createElement("th")
 		htmlThColumnasEjercicioPropuesto.id = "ColumnadeApoyo"
+		htmlThColumnasEjercicioPropuesto.addEventListener("dblclick", marcarColumna)
 
 		var inputHTML = document.createElement("input")
 		inputHTML.classList.add("respuestaEjercicio")
-		inputHTML.setAttribute("maxlength", "1")
-		inputHTML.addEventListener("change", verificarRespuestaIngresada)
+		if (i == 0) {
+			inputHTML.classList.add("textTransformDefault")
+		}else {
+			inputHTML.addEventListener("change", verificarRespuestaIngresada)
+		}
+
 
 		htmlThColumnasEjercicioPropuesto.appendChild(inputHTML)
 		tablaVerdadHijos[i].insertBefore(htmlThColumnasEjercicioPropuesto,tablaVerdadHijos[i].lastChild)

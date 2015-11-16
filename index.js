@@ -96,7 +96,7 @@ function guardarGrafo(req,res){
 	fs.stat(file, function(err, stat) {
 	    if(err == null) {
 	        console.log('File exists');
-				res.send({mensaje : "El archivo ya existe",tipoMensaje :1});
+				res.send({mensaje : "El archivo ya existe",tipoMensaje :2});
 	    } else if(err.code == 'ENOENT') {
 			var grafo = JSON.stringify(req.body, null, 4)
 

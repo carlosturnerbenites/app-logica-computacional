@@ -162,6 +162,10 @@ function crearYMostrarMensaje(tipo,msg){
 			var icon = document.createElement("img")
 			icon.src = "../img/incorrecto.png"
 		}
+		else if(tipo == 2){
+			var icon = document.createElement("img")
+			icon.src = "../img/informacion.png"
+		}
 
 		icon.classList.add("contenedorIcon")
 		mensaje.classList.add("contenedorMensaje")
