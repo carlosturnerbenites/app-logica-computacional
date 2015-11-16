@@ -11,12 +11,31 @@ var htmlHrSeparadorContenido = document.createElement("hr")
 
 //Texto que se muestra en los botones de los ejercicios, se utilizan para añadir un mismo texto a todo slo sbotones
 var innerHTMLBtnVerificar = "Verificar"
-var innerHTMLBtnVolver = "Volver"
-var innerHTMLBtnRealizarEjercicio = "Realizar Ejercicio"
+,innerHTMLBtnVolver = "Volver"
+,innerHTMLBtnRealizarEjercicio = "Realizar Ejercicio"
 
 var iconoBtnVerificar = "icon-verificar"
-var iconoBtnVolver = "icon-volver"
-var iconoBtnRealizarEjercicio = "icon-realizarEjercicio"
+,iconoBtnVolver = "icon-volver"
+,iconoBtnRealizarEjercicio = "icon-realizarEjercicio"
+
+var msgEjercicioCompletado = "Listo, el ejercicio es correcto."
+,msgErrorEnEjercicio = "Algo anda mal con la solucion del ejercicio"
+,msgErrorInterno = "Disculpa, ocurrio un error interno"
+,msgCargaCompleta = "Cagado Correctamente"
+,msgGrafoVacio = "Este grafo esta vacio, no vale la pena guardarlo."
+
+//msg usado en conjuntos
+,msgErrorSintaxis = "Hay un caracter no permitido o error de sintaxis."
+
+//msg usado en calculo proposicional
+,msgNoHaySeleccion = "No has escogido ningun Conector."
+
+//msg usado en grafo
+,msgLienzoNoHabilitado = "El lienzo no esta habilitado"
+,msgProblemaConAristas = "Hay un problema con Las Aristas"
+,msgProblmeaConVertices = "Hay un problema con los Vertices"
+,msgElementoExistente = "Esta linea ya existe"
+
 
 var btnVolver = document.createElement("button")
 btnVolver.innerHTML = innerHTMLBtnVolver

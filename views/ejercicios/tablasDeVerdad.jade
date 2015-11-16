@@ -6,15 +6,19 @@ block ayuda
 	p Hola, para realizar el ejercicio sigue los paso que damos a continuación.
 	ol
 		li Escoge el número de proposiciones con las cuales quiere  realizar el ejercicio y presiona
-			b Realizar Ejercicio.
+			span.btn.btnEnviar Realizar Ejercicio.
 		p Luego 
-		li LLena los campos con los valores correspondiente(V : Verdadero y F : Falso)
+		li LLena los campos con los valores correspondiente(
+			strong V 
+			|: Verdadero y 
+			strong  F 
+			|: Falso)
 		li Y por ultimo  verifica el ejercicio presionando
-			b Verificar
+			span.btn.btnConfirmar Verificar
 		p Recuerda que:
-		li Puedes agregar columnas auxilires con el boton 
+		li Puedes agregar columnas con el boton 
 			button.icon-mas.agregarFila
-		li Estas columnas no infuiran en la respuesta final
+		li Estas columnas no infuiran en la respuesta final.
 		li Puedes marcar columnas dando doble clic sobre ella y realizando la misma accion para desmarcarlas.
 	
 block content
@@ -25,7 +29,7 @@ block content
 		form#htmlFormEjercicioPropuestoTablasVerdad_js
 			section.fieldset
 				label.textoNegrilla(for='numeroProposiciones_js') Numero de proposiciones:
-				input#htmlInputNumeroProposicionesEscogidasPorUsuario_js.inputBorderBottomFocus.textoCentrado(value='2', type='number', min='0', max='5', autocomplete='off', required='')
+				input#htmlInputNumeroProposicionesEscogidasPorUsuario_js.inputBorderBottomFocus.textoCentrado(value='5', type='number', min='0', max='5', autocomplete='off', required='')
 			section.fieldset
 				button#htmlInputSubmitBtnrealizarEjercicio_js(type='submit', value='', autocomplete='off')
 	section#sectionTablasVerdad_js

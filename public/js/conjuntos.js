@@ -107,8 +107,7 @@ function validarConjunto(elementosCojuntos){
 		//pass
 	}else{
 		campoValido =  false
-		var mensaje = {tipoMensaje :1 , mensaje : "Hay un caracter no permitido o error de sintaxis"}
-		crearYMostrarMensaje(mensaje.tipoMensaje,mensaje.mensaje)
+		crearYMostrarMensaje(1,msgErrorSintaxis)
 	}
 
 
@@ -175,7 +174,7 @@ function validarRespuesta(evento) {
 			habilitarInhabilitarInput(respuestaEnviada)
 
 
-			var mensaje = {tipoMensaje : 0, mensaje : "Listo, todo bien"}
+			var mensaje = {tipoMensaje : 0, mensaje : msgEjercicioCompletado}
 
 			seccionRespuesta.removeEventListener("submit", validarRespuesta)
 			seccionRespuesta.addEventListener("submit", reiniciarEjercicio)
@@ -184,11 +183,11 @@ function validarRespuesta(evento) {
 
 
 		}else{
-			var mensaje = {tipoMensaje : 1, mensaje : "Huu, algo va mal"}
+			var mensaje = {tipoMensaje : 1, mensaje : msgErrorEnEjercicio}
 
 		}
 	}else{
-		var mensaje = {tipoMensaje : 1, mensaje : "Huu, algo va mal"}
+		var mensaje = {tipoMensaje : 1, mensaje : msgErrorEnEjercicio}
 	}
 	crearYMostrarMensaje(mensaje.tipoMensaje,mensaje.mensaje)
 }

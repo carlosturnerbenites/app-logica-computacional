@@ -20,7 +20,7 @@ var lienzo = document.getElementById("htmlSvgLienzo_js")
 
 function lienzohabilitado(){
 	if (lienzo.hasAttribute("disabled")){
-		crearYMostrarMensaje(1,"El lienzo no esta habilitado")
+		crearYMostrarMensaje(1,msgLienzoNoHabilitado)
 		return false
 	}else{
 		return true
@@ -118,30 +118,30 @@ function dibujarLinea(x1,y1,x2,y2,name,origen,destino) {
 		if(x1 != x2 && y1 != y2){
 
 
-		/*definicion de variable que contendra el nombre de la arista(elementos "line"), creado apartir del atributo "name" de la misma.*/
-		var nombreAristaExistente
+			/*definicion de variable que contendra el nombre de la arista(elementos "line"), creado apartir del atributo "name" de la misma.*/
+			var nombreAristaExistente
 
-		continuar = true
+			continuar = true
 
-		/*definicion de variable(tipo Array) que contiene las aristas(elementos "line") del grafo.*/
-		var aristasExistentes = htmlSvgLienzoGrafoAristas.childNodes
+			/*definicion de variable(tipo Array) que contiene las aristas(elementos "line") del grafo.*/
+			var aristasExistentes = htmlSvgLienzoGrafoAristas.childNodes
 
-		/*Este ciclo recorre los elementos "line" existentes*/
-		for (var i = 0; i < aristasExistentes.length; i++) {
+			/*Este ciclo recorre los elementos "line" existentes*/
+			for (var i = 0; i < aristasExistentes.length; i++) {
 
-			/*captura del atributo name de elemento "line"*/
-			nombreAristaExistente = aristasExistentes[i].getAttribute("name")
+				/*captura del atributo name de elemento "line"*/
+				nombreAristaExistente = aristasExistentes[i].getAttribute("name")
 
-			/*Verificar que la linea a crear no exista, para ello se comprarn los nombres de las lineas*/
-			if (name == nombreAristaExistente) {
+				/*Verificar que la linea a crear no exista, para ello se comprarn los nombres de las lineas*/
+				if (name == nombreAristaExistente) {
 
-				continuar = false
+					continuar = false
 
-				/*Se crea e inserta un mensaje en el DOM*/
-				crearYMostrarMensaje( 1,"Esta linea ya existe")
+					/*Se crea e inserta un mensaje en el DOM*/
+					crearYMostrarMensaje( 1,msgElementoExistente)
 
+				}
 			}
-		}
 
 		}else {
 			continuar = false
@@ -166,7 +166,7 @@ function dibujarLinea(x1,y1,x2,y2,name,origen,destino) {
 
 		}
 	}else {
-		crearYMostrarMensaje( 1,"Disculpa, ocurrio un error interno")
+		crearYMostrarMensaje( 1,msgErrorInterno)
 		console.log("error");
 	}
 
@@ -341,9 +341,6 @@ function guardarGrafo(evento){
 		oReq.setRequestHeader('name-File', nameFileGraph.value)
 		oReq.setRequestHeader('Content-Type', 'application/json')
 		oReq.send(JSON.stringify(grafo))
-	}else{
-		//crearYMostrarMensaje({msg : "No se guardo el grafo",clases : ["MSG" ,"MSGBien"],icono : "icon-correcto"});
-		return
 	}
 }
 
@@ -361,7 +358,7 @@ function cargarGrafo(evento) {
 
 				crearGrafo(fileGrafoJSON)
 
-				crearYMostrarMensaje(0,"Cagado Correctamente")
+				crearYMostrarMensaje(0,msgCargaCompleta)
 
 				html_inputCargarGrafo.value = ""
 
@@ -431,7 +428,7 @@ function capturarGrafo(){
 			return grafo
 
 		}else{
-			crearYMostrarMensaje(1,  "Este grafo esta vacio, no vale la pena guardarlo.")
+			crearYMostrarMensaje(1,msgGrafoVacio)
 			return
 		}
 
@@ -546,12 +543,12 @@ function validarGrafo(evento) {
 			htmlFormVerificarDatosGrafo.removeEventListener("submit", validarGrafo)
 
 
-			var mensaje = {tipoMensaje : 0, mensaje : "Listo, todo bien."}
+			var mensaje = {tipoMensaje : 0, mensaje : msgErrorEnEjercicio}
 		}else{
-			var mensaje = {tipoMensaje : 1, mensaje : "Hay un problema con Las Aristas"}
+			var mensaje = {tipoMensaje : 1, mensaje : msgProblemaConAristas}
 		}
 	}else{
-		var mensaje = {tipoMensaje : 1, mensaje : "Hay un problema con los vertices"}
+		var mensaje = {tipoMensaje : 1, mensaje : msgProblmeaConVertices}
 	}
 	crearYMostrarMensaje(mensaje.tipoMensaje,mensaje.mensaje)
 }
@@ -572,7 +569,7 @@ function validarGrados(evento){
 	}
 
 	if (correcto){
-		var mensaje = {tipoMensaje : 0, mensaje : "Listo, todo bien."}
+		var mensaje = {tipoMensaje : 0, mensaje : msgEjercicioCompletado}
 		habilitarInhabilitarFormulario(htmlFormVerificarDatosGrafo)
 
 		htmlFormVerificarDatosGrafo.replaceChild(btnVolver, btnValidar)
@@ -580,7 +577,7 @@ function validarGrados(evento){
 		htmlFormVerificarDatosGrafo.addEventListener("submit", reiniciarEjercicio)
 
 	}else{
-		var mensaje = {tipoMensaje : 1, mensaje : "Huuu, algo va mal."}
+		var mensaje = {tipoMensaje : 1, mensaje : msgErrorEnEjercicio}
 	}
 	crearYMostrarMensaje(mensaje.tipoMensaje,mensaje.mensaje)
 }

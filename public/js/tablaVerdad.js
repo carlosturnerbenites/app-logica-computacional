@@ -54,7 +54,7 @@ function crearEjercicio(evento) {
 			var prop = new proposicion()
 			prop.letra = letraProposicion.element
 			prop.negacion = getValuBoolean()
-			prop.getExpresionCompleta()
+			prop.getletraFinal()
 
 			arrayProposiciones.push(prop)
 			proposicionesCompuesta.push(prop)
@@ -104,7 +104,7 @@ function crearEjercicio(evento) {
 				var th =document.createElement("th")
 
 				if (columnas >= numeroProposicionesEscogidasPorusuario) {
-
+					th.classList.add("cancelPadding")
 					numeroColumna = "col" + (columnas - numeroProposicionesEscogidasPorusuario)
 					var inputHTML = document.createElement("input")
 					inputHTML.classList.add("respuestaEjercicio")
@@ -154,7 +154,11 @@ function crearEjercicio(evento) {
 	var expresionASolucionar = document.getElementById("expresionASolucionar_js")
 
 	for (var p = 0,prop; prop = arrayProposiciones[p]; p++) {
-		expresionASolucionar.innerHTML += prop.getExpresionCompleta()
+		if (prop.constructor.name == proposicion.name){
+			expresionASolucionar.innerHTML += prop.getletraFinal()
+		}else {
+			expresionASolucionar.innerHTML += prop.getExpresionCompleta()
+		}
 	}
 }
 
@@ -162,7 +166,6 @@ function capturarRespuesta(evento) {
 
 	evento.preventDefault()
 
-	var correcto = true
 	respuestas = []
 
 	var respuestaEnviada = document.querySelectorAll("[expresionasolucionar]")
@@ -172,8 +175,11 @@ function capturarRespuesta(evento) {
 		var temprespuestas = document.querySelectorAll(id)
 		respuestas.push(temprespuestas)
 	}
-	console.log(respuestas)
-	console.log(respuestaEnviada)
+	validarEjercicio(respuestaEnviada,respuestas)
+
+}
+function validarEjercicio(respuestaEnviada,respuestas) {
+	var correcto = true
 	for (var j = 0; j < respuestaEnviada.length; j++) {
 		console.group()
 		var expresion = arrayProposiciones[j]
@@ -194,10 +200,8 @@ function capturarRespuesta(evento) {
 				console.log(expresion)
 				console.groupEnd()
 				valorBooleanoIngresado = eval(respuestas[j][k].getAttribute("data-valorboleano"))
-				console.log("valor ingresado " + valorBooleanoIngresado) ;
-				console.log(typeof valorBooleanoIngresado)
+				console.log("valor ingresado " + valorBooleanoIngresado)
 				console.log("correcta " + respuestaCorrecta)
-				console.log(typeof respuestaCorrecta)
 				if (valorBooleanoIngresado != respuestaCorrecta) {
 					correcto = false
 				}
@@ -207,11 +211,14 @@ function capturarRespuesta(evento) {
 		console.groupEnd()
 	}
 	if (correcto) {
+		crearYMostrarMensaje(0,msgEjercicioCompletado)
+		habilitarInhabilitarFormulario(htmlFormRespuestaUsuario)
+		htmlFormRespuestaUsuario.replaceChild(btnVolver,btnValidar)
+		htmlFormRespuestaUsuario.removeEventListener("submit", capturarRespuesta)
+		htmlFormRespuestaUsuario.addEventListener("submit", reiniciarEjercicio)
 
-	crearYMostrarMensaje(0,"Listo Todo bien")
 	}else {
-		crearYMostrarMensaje(1,"huuu, algo va mal")
-
+		crearYMostrarMensaje(1,msgErrorEnEjercicio)
 	}
 }
 
@@ -255,6 +262,7 @@ function crearAgregarFila(){
 
 		var htmlThColumnasEjercicioPropuesto = document.createElement("th")
 		htmlThColumnasEjercicioPropuesto.id = "ColumnadeApoyo"
+		htmlThColumnasEjercicioPropuesto.classList.add("cancelPadding")
 		htmlThColumnasEjercicioPropuesto.addEventListener("dblclick", marcarColumna)
 
 		var inputHTML = document.createElement("input")
@@ -335,38 +343,37 @@ function proposicion(){
 	this.letraFinal = new String(),
 	this.negacion = new Boolean(),
 	this.valorBoleano = new Boolean(),
+
 	this.getletraFinal = function(){
 		if (this.negacion){
 			this.letraFinal = "!" + this.letra
 		}else{
 			this.letraFinal = this.letra
 		}
+		return this.letraFinal
 	}
 
 	this.negar = function(){
+		console.warn("negando")
 		if (this.negacion){
 			this.valorBoleano = !this.valorBoleano
-			return this.valorBoleano
 		}
-	},
-	this.getExpresionCompleta = function() {
-		this.negar()
-		this.getletraFinal()
-		return this.letraFinal
+
+		return this.valorBoleano
 	}
+
 }
 
 function expresion(p1,p2,conector) {
+
 	this.p1 = p1
 	this.p2 = p2
 
 	this.conector = eval("new "+ conector + "(p1,p2)")
+
 	this.getExpresionCompleta = function() {
 		expresionCompleta = "(" + this.p1.letraFinal + this.conector.simbolo + this.p2.letraFinal + ")"
 		return expresionCompleta
-	}
-	this.evaluar = function(){
-
 	}
 }
 

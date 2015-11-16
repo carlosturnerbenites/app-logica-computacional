@@ -128,7 +128,7 @@ function verificarEjercicio(){
 	var dropzone = document.getElementById("dropzone_js")
 	if (!dropzone.hasChildNodes()){
 		console.log("nada");
-		var mensaje = {tipoMensaje : 1, mensaje : "Huu, no has escogido ningun conector"}
+		var mensaje = {tipoMensaje : 1, mensaje : msgNoHaySeleccion}
 
 	}else{
 		var respuestas = dropzone.children
@@ -137,7 +137,7 @@ function verificarEjercicio(){
 			conecotresRespuesta.push(respuesta.getAttribute("value"))
 		}
 		if (String(conecotresRespuesta.sort()) == String(ejercicioPropuesto.conector.sort())){
-			var mensaje = {tipoMensaje : 0, mensaje : "Listo, todo bien"}
+			var mensaje = {tipoMensaje : 0, mensaje : msgEjercicioCompletado}
 
 			dropzone.removeEventListener("drop",dropElementsDOM,false)
 			dropzone.classList.add("dragEnter")
@@ -156,7 +156,7 @@ function verificarEjercicio(){
 			contenedorPrincipal.replaceChild(btnVolver, htmlInputSubmitBtnrealizarEjercicio)
 
 		}else{
-			var mensaje = {tipoMensaje : 1, mensaje : "Algo esta mal en la solucion"}
+			var mensaje = {tipoMensaje : 1, mensaje : msgErrorEnEjercicio}
 
 		}
 
@@ -168,16 +168,3 @@ function verificarEjercicio(){
 
 btnValidarEjercicio.addEventListener("click", verificarEjercicio)
 escogerOracion()
-
-
-var insertDocument = function(db, callback) {
-	db.collection('restaurants').insertOne( {
-		"estudiante" : {
-			"nota" : 5,
-		}
-	}, function(err, result) {
-		assert.equal(err, null);
-		console.log("Inserted a document into the restaurants collection.");
-		callback(result);
-	})
-}
