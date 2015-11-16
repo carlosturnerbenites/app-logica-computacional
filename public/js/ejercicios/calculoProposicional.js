@@ -80,11 +80,11 @@ dropzone.addEventListener("dragleave",dragLeaveElementsDOM,false)
 
 var oraciones = [
 {
-	oracion : "vas a jugar si terminas a tiempo.",
+	oracion : "Vas a jugar si terminas a tiempo.",
 	conector:[2]
 },
 {
-	oracion : "sales y te diviertes o te quedas.",
+	oracion : "Sales y te diviertes o te quedas.",
 	conector:[0,1]
 },
 {
@@ -92,7 +92,7 @@ var oraciones = [
 	conector:[3]
 },
 {
-	oracion : "la lluvia depende de las precipitaciones.",
+	oracion : "La lluvia depende de las precipitaciones.",
 	conector:[2]
 },
 {
@@ -137,7 +137,6 @@ function verificarEjercicio(){
 			conecotresRespuesta.push(respuesta.getAttribute("value"))
 		}
 		if (String(conecotresRespuesta.sort()) == String(ejercicioPropuesto.conector.sort())){
-			var mensaje = {tipoMensaje : 0, mensaje : msgEjercicioCompletado}
 
 			dropzone.removeEventListener("drop",dropElementsDOM,false)
 			dropzone.classList.add("dragEnter")
@@ -155,6 +154,12 @@ function verificarEjercicio(){
 
 			contenedorPrincipal.replaceChild(btnVolver, htmlInputSubmitBtnrealizarEjercicio)
 
+			hijosActuales = dropzone.children
+			for (var i = 0; i < hijosActuales.length; i++) {
+				hijosActuales[i].removeEventListener("click", eliminarElemento)
+			}
+
+			var mensaje = {tipoMensaje : 0, mensaje : msgEjercicioCompletado}
 		}else{
 			var mensaje = {tipoMensaje : 1, mensaje : msgErrorEnEjercicio}
 

@@ -51,9 +51,9 @@ function compile(str, path) {
 //middleware para eliminar la barra invertida del final de una url
 app.use(function(req, res, next) {
 	if(req.url.substr(-1) == '/' && req.url.length > 1)
-		res.redirect(301, req.url.slice(0, -1));
+	res.redirect(301, req.url.slice(0, -1));
 	else
-		next();
+	next();
 })
 
 //ruta estaticos
@@ -87,59 +87,56 @@ function referencia(request, response,next) {
 
 function guardarGrafo(req,res){
 	var headerName = req.headers["name-file"]
-
+	var extension = '.grf'
 	var name  = (headerName.trim.length == 0) ? headerName : "grafo"
 
-	var file = 'public/grafos/' + name + '.grf'
-
+	var file = 'public/grafos/' + name + extension
 
 	fs.stat(file, function(err, stat) {
-	    if(err == null) {
-	        console.log('File exists');
-				res.send({mensaje : "El archivo ya existe",tipoMensaje :2});
-	    } else if(err.code == 'ENOENT') {
+		if(err == null) {
+			res.send({mensaje : "El archivo ya existe",tipoMensaje :2});
+		} else if(err.code == 'ENOENT') {
 			var grafo = JSON.stringify(req.body, null, 4)
 
 			fs.open(file,'wx',function(error, fd){
-				console.log('heeeeee');
 			})
 
 			fs.writeFile(file, grafo, function (err) {
 				if (err) throw err;})
-				res.send({mensaje : "Guardado correctamente",tipoMensaje :0});
-	    } else {
-	        console.log('Some other error: ', err.code);
-	    }
+				res.send({mensaje : "Guardado correctamente",tipoMensaje :0,file:"/"+name + extension})
+			} else {
+			}
+		});
+	}
+
+	app.post("/guardarGrafo",guardarGrafo)
+
+	app.get('/',inicio)
+	app.get('/ayuda',ayuda)
+	app.get('/nosotros',nosotros)
+	app.get('/referencias',referencia)
+
+	app.get('/:file(*)', function(req, res, next){
+		var file = req.params.file
+		, path = __dirname + '/public/grafos/' + file;
+		res.download(path);
 	});
 
+	/*error perzonalizado de archivo no encontrado*/
+	app.use(function(req, res) {
+		res.status(404);
+		if (req.accepts('html')) {
+			res.render('404', { inicio: req.hostname });
+			return;
+		}
+	})
 
+	/*error perzonalizado del servidor*/
+	app.use(function(err, req, res, next){
+		res.status(err.status || 500);
+		res.render('500', { error: err });
+	})
 
-
-
-}
-
-app.post("/guardarGrafo",guardarGrafo)
-
-app.get('/',inicio)
-app.get('/ayuda',ayuda)
-app.get('/nosotros',nosotros)
-app.get('/referencias',referencia)
-
-/*error perzonalizado de archivo no encontrado*/
-app.use(function(req, res) {
-	res.status(404);
-	if (req.accepts('html')) {
-		res.render('404', { inicio: req.hostname });
-		return;
-	}
-})
-
-/*error perzonalizado del servidor*/
-app.use(function(err, req, res, next){
-	res.status(err.status || 500);
-	res.render('500', { error: err });
-})
-
-//Configurra el puerto de escucha
-//"process.env.PORT" es una variable que hace referencia al puerto a escuchar - Utilizada para heroku
-server.listen(process.env.PORT || 8000)
+	//Configurra el puerto de escucha
+	//"process.env.PORT" es una variable que hace referencia al puerto a escuchar - Utilizada para heroku
+	server.listen(process.env.PORT || 8000)

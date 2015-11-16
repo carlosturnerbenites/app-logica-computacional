@@ -35,7 +35,7 @@ block content
 			li Rueda(Clic Central Sostenido) : Mover Vertices
 			li Rueda(Doble Clic Central) : Eliminar Elemento
 	section.EjercicioPropuesto
-		article.seccionSeparadora
+		article.seccionSeparadora#seccionAccionesPlusGrafos_js
 			input#nameFileGraph_js(placeholder="Nombre del grafo" type="text" required)
 			section.alignRight
 
@@ -50,8 +50,8 @@ block content
 					label.marginLateral.btn.btnEnviar(for="cargarGrafo_js")
 						span.icon-upload
 						span.marginIconos Subir 
-					input.inputSubirGrafo(type="file" id="cargarGrafo_js")
-
+					input.inputSubirGrafo(type="file" id="cargarGrafo_js" accept=".grf")
+			a#linkDownload_js(href="")
 		form#htmlFormGrafos_js.formGrafos
 			section.fieldset
 				label(for='htmlLabelCantidadVertices_js') Orden |V| :
@@ -89,5 +89,5 @@ block content
 
 block script
 	script(src='/js/lib/saveSvgAsPng.js')
-	script(src='/js/mouse.js')
-	script(src='/js/grafos.js')
+	script(src='/js/ejercicios/mouse.js')
+	script(src='/js/ejercicios/grafos.js')

@@ -16,6 +16,7 @@ var lienzo = document.getElementById("htmlSvgLienzo_js")
 ,htmlSvgLienzoGrafoNombres = document.getElementById("htmlSvgLienzoGrafoNombres_js")
 ,htmlSvgLienzoGrafoAristas = document.getElementById("htmlSvgLienzoGrafoAristas_js")
 ,btnLimpiarLienzo = document.getElementById("btnLimpiarLienzo_js")
+,seccionAccionesPlusGrafos = document.getElementById("seccionAccionesPlusGrafos_js")
 
 
 function lienzohabilitado(){
@@ -333,7 +334,10 @@ function guardarGrafo(evento){
 		oReq.onreadystatechange = function() {
 			if (oReq.readyState == 4) {
 				var mensaje = JSON.parse(oReq.responseText)
-				crearYMostrarMensaje(mensaje.tipoMensaje,mensaje.mensaje);
+				crearYMostrarMensaje(mensaje.tipoMensaje,mensaje.mensaje)
+				var linkDownload = document.getElementById("linkDownload_js")
+				linkDownload.href = mensaje.file
+				linkDownload.click()
 			}
 		}
 
@@ -543,7 +547,7 @@ function validarGrafo(evento) {
 			htmlFormVerificarDatosGrafo.removeEventListener("submit", validarGrafo)
 
 
-			var mensaje = {tipoMensaje : 0, mensaje : msgErrorEnEjercicio}
+			var mensaje = {tipoMensaje : 0, mensaje : msgEjercicioCompletado}
 		}else{
 			var mensaje = {tipoMensaje : 1, mensaje : msgProblemaConAristas}
 		}
