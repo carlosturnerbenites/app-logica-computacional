@@ -74,14 +74,15 @@ function crearEjercicio(evento) {
 				if ( arrayProposiciones.length > 1) {
 					if (propComp.constructor.name == expresion.name){
 						var th = document.createElement("th")
-
 						th.innerHTML = propComp.getExpresionCompleta()
+						th.setAttribute("expresionASolucionar","true")
 						tr.appendChild(th)
 					}
 					}
 			}
 			var thResponseFinal = document.createElement("th")
 			thResponseFinal.id = "expresionASolucionar_js"
+			thResponseFinal.setAttribute("expresionASolucionar","true")
 			tr.appendChild(thResponseFinal)
 		}
 	}
@@ -94,7 +95,7 @@ function crearEjercicio(evento) {
 		for (var filas = 0; filas < 5; filas++) {
 
 			var tr =document.createElement("tr")
-			tr.id=filas
+
 
 			for (var columnas = 0; columnas < childrensHeader; columnas++) {
 
@@ -102,8 +103,11 @@ function crearEjercicio(evento) {
 
 				if (columnas >= numeroProposicionesEscogidasPorusuario) {
 
+					numeroColumna = "col" + (columnas - numeroProposicionesEscogidasPorusuario)
 					var inputHTML = document.createElement("input")
 					inputHTML.classList.add("respuestaEjercicio")
+					inputHTML.setAttribute("campoRespuesta", "true")
+					inputHTML.setAttribute(numeroColumna, "")
 					inputHTML.setAttribute("required", "required")
 					inputHTML.setAttribute("maxlength", "1")
 					inputHTML.addEventListener("change", verificarRespuestaIngresada)
@@ -154,10 +158,8 @@ function capturarRespuesta(evento) {
 
 	respuestas = []
 
-	for (var campos = 0; campos < 5; campos++) {
-		var respuesta = document.getElementById(campos)
-		respuestas.push(respuesta)
-	};
+	var respuestaEnviada = document.querySelectorAll("[expresionasolucionar]")
+	console.log(respuestaEnviada)
 }
 
 /*###################################

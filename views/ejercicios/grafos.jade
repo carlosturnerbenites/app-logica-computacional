@@ -20,10 +20,10 @@ block content
 	p Dibuja en el lienzo lo que quieras dibujar, define los parametros y ponte a graficar. Para mas informacion ve a
 		span.btn.btnAyuda.marginLateral Ayuda
 		
-	section.controles
+	section#mouseCotrols_js.controles
 		h3.textoCentrado Para graficar recuerda esto...
 		
-		section.mouse#mouseCotrols_js
+		section.mouse#actionsMouse_js
 			article.bottonUno#MousebotonUno_js
 			article.bottonDos#MousebotonDos_js
 			article.bottonTres#MousebotonTres_js
@@ -88,8 +88,5 @@ block content
 
 block script
 	script(src='/js/lib/saveSvgAsPng.js')
-	script(src='/js/variablesGenerales.js')
 	script(src='/js/mouse.js')
-	script(src='/js/principal.js')
-	script(src='/js/funcionesAxuliares.js')
-	script(src='/js/ejerciciosGrafos.js')
+	script(src='/js/grafos.js')

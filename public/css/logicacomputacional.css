@@ -1573,7 +1573,19 @@ svg .nombreCircle {
   height: 100px;
 }
 .mouseActive {
-  background-color: #008000 !important;
+  background-color: #85bc5e !important;
+}
+.mousemove:after {
+  content: ">>";
+  top: calc(50%);
+  position: absolute;
+  left: 150px;
+}
+.mousemove:before {
+  content: "<<";
+  top: calc(50%);
+  position: absolute;
+  left: -29px;
 }
 @import url("https://fonts.googleapis.com/css?family=Oxygen");
 .descargaEnZona {

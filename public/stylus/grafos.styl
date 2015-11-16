@@ -78,4 +78,15 @@ svg
 		border-bottom 2px solid gray
 		height 100px
 .mouseActive
-	background-color green !important
+	background-color #85BC5E !important
+.mousemove
+	&:after
+		content ">>"
+		top: calc(50%);
+		position: absolute;
+		left: 150px;
+	&:before
+		content "<<"
+		top: calc(50%);
+		position: absolute;
+		left: -29px;

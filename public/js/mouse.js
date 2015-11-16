@@ -1,8 +1,18 @@
 var mouseCotrols = document.getElementById("mouseCotrols_js")
-
+var mouse = document
+.getElementById('actionsMouse_js')
 mouseCotrols.addEventListener("mouseover",showControl)
 mouseCotrols.addEventListener("mouseout",hiddenControl)
+mouseCotrols.addEventListener("mousemove",moveControl)
 mouseCotrols.addEventListener("contextmenu",contextmenuPD)
+
+function moveControl() {
+	mouse.classList.add("mousemove")
+	console.log("agregado")
+	window.setTimeout(function(){
+		mouse.classList.remove("mousemove")
+},1000)
+}
 
 function contextmenuPD(evento){
 	evento.preventDefault()
@@ -35,7 +45,6 @@ function clickctrl(evento) {
 		document.getElementById("MousebotonDos_js").classList.add("mouseActive")
 		window.setTimeout(function(){
 			document.getElementById("MousebotonDos_js").classList.remove("mouseActive")
-
 		},100)
 	}
 }
