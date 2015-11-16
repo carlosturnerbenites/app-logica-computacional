@@ -68,13 +68,16 @@ function crearEjercicio(evento) {
 				star+=1
 			}
 			th.innerHTML = letraProposicion.element
+			var id = letraProposicion + filas
+			th.id = id
+			console.log(th)
 			tr.appendChild(th)
 		}else{
 			for (var l = 0, propComp; propComp = arrayProposiciones[l]; l++) {
 				if ( arrayProposiciones.length > 1) {
 					if (propComp.constructor.name == expresion.name){
 						var th = document.createElement("th")
-						th.innerHTML = propComp.getExpresionCompleta()
+						//th.innerHTML = propComp.getExpresionCompleta()
 						th.setAttribute("expresionASolucionar","true")
 						tr.appendChild(th)
 					}
@@ -117,6 +120,8 @@ function crearEjercicio(evento) {
 				}else{
 					var valorDeVerdad = posiblesValores[numeroAleatorio(2,0)]
 					th.innerHTML = valorDeVerdad
+					propActual = table.firstChild.childNodes[columnas]
+					th.id = propActual.innerHTML + filas
 					if (valorDeVerdad == posiblesValores[0]) {
 						th.setAttribute("data-ValorBoleano", true)
 					}else{
@@ -136,10 +141,12 @@ function crearEjercicio(evento) {
 	btnAgregarColumna.classList.add("icon-mas","agregarFila")
 	btnAgregarColumna.addEventListener("click", crearAgregarFila)
 
-	sectionTablasVerdad.appendChild(htmlHrSeparadorContenido)
-	sectionTablasVerdad.appendChild(btnAgregarColumna)
-	sectionTablasVerdad.appendChild(table)
-	sectionTablasVerdad.appendChild(btnValidar)
+	sectionTablasVerdad.insertBefore(btnAgregarColumna,sectionTablasVerdad.firstChild)
+	sectionTablasVerdad.insertBefore(htmlHrSeparadorContenido,sectionTablasVerdad.firstChild)
+
+	htmlFormRespuestaUsuario.appendChild(table)
+	htmlFormRespuestaUsuario.appendChild(btnValidar)
+
 
 	htmlFormRespuestaUsuario.addEventListener("submit", capturarRespuesta)
 
@@ -159,7 +166,23 @@ function capturarRespuesta(evento) {
 	respuestas = []
 
 	var respuestaEnviada = document.querySelectorAll("[expresionasolucionar]")
-	console.log(respuestaEnviada)
+
+	for (var i = 0; i < respuestaEnviada.length; i++) {
+		var id = "[col"+i+"]"
+		var temprespuestas = document.querySelectorAll(id)
+		respuestas.push(temprespuestas)
+	}
+
+	for (var j = 0; j < respuestaEnviada.length; j++) {
+		var expresion = arrayProposiciones[j]
+		console.log(expresion)
+		console.log(respuestas[j])
+		for (var k = 0; k < respuestas[j].length; k++) {
+			console.log(respuestas[j][k])
+			valorBooleanoIngresado = eval(respuestas[j][k].getAttribute("data-valorboleano"))
+		}
+
+	}
 }
 
 /*###################################
@@ -193,9 +216,7 @@ function reiniciarEjercicio() {
 	habilitarInhabilitarFormulario(htmlFormEjercicioPropuestoTablasVerdad)
 }
 
-function crearAgregarFila(evento){
-
-	evento.preventDefault()
+function crearAgregarFila(){
 
 	var tablaVerdad = document.getElementById("tablarVerdad_js")
 	var tablaVerdadHijos = tablaVerdad.childNodes
@@ -305,10 +326,12 @@ function expresion(p1,p2,conector) {
 	this.p2 = p2
 
 	this.conector = eval("new "+ conector + "(p1,p2)")
-
 	this.getExpresionCompleta = function() {
-		expresionCompleta = "(" + this.p1.letra + this.conector.simbolo + this.p2.letra + ")"
+		expresionCompleta = "(" + this.p1.letraFinal + this.conector.simbolo + this.p2.letraFinal + ")"
 		return expresionCompleta
+	}
+	this.evaluar = function(){
+
 	}
 }
 
