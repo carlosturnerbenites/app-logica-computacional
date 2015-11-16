@@ -70,14 +70,13 @@ function crearEjercicio(evento) {
 			th.innerHTML = letraProposicion.element
 			var id = letraProposicion + filas
 			th.id = id
-			console.log(th)
 			tr.appendChild(th)
 		}else{
 			for (var l = 0, propComp; propComp = arrayProposiciones[l]; l++) {
 				if ( arrayProposiciones.length > 1) {
 					if (propComp.constructor.name == expresion.name){
 						var th = document.createElement("th")
-						//th.innerHTML = propComp.getExpresionCompleta()
+						th.innerHTML = propComp.getExpresionCompleta()
 						th.setAttribute("expresionASolucionar","true")
 						tr.appendChild(th)
 					}
@@ -172,13 +171,24 @@ function capturarRespuesta(evento) {
 		var temprespuestas = document.querySelectorAll(id)
 		respuestas.push(temprespuestas)
 	}
-
+console.log(respuestas)
+console.log(respuestaEnviada)
 	for (var j = 0; j < respuestaEnviada.length; j++) {
 		var expresion = arrayProposiciones[j]
-		console.log(expresion)
-		console.log(respuestas[j])
 		for (var k = 0; k < respuestas[j].length; k++) {
-			console.log(respuestas[j][k])
+			console.group()
+			var idp1 = expresion.p1.letra + k
+			expresion.p1.valorBoleano = eval(document.getElementById(idp1).getAttribute("data-valorBoleano"))
+
+			var idp2= expresion.p2.letra + k
+			expresion.p2.valorBoleano = eval(document.getElementById(idp2).getAttribute("data-valorBoleano"))
+
+			expresion.p1.negar()
+			expresion.p2.negar()
+			console.log(expresion.conector.operar())
+
+			console.log(expresion)
+			console.groupEnd()
 			valorBooleanoIngresado = eval(respuestas[j][k].getAttribute("data-valorboleano"))
 		}
 

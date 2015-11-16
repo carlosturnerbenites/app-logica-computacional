@@ -51,6 +51,7 @@ document.body.addEventListener("keypress", teclapresionada)
 
 
 //Activar en produccion
+/*
 window.onbeforeunload = confirmarCierreVentana
 
 function confirmarCierreVentana(){
@@ -58,3 +59,4 @@ function confirmarCierreVentana(){
 		return 'Si cierra se perdera todo el progreso.'
 	}
 }
+*/
