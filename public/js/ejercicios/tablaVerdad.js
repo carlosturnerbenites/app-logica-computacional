@@ -20,6 +20,7 @@ htmlInputNumeroProposicionesEscogidasPorUsuario.setAttribute("max", maximaCantid
 
 var arrayProposiciones = new Array()
 ,proposicionesCompuesta = new Array()
+,expresionFinal = new Array()
 
 
 function crearEjercicio(evento) {
@@ -59,19 +60,29 @@ function crearEjercicio(evento) {
 			arrayProposiciones.push(prop)
 			proposicionesCompuesta.push(prop)
 
-			if ((filas + 1) % 2 == 0){
-				var conector = conectores.getElementRandom()
-				var exp = new expresion(proposicionesCompuesta[0],proposicionesCompuesta[1],conector.element)
-				arrayProposiciones.push(exp)
-				arrayProposiciones.splice(star, 2)
-				proposicionesCompuesta = []
-				star+=1
-			}
+
 			th.innerHTML = letraProposicion.element
 			var id = letraProposicion + filas
 			th.id = id
 			tr.appendChild(th)
 		}else{
+
+			while (arrayProposiciones.length > 1) {
+
+				for (var p = 0,prop; prop = arrayProposiciones[p]; p++) {
+					var star = 0
+					var star = 0
+					if ((p + 1) % 2 == 0){
+						var conector = conectores.getElementRandom()
+						var expresionCompuesta = new expresion(arrayProposiciones[0],arrayProposiciones[1],conector.element)
+						arrayProposiciones.push(expresionCompuesta)
+						arrayProposiciones.splice(star, 2)
+						star+=1
+					}
+			}
+			expresionFinal = arrayProposiciones[0]
+			}
+
 			for (var l = 0, propComp; propComp = arrayProposiciones[l]; l++) {
 				if ( arrayProposiciones.length > 1) {
 					if (propComp.constructor.name == expresion.name){
@@ -152,6 +163,7 @@ function crearEjercicio(evento) {
 	habilitarInhabilitarFormulario(this)
 
 	var expresionASolucionar = document.getElementById("expresionASolucionar_js")
+console.warn(arrayProposiciones);
 
 	for (var p = 0,prop; prop = arrayProposiciones[p]; p++) {
 		if (prop.constructor.name == proposicion.name){
@@ -160,6 +172,7 @@ function crearEjercicio(evento) {
 			expresionASolucionar.innerHTML += prop.getExpresionCompleta()
 		}
 	}
+	console.log(arrayProposiciones);
 }
 
 function capturarRespuesta(evento) {
@@ -185,7 +198,7 @@ function validarEjercicio(respuestaEnviada,respuestas) {
 		var expresion = arrayProposiciones[j]
 		for (var k = 0; k < respuestas[j].length; k++) {
 			console.group()
-			if (expresion.constructor.name == "expresion") {
+			if (expresion.constructor.name == expresion.name) {
 
 				var idp1 = expresion.p1.letra + k
 				expresion.p1.valorBoleano = eval(document.getElementById(idp1).getAttribute("data-valorBoleano"))
@@ -372,8 +385,17 @@ function expresion(p1,p2,conector) {
 	this.conector = eval("new "+ conector + "(p1,p2)")
 
 	this.getExpresionCompleta = function() {
-		expresionCompleta = "(" + this.p1.letraFinal + this.conector.simbolo + this.p2.letraFinal + ")"
-		return expresionCompleta
+
+		if (this.p1.constructor.name == expresion.name) {
+			console.log("expresion");
+			this.p1.getExpresionCompleta()
+			console.log("volvi");
+		}if (this.p2.constructor.name == expresion.name) {
+			console.log("expresion");
+			this.p2.getExpresionCompleta()
+			console.log("volvi");
+		}
+		console.info("termine")
 	}
 }
 
