@@ -1,99 +1,131 @@
-//Simbolo que representa al conjunto vacio en los elementos de un conjunto, se utilizapara validar la respuesta a los conjuntos
-var simboloConjuntoVacio = "Ø"
+
+var simboloConjuntoVacio = "Ø"															//Simbolo que representa al conjunto vacio en los elementos de un conjunto, se utilizapara validar la respuesta a los conjuntos
 
 var formConjuntos = document.getElementById("formConjuntos_js")
 ,conjuntoIngresado = document.getElementById("conjuntoIngresado_js")
 ,seccionRespuesta = document.getElementById("seccionRespuesta_js")
-,input_nombreConjunto = document.getElementById("nombreConjunto_js")
+,inputNameSet = document.getElementById("nombreConjunto_js")
 ,htmlRadioConjuntosPropio = document.getElementById("htmlRadioConjuntosPropio_js")
 ,htmlRadioConjuntosImpropio = document.getElementById("htmlRadioConjuntosImpropio_js")
-,elementosCojuntos = document.getElementById("elementosCojuntos_js").value
+,elementsSet = null
 
-function capturarConjunto(evento) {
-	ejecicioEnEjecucion = true
+/*
+Primary functions
+*/
+function captureSetSelected(evento) {
 
 	evento.preventDefault()
 
-	formConjuntos.removeEventListener("submit", capturarConjunto)
+	ejecicioEnEjecucion = true
 
-	var nombreConjunto = input_nombreConjunto.value
+	formConjuntos.removeEventListener("submit", captureSetSelected)
+
+	var nameSet = inputNameSet.value
 
 	var contenedorNombreCojunto = document.createElement("span")
-	contenedorNombreCojunto.innerText = nombreConjunto.toUpperCase()
+	contenedorNombreCojunto.innerText = nameSet.toUpperCase()
 
-	elementosCojuntos = document.getElementById("elementosCojuntos_js").value
+	elementsSet = document.getElementById("elementosCojuntos_js").value
 
 
-	var estado = validarConjunto(elementosCojuntos)
+	var estado = validateSet(elementsSet)
 
 	if (estado){
 
 		habilitarInhabilitarFormulario(this)
 
-		if (ValidarCampoVacio(elementosCojuntos) && ValidarCampoVacio(nombreConjunto)) {
+		if (ValidarCampoVacio(elementsSet) && ValidarCampoVacio(nameSet)) {
 
-			elementosCojuntos = elementosCojuntos.split(",")
+			elementsSet = elementsSet.split(",")
 
-			var contenedorElementosCojunto = document.createElement("span")
-			contenedorElementosCojunto.classList.add("corchetesConjuntos")
-			contenedorElementosCojunto.innerText = elementosCojuntos
+			var htmlContainerElementsSet = createElementDOM("span")
+			.addClass("corchetesConjuntos")
+			.text(elementsSet)
 
-			var contenedorConjuntoActual = document.createElement("section")
-			contenedorConjuntoActual.classList.add("textoCentrado","textoEspecial")
-			contenedorConjuntoActual.appendChild(contenedorNombreCojunto)
-			contenedorConjuntoActual.appendChild(contenedorElementosCojunto)
+			var containerSet = createElementDOM("section")
+			.addClass("textoCentrado","textoEspecial")
+			.append(contenedorNombreCojunto,htmlContainerElementsSet)
 
-			var respuesta = document.createElement("textarea")
+			var respuesta = createElementDOM("textarea")
+			.addClass("respuesta")
+			.setAttrs({"required":"required","spellcheck":"false","placeholder": "Escriba en este cuadro su respuesta.","id" : "respuesta"})
+			.on("keypress", disabledKeys)
 
-
-			respuesta.id = "respuesta"
-			respuesta.classList.add("respuesta")
-			respuesta.setAttribute("required","required")
-			respuesta.setAttribute("spellcheck","false")
-			respuesta.setAttribute("placeholder", "Escriba en este cuadro su respuesta.")
-			respuesta.addEventListener("keypress", function(evento) {
-				//si se presiona Enter
-				if(evento.keyCode == 13){
-					evento.preventDefault()
-				}
-				//si se presiona 0
-				if(evento.keyCode == 48){
-					evento.preventDefault()
-					respuesta.value += simboloConjuntoVacio
-				}
-			})
-
-			seccionRespuesta.appendChild(htmlHrSeparadorContenido)
-			seccionRespuesta.appendChild(contenedorConjuntoActual)
-			seccionRespuesta.appendChild(respuesta)
-			seccionRespuesta.appendChild(btnValidar)
-
-
-			seccionRespuesta.addEventListener("submit",validarRespuesta)
+			seccionRespuesta.append(htmlHrSeparadorContenido,containerSet,respuesta,btnValidar)
+			.on("submit",validateAnswer)
 
 		}else{
-			vaciarCampo(nombreConjunto)
+			vaciarCampo(nameSet)
 		}
 	}else{
 
-		formConjuntos.addEventListener("submit", capturarConjunto)
+		formConjuntos.addEventListener("submit", captureSetSelected)
 
 	}
 }
 
-function validarConjunto(elementosCojuntos){
+function validateAnswer(evento) {
+
+	evento.preventDefault()
+
+	var userResponse = document.getElementById("respuesta")
+	var binarios = []
+	var setSoltion
+
+	numberPossibleCombinations = htmlRadioConjuntosImpropio.checked ? Math.pow(2,elementsSet.length) - 1 : Math.pow(2,elementsSet.length)
+
+	elementsSetUserResponse = userResponse.value.split(",")
+
+	if (elementsSetUserResponse.length == numberPossibleCombinations) {
+
+		for (var i = 0; i < numberPossibleCombinations; i++) {
+			binarios.push(decimalToBinary(i))
+		}
+
+		completarBinarios(binarios,elementsSet.length)
+
+		setSoltion = createRealResponse(elementsSet,binarios)
+
+		var elementsSetUserResponseOrdered = elementsSetUserResponse.sort()
+
+		setSoltion.sort()
+		elementsSetUserResponseOrdered.sort()
+
+		if (compareArrays(setSoltion ,elementsSetUserResponseOrdered)) {
+
+			habilitarInhabilitarInput(userResponse)
+
+			var mensaje = {tipoMensaje : 0, mensaje : msgEjercicioCompletado}
+
+			seccionRespuesta.removeEventListener("submit", validateAnswer)
+			seccionRespuesta.addEventListener("submit", restareExercise)
+			seccionRespuesta.replaceChild(btnVolver, btnValidar)
+
+
+
+		}else{
+			var mensaje = {tipoMensaje : 1, mensaje : msgErrorEnEjercicio}
+
+		}
+	}else{
+		var mensaje = {tipoMensaje : 1, mensaje : msgErrorEnEjercicio}
+	}
+	crearYMostrarMensaje(mensaje.tipoMensaje,mensaje.mensaje)
+}
+
+function validateSet(elementsSet){
 
 	var campoValido = true
 
 	var formatoCorrectoDeConjuntos = /(^([\w|\d])\b)+(([(,)+(\w|\d)+(,)])\b)+(([\w|\d])\b)$/g
 
-	if((formatoCorrectoDeConjuntos.test(elementosCojuntos))){
-		elementosCojuntos = elementosCojuntos.split(",")
+	if((formatoCorrectoDeConjuntos.test(elementsSet))){
+		elementsSet = elementsSet.split(",")
 
-		for (var contUno = 0; contUno < elementosCojuntos.length; contUno++) {
-			for (var contDos = 0; contDos < elementosCojuntos.length; contDos++) {
+		for (var contUno = 0; contUno < elementsSet.length; contUno++) {
+			for (var contDos = 0; contDos < elementsSet.length; contDos++) {
 				if (contUno != contDos) {
-					if (elementosCojuntos[contUno] == elementosCojuntos[contDos]) {
+					if (elementsSet[contUno] == elementsSet[contDos]) {
 						campoValido = false
 					}
 				}
@@ -114,99 +146,75 @@ function validarConjunto(elementosCojuntos){
 	return campoValido
 }
 
-function crearRespuesta(elementosCojuntos,binary){
-
-	var conjuntoSolucionBinary = []
-
-	for (var i = 0; i < binary.length; i++) {
-		for (var j = 0; j < binary[i].length; j++) {
-			if (binary[i][j] == "1"){
-				binary[i][j] = elementosCojuntos[j]
-			}
-		}
-		conjuntoSolucionBinary.push(binary[i])
-	}
-
-	var conjuntoSolucionTemp = SeparaCerosDeValoresUtiles(conjuntoSolucionBinary)
-
-	conjuntoSolucionTemp = ordenarAlfabeticamente(conjuntoSolucionTemp)
-
-	return conjuntoSolucionTemp
-}
-
-function validarRespuesta(evento) {
+function restareExercise (evento) {
 
 	evento.preventDefault()
 
-	var respuestaEnviada = document.getElementById("respuesta")
-	var elementosCojuntos = (document.getElementById("elementosCojuntos_js").value).split(",")
-	var binary = []
-	var conjuntoSolucion
-
-
-	//refactorizar luego
-
-	if(htmlRadioConjuntosImpropio.checked){
-		numeroCombinaciones = Math.pow(2,elementosCojuntos.length) - 1
-	}else if(htmlRadioConjuntosPropio.checked){
-		numeroCombinaciones = Math.pow(2,elementosCojuntos.length)
-	}
-	console.log(respuestaEnviada);
-	elementosRespuestaEnviada = respuestaEnviada.value.split(",")
-
-
-	if (elementosRespuestaEnviada.length == numeroCombinaciones) {
-
-
-		for (var i = 0; i < numeroCombinaciones; i++) {
-			binario = decimalToBinary(i)
-			binary.push(binario)
-		}
-		completarBinarios(binary,elementosCojuntos.length)
-
-		conjuntoSolucion = crearRespuesta(elementosCojuntos,binary)
-
-		var elementosRespuestaEnviadaOrdenada = ordenarAlfabeticamente(elementosRespuestaEnviada)
-
-
-		if (String(ordenarAlfabeticamente(conjuntoSolucion)) == String(ordenarAlfabeticamente(elementosRespuestaEnviadaOrdenada))) {
-
-			habilitarInhabilitarInput(respuestaEnviada)
-
-
-			var mensaje = {tipoMensaje : 0, mensaje : msgEjercicioCompletado}
-
-			seccionRespuesta.removeEventListener("submit", validarRespuesta)
-			seccionRespuesta.addEventListener("submit", reiniciarEjercicio)
-			seccionRespuesta.replaceChild(btnVolver, btnValidar)
-
-
-
-		}else{
-			var mensaje = {tipoMensaje : 1, mensaje : msgErrorEnEjercicio}
-
-		}
-	}else{
-		var mensaje = {tipoMensaje : 1, mensaje : msgErrorEnEjercicio}
-	}
-	crearYMostrarMensaje(mensaje.tipoMensaje,mensaje.mensaje)
-}
-
-function reiniciarEjercicio (evento) {
 	ejecicioEnEjecucion = false
-	evento.preventDefault()
-	formConjuntos.addEventListener("submit", capturarConjunto)
+
+	formConjuntos.addEventListener("submit", captureSetSelected)
 	habilitarInhabilitarFormulario(formConjuntos)
 	limpiarContenedorHTML(seccionRespuesta)
-	seccionRespuesta.removeEventListener("submit", reiniciarEjercicio)
+	seccionRespuesta.removeEventListener("submit", restareExercise)
 	formConjuntos.reset()
 }
 
-function limpiarCampo(){
-	vaciarCampo(this)
+function createRealResponse(elementsSet,binarios){
+
+	var setSolutionBinary = []
+
+	for (var i = 0; i < binarios.length; i++) {
+		for (var j = 0; j < binarios[i].length; j++) {
+			if (binarios[i][j] == "1"){
+				binarios[i][j] = elementsSet[j]
+			}
+		}
+		setSolutionBinary.push(binarios[i])
+	}
+
+	var setSolutionTemp = SeparaCerosDeValoresUtiles(setSolutionBinary)
+
+	setSolutionTemp.sort()
+
+	return setSolutionTemp
 }
 
-formConjuntos.addEventListener("submit", capturarConjunto)
+/*
+secondary functions
+*/
+
+function SeparaCerosDeValoresUtiles(conjuntos){
+	var conjuntoSolucion = []
+
+	for (var i = 0; i < conjuntos.length; i++) {
+		var conjunto = []
+		for (var j = 0; j < conjuntos[i].length; j++) {
+			if (conjuntos[i][j] != "0") {
+				conjunto.push(conjuntos[i][j])
+			}
+		}
+		if (conjunto.length == 0) {
+			conjunto.push(simboloConjuntoVacio)
+		}
+		conjuntoSolucion.push(conjunto.join(""))
+	}
+
+	return conjuntoSolucion
+}
+
+function disabledKeys(evento) {
+	/*si se presiona Enter*/
+	if(evento.keyCode == 13){
+		evento.preventDefault()
+	}
+	/*si se presiona 0*/
+	if(evento.keyCode == 48){
+		evento.preventDefault()
+		respuesta.value += simboloConjuntoVacio
+	}
+}
+
+formConjuntos.addEventListener("submit", captureSetSelected)
 
 //Borrar espacios en blanco en el campo de nombre de conjunto
-input_nombreConjunto.addEventListener("change", limpiarCampo)
+inputNameSet.addEventListener("change", limpiarCampo)

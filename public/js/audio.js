@@ -1,115 +1,116 @@
-var musicaEscogido = document.getElementById("selectorDeCancion_js")
+var audio = new Audio("/audio/audiop.mp3")	//Elemento Audio
+,minVolumen = 0								//Volumen minimo
+,maxVolumen = 1								//Volumen maximo
+,mediumVolumen = maxVolumen/2				//Volumen medio
+,currenTime = 0								//Tiempo de reproducion Actual
 
-var musica = new Audio("/audio/audiop.mp3")
-var tiempoActual = 0
+/*capture elements of DOM*/
+var progressBarAudio = document.getElementById("barraDePorgresoAudio_js")
+,currentStateAudio = document.getElementById("estadoActualAudio_js")
+,currentIconVolume = document.getElementById("htmlSpanIconoVolumenActual_js")
+,inputMutedAudio = document.getElementById("silenciarAudio_js")
+,inputVolume = document.getElementById("volumenAudio_js")
+,buttonPlayPauseAudio = document.getElementById("reproductorMusica_js")
+,buttonLoop = document.getElementById("repetirAudio_js")
 
-var minVolumen = 0
-var maxVolumen = 1
-var mediumVolumen = maxVolumen/2
-var iconoActual = new String()
-
-
-var listadoAjustesAudio = document.getElementById("listadoAjustesAudio_js")
-var barraDePorgresoAudio = document.getElementById("barraDePorgresoAudio_js")
-var estadoActualAudio = document.getElementById("estadoActualAudio_js")
-
-var btnAudio = document.getElementById("reproductorMusica_js")
-
-var htmlSpanIconoVolumenActual = document.getElementById("htmlSpanIconoVolumenActual_js")
-
-
-var silenciarAudio = document.getElementById("silenciarAudio_js")
-
-var volumenAudio = document.getElementById("volumenAudio_js")
-var BtnrepetirAudio = document.getElementById("repetirAudio_js")
-
-btnAudio.addEventListener("click", reproducirparaAudio)
-silenciarAudio.addEventListener("click", mutedAudio)
-volumenAudio.addEventListener("change", cambiarVolumen)
-barraDePorgresoAudio.addEventListener("change", cambiarCurrentTime)
-BtnrepetirAudio.addEventListener("change", repetirAudio)
-musica.addEventListener("timeupdate", progressBar)
-musica.addEventListener("ended", reiniciarAudio)
-
-function cambiarCurrentTime() {
+/*Cambio el currentTime (tiempo de reproduccion) del audio al valor que registre input(Range) de la barra de progreso*/
+function changeCurrentTime() {
 	newCurrentTime = this.value
-	musica.currentTime = newCurrentTime
+	audio.currentTime = newCurrentTime
 }
 
-function progressBar() {
-	tiempoActual = musica.currentTime
-
-	barraDePorgresoAudio.value = tiempoActual
+/*Actualiza el cursor del input(Range) de la bara de progreso al cambiar el currentTime del audio*/
+function updateProgressBar() {
+	currenTime = audio.currentTime
+	progressBarAudio.value = currenTime
 }
 
-function reiniciarAudio() {
-	estadoActualAudio.classList.remove("icon-pause")
-	estadoActualAudio.classList.add("icon-play")
+/*Reinicia los iconos del pause/play al terminar la reproduccion del audio*/
+function restartAudio() {
+	currentStateAudio.classList.remove("icon-pause")
+	currentStateAudio.classList.add("icon-play")
 }
 
-function cambiarVolumen() {
-	var nuevoVolumen = this.value
-	musica.volume = nuevoVolumen
-	cambiarIconoVolumen()
+/*Cambio el volumen del audio por el valor registrasdo en el input(Range) y ejecuta changeIconVolume*/
+function changeVolume() {
+	console.log("change audio")
+	var newVolume = inputVolume.value
+	audio.volume = newVolume
+	changeIconVolume()
+
+	inputMutedAudio.checked = audio.volume > 0 ? false : true
 }
 
+/*Silencia el audio*/
 function mutedAudio() {
 	if(this.checked){
-		musica.muted = true
-		htmlSpanIconoVolumenActual.classList.add("icon-silenciado")
+		console.log("checked")
+		audio.muted = true
+		inputVolume.value = minVolumen
 
 	}else{
-		musica.muted = false
-		cambiarIconoVolumen()
+		console.log("no checked")
+		audio.muted = false
+		inputVolume.value = maxVolumen
 	}
+	changeVolume()
 }
 
-function repetirAudio() {
-	if(this.checked){
-		musica.loop = true
+/*Repetir el audio*/
+function loopAudio() {
+	audio.loop = this.checked ? true : false
+}
+
+/*Pausar o Reprocucir Audio*/
+function playPauseAuido(evento) {
+
+	var durationAudio = audio.duration
+	progressBarAudio.setAttribute("max", durationAudio)
+
+	if (audio.paused){
+
+		audio.play()
+		currentStateAudio.classList.remove("icon-play")
+		currentStateAudio.classList.add("icon-pause")
+
 	}else{
-		musica.loop = false
+
+		audio.pause()
+		currentStateAudio.classList.remove("icon-pause")
+		currentStateAudio.classList.add("icon-play")
+
+	}
+
+	changeIconVolume()
+}
+
+/*Cambiar el icono del volumen dependiendo del nivel de este*/
+function changeIconVolume() {
+
+	var currentVolume = Number(inputVolume.value)
+	audio.muted = false
+
+	currentIconVolume.className = ""
+
+	if (currentVolume == 0) {
+		currentIconVolume.classList.add("icon-silenciado")
+	}else if(currentVolume < mediumVolumen){
+		currentIconVolume.classList.add("icon-volumenBajo")
+	}else if(currentVolume > mediumVolumen){
+		currentIconVolume.classList.add("icon-volumenAlto")
+	}else if(currentVolume == mediumVolumen){
+		currentIconVolume.classList.add("icon-volumenMedio")
 	}
 }
 
-function reproducirparaAudio(evento) {
+/*add events*/
+buttonPlayPauseAudio.addEventListener("click", playPauseAuido)
+buttonLoop.addEventListener("change", loopAudio)
 
-	var duracionAudio = musica.duration
-	barraDePorgresoAudio.setAttribute("max", duracionAudio)
+inputMutedAudio.addEventListener("change", mutedAudio)
+inputVolume.addEventListener("change", changeVolume)
 
-	if (musica.paused){
-		musica.play()
+progressBarAudio.addEventListener("change", changeCurrentTime)
 
-		estadoActualAudio.classList.remove("icon-play")
-		estadoActualAudio.classList.add("icon-pause")
-
-	}else{
-		musica.pause()
-		estadoActualAudio.classList.remove("icon-pause")
-		estadoActualAudio.classList.add("icon-play")
-	}
-	cambiarIconoVolumen()
-}
-
-function cambiarIconoVolumen() {
-	var valorVolumenAudio = Number(volumenAudio.value)
-	musica.muted = false
-	silenciarAudio.checked = false
-
-	htmlSpanIconoVolumenActual.className = ""
-
-
-	if (valorVolumenAudio < mediumVolumen) {
-		htmlSpanIconoVolumenActual.classList.add("icon-volumenBajo")
-	}
-	if(valorVolumenAudio > mediumVolumen){
-		htmlSpanIconoVolumenActual.classList.add("icon-volumenAlto")
-
-	}
-	if(valorVolumenAudio == mediumVolumen){
-		htmlSpanIconoVolumenActual.classList.add("icon-volumenMedio")
-	}
-	if(valorVolumenAudio == 0){
-		htmlSpanIconoVolumenActual.classList.add("icon-silenciado")
-	}
-}
+audio.addEventListener("timeupdate", updateProgressBar)
+audio.addEventListener("ended", restartAudio)

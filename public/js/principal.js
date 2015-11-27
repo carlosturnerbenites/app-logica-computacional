@@ -33,7 +33,6 @@ function limpiarContenedorHTML(contenedor) {
 function teclapresionada(evento){
 
 	var nombreTeclaPresionado = String.fromCharCode(evento.keyCode).toLowerCase()
-	var codigoTeclaPresionado = evento.keyCode
 
 	if(evento.shiftKey && nombreTeclaPresionado == "?"){
 		btnAyuda.click()
@@ -50,12 +49,13 @@ btnMusica.addEventListener("click", mostrarOcultarSeccion)
 document.body.addEventListener("keypress", teclapresionada)
 
 
-//Activar en produccion
 
+/*añadir evento de ventana de confirmacion al intentar abandonar una pestaña*/
 window.onbeforeunload = confirmarCierreVentana
 
+/*Comprueba la variable 'ejercicioEnEjecucion'(Recordar que esta es igual a true cuando se esta realizando un ejercicio) y dependiendo de ella, muestra o no la ventana de confirmacion para abandonar la pestaña*/
 function confirmarCierreVentana(){
 	if (ejecicioEnEjecucion) {
-		return 'Si cierra se perdera todo el progreso.'
+		return msgConfirmacionAbandonarPestana
 	}
 }

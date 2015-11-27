@@ -19,6 +19,11 @@ function setAttributes(elemento,ObjAtributes){
 
 	}
 
+
+
+	function limpiarCampo(){
+		vaciarCampo(this)
+	}
 /*
 	Description:
 	Esta funcion devuelve un numero aleatorio, en el rango de los numeros recibidos(max y min)
@@ -90,32 +95,8 @@ function setAttributes(elemento,ObjAtributes){
 		}
 	}
 
-/*
-Description:
-Esta funcion Rellena un cadena de texto(elementos de un array) con ceros a la izquierda hasta lalongitud que se envia
 
-Syntax:
-completarBinarios(binarios(Array),longitud maxima(Integer))
-*/
-function SeparaCerosDeValoresUtiles(conjuntos){
-	var conjuntoSolucion = []
 
-	for (var i = 0; i < conjuntos.length; i++) {
-		var conjunto = []
-		for (var j = 0; j < conjuntos[i].length; j++) {
-			if (conjuntos[i][j] != "0") {
-				conjunto.push(conjuntos[i][j])
-			}
-		}
-		if (conjunto.length == 0) {
-			conjunto.push(simboloConjuntoVacio)
-		}
-		conjuntoSolucion.push(conjunto.join(""))
-	}
-
-	return conjuntoSolucion
-
-}
 /*
 Description:
 Esta funcion ordena alfabeticamente los elementos de un array(String)
@@ -142,47 +123,47 @@ crearYMostrarMensaje(Objeto)
 function crearYMostrarMensaje(tipo,msg){
 
 
+//problema por que a si se llama la variable del audio
+
+var notification = new Audio("/audio/notificacion.mp3")
+
+var contenedorMSG = document.createElement("article")
+contenedorMSG.classList.add("contenedorMensaje")
+var mensaje = document.createElement("p")
+var contenedorIcon = document.createElement("article")
+var contenedorMensaje = document.createElement("article")
+mensaje.innerHTML= msg
+var icono = document.createElement("span")
+contenedorMSG.classList.add("MSG")
+
+if (tipo == 0){
+	var icon = document.createElement("img")
+	icon.src = "../img/correcto.png"
+}else if(tipo == 1){
+	var icon = document.createElement("img")
+	icon.src = "../img/incorrecto.png"
+}
+else if(tipo == 2){
+	var icon = document.createElement("img")
+	icon.src = "../img/informacion.png"
+}
+
+icon.classList.add("contenedorIcon")
+mensaje.classList.add("contenedorMensaje")
+
+var top = window.window.scrollY
+contenedorMSG.appendChild(icon)
+contenedorMSG.appendChild(mensaje)
+notification.play()
+
+contenedorMSG.setAttribute("style", "top:" + top + "px")
 
 
-	var notification = new Audio("/audio/notificacion.mp3")
+contenedorPrincipal.appendChild(contenedorMSG)
 
-		var contenedorMSG = document.createElement("article")
-		contenedorMSG.classList.add("contenedorMensaje")
-		var mensaje = document.createElement("p")
-		var contenedorIcon = document.createElement("article")
-		var contenedorMensaje = document.createElement("article")
-		mensaje.innerHTML= msg
-		var icono = document.createElement("span")
-		contenedorMSG.classList.add("MSG")
-
-		if (tipo == 0){
-			var icon = document.createElement("img")
-			icon.src = "../img/correcto.png"
-		}else if(tipo == 1){
-			var icon = document.createElement("img")
-			icon.src = "../img/incorrecto.png"
-		}
-		else if(tipo == 2){
-			var icon = document.createElement("img")
-			icon.src = "../img/informacion.png"
-		}
-
-		icon.classList.add("contenedorIcon")
-		mensaje.classList.add("contenedorMensaje")
-
-		var top = window.window.scrollY
-		contenedorMSG.appendChild(icon)
-		contenedorMSG.appendChild(mensaje)
-		notification.play()
-
-		contenedorMSG.setAttribute("style", "top:" + top + "px")
-
-
-		contenedorPrincipal.appendChild(contenedorMSG)
-
-		setTimeout(function(){
-			contenedorPrincipal.removeChild(contenedorPrincipal.lastChild)
-		}, 2000)
+setTimeout(function(){
+	contenedorPrincipal.removeChild(contenedorPrincipal.lastChild)
+}, 2000)
 
 }
 

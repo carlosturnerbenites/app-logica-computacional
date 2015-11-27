@@ -1,5 +1,5 @@
-var express = require("express"),
-router = express.Router()
+var express = require("express"), 						//Definir un modulo de express
+router = express.Router() 								//Definir un modulo de router
 
 var temas = {
 	cursoUno:{
@@ -24,26 +24,32 @@ var temas = {
 	}
 }
 
+/*Callbacks para rutas*/
 function todosLosEjercicios(request, response,next) {
 	response.render('todosLosEjercicios',{"temas":temas})
 }
+
 function ejercicioConjuntos(request, response,next) {
 	response.render('ejercicios/conjuntos')
 }
+
 function ejercicioGrafos(request, response,next) {
 	response.render('ejercicios/grafos')
 }
+
 function ejercicioCalculoProposicional(request, response,next) {
 	response.render('ejercicios/calculoProposicional')
 }
+
 function ejercicioTablasDeVerdad(request, response,next) {
 	response.render('ejercicios/tablasDeVerdad')
 }
 
+/*Definicion de rutas*/
 router.get('',todosLosEjercicios)
 router.get('/conjuntos',ejercicioConjuntos)
 router.get('/grafos',ejercicioGrafos)
 router.get('/calculoProposicional',ejercicioCalculoProposicional)
 router.get('/tablasDeVerdad',ejercicioTablasDeVerdad)
 
-module.exports = router
+module.exports = router 							//Exportar router

@@ -29,6 +29,8 @@ var msgEjercicioCompletado = "Listo, el ejercicio es correcto."
 
 //msg usado en calculo proposicional
 ,msgNoHaySeleccion = "No has escogido ningun Conector."
+//msg usado en calculo proposicional
+,msgConfirmacionAbandonarPestana = "Si cierra se perdera todo el progreso."
 
 //msg usado en grafo
 ,msgLienzoNoHabilitado = "El lienzo no esta habilitado"
