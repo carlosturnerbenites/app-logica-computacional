@@ -327,7 +327,6 @@ function guardarGrafo(evento){
 
 	var grafo = capturarGrafo()
 
-
 	if (typeof grafo != "undefined"){
 
 		var oReq = new XMLHttpRequest();
@@ -337,7 +336,7 @@ function guardarGrafo(evento){
 				crearYMostrarMensaje(mensaje.tipoMensaje,mensaje.mensaje)
 				var linkDownload = document.getElementById("linkDownload_js")
 				linkDownload.href = mensaje.file
-				//linkDownload.click()
+				linkDownload.click()
 			}
 		}
 

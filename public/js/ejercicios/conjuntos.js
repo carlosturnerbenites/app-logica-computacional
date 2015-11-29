@@ -1,5 +1,5 @@
-
-var simboloConjuntoVacio = "Ø"															//Simbolo que representa al conjunto vacio en los elementos de un conjunto, se utilizapara validar la respuesta a los conjuntos
+var
+var simboloConjuntoVacio = "Ø"	//Simbolo que representa al conjunto vacio en los elementos de un conjunto, se utilizapara validar la respuesta a los conjuntos
 
 var formConjuntos = document.getElementById("formConjuntos_js")
 ,conjuntoIngresado = document.getElementById("conjuntoIngresado_js")
@@ -22,17 +22,15 @@ function captureSetSelected(evento) {
 
 	var nameSet = inputNameSet.value
 
-	var contenedorNombreCojunto = document.createElement("span")
-	contenedorNombreCojunto.innerText = nameSet.toUpperCase()
+	var contenedorNombreCojunto = createElementDOM("span").text(nameSet.toUpperCase())
 
 	elementsSet = document.getElementById("elementosCojuntos_js").value
-
 
 	var estado = validateSet(elementsSet)
 
 	if (estado){
 
-		habilitarInhabilitarFormulario(this)
+		this.enableDisabled()
 
 		if (ValidarCampoVacio(elementsSet) && ValidarCampoVacio(nameSet)) {
 
@@ -52,7 +50,7 @@ function captureSetSelected(evento) {
 			.on("keypress", disabledKeys)
 
 			seccionRespuesta.append(htmlHrSeparadorContenido,containerSet,respuesta,btnValidar)
-			.on("submit",validateAnswer)
+			.on("submit",validateResponse)
 
 		}else{
 			vaciarCampo(nameSet)
@@ -64,11 +62,11 @@ function captureSetSelected(evento) {
 	}
 }
 
-function validateAnswer(evento) {
+function validateResponse(evento) {
 
 	evento.preventDefault()
 
-	var userResponse = document.getElementById("respuesta")
+	var userResponse = getElemtDOM("#respuesta")
 	var binarios = []
 	var setSoltion
 
@@ -92,20 +90,16 @@ function validateAnswer(evento) {
 		elementsSetUserResponseOrdered.sort()
 
 		if (compareArrays(setSoltion ,elementsSetUserResponseOrdered)) {
-
-			habilitarInhabilitarInput(userResponse)
+			userResponse.enableDisabled()
 
 			var mensaje = {tipoMensaje : 0, mensaje : msgEjercicioCompletado}
 
-			seccionRespuesta.removeEventListener("submit", validateAnswer)
+			seccionRespuesta.removeEventListener("submit", validateResponse)
 			seccionRespuesta.addEventListener("submit", restareExercise)
 			seccionRespuesta.replaceChild(btnVolver, btnValidar)
 
-
-
 		}else{
 			var mensaje = {tipoMensaje : 1, mensaje : msgErrorEnEjercicio}
-
 		}
 	}else{
 		var mensaje = {tipoMensaje : 1, mensaje : msgErrorEnEjercicio}
@@ -115,35 +109,24 @@ function validateAnswer(evento) {
 
 function validateSet(elementsSet){
 
-	var campoValido = true
+	var countryValid = false
 
-	var formatoCorrectoDeConjuntos = /(^([\w|\d])\b)+(([(,)+(\w|\d)+(,)])\b)+(([\w|\d])\b)$/g
+	var formatSet = /(^([\w|\d])\b)+(([(,)+(\w|\d)+(,)])\b)+(([\w|\d])\b)$/g
+	elementsSet = elementsSet.split(",")
 
-	if((formatoCorrectoDeConjuntos.test(elementsSet))){
-		elementsSet = elementsSet.split(",")
+	if((formatSet.test(elementsSet))){
 
-		for (var contUno = 0; contUno < elementsSet.length; contUno++) {
-			for (var contDos = 0; contDos < elementsSet.length; contDos++) {
-				if (contUno != contDos) {
-					if (elementsSet[contUno] == elementsSet[contDos]) {
-						campoValido = false
-					}
-				}
-			}
+		if (!elementsSet.FindElementsEquals()) {
+			countryValid = true
 		}
-	}else {
-		campoValido =  false
+
 	}
 
-	if (campoValido){
-		//pass
-	}else{
-		campoValido =  false
+	if (!countryValid) {
 		crearYMostrarMensaje(1,msgErrorSintaxis)
 	}
 
-
-	return campoValido
+	return countryValid
 }
 
 function restareExercise (evento) {
@@ -153,8 +136,8 @@ function restareExercise (evento) {
 	ejecicioEnEjecucion = false
 
 	formConjuntos.addEventListener("submit", captureSetSelected)
-	habilitarInhabilitarFormulario(formConjuntos)
-	limpiarContenedorHTML(seccionRespuesta)
+	formConjuntos.enableDisabled()
+	seccionRespuesta.removeAllChildrens()
 	seccionRespuesta.removeEventListener("submit", restareExercise)
 	formConjuntos.reset()
 }

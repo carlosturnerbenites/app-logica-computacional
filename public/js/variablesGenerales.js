@@ -39,20 +39,25 @@ var msgEjercicioCompletado = "Listo, el ejercicio es correcto."
 ,msgElementoExistente = "Esta linea ya existe"
 
 
-var btnVolver = document.createElement("button")
-btnVolver.innerHTML = innerHTMLBtnVolver
-btnVolver.id = "btnReiniciarEjercicio_js"
-btnVolver.classList.add("centrarConMargin","btn" ,"btnConfirmar")
-btnVolver.setAttribute("type", "submit")
-var HTMLSpanIconoBtn = document.createElement("span")
-HTMLSpanIconoBtn.classList.add(iconoBtnVolver,"marginIconos")
+var btnVolver = createElementDOM("button")
+.text(innerHTMLBtnVolver)
+.addClass("centrarConMargin","btn" ,"btnConfirmar")
+.setAttrs({"type" : "submit","id" : "btnReiniciarEjercicio_js"})
+
+var HTMLSpanIconoBtn = createElementDOM("span")
+.addClass(iconoBtnVolver,"marginIconos")
+
+//Falta crear esta funcion
 btnVolver.insertBefore(HTMLSpanIconoBtn, btnVolver.firstChild)
 
-var btnValidar = document.createElement("button")
-btnValidar.innerHTML = innerHTMLBtnVerificar
-btnValidar.id = "btnValidargrafo"
-btnValidar.classList.add("btn","btnConfirmar","centrarConMargin")
-btnValidar.setAttribute("type", "submit")
-var HTMLSpanIconoBtn = document.createElement("span")
-HTMLSpanIconoBtn.classList.add(iconoBtnVerificar,"marginIconos")
+
+var btnValidar = createElementDOM("button")
+.text(innerHTMLBtnVerificar)
+.addClass("btn","btnConfirmar","centrarConMargin")
+.setAttrs({"type" : "submit","id" : "btnValidargrafo"})
+
+var HTMLSpanIconoBtn = createElementDOM("span")
+.addClass(iconoBtnVerificar,"marginIconos")
+
+//Falta crear esta funcion
 btnValidar.insertBefore(HTMLSpanIconoBtn, btnValidar.firstChild)

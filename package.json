@@ -26,5 +26,12 @@
     "save-svg-as-png": "^1.0.1",
     "stylus": "^0.52.4",
     "supervisor": "^0.9.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.10.0",
+    "gulp": "^3.9.0",
+    "gulp-nodemon": "^2.0.4",
+    "gulp-stylus": "^2.1.0",
+    "nib": "^1.1.0"
   }
 }

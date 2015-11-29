@@ -6,9 +6,9 @@ function compareArrays(arrayOne,arrayTwo){
 		return false
 	}
 }
+
 function getElemtDOM(selector){
-	element = document.querySelector(selectortraducir
-		)
+	element = document.querySelector(selector)
 	return element
 }
 
@@ -40,6 +40,27 @@ Array.prototype.getElementRandom = function(){
 	return elementRandom
 }
 
+Array.prototype.FindElementsEquals = function(){
+	var elementsEqual = false
+
+	for (var contUno = 0; contUno < this.length; contUno++) {
+		for (var contDos = 0; contDos < this.length; contDos++) {
+			if (contUno != contDos) {
+				if (this[contUno] == this[contDos]) {
+					elementsEqual = true
+				}
+			}
+		}
+	}
+
+	if (elementsEqual){
+		return true
+	}else{
+
+		return false
+	}
+}
+
 
 String.prototype.toArray = function() {
 	return this.split('');
@@ -51,16 +72,28 @@ HTMLFormElement.prototype.enableDisabled = function(){
 	var elements = this.elements
 
 	for (var i = 0,element; element = elements[i]; i++) {
-		this.enableDisabled()
+		if(element.disabled){
+			element.removeAttribute("disabled")
+		}else{
+			element.setAttribute("disabled","disabled")
+		}
 	}
 }
 
-HTMLInputElement.prototype.enableDisabled = function(){
+HTMLElement.prototype.enableDisabled = function(){
 	if(this.disabled){
 		this.removeAttribute("disabled")
 	}else{
 		this.setAttribute("disabled","disabled")
 	}
+}
+
+
+HTMLElement.prototype.removeAllChildrens = function(){
+	while (this.firstChild) {
+		this.removeChild(this.firstChild)
+	}
+	return this
 }
 
 Node.prototype.addClass = function(){
