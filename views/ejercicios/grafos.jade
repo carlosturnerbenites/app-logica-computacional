@@ -5,41 +5,41 @@ block title
 block ayuda
 	p Hola, para realizar el ejercicio sigue los paso que damos a continuación.
 	ol
-		li Selecciona el número de vertices y aristas con los que quieres dibujar tu Grafo y presiona 
+		li Selecciona el número de vertices y aristas con los que quieres dibujar tu Grafo y presiona
 			span.btn.btnEnviar Realizar Ejercicio
 		p Luego
-		li Empieza a dibujar y cuando este listo presiona 
+		li Empieza a dibujar y cuando este listo presiona
 			b.btn.btnConfirmar Verificar
 		p Despues
-		li Ingresa el grado de cada uno de los vertices y para terminar oprime de nuevo 
+		li Ingresa el grado de cada uno de los vertices y para terminar oprime de nuevo
 			b.btn.btnConfirmar Verificar
 
-		
+
 
 block content
 	h1.textoCentrado Grafos
 	p Dibuja en el lienzo lo que quieras dibujar, define los parametros y ponte a graficar. Para mas informacion ve a
 		span.btn.btnAyuda.marginLateral Ayuda
-		
+
 	section#mouseCotrols_js.controles
 		h3.textoCentrado Para graficar recuerda esto...
-		
+
 		section.mouse#actionsMouse_js
 			article.bottonUno#MousebotonUno_js
 			article.bottonDos#MousebotonDos_js
 			article.bottonTres#MousebotonTres_js
 		p.textoDescripcion Presiona los botones del mouse dentro del grafico para ver su funcion.
 		ul
-			li 
+			li
 				strong Clic Derecho :
 				| Enlazar Vertices
-			li 
+			li
 				strong Clic Izquierdo :
 				| Crear Vertices
-			li 
+			li
 				strong Rueda(Clic Central Sostenido) :
 				| Mover Vertices
-			li 
+			li
 				strong Rueda(Doble Clic) :
 				| Eliminar Elemento
 	section.EjercicioPropuesto
@@ -56,7 +56,7 @@ block content
 				section
 					label.marginLateral.btn.btnEnviar(for="cargarGrafo_js")
 						span.icon-upload
-						span.marginIconos Subir 
+						span.marginIconos Subir
 					input.inputSubirGrafo(type="file" id="cargarGrafo_js" accept=".grf")
 			a#linkDownload_js(href="")
 		form#htmlFormGrafos_js.formGrafos
@@ -96,5 +96,6 @@ block content
 
 block script
 	script(src='/js/lib/saveSvgAsPng.js')
+	script(src='/js/lib/myLibrary.js')
 	script(src='/js/ejercicios/mouse.js')
 	script(src='/js/ejercicios/grafos.js')

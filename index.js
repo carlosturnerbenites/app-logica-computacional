@@ -3,6 +3,7 @@ http = require('http'),									//Definir el modulo http de nodeJS
 fs = require('fs'),										//Definir el modulo de Archivos del sistema de NodeJS
 stylus = require('stylus'),								//Definir el modulo de Stylus
 nib = require('nib'),									//Definir el modulo de nib
+colors = require("colors"),								//modulo para pintar colores en terminal
 bodyParser = require('body-parser'),					//Definir el modulo parseador - usado en los request
 app = express(),										//Crear aplicacion express
 server = http.createServer(app)							//Crear un servidor http basado en la app de Express
@@ -36,6 +37,15 @@ app.use(function(req, res, next) {
 	else
 		next();
 })
+
+if (process.env.NODE_ENV == 'dev' || process.env.NODE_ENV == undefined){
+	var config = require("./config/configDev.json")
+}else if(process.env.NODE_ENV == 'prod'){
+	var config = require("./config/configProd.json")
+}else{
+	console.log(colors.red("Enviroment undefined.") + " Enviroment valid: " + colors.black.bgWhite("dev") + " or " + colors.black.bgWhite("prod"))
+	process.exit()
+}
 
 app.use(express.static('public'))						//Definir ruta de archivos estaticos
 
@@ -98,6 +108,8 @@ function compile(str, path) {
 	.set('filename', path)
 	.use(nib())
 }
-
-server.listen(process.env.PORT || 8000)					//Configurra el puerto. "process.env.PORT" es una variable que hace referencia al puerto a escuchar - Utilizada para heroku
+server.listen(process.env.PORT || 8000,function (){
+	console.log("Run server".black.bold.bgWhite)
+	console.log("Enviorment: ".green.bold + colors.black.bgWhite(config.env))
+})					//Configurra el puerto. "process.env.PORT" es una variable que hace referencia al puerto a escuchar - Utilizada para heroku
 

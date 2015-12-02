@@ -8,7 +8,7 @@ var nib = require('nib')
 
 // we'd need a slight delay to reload browsers
 // connected to browser-sync after restarting nodemon
-var BROWSER_SYNC_RELOAD_DELAY = 500;
+var BROWSER_SYNC_RELOAD_DELAY = 10;
 
 gulp.task('nodemon', function (cb) {
 	var called = false;
@@ -41,7 +41,7 @@ gulp.task('browser-sync', ['nodemon'], function () {
   browserSync({
 
     // informs browser-sync to proxy our expressjs app which would run at the following location
-    proxy: 'http://localhost:8000',
+    proxy: 'http://localhost:3000',
 
     // informs browser-sync to use the following port for the proxied app
     // notice that the default port is 3000, which would clash with our expressjs
@@ -66,7 +66,7 @@ gulp.task('stylus', ['css'], function () {
 	});
 
 gulp.task('css',function () {
-	return gulp.src('public/css/*.css')
+	return gulp.src('public/css/styles.css')
 	.pipe(browserSync.reload({ stream: true }));
 	})
 

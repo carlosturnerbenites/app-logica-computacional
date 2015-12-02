@@ -10,17 +10,17 @@ var temas = {
 	cursoDos:{
 		curso: "Tablas de Verdad",
 		urlCurso:"/cursos/tablasDeVerdad",
-		descripcion:"Conceptos fundamentales de 	Tablas de Verdad, que serviran de pivot para la resolucion de los ejercicios planteados en AppComLogica."
+		descripcion:"Conceptos fundamentales de Tablas de Verdad, que serviran de pivot para la resolucion de los ejercicios planteados en AppComLogica."
 	},
 	cursoTres:{
 		curso: "Conjuntos",
 		urlCurso:"/cursos/conjuntos",
-		descripcion:"Conceptos fundamentales de 	Conjuntos, que serviran de pivot para la resolucion de los ejercicios planteados en AppComLogica."
+		descripcion:"Conceptos fundamentales de Conjuntos, que serviran de pivot para la resolucion de los ejercicios planteados en AppComLogica."
 	},
 	cursoCuatro:{
 		curso: "Grafos",
 		urlCurso:"/cursos/grafos",
-		descripcion:"Conceptos fundamentales de 	Grafos, que serviran de pivot para la resolucion de los ejercicios planteados en AppComLogica."
+		descripcion:"Conceptos fundamentales de Grafos, que serviran de pivot para la resolucion de los ejercicios planteados en AppComLogica."
 	}
 }
 
