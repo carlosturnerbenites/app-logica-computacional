@@ -1,4 +1,4 @@
-var audio = new Audio("/audio/audiop.mp3")	//Elemento Audio
+ var audio = new Audio("/audio/audiop.mp3")	//Elemento Audio
 ,minVolumen = 0								//Volumen minimo
 ,maxVolumen = 1								//Volumen maximo
 ,mediumVolumen = maxVolumen/2				//Volumen medio

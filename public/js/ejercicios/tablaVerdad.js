@@ -1,5 +1,5 @@
-//Filas de la tabla de verdad
-var respuestas = []
+ //Filas de la tabla de verdad
+ var respuestas = []
 
 //valores posibles de una Tablas de Verdad
 ,posiblesValores = ["V", "F"]
@@ -79,8 +79,8 @@ function crearEjercicio(evento) {
 						arrayProposiciones.splice(star, 2)
 						star+=1
 					}
-			}
-			expresionFinal = arrayProposiciones[0]
+				}
+				expresionFinal = arrayProposiciones[0]
 			}
 
 			for (var l = 0, propComp; propComp = arrayProposiciones[l]; l++) {
@@ -91,7 +91,7 @@ function crearEjercicio(evento) {
 						th.setAttribute("expresionASolucionar","true")
 						tr.appendChild(th)
 					}
-					}
+				}
 			}
 			var thResponseFinal = document.createElement("th")
 			thResponseFinal.id = "expresionASolucionar_js"
@@ -163,7 +163,7 @@ function crearEjercicio(evento) {
 	habilitarInhabilitarFormulario(this)
 
 	var expresionASolucionar = document.getElementById("expresionASolucionar_js")
-console.warn(arrayProposiciones);
+	console.warn(arrayProposiciones);
 
 	for (var p = 0,prop; prop = arrayProposiciones[p]; p++) {
 		if (prop.constructor.name == proposicion.name){

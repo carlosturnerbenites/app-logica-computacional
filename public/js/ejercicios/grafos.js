@@ -1,8 +1,8 @@
 var htmlInputgrafoCompleto = document.getElementById("htmlInputgrafoCompleto_js")
-var htmlFormVerificarDatosGrafo = document.getElementById("htmlFormVerificarDatosGrafo_js")
-var htmlFormGrafos = document.getElementById("htmlFormGrafos_js")
-var htmlInputCantidadVertices = document.getElementById("htmlInputCantidadVertices_js")
-var htmlInputCantidadAristas = document.getElementById("htmlInputCantidadAristas_js")
+,htmlFormVerificarDatosGrafo = document.getElementById("htmlFormVerificarDatosGrafo_js")
+,htmlFormGrafos = document.getElementById("htmlFormGrafos_js")
+,htmlInputCantidadVertices = document.getElementById("htmlInputCantidadVertices_js")
+,htmlInputCantidadAristas = document.getElementById("htmlInputCantidadAristas_js")
 
 var DLGrapAsFile = document.getElementById("DLGrapAsFile_js")
 ,DLGrapAsPNG = document.getElementById("DLGrapAsPNG_js")
@@ -334,9 +334,7 @@ function guardarGrafo(evento){
 			if (oReq.readyState == 4) {
 				var mensaje = JSON.parse(oReq.responseText)
 				crearYMostrarMensaje(mensaje.tipoMensaje,mensaje.mensaje)
-				var linkDownload = document.getElementById("linkDownload_js")
-				linkDownload.href = mensaje.file
-				linkDownload.click()
+
 			}
 		}
 
@@ -378,11 +376,9 @@ function cargarGrafo(evento) {
 }
 
 function crearGrafo(elementos){
-
-	for(var elemento of elementos){
+	for (var i = 0, elemento; elemento = elementos[i]; i++) {
 
 		var data = elemento.data
-
 		if (elemento.type == "line"){
 			dibujarLinea(data.x1,data.y1,data.x2,data.y2,data.name,data.origen,data.destino)
 		}else{

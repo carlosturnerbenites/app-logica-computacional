@@ -1,4 +1,4 @@
-(function() {
+ (function() {
   var out$ = typeof exports != 'undefined' && exports || this;
 
   var doctype = '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
@@ -82,9 +82,9 @@
 
   function getDimension(el, clone, dim) {
     return (clone.getAttribute(dim) !== null && !clone.getAttribute(dim).match(/%$/) && parseInt(clone.getAttribute(dim))) ||
-      el.getBoundingClientRect()[dim] ||
-      parseInt(clone.style[dim]) ||
-      parseInt(window.getComputedStyle(el).getPropertyValue(dim));
+    el.getBoundingClientRect()[dim] ||
+    parseInt(clone.style[dim]) ||
+    parseInt(window.getComputedStyle(el).getPropertyValue(dim));
   }
 
   out$.svgAsDataUri = function(el, options, cb) {
@@ -145,29 +145,29 @@
         cb(uri);
       }
     });
-  }
+}
 
-  out$.saveSvgAsPng = function(el, name, options) {
-    options = options || {};
-    out$.svgAsDataUri(el, options, function(uri) {
-      var image = new Image();
-      image.onload = function() {
-        var canvas = document.createElement('canvas');
-        canvas.width = image.width;
-        canvas.height = image.height;
-        var context = canvas.getContext('2d');
-        context.drawImage(image, 0, 0);
+out$.saveSvgAsPng = function(el, name, options) {
+  options = options || {};
+  out$.svgAsDataUri(el, options, function(uri) {
+    var image = new Image();
+    image.onload = function() {
+      var canvas = document.createElement('canvas');
+      canvas.width = image.width;
+      canvas.height = image.height;
+      var context = canvas.getContext('2d');
+      context.drawImage(image, 0, 0);
 
-        var a = document.createElement('a');
-        a.download = name;
-        a.href = canvas.toDataURL('image/png');
-        document.body.appendChild(a);
-        a.addEventListener("click", function(e) {
-          a.parentNode.removeChild(a);
-        });
-        a.click();
-      }
-      image.src = uri;
-    });
-  }
+      var a = document.createElement('a');
+      a.download = name;
+      a.href = canvas.toDataURL('image/png');
+      document.body.appendChild(a);
+      a.addEventListener("click", function(e) {
+        a.parentNode.removeChild(a);
+      });
+      a.click();
+    }
+    image.src = uri;
+  });
+}
 })();

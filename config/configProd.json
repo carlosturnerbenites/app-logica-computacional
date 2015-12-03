@@ -1,4 +1,5 @@
 {
-	"env" : "Production"
+	"env" : "Production",
+	"directoryStaticFiles" : "dist"
 }
 

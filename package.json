@@ -1,38 +1,41 @@
 {
-	"name": "ProyectoLogicaComputacional",
-	"version": "1.0.0",
-	"description": "Aplicación web destinada a ayudar en el aprendizaje en el espacio académico de Lógica Computacional. Contara con cursos y ejercicios para los usuarios.",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "node index.js"
-		},
-		"repository": {
-			"type": "git",
-			"url": "https://github.com/carlosturnerbenites/AppLogicaComputacional.git"
-			},
-			"author": "Carlos Turner Benites",
-			"license": "MIT",
-			"bugs": {
-				"url": "https://github.com/carlosturnerbenites/AppLogicaComputacional/issues"
-				},
-				"homepage": "https://github.com/carlosturnerbenites/AppLogicaComputacional",
-				"dependencies" : {
-					"save-svg-as-png": "^1.0.1",
-					"supervisor": "^0.9.1"
-					},
-					"devDependencies": {
-						"browser-sync": "^2.10.0",
-						"colors": "^1.1.2",
-						"gulp": "^3.9.0",
-						"gulp-nodemon": "^2.0.4",
-						"gulp-stylus": "^2.1.0",
-						"nib": "^1.1.0",
-						"body-parser": "^1.14.1",
-						"express": "^4.13.3",
-						"jade": "^1.11.0",
-						"nib": "^1.1.0",
-						"routes": "^2.1.0",
-						"stylus": "^0.52.4"
-					}
-				}
+  "name": "ProyectoLogicaComputacional",
+  "version": "1.0.0",
+  "description": "Aplicación web destinada a ayudar en el aprendizaje en el espacio académico de Lógica Computacional. Contara con cursos y ejercicios para los usuarios.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=prod node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/carlosturnerbenites/AppLogicaComputacional.git"
+  },
+  "author": "Carlos Turner Benites",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/carlosturnerbenites/AppLogicaComputacional/issues"
+  },
+  "homepage": "https://github.com/carlosturnerbenites/AppLogicaComputacional",
+  "dependencies": {
+    "save-svg-as-png": "^1.0.1"
+  },
+  "devDependencies": {
+    "body-parser": "^1.14.1",
+    "colors": "^1.1.2",
+    "express": "^4.13.3",
+    "gulp": "^3.9.0",
+    "gulp-copy": "0.0.2",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-strip-debug": "^1.1.0",
+    "gulp-stylus": "^2.1.0",
+    "gulp-uglify": "^1.5.1",
+    "gulp-util": "^3.0.7",
+    "nib": "^1.1.0",
+    "routes": "^2.1.0",
+    "stylus": "^0.52.4",
+    "supervisor": "^0.9.1"
+  }
+}

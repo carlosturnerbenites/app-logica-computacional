@@ -1,81 +1,81 @@
-'use strict';
+var gulp = require('gulp')
+,uglify = require('gulp-uglify')
+,gulpUtil = require('gulp-util')
+,imagemin = require('gulp-imagemin')
+,stripDebug = require('gulp-strip-debug')
+,notify = require("gulp-notify")
+,stylus = require('gulp-stylus')
+,nib = require('nib')
+,rename = require('gulp-rename')
+,colors = require('colors')
 
-var gulp = require('gulp');
-var browserSync = require('browser-sync');
-var nodemon = require('gulp-nodemon');
-var stylus = require('gulp-stylus')
-var nib = require('nib')
+var srcIMG = 'public/img/**/*'
 
-// we'd need a slight delay to reload browsers
-// connected to browser-sync after restarting nodemon
-var BROWSER_SYNC_RELOAD_DELAY = 10;
+,srcJS = 'public/js/**/*.js'
 
-gulp.task('nodemon', function (cb) {
-	var called = false;
-	return nodemon({
+,srcCSS = 'public/stylus/**/*.styl'
+,srcStyle = 'public/stylus/styles.styl'
 
-    // nodemon our expressjs server
-    script: 'index.js',
+function changePath(path){
+	var destPath = path.replace("public","dist").replace(/\/+\w+\.+(js|css|styl|png|jpg||svg)/,"")
+	if(destPath.indexOf("stylus") != -1){
+		destPath = destPath.replace("stylus","css")
+	}
+	return destPath
+}
 
-    // watch core server file(s) that require server restart on change
-    watch: './public/'
-    })
-	.on('start', function onStart() {
-      // ensure start only got called once
-      if (!called) { cb(); }
-      called = true;
-      })
-	.on('restart', function onRestart() {
-      // reload connected browsers after a slight delay
-      setTimeout(function reload() {
-      	browserSync.reload({
-      		stream: false
-      		});
-      	}, BROWSER_SYNC_RELOAD_DELAY);
-      });
-	});
+function minJS(file){
 
-gulp.task('browser-sync', ['nodemon'], function () {
+	var destJS = changePath(file.path)
 
-  // for more browser-sync config options: http://www.browsersync.io/docs/options/
-  browserSync({
+	gulp
+	.src(file.path)
+	.pipe(stripDebug())
+	.pipe(uglify().on('error', gulpUtil.log))
+	//.pipe(rename({suffix: "-min",}))
+	.pipe(gulp.dest(destJS))
+	.pipe(notify({
+		title : "Javascript",
+		message: "Minified file: <%= file.relative %>"
+		}))
 
-    // informs browser-sync to proxy our expressjs app which would run at the following location
-    proxy: 'http://localhost:3000',
+}
 
-    // informs browser-sync to use the following port for the proxied app
-    // notice that the default port is 3000, which would clash with our expressjs
-    port: 4000,
+function compileStyl(file) {
 
-    // open the proxied app in chrome
-    browser: ['google-chrome']
-    });
-  });
+	var destCSS = changePath(file.path)
 
-gulp.task('js',  function () {
-	return gulp.src('public/js/*.js')
-    // do stuff to JavaScript files
-    //.pipe(uglify())
-    //.pipe(gulp.dest('...'));
-    });
-
-gulp.task('stylus', ['css'], function () {
-	return gulp.src('public/stylus/styles.styl')
+	gulp
+	.src(file.path)
 	.pipe(stylus({use: nib(),compress: true}))
-	.pipe(gulp.dest('public/css/'))
-	});
+	.pipe(gulp.dest(destCSS))
+	.pipe(notify({
+		title : "Stylus",
+		message: "Compile : <%= file.relative %>"
+		}))
+}
 
-gulp.task('css',function () {
-	return gulp.src('public/css/styles.css')
-	.pipe(browserSync.reload({ stream: true }));
-	})
+function minImg(file){
+	var destIMG = changePath(file.path)
 
-gulp.task('bs-reload', function () {
-	browserSync.reload();
-	});
 
-gulp.task('default', ['browser-sync'], function () {
-	gulp.watch('public/js/*.js', ['js', browserSync.reload]);
-	gulp.watch('public/stylus/**/*.styl', ['stylus']);
-	gulp.watch('views/**/*.jade', ['bs-reload']);
+	gulp
+	.src(file.path)
+	.pipe(imagemin({
+		progressive: true,
+		svgoPlugins: [{removeViewBox: false}]
+		}))
+	.pipe(gulp.dest(destIMG))
+	.pipe(notify({
+		title : "Image",
+		message: "Minified file: <%= file.relative %>"
+		}))
+}
+
+gulp.task('default', function () {
+
+	gulp.watch(srcJS).on('change',minJS)
+	gulp.watch(srcCSS).on('change',compileStyl).on('added',compileStyl)
+	gulp.watch(srcIMG).on('change',minImg)
+
 	});

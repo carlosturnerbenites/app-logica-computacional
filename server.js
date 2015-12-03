@@ -8,6 +8,15 @@ bodyParser = require('body-parser'),					//Definir el modulo parseador - usado e
 app = express(),										//Crear aplicacion express
 server = http.createServer(app)							//Crear un servidor http basado en la app de Express
 
+if (process.env.NODE_ENV == 'dev' || process.env.NODE_ENV == undefined){
+	var config = require("./config/configDev.json")
+}else if(process.env.NODE_ENV == 'prod'){
+	var config = require("./config/configProd.json")
+}else{
+	console.log(colors.red("Enviroment undefined.") + " Enviroment valid: " + colors.black.bgWhite("dev") + " or " + colors.black.bgWhite("prod"))
+	process.exit()
+}
+
 var refCursos = require('./modulesApp/cursos')			//Definir el modulo(custom) con las configuraciones de los cursos
 refEjercicios = require('./modulesApp/ejercicios'),		//Definir el modulo(custom) con las configuraciones de los ejercicios
 refGeneral = require('./modulesApp/general'),			//Definir el modulo(custom) con las configuraciones generales
@@ -38,14 +47,6 @@ app.use(function(req, res, next) {
 		next();
 })
 
-if (process.env.NODE_ENV == 'dev' || process.env.NODE_ENV == undefined){
-	var config = require("./config/configDev.json")
-}else if(process.env.NODE_ENV == 'prod'){
-	var config = require("./config/configProd.json")
-}else{
-	console.log(colors.red("Enviroment undefined.") + " Enviroment valid: " + colors.black.bgWhite("dev") + " or " + colors.black.bgWhite("prod"))
-	process.exit()
-}
 
 
 
@@ -119,7 +120,7 @@ collection.insert([user1, user2, user3], function (err, result) {
 
 
 
-app.use(express.static('public'))						//Definir ruta de archivos estaticos
+app.use(express.static(config.directoryStaticFiles))						//Definir ruta de archivos estaticos
 
 app.post("/guardarGrafo",guardarGrafo)					//Direccion para funcionalidad de guardar grafos
 
@@ -167,7 +168,7 @@ function guardarGrafo(req,res){
 
 			fs.writeFile(pathFile, dataGrafo, function (err) {
 				if (err) throw err;})
-			res.send({mensaje : "Guardado correctamente",tipoMensaje :0,pathFile:"/"+nameFileEnd + extensionFile})
+			res.send({mensaje : "Guardado correctamente",tipoMensaje :0})
 		} else {
 		}
 	});

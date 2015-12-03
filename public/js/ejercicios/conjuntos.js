@@ -1,13 +1,12 @@
-var
-var simboloConjuntoVacio = "Ø"	//Simbolo que representa al conjunto vacio en los elementos de un conjunto, se utilizapara validar la respuesta a los conjuntos
+ var simboloConjuntoVacio = "Ø"	//Simbolo que representa al conjunto vacio en los elementos de un conjunto, se utilizapara validar la respuesta a los conjuntos
 
-var formConjuntos = document.getElementById("formConjuntos_js")
-,conjuntoIngresado = document.getElementById("conjuntoIngresado_js")
-,seccionRespuesta = document.getElementById("seccionRespuesta_js")
-,inputNameSet = document.getElementById("nombreConjunto_js")
-,htmlRadioConjuntosPropio = document.getElementById("htmlRadioConjuntosPropio_js")
-,htmlRadioConjuntosImpropio = document.getElementById("htmlRadioConjuntosImpropio_js")
-,elementsSet = null
+ var formConjuntos = document.getElementById("formConjuntos_js")
+ ,conjuntoIngresado = document.getElementById("conjuntoIngresado_js")
+ ,seccionRespuesta = document.getElementById("seccionRespuesta_js")
+ ,inputNameSet = document.getElementById("nombreConjunto_js")
+ ,htmlRadioConjuntosPropio = document.getElementById("htmlRadioConjuntosPropio_js")
+ ,htmlRadioConjuntosImpropio = document.getElementById("htmlRadioConjuntosImpropio_js")
+ ,elementsSet = null
 
 /*
 Primary functions
