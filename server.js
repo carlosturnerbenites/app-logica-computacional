@@ -23,7 +23,7 @@ refGeneral = require('./modulesApp/general'),			//Definir el modulo(custom) con 
 
 app.set('views', __dirname + '/views')					//Definir el directorio para las vistas
 
-app.locals.pretty = true;								//Conf Jade - No comprimir html con jade
+app.locals.pretty = false;								//Conf Jade - No comprimir html con jade
 app.set('view engine', 'jade')							//Definir motor de vistas
 
 app.use('/cursos',refCursos)							//Usar las configuraciones(custom) de los cursos
@@ -186,3 +186,4 @@ server.listen(process.env.PORT || 8000,function (){
 	console.log("Enviorment: ".green.bold + colors.black.bgWhite(config.env))
 })					//Configurra el puerto. "process.env.PORT" es una variable que hace referencia al puerto a escuchar - Utilizada para heroku
 
+module.exports = config

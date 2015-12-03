@@ -8,13 +8,7 @@ var gulp = require('gulp')
 ,nib = require('nib')
 ,rename = require('gulp-rename')
 ,colors = require('colors')
-
-var srcIMG = 'public/img/**/*'
-
-,srcJS = 'public/js/**/*.js'
-
-,srcCSS = 'public/stylus/**/*.styl'
-,srcStyle = 'public/stylus/styles.styl'
+,config = require("./config/configDev.json")
 
 function changePath(path){
 	var destPath = path.replace("public","dist").replace(/\/+\w+\.+(js|css|styl|png|jpg||svg)/,"")
@@ -43,10 +37,10 @@ function minJS(file){
 
 function compileStyl(file) {
 
-	var destCSS = changePath(file.path)
+	var destCSS = "dist/css/"
 
 	gulp
-	.src(file.path)
+	.src(config.Cgulp.srcStyle)
 	.pipe(stylus({use: nib(),compress: true}))
 	.pipe(gulp.dest(destCSS))
 	.pipe(notify({
@@ -71,11 +65,11 @@ function minImg(file){
 		message: "Minified file: <%= file.relative %>"
 		}))
 }
-
+console.log(config.Cgulp.srcCSS)
 gulp.task('default', function () {
 
-	gulp.watch(srcJS).on('change',minJS)
-	gulp.watch(srcCSS).on('change',compileStyl).on('added',compileStyl)
-	gulp.watch(srcIMG).on('change',minImg)
+	gulp.watch(config.Cgulp.srcJS).on('change',minJS)
+	gulp.watch(config.Cgulp.srcCSS).on('change',compileStyl).on('added',compileStyl)
+	gulp.watch(config.Cgulp.srcIMG).on('change',minImg)
 
 	});

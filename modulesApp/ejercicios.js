@@ -14,7 +14,7 @@ MongoClient.connect(url, function (err, db) {
 		console.log('Conexion Establecida con MongoDB. url: '.green, url);
 
 		var collection = db.collection('ejercicios');
-		collection.find().toArray(function (err, result) {
+		collection.find().sort({"ejercicio":1}).toArray(function (err, result) {
 			if (err) {
 				console.log(err);
 			} else if (result.length) {

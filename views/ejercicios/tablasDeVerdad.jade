@@ -7,20 +7,20 @@ block ayuda
 	ol
 		li Escoge el número de proposiciones con las cuales quiere  realizar el ejercicio y presiona
 			span.btn.btnEnviar Realizar Ejercicio.
-		p Luego 
+		p Luego
 		li LLena los campos con los valores correspondiente(
-			strong V 
-			|: Verdadero y 
-			strong  F 
+			strong V
+			|: Verdadero y
+			strong  F
 			|: Falso)
 		li Y por ultimo  verifica el ejercicio presionando
 			span.btn.btnConfirmar Verificar
 		p Recuerda que:
-		li Puedes agregar columnas con el boton 
+		li Puedes agregar columnas con el boton
 			button.icon-mas.agregarFila
 		li Estas columnas no infuiran en la respuesta final.
 		li Puedes marcar columnas dando doble clic sobre ella y realizando la misma accion para desmarcarlas.
-	
+
 block content
 	h1.textoCentrado Tablas de Verdad
 	p.explicacion Hola, resuelve la tabla, ingresa los valores y verifica si en correcto. Para mas informacion ve a
@@ -28,7 +28,7 @@ block content
 	section
 		form#htmlFormEjercicioPropuestoTablasVerdad_js
 			section.fieldset
-				label.textoNegrilla(for='numeroProposiciones_js') Numero de proposiciones : 
+				label.textoNegrilla(for='numeroProposiciones_js') Numero de proposiciones :
 				input#htmlInputNumeroProposicionesEscogidasPorUsuario_js.inputBorderBottomFocus.textoCentrado(value='5', type='number', min='0', max='5', autocomplete='off', required='')
 			section.fieldset
 				button#htmlInputSubmitBtnrealizarEjercicio_js(type='submit', value='', autocomplete='off')
@@ -36,4 +36,4 @@ block content
 		form#htmlFormRespuestaUsuario_js
 
 block script
-	script(src='../js/ejercicios/tablaVerdad.js')
+	script(src='/js/ejercicios/tablaVerdad.js')

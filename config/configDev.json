@@ -1,5 +1,11 @@
 {
 	"env" : "Developed",
-	"directoryStaticFiles" : "public"
+	"directoryStaticFiles" : "public",
+	"Cgulp" : {
+		"srcIMG" : "public/img/**/*",
+		"srcJS" : "public/js/**/*.js",
+		"srcCSS" : "public/stylus/**/*.styl",
+		"srcStyle" : "public/stylus/styles.styl"
+	}
 }
 

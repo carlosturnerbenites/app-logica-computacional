@@ -1,0 +1,649 @@
+commit 74aa9c69876f0a0c02640631df956d043634bf48
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Wed Dec 2 22:38:17 2015 -0500
+
+    configuraciones de gulp para entornos
+
+commit 1a43f5f07915bb8b76311ac6e0a01496fc0d5970
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Wed Dec 2 20:15:47 2015 -0500
+
+    implementando mongodb
+
+commit cd089306bcf89904921da9b9b6bb803a3f021744
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Tue Dec 1 21:59:06 2015 -0500
+
+    experimentos con mongodb
+
+commit d4723b3ebdbb1cfc9187d96f563d1124258698f2
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Tue Dec 1 21:13:59 2015 -0500
+
+    configuracion de entornos
+
+commit e0083461c9ecad858e12c1015112c58122219717
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sat Nov 28 19:09:45 2015 -0500
+
+    añadiendo gulp al proyecto
+
+commit 8346e247b391369dc741f1a9d8a056a2bfd95184
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Fri Nov 27 00:59:11 2015 -0500
+
+    refactor - archivos de audio y conjuntos
+
+commit 3b79608fa6362692e55f8a788b32b4898c9ec9aa
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Mon Nov 16 20:26:36 2015 -0500
+
+    Inicio de POO en tablas de verdad
+
+commit ca5d2b91c540169ac390af0beb68cd23af2d04e8
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Mon Nov 16 18:50:39 2015 -0500
+
+    commit de apoyo
+
+commit 642dd278c42a5108880818d74ffb9f513e3e2cd2
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Mon Nov 16 17:43:25 2015 -0500
+
+    cerca de la version 1.0
+
+commit fffad9522b0ea3b88c7d90fe79826e22477d7361
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Mon Nov 16 15:32:12 2015 -0500
+
+    commit de apoyo
+
+commit 354346ebccda4064029a853eedc684d57e635739
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Mon Nov 16 12:16:14 2015 -0500
+
+    fase 1 de verificacion de tablas de verdad terminada
+
+commit c27cc99ff95a21ac3286c9e95f8009702d924566
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Mon Nov 16 11:21:23 2015 -0500
+
+    avances en validacion de tablas de verdad
+
+commit 5cbab2cc68fcd6d6f20d95965e49d96380521a94
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Mon Nov 16 10:44:53 2015 -0500
+
+    avances en resolucion de tablas de verdad
+
+commit 48e967bcdb581538ec5c3b0aec351a564adba33b
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Mon Nov 16 08:20:17 2015 -0500
+
+    avances en verificacion de tablas de verdad
+
+commit cea9ddce0533e8a9bcea1831b4ad98af9902b659
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Nov 15 23:21:25 2015 -0500
+
+    reestructuracion de notificaciones
+
+commit 817d3b3ebf3e0bf4b0434a39810a79d9cd9e11db
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Nov 15 20:53:26 2015 -0500
+
+    arreglos varios
+
+commit fb4761c44ef5bc71b66cb79c1609f20c16b7d28a
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Nov 15 19:03:39 2015 -0500
+
+    puliendo funcion de guardar grafo
+
+commit 944582d0d85ac5b4f6e70e987d28b0450c17c7f5
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Nov 15 16:15:11 2015 -0500
+
+    controles de grafos terminados
+
+commit 2b203a615a65504a3457c32e1fc160662b8ff29d
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Nov 15 15:44:46 2015 -0500
+
+    explicacion de controles del mouse de grafos
+
+commit db45e8a878606aa15f7923c968f24d8661b0eab0
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Nov 15 15:11:46 2015 -0500
+
+    agregar texto real
+
+commit 8228ba75ab49af7568f435b7e137bcdf94ef9d30
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Nov 15 13:28:59 2015 -0500
+
+    arreglo de posicion de reproductor de auido y cambio de imagenes
+
+commit 41d34be3efac57049c104745d0f152c9d1c2f57a
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Nov 15 12:13:07 2015 -0500
+
+    Implementacion de notifiacicones terminado
+
+commit 2e86a073279954b56a36ced8324d90b8f55ccd4a
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Nov 15 11:37:43 2015 -0500
+
+    inicio de implementation de notificaciones HTML5 Nativas
+
+commit 3b59da61b14ec1a552bac95073450628c0375d46
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Nov 15 07:28:50 2015 -0500
+
+    añadiendo contenido real
+
+commit 5d5382f61215318560712b699b6238c437671988
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Mon Nov 9 15:05:15 2015 -0500
+
+    avances en la generacion de tablas de verdad
+
+commit 0693b5fd3c2abf08c2cdbbf7c5a72d71054fa21e
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Nov 8 21:53:21 2015 -0500
+
+    avances en proceso de verificacion de tablas de verdad
+
+commit ec7f5bc86db75df0052c1d8a10ff14405812de16
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Nov 8 17:18:45 2015 -0500
+
+    avances en desarrollo de tablas de verdad
+
+commit 4bd4c5ecbc6bda466867ad1f17ebc6bd63bb9259
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Mon Nov 2 13:48:17 2015 -0500
+
+    refactor de botones - se crearon los botones a nivel global
+
+commit b3eaaa8e059e3f6010f8f904b8769e07d76b4dec
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Mon Nov 2 07:54:48 2015 -0500
+
+    refactor de funcion de crear y mostrar mensajes
+
+commit 5154cf39f010b0f0d02743c97cd456707c622778
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Nov 1 21:10:54 2015 -0500
+
+    avances en validacion de grados
+
+commit 6324e728642dc99ea2b252b37b83a2a26405f330
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Nov 1 19:55:12 2015 -0500
+
+    avance en verificacionde grado de los vertices
+
+commit 95559ede77d4ca7f494210dd82509fd4aca7dd1f
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Nov 1 18:07:07 2015 -0500
+
+    refactorizacion de funcion de crear vertices
+
+commit 79c8f8bf6c23ada5b4d1e41ed4ec37aa9db3594d
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Nov 1 17:53:12 2015 -0500
+
+    terminada funcionalidad de indicar accion actual en grafos y modularizacion de cursos y ejercicios
+
+commit bde2c7c8cd59c5e024f4f051480fd89a2fbdf8d8
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Nov 1 13:10:51 2015 -0500
+
+    detalles modulo grafo y reproductor de audio
+
+commit cac1c2fc7a505686e999277f1c32c3a8d43650a7
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Nov 1 10:57:43 2015 -0500
+
+    commit apoyo
+
+commit 8d5bafeedbda491d1bc671b1f80e54c4b9d8fe1c
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Nov 1 10:04:42 2015 -0500
+
+    refactor modulo de calculo proposicional
+
+commit 85e98cb2edf4864dd9632e2813920aad1a0dfc14
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Nov 1 08:11:13 2015 -0500
+
+    refactor contenido y estilos
+
+commit 14e4a6af60dab6ea955712a159db9a0cf704bbb7
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sat Oct 31 20:57:19 2015 -0500
+
+    refactor estilos btn
+
+commit 68c1cbb9ef6d3fa2ef36fad9320b7ea87cde7384
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Fri Oct 30 18:50:05 2015 -0500
+
+    refactor dibujar grafo
+
+commit 52280b9990293b8d18b3118e990f9b79965d1bf6
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Fri Oct 30 18:25:58 2015 -0500
+
+    refactor dibujar grafo
+
+commit 3dede206dd09678c10bdf3ba70496ae979f547b7
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Fri Oct 30 17:55:08 2015 -0500
+
+    refactor
+
+commit b47388ce97848ff73fa4ffd166537a69ea8ff353
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Fri Oct 30 08:35:51 2015 -0500
+
+    inicio de modularizacion
+
+commit c7adcb4fa5113ab429845b8fc06dea43d9049974
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Fri Oct 30 06:20:34 2015 -0500
+
+    arreglo de problema con position mouse en el svg
+
+commit 5499faa7ebd99d3342575b2307e0fe2f6c6991bc
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Fri Oct 30 00:21:45 2015 -0500
+
+    functionalidad de guardar/cargar archivos
+
+commit 20eaef492516492618b389dba9ebb6c06e058146
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Thu Oct 29 16:11:07 2015 -0500
+
+    funcionalidad de guardar grafo
+
+commit 08c72f411d6fd0b79d662a7f0f7330485b2261aa
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Tue Oct 27 23:15:34 2015 -0500
+
+    envio de datos de formulario de prueba
+
+commit cf7974051813a20eafd53f71b304c28e5e55be91
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Tue Oct 27 15:01:38 2015 -0500
+
+    commit apoyo
+
+commit 36adc7a16285f751003f05142b565e5f89c397b1
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Tue Oct 27 14:52:08 2015 -0500
+
+    envio de formulario a backend - pruebas
+
+commit 9a03704a6c133b4bc04e35d6dd20016b6c6b3def
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Mon Oct 26 14:39:37 2015 -0500
+
+    ejercicio calculo proposicional
+
+commit 7ee26706b37248654561bb5c526ae8aee69a11fa
+Merge: b288f37 4cda573
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Oct 25 13:53:51 2015 -0500
+
+    Merge branch 'tablasDeVerdad' of https://github.com/carlosturnerbenites/AppLogicaComputacional into tablasDeVerdad
+
+commit b288f371e089405f4151872057813d2a0ce4d26f
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Oct 25 13:52:19 2015 -0500
+
+    refaactor
+
+commit 4cda5732e146fdafbf6b8869d58da5f363d1a737
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Mon Oct 19 11:32:25 2015 -0500
+
+    refactor
+
+commit cf412c48cff4332cba3d38900e4d0ec5433d2a64
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Mon Oct 19 11:17:25 2015 -0500
+
+    drag and Drop de elementos del grafo
+
+commit f140cfb7a8ffe53785b400a5c6764d800ff02bd3
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Oct 18 10:45:47 2015 -0500
+
+    avance en creacion de expresion de tablas de verdad
+
+commit 92b1d5e695433930833fa58d7e13af48a1378514
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sat Oct 17 21:22:28 2015 -0500
+
+    avances funcionalidad de tablas de verdad y grafos
+
+commit 7568c7d5801bd3a5b4e65fbc8ead970553c02436
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sat Oct 17 01:02:41 2015 -0500
+
+    orientacion a objetos de proposiciones
+
+commit 274324ea9bc6beed15bb2be11148b184d71be4e6
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sat Oct 17 00:05:41 2015 -0500
+
+    inicio de nueva forma de manejar tablas de verdad - Intento
+
+commit 214f4dd74477a568804f77dbba5f8d8c0747ad2b
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Fri Oct 9 18:51:57 2015 -0500
+
+    commit de apoyo
+
+commit 9e41a0289f7cb7a3bb4efc3107798831723501d0
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Fri Oct 9 18:28:02 2015 -0500
+
+    retomando ejercicio de tablas de verda, creando expresiones
+
+commit d3b9d6fad7d751e57f95b013acdf7e9fe094c790
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Fri Oct 9 17:10:18 2015 -0500
+
+    inicio de validaciones en el backend
+
+commit 35d1577e7ff5d1da4054b5b5e05e26ce0e4b5089
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Fri Oct 9 16:17:40 2015 -0500
+
+    agregar pagina 404 y 500
+
+commit a7e61aca918649f344a0b30eb7252ac4db5ebb6e
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Fri Oct 9 11:10:48 2015 -0500
+
+    remover handlerbars y arreglo de templates con jade
+
+commit 66da732e00159813ffe26b73e85c86c9265a2c64
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Fri Oct 9 10:08:19 2015 -0500
+
+    Agregar handlebars y configurarlo para trabajar junto a jade
+
+commit 309f0bc499a9ff67341de945dffee45114e1c2c3
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Thu Oct 8 17:13:28 2015 -0500
+
+    commit de apoyo
+
+commit 5eea6665d9c96708eef184cd878370f85739a164
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Thu Oct 8 16:23:01 2015 -0500
+
+    arreglo de extends de templates
+
+commit 561a7c03add189968d2694c1c1d640c3fe79049c
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Thu Oct 8 15:52:43 2015 -0500
+
+    commit de apoyo
+
+commit da176b9c1b1bc57af4c3ac4e7bbfb4aff7495666
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Thu Oct 8 15:48:37 2015 -0500
+
+    arreglo de vistas y template
+
+commit 5eefe5e10c0ddbefc93ad1181ba436d73522cc4a
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Thu Oct 8 15:03:37 2015 -0500
+
+    arreglo de puerto para despliege en nodejs
+
+commit 2ceccfd9714b84a7ca30f9d164f888ce33f09304
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Thu Oct 8 14:52:48 2015 -0500
+
+    arreglo de version de nodejs en package.json
+
+commit 7521264b60806a315f83e70320a9830a4e4006fd
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Thu Oct 8 14:47:04 2015 -0500
+
+    añadiendo extends a templates
+
+commit 3e5984f4f9c0da614fb3d3d3315780d85fc954ce
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Thu Oct 8 11:48:36 2015 -0500
+
+    acoplando templates de jade
+
+commit ff22f331e225d82f7e6d35fe0950b9c356bf806a
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Thu Oct 8 11:02:42 2015 -0500
+
+    migrando aplicacion a nodejs
+
+commit 4c4fb3c3ac8fe6590ef77634a70253816c106adc
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Thu Oct 1 16:02:08 2015 -0500
+
+    Inicio de validacion de respuesta de grafos y arreglos en ejercicio conjuntos
+
+commit f0e82678cf01460adb473667c959d9184061c4e3
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Wed Sep 30 15:32:41 2015 -0500
+
+    Refactor de codigo y varaibles e inicio de creacion de ejercicio de grafos
+
+commit 63b2fc05d989a8004ee2fb0ad7eb7a072e29aa9a
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Tue Sep 29 23:33:20 2015 -0500
+
+    terminado borrado de vertices y aristas
+
+commit eee1017320b959a5b492b4babc4faf197682f5fa
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Tue Sep 29 06:04:50 2015 -0500
+
+    arreglo de eventos mousedown y mouseup de los circulos
+
+commit 4cb6a6439f4d550da2de7d31e9f00d6fc3ca2f75
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Tue Sep 29 00:13:50 2015 -0500
+
+    Inicio de remodelacion ejercicio tablas de verdad y grafos
+
+commit c9845a7f738ffa704c17dc9b79836c0cd6ac67dd
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Sep 27 13:52:58 2015 -0500
+
+    refactor de variables, mejora en el reproductor de audio,mejora en validacion visual de los ejercicios
+
+commit e8919319fd8d9311443a8bc4f726349d1e21d8fe
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Sep 27 00:31:30 2015 -0500
+
+    Validar conjunto ingresado desde el 'backend'
+
+commit 9da9a30c1ba8a02dc72136133f8aea57899adf9f
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sat Sep 26 23:56:10 2015 -0500
+
+    Añadir regexp para el input de los conjuntos, refactor de funciones
+
+commit 88cc8769b74c88deb0949ba5975fd796d0aed160
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sat Sep 26 01:52:30 2015 -0500
+
+    refactor de funcion de mostrarOcultarAyuda y habilitarinhabilitar fomrs
+
+commit b289113ae43868db13d67a80426d98a3323052da
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sat Sep 26 01:51:23 2015 -0500
+
+    refactor de funcion de mostrarOcultarAyuda y habilitarinhabilitar fomrs
+
+commit 3dd41017c627991ca22492f2cb43fd041714a7d7
+Author: CarlosAlonso Turner Benites <carlosturnerbenites@gmail.com>
+Date:   Thu Sep 24 00:01:34 2015 -0500
+
+    terminacion de validacion de respuesta subconjuntos y de dibujo de grafos
+
+commit 3ea21babf1b3db1f20feb53d1c749ec1857b807d
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Tue Sep 22 01:27:04 2015 -0500
+
+    avances en validacion de respuesta a subconjuntos
+
+commit fb75978279a65f7b0512fa25fbcd20be13f32da6
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Tue Sep 22 00:14:32 2015 -0500
+
+    avances en creacion de respuestas de conjuntos
+
+commit 388e20899f922ca1ae613d39221e5257017b70bc
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Mon Sep 21 22:15:32 2015 -0500
+
+    dibujar grafos completado
+
+commit b5af40f94b623205d734719513d391778a231b85
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Mon Sep 21 16:43:42 2015 -0500
+
+    inicio modulo de grafos
+
+commit b4c31a8a05bdeb0458bdb5b235cb4962eadd6196
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Mon Sep 21 14:33:04 2015 -0500
+
+    validacion de conjuntos en preoceso
+
+commit 24285e7e4755b79bdc51f0c90a5316376a9c8dcb
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Mon Sep 21 00:57:46 2015 -0500
+
+    terminada funcionalidad de agregar columnas en ejercicios de tablas de verdad
+
+commit 71a80824419c5105067c8afc396cb58136a46825
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Sep 20 22:56:08 2015 -0500
+
+    cambio de forma de calcular los subconjuntos
+
+commit 55a729f808786cdbc4ea7c09aac64437e5e94a41
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Sep 20 22:26:26 2015 -0500
+
+    avances en validacion de prueba de conjuntos
+
+commit fe5b28b1a211437978795bc668ec9b9229a3a824
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Sep 20 22:06:08 2015 -0500
+
+    intento de conexion con sqlite y avacnes en validacion de conjuntos
+
+commit c5e69b2e833d31471855b275d4026f3b7f4e104f
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Sep 20 19:17:16 2015 -0500
+
+    un poco de refactor y estilos
+
+commit ac1cc1f1d548fa1d90241989126b6b273ca1eed7
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Sep 20 17:36:20 2015 -0500
+
+    Mejora de estilos y funcionalidad de Ayuda
+
+commit f3649e418b722e31e836a74ae5cf93f5b5809b9e
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Sep 20 13:43:52 2015 -0500
+
+    inicio de validacion de subconjuntos
+
+commit 25fb26a1c4bed5a0a1eef8585fc62b64c4baed32
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Sep 20 09:01:08 2015 -0500
+
+    refactor css
+
+commit e3492440d0d19cbc85b1482333d2df034aae12c6
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Fri Sep 11 13:20:36 2015 -0500
+
+    creacion de modulo de conjuntos
+
+commit 9b2e20ba082320d74f2ede805de6700e72f613d4
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Fri Sep 11 00:41:02 2015 -0500
+
+    inicio de modulo de teoria de conjuntos
+
+commit 69a8d092f74f47a56fcd547a3c183b35695dfdc6
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmail.com>
+Date:   Thu Sep 10 16:30:47 2015 -0500
+
+    refactor de estructura HTML
+
+commit 852dbe401a524db430be7566f2e042c516b7a947
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmail.com>
+Date:   Thu Sep 10 15:41:03 2015 -0500
+
+    ejerciciso de tablas de verdad terminado, por ahora solo acepta dos proposiciones
+
+commit 4a803214b914e0101fe0dbd4f3e04c29f09f7511
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmail.com>
+Date:   Thu Sep 10 13:50:18 2015 -0500
+
+    Primera refactorizacion de codigo
+
+commit f86dad9ef947308ef07138285591624f7c8fa820
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Wed Sep 9 06:15:55 2015 -0500
+
+    Inicio de comparacion de respuesta
+
+commit fb83698a12c2a62bb6a0da713a3e732439a99617
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Wed Sep 9 06:05:11 2015 -0500
+
+    Validacion ejecicio tabla de verdad
+
+commit 09647f148e5852969704e7dd8cb6c6c3f472c1ed
+Merge: 32a9d70 c269b1f
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Tue Sep 8 14:27:15 2015 -0500
+
+    Merge branch 'master' of https://github.com/carlosturnerbenites/AppLogicaComputacional
+
+commit 32a9d7002a13ac2e0fbead7aa906157f107ca4b6
+Author: carlosturnerbenites <carlosturnerbenites@gmail.com>
+Date:   Tue Sep 8 14:12:48 2015 -0500
+
+    ejercicio tablas de verdad y JSON entre python y javascript
+
+commit c269b1f551b4c9fadfa494213a6b967e41296839
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmail.com>
+Date:   Tue Sep 8 08:58:25 2015 -0500
+
+    Initial commit
+
+commit 35d6ac3ede480d8cefe44272b0c2419135daf770
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Sep 6 16:41:41 2015 -0500
+
+    creacion de tablas dinamica, creacion de funcion
+
+commit d7330ebfe64ce00b1314aea509b14a773975c222
+Author: Carlos Alonso Turner Benites <carlosturnerbenites@gmial.com>
+Date:   Sun Sep 6 16:37:15 2015 -0500
+
+    creacion de tabla dinamica
