@@ -54,40 +54,40 @@ if (process.env.NODE_ENV == 'dev' || process.env.NODE_ENV == undefined){
 
 
 
+/*
 
-
-/*lets require/import the mongodb native drivers.*/
+//lets require/import the mongodb native drivers.
 var mongodb = require('mongodb');
 
-/*We need to work with "MongoClient" interface in order to connect to a mongodb server.*/
+//We need to work with "MongoClient" interface in order to connect to a mongodserver.
 var MongoClient = mongodb.MongoClient;
 
-/* Connection URL. This is where your mongodb server is running.*/
+// Connection URL. This is where your mongodb server is running.
 var url = 'mongodb://localhost:27017/prueba';
 
 MongoClient.connect(url, function (err, db) {
 	if (err) {
 		console.log('Unable to connect to the mongoDB server. Error:', err);
 	} else {
-		/*HURRAY!! We are connected. :)*/
+		//HURRAY!! We are connected. :)
 console.log('Connection established to', url);
 
-/* Get the documents collection*/
+// Get the documents collection
 var collection = db.collection('users');
 
-/*Create some users*/
+//Create some users
 var user1 = {name: 'modulus admin', age: 42, roles: ['admin', 'moderator', 'user']};
 var user2 = {name: 'modulus user', age: 22, roles: ['user']};
 var user3 = {name: 'modulus super admin', age: 92, roles: ['super-admin', 'admin', 'moderator', 'user']};
 
-/* Insert some users*/
+// Insert some users
 collection.insert([user1, user2, user3], function (err, result) {
 	if (err) {
 		console.log(err);
 	} else {
 		console.log('Inserted %d documents into the "users" collection. The documents inserted with "_id" are:', result.length, result);
 	}
-	/*Close connection*/
+	//Close connection
 	collection.find({name: 'modulus user'}).toArray(function (err, result) {
 		if (err) {
 			console.log(err);
@@ -99,7 +99,7 @@ collection.insert([user1, user2, user3], function (err, result) {
 		} else {
 			console.log('No document(s) found with defined "find" criteria!'.white);
 		}
-		/*Close connection*/
+		//Close connection
 		db.close();
 	});
 });
@@ -108,7 +108,7 @@ collection.insert([user1, user2, user3], function (err, result) {
 
 
 
-
+*/
 
 
 
